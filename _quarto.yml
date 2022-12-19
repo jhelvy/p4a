@@ -1,0 +1,50 @@
+project:
+  type: book
+  preview:
+    port: 5896
+    browser: true
+  render:
+    - "*.qmd"
+  resources:
+    - "data/"
+    - "images/"
+    - "figs/"
+
+book:
+  title: "Introduction to Programming for Analytics in R"
+  author: "John Paul Helveston"
+  date: "12/19/2022"
+  cover-image: cover.png
+  page-navigation: true
+  sidebar:
+    search: true
+    style: docked
+    tools:
+      - icon: github
+        href: https://github.com/emse-p4a-gwu/p4a-book
+  chapters:
+    - index.qmd
+    - 1-getting-started.qmd
+    - 2-functions-packages.qmd
+    - 3-operations-data-types.qmd
+    - 4-creating-functions.qmd
+    - 5-conditionals.qmd
+    - 6-testing-debugging.qmd
+    - 7-iteration.qmd
+    - 8-vectors.qmd
+    - 9-strings.qmd
+    - 10-data-analysis-prelude.qmd
+    - 11-data-frames.qmd
+    - 12-data-wrangling.qmd
+    - 13-data-visualization.qmd
+    - 14-monte-carlo-methods.qmd
+    - 15-python.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt

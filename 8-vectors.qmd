@@ -1,0 +1,411 @@
+# "Vectors"
+
+```{r child = "setup.qmd"}
+```
+
+> ### Learning Objectives
+>
+> * Describe what a vector is.
+> * Create vectors of different data types.
+> * Use indexing to subset and modify specific portions of vectors.
+> * Understand how to use vectorized functions to avoid loop operations.
+>
+> ### Suggested readings
+>
+> * [Chapter 20](https://r4ds.had.co.nz/vectors.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
+> * [Chapter 5.1](https://rstudio-education.github.io/hopr/r-objects.html#atomic-vectors) of "Hands-On Programming with R", by Garrett Grolemund
+
+---
+
+So far we've only dealt with objects that contain one value (e.g. `x <- 1`), but R actually stores those values in a _vector_ of length one:
+
+```{r}
+x <- 1
+length(x)
+is.vector(x)
+```
+
+A _vector_ is a basic data structure in R. All elements in a vector must have the same type.
+
+> [Watch this 1-minute video for a quick summary of **vectors**](https://vimeo.com/220490316)
+
+---
+
+# Vector basics
+
+## Creating vectors
+
+The most basic way of creating a vector is to use the `c()` function ("c" is for "concatenate"):
+
+```{r}
+x <- c(1, 2, 3)
+length(x)
+```
+
+As we saw in the [loops](L5-loops.html) lesson, you can also create vectors of sequences using the `:` operator or the `seq()` function:
+
+```{r}
+seq(1, 10)
+1:5
+```
+
+You can also create a vector by using the `rep()` function, which replicates the same value `n` times:
+
+```{r}
+y <- rep(5, 10) # The number 5 ten times
+z <- rep(10, 5) # The number 10 five times
+```
+```{r}
+y
+z
+```
+
+In fact, you can use the `rep()` function to create longer vectors made up of repeated vectors:
+
+```{r}
+rep(c(1, 2), 3) # Repeat the vector c(1, 2) three times
+```
+
+If you add the `each` argument, `rep()` will repeat each element in the vector:
+
+```{r}
+rep(c(1, 2), each = 3) # Repeat each element of the vector c(1, 2) three times
+```
+
+You can see how long a vector is using the `length()` function:
+
+```{r}
+length(y)
+length(z)
+```
+
+## Vector coercion
+
+Each element in a vector must have the **same type**. If you mix types in a vector, R will _coerce_ all the elements to either a numeric or character type.
+
+If a vector has a _single_ character element, R makes everything a **character**:
+
+```{r}
+c(1, 2, "3")
+c(TRUE, FALSE, "TRUE")
+```
+
+If a vector has numeric and logical elements, R makes everything a **number**:
+
+```{r}
+c(1, 2, TRUE, FALSE)
+```
+
+If a vector has integers and floats, R makes everything a **float**:
+
+```{r}
+c(1L, 2, pi)
+```
+
+## Deleting vectors
+
+You can delete a vector by assigning `NULL` to it:
+
+```{r}
+x <- seq(1, 10)
+x
+x <- NULL
+x
+```
+
+## Numeric vectors
+
+As we saw in the [loops](5-loops.html) lesson, you can create a vector of integers using the `:` operator or the `seq()` function:
+
+```{r}
+1:10
+seq(1, 10)
+```
+
+Numeric vectors don't all have to be integers though - they can be any number:
+
+```{r}
+v <- c(pi, 7, 42, 365)
+v
+typeof(v)
+```
+
+R has many built-in functions that are designed to give _summary_ information about numeric vectors. Note that these functions take a vectors of numbers and return _single values_. Here are some common ones:
+
+Function   |       Description           | Example
+---------- | ----------------------------|------------------------------
+`mean(x)` | Mean of values in `x` | `mean(c(1,2,3,4,5))` returns ``r mean(c(1,2,3,4,5))``
+`median(x)` | Median of values in `x` | `median(c(1,2,2,4,5))` returns ``r median(c(1,2,2,4,5))``
+`max(x)`  | Max element in `x` | `max(c(1,2,3,4,5))` returns ``r max(c(1,2,3,4,5))``
+`min(x)`      | Min element in `x` | `min(c(1,2,3,4,5))` returns ``r min(c(1,2,3,4,5))``
+`sum(x)`      | Sums the elements in `x` | `sum(c(1,2,3,4,5))` returns ``r sum(c(1,2,3,4,5))``
+`prod(x)`     | Product of the elements in `x` | `prod(c(1,2,3,4,5))` returns ``r prod(c(1,2,3,4,5))``
+
+## Character vectors
+
+Character vectors are vectors where each element is a string:
+
+```{r}
+stringVector <- c('oh', 'what', 'a', 'beautiful', 'morning')
+stringVector
+typeof(stringVector)
+```
+
+As we'll see in the next lesson on [strings](L7-strings.html), you can "collapse" a character vector into a single string using the `str_c()` function from the `stringr` library:
+
+```{r}
+library(stringr)
+str_c(stringVector, collapse = ' ')
+```
+
+## Logical vectors
+
+Logical vectors contain only `TRUE` or `FALSE` elements:
+
+```{r}
+logicalVector <- c(rep(TRUE, 3), rep(FALSE, 3))
+logicalVector
+```
+
+If you add a numeric type to a logical vector, the logical elements will be converted to either a `1` for `TRUE` or `0` for `FALSE`:
+
+```{r}
+c(logicalVector, 42)
+```
+
+**Warning**: If you add a character type to a logical vector, the logical elements will be converted to strings of `"TRUE"` and `"FALSE"`. So even though they may still _look_ like logical types, they aren't:
+
+```{r}
+y <- c(logicalVector, 'string')
+y
+typeof(y)
+```
+
+## Comparing vectors
+
+If you want to check if two vectors are identical (in that they contain all the same elements), you can't use the typical `==` operator by itself. The reason is because the `==` operator is performed element-wise, so it will return a logical vector:
+
+```{r}
+x <- c(1,2,3)
+y <- c(1,2,3)
+x == y
+```
+
+Instead of getting one `TRUE`, you get a vector of `TRUE`s, because the individual elements are indeed equal. To compare if _all_ the elements in the two vectors are identical, wrap the comparison inside the `all()` function:
+
+```{r}
+all(x == y)
+```
+
+Keep in mind that there are really two steps going on here: 1) `x == y` creates a logical vectors of `TRUE`'s and `FALSE`'s based on element-wise comparisons, and 2) the `all()` function compares whether all of the values in the logical vector are `TRUE`.
+
+You can also use the `all()` function to compare if other types of conditions are all `TRUE` for all elements in two vectors:
+
+```{r}
+a <- c(1,2,3)
+b <- -1*c(1,2,3)
+all(a > b)
+```
+
+In contrast to the `all()` function, the `any()` function will return `TRUE` if _any_ of the elements in a vector are `TRUE`:
+
+```{r}
+a <- c(1,2,3)
+b <- c(-1,2,-3)
+a == b
+any(a == b)
+```
+
+For most situations, the `all()` function works just fine for comparing vectors, but it only compares the _elements_ in the vectors, not their _attributes_. In some situations, you might also want to check if the attributes of vector, such as their _names_ and _data types_, are also the same. In this case, you should use the `identical()` function.
+
+```{r}
+names(x) <- c('a', 'b', 'c')
+names(y) <- c('one', 'two', 'three')
+all(x == y) # Only compares the elements
+identical(x, y) # Also compares the **names** of the elements
+```
+
+Notice that for the `identical()` function, you don't need to add a conditional statement - you just provide it the two vectors you want to compare. This is because `identical()` by definition is comparing if two things are the same.
+
+# Accessing elements in a vector
+
+You can access elements from a vector using brackets `[]` and indices inside the brackets. You can use integer indices (probably the most common way), character indices (by naming each element), and logical indices.
+
+## Using integer indices
+
+Vector indices start from 1 (this is important - [most programming languages start from 0](https://en.wikipedia.org/wiki/Zero-based_numbering)):
+
+```{r}
+x <- seq(1, 10)
+x[1] # Returns the first element
+x[3] # Returns the third element
+x[length(x)] # Returns the last element
+```
+
+You can access multiple elements by using a vector of indices inside the brackets:
+
+```{r}
+x[c(1:3)]  # Returns the first three elements
+x[c(2, 7)] # Returns the 2nd and 7th elements
+```
+
+You can also use negative integers to _remove_ elements, which returns all elements except that those specified:
+
+```{r}
+x[-1] # Returns everything except the first element
+x[-c(2, 7)] # Returns everything except the 2nd and 7th elements
+```
+
+But you cannot mix positive and negative integers while indexing:
+
+```{r error=TRUE}
+x[c(-2, 7)]
+```
+
+If you try to use a float as an index, it gets rounded **down** to the nearest integer:
+
+```{r error=TRUE}
+x[3.1415] # Returns the 3rd element
+x[3.9999] # Still returns the 3rd element
+```
+
+## Using characters indices
+
+You can name the elements in a vector and then use those names to access elements. To create a named vector, use the `names()` function:
+
+```{r error=TRUE}
+x <- seq(5)
+names(x) <- c('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j')
+x
+```
+
+You can also create a named vector by putting the names directly in the `c()` function:
+
+```{r error=TRUE}
+x <- c('a' = 1, 'b' = 2, 'c' = 3, 'd' = 4, 'e' = 5)
+x
+```
+
+Once your vector has names, you can then use those names as indices:
+
+```{r error=TRUE}
+x['a'] # Returns the first element
+x[c('a', 'c')] # Returns the 1st and 3rd elements
+```
+
+## Using logical indices
+
+When using a logical vector for indexing, the position where the logical vector is `TRUE` is returned. This is helpful for filtering vectors based on conditions:
+
+```{r}
+x <- seq(1, 10)
+x > 5 # Create logical vector
+x[x > 5] # Put logical vector in brackets to filter out the TRUE elements
+```
+
+You can also use the `which()` function to find the numeric indices for which a condition is `TRUE`, and then use those indices to select elements:
+
+```{r}
+which(x < 5) # Returns indices of TRUE elements
+x[which(x < 5)] # Use which to select elements based on a condition
+```
+
+# Vectorized operations
+
+Most base functions in R are "vectorized", meaning that when you give them a vector, they perform the operation on each element in the vector.
+
+## Arithmetic operations
+
+When you perform arithmetic operations on vectors, they are executed on an element-by-element basis:
+
+```{r}
+x1 <- c(1, 2, 3)
+x2 <- c(4, 5, 6)
+```
+```{r}
+# Addition
+x1 + x2 # Returns (1+4, 2+5, 3+6)
+
+# Subtraction
+x1 - x2 # Returns (1-4, 2-5, 3-6)
+
+# Multiplicattion
+x1 * x2 # Returns (1*4, 2*5, 3*6)
+
+# Division
+x1 / x2 # Returns (1/4, 2/5, 3/6)
+```
+
+When performing vectorized operations, the vectors need to have the same dimensions, or one of the vectors needs to be a single-value vector:
+
+```{r error=TRUE}
+# Careful! Mis-matched dimensions will only give you a warning, but will still return a value:
+x1 <- c(1, 2, 3)
+x2 <- c(4, 5)
+x1 + x2
+```
+
+What R does in these cases is _repeat_ the shorter vector, so in the above case the last value is `3 + 4`.
+
+If you have a single value vector, R will add it element-wise:
+```{r}
+x1 <- c(1, 2, 3)
+x2 <- c(4)
+x1 + x2
+```
+
+## Sorting
+
+You can reorder the arrangement of elements in a vector by using the `sort()` function:
+
+```{r}
+a = c(2, 4, 6, 3, 1, 5)
+sort(a)
+sort(a, decreasing = TRUE)
+```
+
+To get the index values of the sorted order, use the `order()` function:
+
+```{r}
+order(a)
+```
+
+These indices tell us that the first value in the sorted arrangement of vector `a` is element number 5 (which is a `1`), the second value is element number `1` (which is a `2`), and so on. If you use `order()` as the indices to the vector, you'll get the sorted vector:
+
+```{r}
+a[order(a)] # Same as sort(a)
+```
+
+# Tips
+
+## Use vectors instead of a loop
+
+As we saw in the [loops](5-loops.html) lesson, you can use a loop to perform an operation on each element in a vector. For example, the following loop get the decimal values for each element in a vector of floats:
+
+```{r}
+x <- c(3.1415, 1.618, 2.718)
+remainder <- c()
+for (i in x) {
+    remainder <- c(remainder, i %% 1)
+}
+remainder
+```
+
+You could achieve the same thing by just performing the operation inside the loop (the `i %% 1` bit) on the whole vector:
+
+```{r}
+remainder <- x %% 1
+remainder
+```
+
+In many cases, using a vector can save you a whole lot of code (and time!) by avoiding loops entirely!
+
+---
+
+**Page sources**:
+
+Some content on this page has been modified from other courses, including:
+
+- CMU [15-112: Fundamentals of Programming](http://www.kosbie.net/cmu/spring-17/15-112/), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
+- Danielle Navarro's website ["R for Psychological Science"](https://psyr.org/index.html)
+- [RStudio primers](https://rstudio.cloud/learn/primers/1.2)
