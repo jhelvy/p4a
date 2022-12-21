@@ -20,10 +20,8 @@ Imports:
     fontawesome,
     gapminder,
     ggrepel,
-    ggthemes,
     gsheet,
     here,
-    hrbrthemes,
     janitor,
     knitr,
     logitr,
@@ -41,6 +39,4 @@ Imports:
     wikifacts,
     yaml
 Remotes:
-    hrbrmstr/hrbrthemes,
-    jrnold/ggthemes,
     gadenbuie/xaringanExtra
