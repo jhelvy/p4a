@@ -2,24 +2,25 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Be able to use R as a calculator.
 > * Be able to compare values in R.
 > * Know the distinctions between how R handles different types of data types (numbers, strings, and logicals).
 >
-> ### Suggested Readings
+> ### Suggested Readings {.unnumbered}
 >
 > * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
 
-# R as a calculator
+## R as a calculator
 
 You can do a ton of things with R, but at its core it's basically a fancy calculator. Let's get started with some basic arithmetic!
 
-## Doing basic math
+### Doing basic math
 
 R handles simple arithmetic using the following **arithmetic** operators:
 
@@ -54,7 +55,7 @@ Powers (i.e. $x^n$) are represented using the `^` symbol. For example, to calcul
 5^4
 ```
 
-## Slightly more tricky math
+### Slightly more tricky math
 
 There are two other operators that are not typically as well-known as the first five but are quite common in programming:
 
@@ -73,7 +74,7 @@ knitr::kable(
 
 </div>
 
-### Integer division
+#### Integer division
 
 Integer division is division in which the remainder is discarded. Note the difference between regular (`/`) and integer (`%/%`) division:
 
@@ -93,7 +94,7 @@ With integer division, dividing a number by a larger number will always produce 
 4 %/% 5 # Will return 0
 ```
 
-### The Modulus operator
+#### The Modulus operator
 
 The **modulus** (aka "mod" operator) returns the remainder after doing integer division. For example:
 
@@ -119,11 +120,11 @@ Finally, if you mod a number by a larger number, you'll get the smaller number b
 17 %% 20 # Will return 17
 ```
 
-## Tricks with `%%` and `%/%`
+### Tricks with `%%` and `%/%`
 
 The `%%` and `%/%` operators can be really handy. Here are a few tricks.
 
-### Odds and evens with `n %% 2`
+#### Odds and evens with `n %% 2`
 
 You can tell if an integer `n` is even or odd by using `m %% 2`. If the result is `0`, `n` must be even (because 2 goes in _evenly_ to even numbers with no remainder). If `n` is odd, you'll get a remainder of `1`. Here's an example:
 
@@ -133,12 +134,13 @@ You can tell if an integer `n` is even or odd by using `m %% 2`. If the result i
 ```
 
 This trick also works with negative numbers!
+
 ```{r}
 -42 %% 2 # Even
 -43 %% 2 # Odd
 ```
 
-## Number "chopping" with 10s
+### Number "chopping" with 10s
 
 When you use the mod operator `%%` on a **positive** number with factors of 10, it "chops" the number and returns everything to the _right_ of the "chop" point:
 ```{r}
@@ -182,11 +184,11 @@ Example         | "Chop" point | "Chop" point description
 `1234 %% 10000` | ` | 1234`    | Right of the `10,000`'s digit
 </div>
 
-# Comparing things in R
+## Comparing things in R
 
 Other than simple arithmetic, another common programming task is to compare different values to see if one is greater than, less than, or equal to the other. R handles comparisons with **relational** and **logical** operators.
 
-# Comparing two things
+## Comparing two things
 
 To compare two things, use the following **relational** operators:
 
@@ -295,7 +297,7 @@ What is really going on here is R first evaluates whether 3 is equal to 5 (`3 ==
 !(3 == 5)
 ```
 
-## Order of operations
+### Order of operations
 
 R follows the typical BEDMAS order of operations. That is, R evaluates statements in this order^[For a more precise statement, see the [operator precedence](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html) for R.]:
 
@@ -346,7 +348,7 @@ This returns `TRUE` because the `!` statement is evaluated first (`! TRUE` is `F
 ! (TRUE | TRUE)
 ```
 
-# Data types
+## Data types
 
 Every programming language has the ability to store data of different types. R recognizes several important basic data types (there are others, but these cover most cases):
 
@@ -363,7 +365,7 @@ If you want to check with type a value is, you can use the function `typeof()`. 
 typeof("hello")
 ```
 
-## Numeric types
+### Numeric types
 
 Numbers in R have the `numeric` data type, which is also the default computational type. There are two types of numbers:
 
@@ -385,7 +387,7 @@ In this case, R assumes that `3` is really `3.0`. To make sure R knows you reall
 typeof(3L)
 ```
 
-## Character types
+### Character types
 
 A character value is used to represent string values in R. Anything put between single quotes (`''`) or double quotes (`""`) will be stored as a character. For example:
 
@@ -413,7 +415,7 @@ typeof('don't')
 
 We will go into much more detail about working with character values later on in [Week 7](L7-strings.html).
 
-## Logical types
+### Logical types
 
 Logical data only have two values: `TRUE` or `FALSE`. Note that these are not in quotes and are in all caps.
 ```{r}
@@ -431,7 +433,7 @@ R returns the values `FALSE` because 1 is not greater than 2. If I flip the ques
 1 < 2
 ```
 
-## Special values
+### Special values
 
 In addition to the four main data types mentioned, there are a few additional "special" types: `Inf`, `NaN`, `NA` and `NULL`.
 
@@ -451,9 +453,7 @@ In addition to the four main data types mentioned, there are a few additional "s
 
 **No value**: `NULL` asserts that the variable genuinely has no value whatsoever, or does not even exist.
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

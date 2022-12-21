@@ -2,13 +2,8 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
 This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```

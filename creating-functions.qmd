@@ -2,10 +2,11 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Know the basic syntax of custom functions in R.
 > * Understand how function arguments work in R.
@@ -14,16 +15,14 @@ source("_common.R")
 > * Understand the concept of helper functions.
 > * Understand the distinction between local and global variables.
 >
-> ### Suggested Readings
+> ### Suggested Readings {.unnumbered}
 >
 > * [Chapter 19](https://r4ds.had.co.nz/functions.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Chapters 2.4 - 2.7](https://rstudio-education.github.io/hopr/basics.html#write-functions) of "Hands-On Programming with R", by Garrett Grolemund
 
----
-
 We already know how to use built-in functions like `sum()`, `round()`, `sqrt()`, etc. And we can access other functions by installing external packages. But many times there just isn't a function out there to do what you need. Fortunately, you can write your own!
 
-# Basic syntax
+## Basic syntax
 
 Here's the syntax that you use to create a function:
 
@@ -62,9 +61,7 @@ mySqrt <- function(n) {
 }
 ```
 
----
-
-# Arguments
+## Arguments
 
 Here's a function with one argument:
 
@@ -117,9 +114,7 @@ f(5)     # 15
 f(5, 1)  # 6
 ```
 
----
-
-# The `return()` statement
+## The `return()` statement
 
 Here's a basic example of using `return()` to return a value:
 
@@ -170,9 +165,7 @@ f <- function(x) {
 f(5)
 ```
 
----
-
-# The `cat()` statement
+## The `cat()` statement
 
 The `cat()` (short for "concatenating") statement prints whatever arguments it is given to the console. The arguments can be of mixed types and it will convert them all to a concatenated string:
 
@@ -210,9 +203,7 @@ cubed(2)   # Works!
 2*cubed(2) # Works!
 ```
 
----
-
-# Helper functions
+## Helper functions
 
 It is often useful to break down more complicated problems into smaller "helper functions". These helpers can be called in other functions. Here's an example of using the helper functions `square()` and `squareRoot()` to compute the hypotenuse of a triangle:
 
@@ -234,9 +225,7 @@ b = 4
 hypotenuse(a, b)
 ```
 
----
-
-# Local vs. global variables
+## Local vs. global variables
 
 All variables **inside** a function are called _"local"_ variables and will **NOT** be created in the working environment. They can only be used locally within the function. For example:
 
@@ -277,9 +266,7 @@ n = 5 # Define n in the global environment
 printN()
 ```
 
----
-
-# Tips
+## Tips
 
 One particularly useful function is `almostEqual()`:
 
@@ -319,9 +306,7 @@ almostEqual(x, 0.3)
 
 It only compares numbers out to a predefined decimal place, after which it ignores everything else. This will come in handy in your homework problems where you might get unexpected results.
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

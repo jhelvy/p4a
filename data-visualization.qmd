@@ -2,10 +2,11 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Create simple scatterplots and histograms with Base R graphics.
 > * Learn the basic plotting features of the ggplot2 package.
@@ -13,13 +14,11 @@ source("_common.R")
 > * Create plots from data in a data frame.
 > * Export plots from RStudio to standard graphical file formats.
 >
-> ### Suggested Readings
+> ### Suggested Readings {.unnumbered}
 >
 > * The "Introduction" chapter of Rick Scavetta's ["Data Visualization with ggplot2 (Part 1)"](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) lesson on DataCamp (it's free!).
 > * [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Data Visualization: A practical introduction](http://socviz.co/), by Kieran Healy
-
----
 
 > "The purpose of computing is insight, not numbers"
 >
@@ -33,7 +32,7 @@ source("_common.R")
 
 2. Go through the "Introduction" chapter of Rick Scavetta's ["Data Visualization with ggplot2 (Part 1)"](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) lesson on DataCamp. The introduction section is free and contains three 5-minute summary videos along with some practice exercises.
 
-# R Setup
+## R Setup
 
 Before we get started, let's set up our analysis environment like before:
 
@@ -76,11 +75,11 @@ glimpse(df)
 
 Look's good - let's start making some plots!
 
-# Basic plots in R
+## Basic plots in R
 
 R has a number of built-in tools for basic graph types. We will only cover two here because they are so common and convenient: scatterplots and histograms.
 
-## Scatterplots with `plot()`
+### Scatterplots with `plot()`
 
 A scatter plot provides a graphical view of the relationship between two variables. Typically these are used for "continuous" variables, like _time_, _age_, _money_, etc...things that are not categorical in nature (as opposed to "discrete" variables, like _nationality_). Here's a scatterplot of the age of the bear killing victims over time:
 
@@ -102,7 +101,7 @@ plot(x    = df$year,
 
 Looks like bear killings are becoming more frequent over time (hmm, why might that be?), though pretty evenly-distributed across age (I guess bears will kill you regardless of your age).
 
-## Histograms with `hist()`
+### Histograms with `hist()`
 
 The [histogram](https://en.wikipedia.org/wiki/Histogram) is one of the most common ways to visualize the _distribution_ of a variable. The `hist()` function takes just one variable: `x`. Here's a histogram of the `month` variable:
 
@@ -121,14 +120,14 @@ hist(x      = df$month,
      ylab   = "Count")
 ```
 
-# Advanced figures with `ggplot2`
+## Advanced figures with `ggplot2`
 
 ![](images/horst_monsters_ggplot2.png){ width=500 }
 [[Art by Allison Horst]](https://github.com/allisonhorst)
 
 While Base R plot functions are useful for making simple, quick plots, many R users have adopted the [`ggplot2`](http://docs.ggplot2.org/) package as their primary tool for visualizing data.
 
-## The Grammar of Graphics
+### The Grammar of Graphics
 
 The `ggplot2` library is built on the ["Grammar of Graphics"](https://www.springer.com/in/book/9780387245447) concept developed by Leland Wilkinson. A "grammar of graphics" (that's what the "gg" in "ggplot2" stands for) is a framework that uses _layers_ to describe and construct visualizations or graphics in a structured manner. Here's a visual summary of the concept:
 
@@ -143,7 +142,7 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
-## A blank slate
+### A blank slate
 
 The `ggplot()` function is used to initialize the basic graph structure, and then we add layers to it. The basic idea is that you specify different parts of the plot, and add them together using the `+` operator. We will start with a blank plot and will add layers as we go along:
 
@@ -151,7 +150,7 @@ The `ggplot()` function is used to initialize the basic graph structure, and the
 ggplot(data = df)
 ```
 
-## Geoms and aesthetics
+### Geoms and aesthetics
 
 Geometric objects (called "geoms") are the shapes we put on a plot (e.g. points, bars, etc.). You can have an unlimited number of layers, but at a minimum a plot **must have at least one geom**. Examples include:
 
@@ -170,7 +169,7 @@ Each type of geom usually has a **required set of aesthetics** to be set, and us
 - `linetype` (solid, dashed, dotted etc.)
 - `size` (of geoms)
 
-## Scatterplots with `geom_point()`
+### Scatterplots with `geom_point()`
 
 Now that we know what geoms and aesthetics are, let's put them to practice by making a scatterplot. To start, we will add the `geom_point()` geom and we'll set the position for the x- and y-axis inside the `aes()` function:
 
@@ -195,7 +194,7 @@ ggplot(data = df) +
     geom_point(aes(x = year, y = age, color = gender))
 ```
 
-## Bar charts with `geom_col()`
+### Bar charts with `geom_col()`
 
 I recommend using the `geom_col()` layer to create bar charts, which are great for comparing different numerical values across a categorical variable. One of the simplest things to show with bars is the _count_ of how many observations you have. You can compute this by using the `count()` function, and then use the resulting data frame to create bars of those counts:
 
@@ -240,11 +239,11 @@ df %>%
   geom_col(aes(x = year, y = meanAge))
 ```
 
-# Customizing your ggplot
+## Customizing your ggplot
 
 There are lots of ways to tweak your ggplot to make it more aesthetically pleasing and easier for others to understand. We'll cover just two here: labels and themes.
 
-## Labels
+### Labels
 
 You can change the labels of your plot by adding the `labs()` layer:
 
@@ -261,7 +260,7 @@ ggplot(data = df) +
 
 The `labs()` layer enables you to modify the labels of any of the variables that you have mapped in your `aes()` call, as well as some other labels like the title, subtitle, and caption.
 
-## Themes
+### Themes
 
 Adding theme layers can change some global aspects of the plot, such as the background color, grid lines, legend appearance, etc. There are [many themes to choose from](https://ggplot2.tidyverse.org/reference/ggtheme.html), but using simple themes like `theme_bw()` or `theme_minimal()` often improves the plot from the default theme settings:
 
@@ -307,7 +306,7 @@ ggplot(data = df) +
     theme_economist()
 ```
 
-# Saving figures
+## Saving figures
 
 The first (and easiest) is to export directly from the RStudio 'Plots' panel, by clicking on `Export` when the image is plotted. This will give you the option of `.png` or `.pdf` and selecting the directory to which you wish to save it to. I strongly recommend you save images as `.pdf` types as these won't pixelate when you change the image size.
 
@@ -327,7 +326,7 @@ ggsave(filename = here('data', 'scatterPlot.pdf'),
        height = 4)
 ```
 
-# Other resources
+## Other resources
 
 While the `ggplot2` library offers a wide variety of options for customizing your plots, remembering exactly how to do specific tasks (like changing the color of a line, or changing the position of a legend) can be difficult. Fortunately, there are wonderful resources for looking up all the tricks to make the perfect ggplot. Here are a few:
 
@@ -338,9 +337,7 @@ While the `ggplot2` library offers a wide variety of options for customizing you
 
 For more resources, check out the [data viz resource page](ref-visualizing-data.html)
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

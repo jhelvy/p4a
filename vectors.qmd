@@ -2,22 +2,21 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Describe what a vector is.
 > * Create vectors of different data types.
 > * Use indexing to subset and modify specific portions of vectors.
 > * Understand how to use vectorized functions to avoid loop operations.
 >
-> ### Suggested readings
+> ### Suggested readings {.unnumbered}
 >
 > * [Chapter 20](https://r4ds.had.co.nz/vectors.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Chapter 5.1](https://rstudio-education.github.io/hopr/r-objects.html#atomic-vectors) of "Hands-On Programming with R", by Garrett Grolemund
-
----
 
 So far we've only dealt with objects that contain one value (e.g. `x <- 1`), but R actually stores those values in a _vector_ of length one:
 
@@ -31,11 +30,9 @@ A _vector_ is a basic data structure in R. All elements in a vector must have th
 
 > [Watch this 1-minute video for a quick summary of **vectors**](https://vimeo.com/220490316)
 
----
+## Vector basics
 
-# Vector basics
-
-## Creating vectors
+### Creating vectors
 
 The most basic way of creating a vector is to use the `c()` function ("c" is for "concatenate"):
 
@@ -81,7 +78,7 @@ length(y)
 length(z)
 ```
 
-## Vector coercion
+### Vector coercion
 
 Each element in a vector must have the **same type**. If you mix types in a vector, R will _coerce_ all the elements to either a numeric or character type.
 
@@ -104,7 +101,7 @@ If a vector has integers and floats, R makes everything a **float**:
 c(1L, 2, pi)
 ```
 
-## Deleting vectors
+### Deleting vectors
 
 You can delete a vector by assigning `NULL` to it:
 
@@ -115,7 +112,7 @@ x <- NULL
 x
 ```
 
-## Numeric vectors
+### Numeric vectors
 
 As we saw in the [loops](5-loops.html) lesson, you can create a vector of integers using the `:` operator or the `seq()` function:
 
@@ -143,7 +140,7 @@ Function   |       Description           | Example
 `sum(x)`      | Sums the elements in `x` | `sum(c(1,2,3,4,5))` returns ``r sum(c(1,2,3,4,5))``
 `prod(x)`     | Product of the elements in `x` | `prod(c(1,2,3,4,5))` returns ``r prod(c(1,2,3,4,5))``
 
-## Character vectors
+### Character vectors
 
 Character vectors are vectors where each element is a string:
 
@@ -160,7 +157,7 @@ library(stringr)
 str_c(stringVector, collapse = ' ')
 ```
 
-## Logical vectors
+### Logical vectors
 
 Logical vectors contain only `TRUE` or `FALSE` elements:
 
@@ -183,7 +180,7 @@ y
 typeof(y)
 ```
 
-## Comparing vectors
+### Comparing vectors
 
 If you want to check if two vectors are identical (in that they contain all the same elements), you can't use the typical `==` operator by itself. The reason is because the `==` operator is performed element-wise, so it will return a logical vector:
 
@@ -229,11 +226,11 @@ identical(x, y) # Also compares the **names** of the elements
 
 Notice that for the `identical()` function, you don't need to add a conditional statement - you just provide it the two vectors you want to compare. This is because `identical()` by definition is comparing if two things are the same.
 
-# Accessing elements in a vector
+## Accessing elements in a vector
 
 You can access elements from a vector using brackets `[]` and indices inside the brackets. You can use integer indices (probably the most common way), character indices (by naming each element), and logical indices.
 
-## Using integer indices
+### Using integer indices
 
 Vector indices start from 1 (this is important - [most programming languages start from 0](https://en.wikipedia.org/wiki/Zero-based_numbering)):
 
@@ -271,7 +268,7 @@ x[3.1415] # Returns the 3rd element
 x[3.9999] # Still returns the 3rd element
 ```
 
-## Using characters indices
+### Using characters indices
 
 You can name the elements in a vector and then use those names to access elements. To create a named vector, use the `names()` function:
 
@@ -295,7 +292,7 @@ x['a'] # Returns the first element
 x[c('a', 'c')] # Returns the 1st and 3rd elements
 ```
 
-## Using logical indices
+### Using logical indices
 
 When using a logical vector for indexing, the position where the logical vector is `TRUE` is returned. This is helpful for filtering vectors based on conditions:
 
@@ -312,11 +309,11 @@ which(x < 5) # Returns indices of TRUE elements
 x[which(x < 5)] # Use which to select elements based on a condition
 ```
 
-# Vectorized operations
+## Vectorized operations
 
 Most base functions in R are "vectorized", meaning that when you give them a vector, they perform the operation on each element in the vector.
 
-## Arithmetic operations
+### Arithmetic operations
 
 When you perform arithmetic operations on vectors, they are executed on an element-by-element basis:
 
@@ -356,7 +353,7 @@ x2 <- c(4)
 x1 + x2
 ```
 
-## Sorting
+### Sorting
 
 You can reorder the arrangement of elements in a vector by using the `sort()` function:
 
@@ -378,9 +375,9 @@ These indices tell us that the first value in the sorted arrangement of vector `
 a[order(a)] # Same as sort(a)
 ```
 
-# Tips
+## Tips
 
-## Use vectors instead of a loop
+### Use vectors instead of a loop
 
 As we saw in the [loops](5-loops.html) lesson, you can use a loop to perform an operation on each element in a vector. For example, the following loop get the decimal values for each element in a vector of floats:
 
@@ -402,9 +399,7 @@ remainder
 
 In many cases, using a vector can save you a whole lot of code (and time!) by avoiding loops entirely!
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

@@ -2,27 +2,26 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Describe what loops are.
 > * Understand the differences and different uses of `for` loops and `while` loops.
 > * Understand how to use `break` and `next` statements inside loops.
 >
-> ### Suggested Readings
+> ### Suggested Readings {.unnumbered}
 >
 > * [Chapter 21](https://r4ds.had.co.nz/iteration.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Chapters 11](https://rstudio-education.github.io/hopr/loops.html) of "Hands-On Programming with R", by Garrett Grolemund
-
----
 
 Similar to conditionals (remember those [if / else statements](L4.1-conditionals.html)?), loops are another kind of "flow control" - that is, code that alters the otherwise linear flow of operations from the top of a script straight through to the end. The idea is simple: a loop is a block of code (i.e., a sequence of commands) that R will execute over and over again until some *termination criterion* is met.
 
 The main two types of loops are `for` and `while` loops.
 
-# The `for` loop
+## The `for` loop
 
 Use `for` loops when there is a known number of iterations. The basic format of a `for` loop goes like this:
 
@@ -40,7 +39,7 @@ In a `for` loop, R runs a fixed number of iterations determined by the `SEQUENCE
 ![](images/loop_for.png){ width=350 }
 </center>
 
-## Looping over numbers
+### Looping over numbers
 
 It is common to use a sequence of integers for the values in `SEQUENCE`. The simplest way to do this is to use the `:` operator. For example, the code `1:10` creates the integers 1 through 10. The following `for` loop uses this sequence to print out each integer in the sequence:
 
@@ -60,7 +59,7 @@ for (i in seq(1, 10, by=2)) {
 }
 ```
 
-## Looping over other things
+### Looping over other things
 
 R will loop over any sequence you create. For example, you can loop over a vector of characters (The `c()` function creates a "vector"...we'll get to those [next lesson](L6-vectors.html)):
 
@@ -83,7 +82,7 @@ for (i in x) {
 }
 ```
 
-## Nested `for` loops
+### Nested `for` loops
 
 You can have loops inside loops! This is useful when working on things that have more than one dimension. For example, let's print out a 5 x 5 rectangle out of asterisks (`*`) by looping over rows and columns:
 
@@ -99,9 +98,7 @@ for (row in seq(n)) {
 
 This will come in handy when working with 2-dimensional objects like [data frames](L10-da1-data-frames.html).
 
----
-
-# The `while` loop
+## The `while` loop
 
 > A friend calls her programmer roommate and says, "while you're out, buy some milk"...her roommate never returned home.
 >
@@ -141,11 +138,9 @@ powersOfTwo(5)
 powersOfTwo(100)
 ```
 
----
+## The `break` and `next` statements
 
-# The break and next statements
-
-## break
+### `break`
 
 You can force a loop to stop by inserting the `break` statement in the loop. In a nested loop, the `break` statement exits from the innermost loop that is being evaluated. Here's an example:
 
@@ -160,7 +155,7 @@ for (val in 1:5) {
 
 In this example, we iterate over the consecutive numbers from 1 to 5. Inside the for loop we have used a if condition to break if the current value is equal to 3. As we can see from the output, the loop terminates when it encounters the break statement.
 
-## next
+### `next`
 
 A `next` statement is useful when we want to skip the current iteration of a loop without terminating it. On encountering `next`, R will jump to the end of the loop and start the next iteration. Here's an example:
 
@@ -175,9 +170,7 @@ for (val in 1:5) {
 
 In the above example, we use the `next` statement inside an `if` statement to check if the value is equal to 3. If the value is equal to 3, the current evaluation stops (i.e. the value is not printed) and the loop continues with the next iteration.
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

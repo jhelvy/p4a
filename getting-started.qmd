@@ -2,10 +2,11 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Get familiar with using R in RStudio
 > * Be able to use R to create and store values as objects.
@@ -13,7 +14,7 @@ source("_common.R")
 > * Know how to create comments with the `#` symbol.
 > * Know some best practices for staying organized in R with R projects.
 
-# R and RStudio
+## R and RStudio
 
 R is a programming language that runs computations, and RStudio is an interface for working with R with a lot of convenient tools and features. It is the primary [integrated development environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) for R users.
 
@@ -46,7 +47,7 @@ Go into the Console on the left with the `>` (that's the *command prompt*).
 
 Let's get started using R!
 
-# Your first conveRsation
+## Your first conveRsation
 
 When you type something into the console, R will give you a reply. Think of it like having a conversation with R. For example, let's ask R to add two numbers:
 
@@ -82,7 +83,7 @@ Here R is saying that there was a "non-numeric argument" somewhere. That suggest
 
 With practice, you'll get better at embracing and interpreting R's error messages.
 
-# Storing values
+## Storing values
 
 You can store values by "assigning" them to an _object_ with the `<-` symbol, like this:
 
@@ -109,7 +110,7 @@ x
 
 > PRO TIP: Always surround `<-` with spaces to avoid confusion! For example, if you typed `x<-2` (no spaces), it's not clear if you meant `x <- 2` or `x < -2`. The first one assigns `2` to `x`, but the second one compares whether `x` is less than `-2`.
 
-## Use meaningful variable names
+### Use meaningful variable names
 
 You can choose almost any name you like for an object, so long as the name does not begin with a *number* or a special character like `+`, `-`, `*`, `/`, `^`, `!`, `@`, or `&`. But you should always use variable names that **describe the thing you're assigning**. This practice will save you major headaches later when you have lots of objects in your environment.
 
@@ -132,7 +133,7 @@ caterpillar_length_mm <- 42
 
 The first name, `x`, tells us nothing about what the value `42` means (are we counting something? `42` of what?). The second name, `length_mm`, tells us that `42` is the length of something, and that it's measured in millimeters. Finally, the last name, `caterpillar_length_mm`, tells us that `42` is the length of a caterpillar, measured in millimeters.
 
-## Use standard casing styles
+### Use standard casing styles
 
 <img src="images/horst_casing.jpg" width=600> Art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)
 
@@ -149,7 +150,7 @@ this_is_a_long_name <- 2.5
 
 To inspect this, try out RStudio's completion facility: type the first few characters, press TAB - voila! RStudio auto-completes the long name for you :)
 
-## R is case sensitive
+### R is case sensitive
 
 To understand what this means, try this:
 
@@ -169,7 +170,7 @@ Although the two objects look_ similar, one has a capital "C", and R stores that
 
 In general, type carefully. Typos matter. Case matters. **Get better at typing**.
 
-## The workspace
+### The workspace
 
 Look at your workspace in the upper-right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:
 
@@ -192,7 +193,7 @@ rm(list = ls())
 
 or click the broom symbol.
 
-# What else can R do?
+## What else can R do?
 
 R can do a LOT more than what we've seen thus far. For example, you can ask R to print text to the console using the `cat()` function:
 
@@ -235,9 +236,9 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
         plot.caption.position = "plot")
 ```
 
-# A couple more important points
+## A couple more important points
 
-## R ignores excess spacing
+### R ignores excess spacing
 
 When I typed `3 + 4` before, I could equally have done this
 
@@ -261,7 +262,7 @@ This doesn't mean extra spaces _never_ matter. For example, if you wanted to inp
 
 Basically, you can put spaces between _different_ values, and you can put as many as you want and R won't care. But if you break a value up with a space, R will send an error message.
 
-## Using comments
+### Using comments
 
 In R, the `#` symbol is a special symbol that denotes a comment. R will ignore anything on the same line that follows the `#` symbol. This enables us to write comments around our code to explain what we're doing:
 
@@ -272,9 +273,9 @@ speed
 
 Notice that R ignores the whole sentence after the `#` symbol.
 
-# Staying organized
+## Staying organized
 
-## The history pane
+### The history pane
 
 R keeps track of your "command history." If you click on the console and hit the "up" key, the R console will show you the most recent command that you've typed. Hit it again, and it will show you the command before that, and so on.
 
@@ -286,7 +287,7 @@ The second way to get access to your command history is to look at the history p
 
 If you double click on one of the commands, it will be copied to the R console.
 
-## Working directory
+### Working directory
 
 Any process running on your computer has a notion of its "working directory". In R, this is where R will look for files you ask it to load. It's also where any files you write to disk will go.
 
@@ -314,7 +315,7 @@ You'll see even more options there). Or within the Files pane, choose __More__ a
 
 But there's a better way. A way that also puts you on the path to managing your R work like an expert.
 
-## RStudio projects
+### RStudio projects
 
 Keeping all the files associated with a project organized together -- input data, R scripts, analytical results, figures -- is such a wise and common practice that RStudio has built-in support for this via its _projects_.
 
@@ -338,7 +339,7 @@ As a demo, I created a project on my Desktop called "demo". RStudio created a ne
 getwd()
 ```
 
-## Save your code in .R Files
+### Save your code in .R Files
 
 It is traditional to save R scripts with a `.R` or `.r` suffix. Any code you wish to re-run again later should be saved in this way and stored within your project folder. For example, if you wanted to re-run all of the code in this tutorial, open a new `.R` file and save it to your R project folder. Do this:
 
@@ -383,9 +384,7 @@ Now when I open the "demo.Rproj" file, I see in my files pane the "tutorial.R" c
 
 I can also run any line in the script by typing "Command + Enter" (Mac) or "Control + Enter" (Windows).
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

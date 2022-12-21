@@ -2,12 +2,13 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
 <!-- Note: None of the Python chunks evaluate. Outputs are all hard-coded so that rmarkdown doesn't have to call Python. This is because the page will be build with Github Actions and Python is having problems for some reason with that -->
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Learn how to use the [**reticulate**](https://rstudio.github.io/reticulate/) R package to work with python in R.
 > * Learn basic python syntax and how it compares to R.
@@ -16,17 +17,17 @@ source("_common.R")
 > * Learn basic string manipulation in python.
 > * Learn how to run a Python script fromr R.
 >
-> ### Suggested readings
+> ### Suggested readings {.unnumbered}
 >
 > * The [**reticulate**](https://rstudio.github.io/reticulate/) R package documentation.
 
-# Getting started with Python (in R)
+## Getting started with Python (in R)
 
 Python is another very popular computing language for data analysis and general purpose computing. Since R is the main language for this course, we will not cover all the many wonderous things that Python can do. Instead, we will introduce Python through the lens of how it is used for _data analysis_, with a particular focus on comparing its similarities and differences with R.
 
 While you can work with Python in a number of ways, we will use the [**reticulate**](https://rstudio.github.io/reticulate/) to access it directly from R!
 
-## Installation
+### Installation
 
 To get started, install the package (remember, you only need to do this once on your computer):
 
@@ -48,7 +49,7 @@ Would you like to install Miniconda? [Y/n]:
 
 If so, I recommend you go ahead and install Miniconda by typing `y` and pressing enter. Miniconda is a smaller version of the larger ["Conda"](https://docs.conda.io/en/latest/) distribution that most people use to install Python, and it is the preferred setup for using Python in R.
 
-## Starting Python
+### Starting Python
 
 Once you've loaded the **reticulate** library, use the following command to open up a Python REPL (which stands for "**R**ead–**E**val–**P**rint-**L**oop"):
 
@@ -62,7 +63,7 @@ Now look at your console - you should see three `>>>` symbols. This means you're
 
 Above the `>>>` symbols, you should see a message indicating which version of Python you are using. **It should say "Python 3...."**. Python has two versions (2 and 3) - we'll be using Python 3. If you see Python 2, then you'll need to adjust your [configuration](https://rstudio.github.io/reticulate/articles/versions.html) to use Python 3. If you installed Miniconda, this should be Python 3.
 
-## Exiting Python
+### Exiting Python
 
 If you want to get back to good 'ol R, just type the command `exit` into the Python console:
 
@@ -72,9 +73,9 @@ exit
 
 Note that you should `exit` and not `exit()` with parenthesis.
 
-# Python basics
+## Python basics
 
-## Operators
+### Operators
 
 Python has all the same arithmetic (`+-*/`), relational (`<>=`), and logical (`&|!`) operators as R, but some of the symbols are a little different. Here's a quick comparison of these differences:
 
@@ -110,7 +111,7 @@ Python uses the same symbols `&`, `|`, and `!` for assessing logical statements,
 ## True
 ```
 
-## Variable assignment
+### Variable assignment
 
 While in R you can use either `=` or `<-` to assign values to objects, in Python only the `=` symbol can be used:
 
@@ -122,7 +123,7 @@ value
 ## 3
 ```
 
-## Data types
+### Data types
 
 For the most part, Python has the same data types as R: "numeric", "string", and "logical". But they use different words to describe them:
 
@@ -188,7 +189,7 @@ type(True)
 </div>
 </div>
 
-## Coercing data types
+### Coercing data types
 
 In R, you can convert data types using the general form of `as.something()`, replacing "`something`" with a data type. In Python, you can simply use the data type name to convert types. Here's a comparison:
 
@@ -281,7 +282,7 @@ bool(3.14)
 
 Remember that "logical" types convert to `TRUE` for any number other than `0`, which converts to `FALSE`.
 
-# Loops
+## Loops
 
 Perhaps the biggest syntax difference between R and Python is that **Python uses white space to define things**.
 
@@ -356,7 +357,7 @@ One of the things many people love about Python is just how "clean" the syntax l
 
 Other than these differences in syntax, loops are essentially the same across the two languages.
 
-# Functions
+## Functions
 
 Functions use the same "spacing" format as loops, and again the Python syntax is more compact. Here's a comparison of the `isEven(n)` function:
 
@@ -389,7 +390,7 @@ In Python, you do not use any assignment to create a function. Rather, you use t
 
 Note also that the `if` statement in Python also uses the same general syntax of indented white space instead of using the `{}` symbols.
 
-# Python Methods
+## Python Methods
 
 You might have heard people (i.e. me) say that Python is more "object-oriented" whereas R is more "functional." What I mean is that in R you mostly apply _functions_ to _objects_, but in Python you often call special functions that _belong_ to certain object types. Here's an example of converting a string to upper case:
 
@@ -432,7 +433,7 @@ The concept of using methods is a major part of the "object-oriented" way of pro
 
 Now that you've seen a little about how Python methods work, we'll get to use some working with strings!
 
-# Strings
+## Strings
 
 String manipulation is one area where more substantial differences emerge between Python and R. Because R's built in functions for dealing with strings are rather unintuitive, we've relied on the **stringr** package.
 
@@ -512,7 +513,7 @@ In Python, you can detect sub-strings using the `in` operator:
 </div>
 </div>
 
-## Functions and methods
+### Functions and methods
 
 Because Python has both functions and object methods, it can sometimes be tricky to remember which to use for a specific purpose. For example, if you want to know how many characters are in a string, you use a function, just like in R:
 
@@ -638,7 +639,7 @@ s.isnumeric()
 </div>
 </div>
 
-## Slicing
+### Slicing
 
 To extract a sub-string, in R we have to use the `str_sub()` function. But in Python, you can simply use the `[]` symbols. In either case, you have to provide indices of where to start and stop the "slice".
 
@@ -791,7 +792,7 @@ np.char.split(s, "pp")
 ## array([list(['A', 'le']), list(['Sna', 'le'])], dtype=object)
 ```
 
-# Running a Python script in R
+## Running a Python script in R
 
 While R scripts end in `.R`, Python scripts end in `.py`. You can open up and save a blank Python script in RStudio by clicking
 
@@ -833,15 +834,15 @@ n2
 ## [1] TRUE
 ```
 
-# Summary of R/Python differences
+## Summary of R/Python differences
 
 - Indexing starts at 0 in Python and 1 in R.
 - Strings in Python can be manipulated with arithmetic operators.
 - Python is more "object-oriented" whereas R is more "functional".
 
-# Tips
+## Tips
 
-## Making your own Python class
+### Making your own Python class
 
 You can get really creative with object-oriented programming in Python by creating your own custom classes, allowing you to embed values and methods that belong only to objects of that class. For example, here's how to create a class called `Animal`, which is defined by two values: `species` and `sound`. Note the white space indentations - without them Python will error:
 

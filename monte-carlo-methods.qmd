@@ -2,6 +2,7 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
@@ -19,11 +20,9 @@ But when I hear Monte Carlo, I envision this:
 
 No, that's not some grainy image coming into focus - that's a [Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) approximating the value of $\pi$ (`r pi`...).
 
----
+## What is Monte Carlo simulation?
 
-# What is Monte Carlo simulation?
-
-## Basic idea
+### Basic idea
 
 Monte Carlo simulation uses (pseudo)random numbers to solve (not-so-random) problems. The general approach goes like this:
 
@@ -37,19 +36,17 @@ For many applications, Monte Carlo simulations result in a sufficiently accurate
 1. As # of trials increases, observed odds --> expected odds.
 2. More trials --> more accurate (+ more time).
 
-## Why the name "Monte Carlo"?
+### Why the name "Monte Carlo"?
 
 The name "Monte Carlo" comes from the (pseudo)random nature of the simulation process. Running a series of trials is similar to how many gambling games work in casinos, and [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo) is famous for gambling. Of course, in the casinos the odds are always slightly in the favor of the house, so after millions of trials the odds are that the house will win more money than the gamblers.
 
-## Why even do this?
+### Why even do this?
 
 Many problems have "closed-form" solutions, meaning they can be solved with math alone. But there are also many problems for which no known closed-form solution exists. Integration is a classic example - there are many integrals for which a purely mathematical solution cannot be determined. However, solutions can be _approximated_ using simulation.
 
 R comes with many tools for running (pseudo)random simulations, which is one reason R is such a popular programming language for people who build and work with statistical models that involve simulations.
 
----
-
-# Monte Carlo integration
+## Monte Carlo integration
 
 Integration is ultimately about computing the area below the curve of a function. Let's take a simple example - suppose we want to find the integral from 3 to 7 of the following function:
 
@@ -125,9 +122,7 @@ So our estimate error is: `105.333 - ` ``r areaUnderCurve`` `=` ``r error``.
 
 That's an error of just `r errorPer` % - not bad!
 
----
-
-# Monte Carlo $\pi$
+## Monte Carlo $\pi$
 
 Now let's look at something a bit trickier - approximating $\pi$!
 
@@ -224,9 +219,7 @@ percentError
 
 By increasing the number of trials from 1,000 to 100,000, we improved our estimate error from `r errorPer` % to `r percentError` %!
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 

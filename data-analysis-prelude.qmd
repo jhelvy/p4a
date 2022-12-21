@@ -2,6 +2,7 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
@@ -13,14 +14,14 @@ Over the next few lessons, we'll start learning how to transform _data_ into _in
 
 Below is a short case study on the [1986 Space Shuttle Challenger explosion](https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster). In this example, we'll be examining data about the relationship between the temperature of different NASA rocket launches and damage to the rock O-rings - the root cause of the accident. Don't worry yet if you don't understand the specific code used - just try to follow along to see how we can pull out _information_ from raw data.
 
-# The Challenger disaster
+## The Challenger disaster
 
 On January 28, 1986 the space shuttle Challenger exploded. In his book titled ["Visual Explanations"](https://www.edwardtufte.com/tufte/books_visex), Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.
 
 ![](images/challenger_crew.jpg)
 [[Image source](https://www.flickr.com/photos/gsfc/12191288154)]
 
-# The data
+## The data
 
 The R package `DAAG` has a dataset called `orings` which contains data on temperatures and O-ring damage during launches prior to the Challenger incident. Let's load the `DAAG` library and preview the data:
 
@@ -67,9 +68,7 @@ To their credit, the engineers working on the Challenger were worried about the 
 
 While the above diagram contains a lot of _data_, the critical **information** about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.
 
----
-
-**References**:
+## References {.unnumbered}
 
 - The [Space shuttle Challenger explosion](https://vizdatar.wordpress.com/2015/05/06/space-shuttle-challenger-explosion-2/) blog post, by Vikram Dayal
 - Robison et al. (2002) [Representation and Misrepresentation: Tufte and the Morton Thiokol Engineers on the Challenger](https://people.rit.edu/wlrgsh/FINRobison.pdf), _Science and Engineering Ethics_, 8, 59-81.

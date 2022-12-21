@@ -1,7 +1,8 @@
-# Introduction {#sec-introduction}
+# Introduction {#sec-introduction .unnumbered}
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 

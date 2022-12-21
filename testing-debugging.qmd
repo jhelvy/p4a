@@ -2,16 +2,17 @@
 
 ```{r}
 #| echo: false
+#| message: false
 source("_common.R")
 ```
 
-> ### Learning Objectives
+> ### Learning Objectives {.unnumbered}
 >
 > * Understand how to write a basic test function.
 > * Understand how to write custom error messages in a function.
 > * Understand multiple ways to debug your code.
 >
-> ### Suggested Readings
+> ### Suggested Readings {.unnumbered}
 >
 > * [Chapter 11](https://whattheyforgot.org/debugging-r-code.html) in Jenny Bryan and Jim Hester's fantastic book, ["What They Forgot to Teach You About R"](https://whattheyforgot.org/).
 
@@ -19,9 +20,7 @@ Here are some other great resources:
 > * [Debugging techniques in RStudio](https://resources.rstudio.com/wistia-rstudio-conf-2018-2/debugging-techniques-in-rstudio-amanda-gadrow-4) - Amanda Gadrow's talk at rstudio::conf 2018.
 > * [Debugging in RStudio article](https://support.rstudio.com/hc/en-us/articles/200713843)
 
----
-
-# Writing test cases
+## Writing test cases
 
 <center>
 ![](images/test_cases_fry.png){ width=300 }
@@ -31,7 +30,7 @@ Writing test cases is part of the process of understanding a problem; if you don
 
 Test cases are also used to verify that a solution to a problem is correct -- that it works as expected. Without a good set of test cases, we have no idea whether our code actually works!
 
-## Test case types
+### Test case types
 
 Test cases vary based on the problem, but you generally want to ensure that you have at least one or two of each of the following test case types:
 
@@ -41,7 +40,7 @@ Test cases vary based on the problem, but you generally want to ensure that you 
 - **Special Cases**: Some inputs need to be special-cased for many problems. This includes negative numbers, `0` and `1` for integers, the empty string (`""`), and input values of different types than are expected.
 - **Varying Results**: Finally, test cases should cover multiple possible results. This is especially important for logical functions; make sure that you have both `TRUE` and `FALSE` cases among your tests!
 
-## Testing with `stopifnot()`
+### Testing with `stopifnot()`
 
 The `stopifnot()` function does what you might expect - it stops the function if whatever is inside the `()` is not `TRUE`. Let's look at an example.
 
@@ -75,7 +74,7 @@ In this test function, we called the `stopifnot()` function and used the `==` op
 testIsEvenNumber()
 ```
 
-## Testing function inputs
+### Testing function inputs
 
 The two test cases we used for `isEvenNumber()` are "normal" cases because they use typical inputs and test for expected outputs. A better test function would also include a few other statements to test other points of failure.
 
@@ -108,7 +107,7 @@ testIsEvenNumber <- function() {
 testIsEvenNumber()
 ```
 
-## Better error messaging with `stop()`
+### Better error messaging with `stop()`
 
 Another approach to checking input types is to explicitly provide a better error message so the user can know what went wrong. For example, rather than return `FALSE` when we input a string to `isEvenNumber()`, we can use `stop()` to halt the function and send an error message:
 
@@ -123,9 +122,7 @@ isEvenNumber <- function(n) {
 isEvenNumber('42')
 ```
 
----
-
-# Debugging
+## Debugging
 
 Bugs are a natural part of the programming process. However, you can reduce the number of bugs you encounter by following a few tips:
 
@@ -134,7 +131,7 @@ Bugs are a natural part of the programming process. However, you can reduce the 
 - Make sure each function only has **one** task.
 - Avoid copying and pasting code at all costs (this leads to bug propagation).
 
-## Debugging your own code
+### Debugging your own code
 
 The most common case you will run into a bug is when writing new code yourself.
 Often the mistake is obvious and easily fixed, but sometimes it only appears
@@ -147,7 +144,7 @@ common strategies to use when debugging your own code.
 - Use `debug()` to automatically open a debugger at the start of a function call.
 - Use `trace()` to start a debugger at a location inside a function.
 
-### traceback()
+#### `traceback()`
 
 The `traceback()` function can be used to print a summary of how your program
 arrived at the error. This is also called a call stack, stack trace or
@@ -195,7 +192,7 @@ g("a")
 #> 1: g("a")
 ```
 
-### `print()`
+#### `print()`
 
 Once you know where an error occurs it is then helpful to know why. Often
 errors occur because functions are given inputs their authors did not expect,
@@ -207,7 +204,7 @@ The main downsides to the print approach is you often have to add them in
 multiple places to narrow down the error, and you cannot further investigate
 the object.
 
-### `browser()`
+#### `browser()`
 
 A more sophisticated debugging method is to put a call to `browser()` in your
 code. This will stop execution at that point and open R's interactive debugger.
@@ -225,9 +222,9 @@ Some useful things to do are
 5. Use `c` to leave the debugger and continue execution
 6. Use `Q` to exit the debugger and return to the R prompt.
 
-## Debugging in RStudio
+### Debugging in RStudio
 
-### Editor breakpoints
+#### Editor breakpoints
 
 RStudio provides some additional tooling for debugging over using R on the
 command line. First you can set an editor breakpoint by clicking to the left of
@@ -237,14 +234,14 @@ needing to change your code like `browser()`.
 
 ![](images/editor-breakpoint.png)
 
-### Stopping on error
+#### Stopping on error
 
 If you are trying to hunt down a particular error it is often useful to have
 RStudio enter the debugger when it occurs. You can control the error behavior with (`Debug -> On Error -> Error Inspector`).
 
 ![](images/break-in-code.png)
 
-### Debugging console
+#### Debugging console
 
 ![](images/console-window.png)
 
@@ -252,9 +249,7 @@ The RStudio debugging console has a few buttons to make debugging a little
 nicer, From left to right they are, next (equivalent to `n`), step info (`s`),
 continue (`c`) and Stop (`Q`).
 
----
-
-**Page sources**:
+## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
 
