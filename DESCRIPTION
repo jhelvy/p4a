@@ -12,7 +12,9 @@ License: CC-BY-SA
 Encoding: UTF-8
 Imports:
     dplyr,
-    knitr,
     ggplot2,
+    jsonlite,
+    knitr,
     readr,
+    rmarkdown,
     stringr
