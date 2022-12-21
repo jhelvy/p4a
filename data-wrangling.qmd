@@ -1,6 +1,8 @@
-# "Data Analysis 2 - Data Wrangling"
+# Data Wrangling {#sec-data-wrangling}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

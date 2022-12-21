@@ -1,6 +1,8 @@
-# "Strings"
+# Strings {#sec-strings}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

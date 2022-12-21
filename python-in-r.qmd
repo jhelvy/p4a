@@ -1,6 +1,8 @@
-# "Introduction to Python (in R)"
+# Introduction to Python (in R) {#sec-python-in-r}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 <!-- Note: None of the Python chunks evaluate. Outputs are all hard-coded so that rmarkdown doesn't have to call Python. This is because the page will be build with Github Actions and Python is having problems for some reason with that -->

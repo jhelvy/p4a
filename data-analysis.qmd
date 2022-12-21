@@ -1,0 +1,8 @@
+# Data Analysis {#sec-data-analysis .unnumbered}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+The goal of this section is to...

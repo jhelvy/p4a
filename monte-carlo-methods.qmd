@@ -1,6 +1,8 @@
-# "Monte Carlo Methods"
+# Monte Carlo Methods {#sec-monte-carlo-methods}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 When you hear the words "Monte Carlo", most people envision this:

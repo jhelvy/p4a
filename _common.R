@@ -1,5 +1,3 @@
-
-```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
 library(here)
 library(tidyverse)
@@ -7,6 +5,7 @@ library(fontawesome)
 library(cowplot)
 
 options(knitr.kable.NA = '')
+
 knitr::opts_chunk$set(
     warning    = FALSE,
     message    = FALSE,
@@ -17,4 +16,3 @@ knitr::opts_chunk$set(
     fig.path   = "figs/",
     fig.retina = 3
 )
-```

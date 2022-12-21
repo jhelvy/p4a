@@ -1,6 +1,8 @@
-# "Data Analysis 3 - Data Visualization"
+# Data Visualization {#sec-data-visualization}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

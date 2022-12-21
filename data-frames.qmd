@@ -1,6 +1,8 @@
-# "Data Analysis 1 - Data Frames"
+# Data Frames {#sec-data-frames}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 This is the first lesson in a sequence on data analysis in R. Before reading this lesson, check out the ["Prelude to Data Analysis"](L11.1-data-analysis-prelude.html).

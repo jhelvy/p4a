@@ -1,6 +1,8 @@
-# "Getting Started"
+# Getting Started {#sec-getting-started}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

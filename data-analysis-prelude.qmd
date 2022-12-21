@@ -1,6 +1,8 @@
-# "Prelude to Data Analysis"
+# Prelude to Data Analysis {#sec-data-analysis-prelude}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > "Data science is not just about AI or machine learning. It is the discipline of turning raw data into understanding."

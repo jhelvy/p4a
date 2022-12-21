@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: _book
   preview:
     port: 5896
     browser: true
@@ -12,39 +13,57 @@ project:
 
 book:
   title: "Introduction to Programming for Analytics in R"
+  reader-mode: true
   author: "John Paul Helveston"
   date: "12/19/2022"
+
+  page-footer:
+    left: |
+      Intro to P4A in R was written by John Paul Helveston
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
-  page-navigation: true
-  sidebar:
-    search: true
-    style: docked
-    tools:
-      - icon: github
-        href: https://github.com/emse-p4a-gwu/p4a-book
+  favicon: cover.png
+
+  site-url: https://p4a.jhelvy.com/
+  repo-url: https://github.com/jhelvy/p4abook/
+  repo-branch: main
+  repo-actions: [edit, issue]
+
   chapters:
     - index.qmd
-    - 1-getting-started.qmd
-    - 2-functions-packages.qmd
-    - 3-operations-data-types.qmd
-    - 4-creating-functions.qmd
-    - 5-conditionals.qmd
-    - 6-testing-debugging.qmd
-    - 7-iteration.qmd
-    - 8-vectors.qmd
-    - 9-strings.qmd
-    - 10-data-analysis-prelude.qmd
-    - 11-data-frames.qmd
-    - 12-data-wrangling.qmd
-    - 13-data-visualization.qmd
-    - 14-monte-carlo-methods.qmd
-    - 15-python.qmd
-    - references.qmd
+    - intro.qmd
 
-bibliography: references.bib
+    - part: programming.qmd
+      chapters:
+        - getting-started.qmd
+        - functions-packages.qmd
+        - operators-data-types.qmd
+        - creating-functions.qmd
+        - conditionals.qmd
+        - testing-debugging.qmd
+        - iteration.qmd
+        - vectors.qmd
+        - strings.qmd
+
+    - part: data-analysis.qmd
+      chapters:
+        - data-analysis-prelude.qmd
+        - data-frames.qmd
+        - data-wrangling.qmd
+        - data-visualization.qmd
+        - webscraping.qmd
+
+    - part: extensions.qmd
+      chapters:
+        - monte-carlo-methods.qmd
+        - python-in-r.qmd
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme:
+      - cosmo
+    code-link: true
+
+    author-meta: "John Paul Helveston"
+    callout-appearance: simple

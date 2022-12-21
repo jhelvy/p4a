@@ -1,6 +1,8 @@
-# "Operators & Data Types"
+# Operators & Data Types {#sec-operators-data-types}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

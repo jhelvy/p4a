@@ -1,6 +1,8 @@
-# "Testing & Debugging"
+# Testing & Debugging {#sec-testing-debugging}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives

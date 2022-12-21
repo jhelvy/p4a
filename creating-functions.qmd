@@ -1,6 +1,8 @@
-# "Creating Functions"
+# Creating Functions {#sec-creating-functions}
 
-```{r child = "setup.qmd"}
+```{r}
+#| echo: false
+source("_common.R")
 ```
 
 > ### Learning Objectives
