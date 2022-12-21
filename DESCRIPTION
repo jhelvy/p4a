@@ -15,6 +15,7 @@ Imports:
     ggplot2,
     jsonlite,
     knitr,
+    palmerpenguins,
     readr,
     rmarkdown,
     stringr
