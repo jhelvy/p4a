@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="John Paul Helveston">
+<title>Introduction to Programming for Analytics in R - 12&nbsp; Data Wrangling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data-visualization.html" rel="next">
+<link href="./data-frames.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Programming for Analytics in R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">Data Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./extensions.html" class="sidebar-item-text sidebar-link">Extensions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"> <span class="header-section-number">12.1</span> R Setup</a></li>
+  <li>
+<a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"> <span class="header-section-number">12.2</span> Data wrangling with <code>dplyr</code></a>
+  <ul class="collapse">
+<li><a href="#what-is-dplyr" id="toc-what-is-dplyr" class="nav-link" data-scroll-target="#what-is-dplyr"> <span class="header-section-number">12.2.1</span> What is <code>dplyr</code></a></li>
+  <li><a href="#select-columns-with-select" id="toc-select-columns-with-select" class="nav-link" data-scroll-target="#select-columns-with-select"> <span class="header-section-number">12.2.2</span> Select columns with <code>select()</code></a></li>
+  <li><a href="#select-rows-with-filter" id="toc-select-rows-with-filter" class="nav-link" data-scroll-target="#select-rows-with-filter"> <span class="header-section-number">12.2.3</span> Select rows with <code>filter()</code></a></li>
+  <li><a href="#sequence-operations-with-pipes" id="toc-sequence-operations-with-pipes" class="nav-link" data-scroll-target="#sequence-operations-with-pipes"> <span class="header-section-number">12.2.4</span> Sequence operations with pipes (<code>%&gt;%</code>)</a></li>
+  <li><a href="#sort-rows-with-arrange" id="toc-sort-rows-with-arrange" class="nav-link" data-scroll-target="#sort-rows-with-arrange"> <span class="header-section-number">12.2.5</span> Sort rows with <code>arrange()</code></a></li>
+  <li><a href="#create-new-variables-with-mutate" id="toc-create-new-variables-with-mutate" class="nav-link" data-scroll-target="#create-new-variables-with-mutate"> <span class="header-section-number">12.2.6</span> Create new variables with <code>mutate()</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#split-apply-combine" id="toc-split-apply-combine" class="nav-link" data-scroll-target="#split-apply-combine"> <span class="header-section-number">12.3</span> Split-apply-combine</a>
+  <ul class="collapse">
+<li><a href="#the-group_by-function" id="toc-the-group_by-function" class="nav-link" data-scroll-target="#the-group_by-function"> <span class="header-section-number">12.3.1</span> The <code>group_by()</code> function</a></li>
+  <li><a href="#the-summarize-function" id="toc-the-summarize-function" class="nav-link" data-scroll-target="#the-summarize-function"> <span class="header-section-number">12.3.2</span> The <code>summarize()</code> function</a></li>
+  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting"> <span class="header-section-number">12.3.3</span> Counting</a></li>
+  </ul>
+</li>
+  <li><a href="#exporting-data" id="toc-exporting-data" class="nav-link" data-scroll-target="#exporting-data"> <span class="header-section-number">12.4</span> Exporting data</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"> <span class="header-section-number">12.5</span> Tips</a></li>
+  <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/data-wrangling.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-data-wrangling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<blockquote class="blockquote">
+<h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
+<ul>
+<li>Describe the purpose of the <code>dplyr</code> package.</li>
+<li>Select certain <em>columns</em> in a data frame with the <code>select</code> function.</li>
+<li>Select certain <em>rows</em> in a data frame according to filtering conditions with the <code>filter</code> function.</li>
+<li>Link the output of one <code>dplyr</code> function to the input of another function with the “pipe” operator <code>%&gt;%</code>.</li>
+<li>Add new columns to a data frame that are functions of existing columns with the <code>mutate</code> function.</li>
+<li>Sort data frames using the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function.</li>
+<li>Use the split-apply-combine concept for data analysis.</li>
+<li>Use <code>summarize</code>, <code>group_by</code>, and <code>count</code> to split a data frame into groups of observations, apply summary statistics for each group, and then combine the results.</li>
+<li>Export a data frame to a .csv file.</li>
+</ul>
+<h3 id="suggested-readings" class="unnumbered anchored">Suggested Readings</h3>
+<ul>
+<li>
+<a href="https://r4ds.had.co.nz/transform.html">Chapter 5</a> of “R for Data Science”, by Garrett Grolemund and Hadley Wickham</li>
+<li><a href="https://resources.rstudio.com/the-essentials-of-data-science/data-transformation"><code>dplyr</code> cheatsheet</a></li>
+</ul>
+</blockquote>
+<section id="r-setup" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="r-setup">
+<span class="header-section-number">12.1</span> R Setup</h2>
+<p>Before we get started, let’s set up our analysis environment:</p>
+<ol type="1">
+<li>Open up your “data-analysis-tutorial” R Project that you created in the last lesson - if you didn’t do this, <a href="L10-data-analysis-1-data-frames.html#41_r_setup">go back and do it now</a>.</li>
+<li>Create a new <code>.R</code> file (File &gt; New File &gt; R Script), and save it as “<code>data_wrangling.R</code>” inside your “data-analysis-tutorial” R Project folder.</li>
+<li>Use the <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> function to download the <code>wildlife_impacts.csv</code> dataset, and save it in the <code>data</code> folder in your R Project:</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span></span>
+<span>    url <span class="op">=</span> <span class="st">"https://github.com/emse6574-gwu/2019-Fall/raw/gh-pages/data/wildlife_impacts.csv"</span>,</span>
+<span>    destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'wildlife_impacts.csv'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For this lesson, we are going to use the <a href="https://wildlife.faa.gov/">FAA Wildlife Strike Database</a>, which contains records of reported wildlife strikes with aircraft since 1990. Since aircraft-wildlife impacts are voluntarily reported, the database only contains information from airlines, airports, pilots, and other sources and does not represent all strikes. Each row in the dataset holds information for a single strike event with the following columns:</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 15%">
+<col style="width: 60%">
+</colgroup>
+<thead><tr class="header">
+<th>Variable</th>
+<th>Class</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>incident_date</td>
+<td>date</td>
+<td>Date of incident</td>
+</tr>
+<tr class="even">
+<td>state</td>
+<td>character</td>
+<td>State</td>
+</tr>
+<tr class="odd">
+<td>airport_id</td>
+<td>character</td>
+<td>ICAO Airport ID</td>
+</tr>
+<tr class="even">
+<td>airport</td>
+<td>character</td>
+<td>Airport Name</td>
+</tr>
+<tr class="odd">
+<td>operator</td>
+<td>character</td>
+<td>Operator/Airline</td>
+</tr>
+<tr class="even">
+<td>atype</td>
+<td>character</td>
+<td>Airline type</td>
+</tr>
+<tr class="odd">
+<td>type_eng</td>
+<td>character</td>
+<td>Engine type</td>
+</tr>
+<tr class="even">
+<td>species_id</td>
+<td>character</td>
+<td>Species ID</td>
+</tr>
+<tr class="odd">
+<td>species</td>
+<td>character</td>
+<td>Species</td>
+</tr>
+<tr class="even">
+<td>damage</td>
+<td>character</td>
+<td>Damage: N None M Minor, M Uncertain, S Substantial, D Destroyed</td>
+</tr>
+<tr class="odd">
+<td>num_engs</td>
+<td>character</td>
+<td>Number of engines</td>
+</tr>
+<tr class="even">
+<td>incident_month</td>
+<td>double</td>
+<td>Incident month</td>
+</tr>
+<tr class="odd">
+<td>incident_year</td>
+<td>double</td>
+<td>Incident year</td>
+</tr>
+<tr class="even">
+<td>time_of_day</td>
+<td>character</td>
+<td>Incident Time of day</td>
+</tr>
+<tr class="odd">
+<td>time</td>
+<td>double</td>
+<td>Incident time</td>
+</tr>
+<tr class="even">
+<td>height</td>
+<td>double</td>
+<td>Plane height at impact (feet)</td>
+</tr>
+<tr class="odd">
+<td>speed</td>
+<td>double</td>
+<td>Plane speed at impact (knots)</td>
+</tr>
+<tr class="even">
+<td>phase_of_flt</td>
+<td>character</td>
+<td>Phase of flight at impact</td>
+</tr>
+<tr class="odd">
+<td>sky</td>
+<td>character</td>
+<td>Sky condition</td>
+</tr>
+<tr class="even">
+<td>precip</td>
+<td>character</td>
+<td>Precipitation</td>
+</tr>
+<tr class="odd">
+<td>cost_repairs_infl_adj</td>
+<td>double</td>
+<td>Cost of repairs adjusted for inflation</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s load our libraries and read in the data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'wildlife_impacts.csv'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Just like in the last lesson, a good starting point when working with a new dataset is to view some quick summaries. Here’s another summary function (<code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>) that is similar to <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Rows: 56,978
+#&gt; Columns: 21
+#&gt; $ incident_date         &lt;dttm&gt; 2018-12-31, 2018-12-29, 2018-12-29, 2018-12-…
+#&gt; $ state                 &lt;chr&gt; "FL", "IN", "N/A", "N/A", "N/A", "FL", "FL", …
+#&gt; $ airport_id            &lt;chr&gt; "KMIA", "KIND", "ZZZZ", "ZZZZ", "ZZZZ", "KMIA…
+#&gt; $ airport               &lt;chr&gt; "MIAMI INTL", "INDIANAPOLIS INTL ARPT", "UNKN…
+#&gt; $ operator              &lt;chr&gt; "AMERICAN AIRLINES", "AMERICAN AIRLINES", "AM…
+#&gt; $ atype                 &lt;chr&gt; "B-737-800", "B-737-800", "UNKNOWN", "B-737-9…
+#&gt; $ type_eng              &lt;chr&gt; "D", "D", NA, "D", "D", "D", "D", "D", "D", "…
+#&gt; $ species_id            &lt;chr&gt; "UNKBL", "R", "R2004", "N5205", "J2139", "UNK…
+#&gt; $ species               &lt;chr&gt; "Unknown bird - large", "Owls", "Short-eared …
+#&gt; $ damage                &lt;chr&gt; "M?", "N", NA, "M?", "M?", "N", "N", "N", "N"…
+#&gt; $ num_engs              &lt;dbl&gt; 2, 2, NA, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…
+#&gt; $ incident_month        &lt;dbl&gt; 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 1…
+#&gt; $ incident_year         &lt;dbl&gt; 2018, 2018, 2018, 2018, 2018, 2018, 2018, 201…
+#&gt; $ time_of_day           &lt;chr&gt; "Day", "Night", NA, NA, NA, "Day", "Night", N…
+#&gt; $ time                  &lt;dbl&gt; 1207, 2355, NA, NA, NA, 955, 948, NA, NA, 132…
+#&gt; $ height                &lt;dbl&gt; 700, 0, NA, NA, NA, NA, 600, NA, NA, 0, NA, 0…
+#&gt; $ speed                 &lt;dbl&gt; 200, NA, NA, NA, NA, NA, 145, NA, NA, 130, NA…
+#&gt; $ phase_of_flt          &lt;chr&gt; "Climb", "Landing Roll", NA, NA, NA, "Approac…
+#&gt; $ sky                   &lt;chr&gt; "Some Cloud", NA, NA, NA, NA, NA, "Some Cloud…
+#&gt; $ precip                &lt;chr&gt; "None", NA, NA, NA, NA, NA, "None", NA, NA, "…
+#&gt; $ cost_repairs_infl_adj &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
+</div>
+</div>
+<p>Wow, there have been 56,978 reported wildlife strikes over the 29 period from 1990 to 2019! On a daily average that comes out to:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2019</span> <span class="op">-</span> <span class="fl">1990</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 5.3829</code></pre>
+</div>
+</div>
+<p>…over 5 strikes per day!</p>
+</section><section id="data-wrangling-with-dplyr" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="data-wrangling-with-dplyr">
+<span class="header-section-number">12.2</span> Data wrangling with <code>dplyr</code>
+</h2>
+<p><img src="images/horst_monsters_data_wrangling.png" class="img-fluid" width="500"><a href="https://github.com/allisonhorst">[Art by Allison Horst]</a></p>
+<p>“Data Wrangling” refers to the art of getting your data into R in a useful form for visualization and modeling. Wrangling is the first step in the general data science process:</p>
+<center>
+<img src="images/data-wrangle.png" class="img-fluid">
+</center>
+<section id="what-is-dplyr" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="what-is-dplyr">
+<span class="header-section-number">12.2.1</span> What is <code>dplyr</code>
+</h3>
+<p>As we saw in the last section, we can use brackets (<code>[]</code>) to access elements of a data frame. While this is handy, it can be cumbersome and difficult to read, especially for complicated operations.</p>
+<p><strong>Enter <code>dplyr</code></strong></p>
+<p>The <code>dplyr</code> package was designed to make tabular data wrangling easier to perform and read. It pairs nicely with other libraries, such as <strong><code>ggplot2</code></strong> for visualizing data (which we’ll cover next week). Together, <code>dplyr</code>, <code>ggplot2</code>, and a handful of other packages make up what is known as the <a href="https://www.tidyverse.org/">“Tidyverse”</a> - an opinionated collection of R packages designed for data science. You can load all of the tidyverse packages at once using the <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> command, but for now we’re just going to install and use each package one at a time - starting with <code>dplyr</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this lesson, we are going to learn some of the most common <code>dplyr</code> functions:</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>: subset columns</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>: subset rows on conditions</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>: create new columns by using information from other columns</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>: sort results</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>: group data to perform grouped operations</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>: create summary statistics (usually on grouped data)</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>: count discrete rows</li>
+</ul></section><section id="select-columns-with-select" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="select-columns-with-select">
+<span class="header-section-number">12.2.2</span> Select columns with <code>select()</code>
+</h3>
+<p><img src="images/rstudio-cheatsheet-select.png" class="img-fluid" width="500"></p>
+<p>To select specific columns, use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. The first argument to this function is the data frame (<code>df</code>), and the subsequent arguments are the columns to keep:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Select only a few columns</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">state</span>, <span class="va">damage</span>, <span class="va">time_of_day</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 3
+#&gt;   state damage time_of_day
+#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      
+#&gt; 1 FL    M?     Day        
+#&gt; 2 IN    N      Night      
+#&gt; 3 N/A   &lt;NA&gt;   &lt;NA&gt;       
+#&gt; 4 N/A   M?     &lt;NA&gt;       
+#&gt; 5 N/A   M?     &lt;NA&gt;       
+#&gt; 6 FL    N      Day        
+#&gt; # … with 56,972 more rows</code></pre>
+</div>
+</div>
+<p>To select all columns <em>except</em> certain ones, put a <code>-</code> sign in front of the variable to exclude it:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">df</span>, <span class="op">-</span><span class="va">state</span>, <span class="op">-</span><span class="va">damage</span>, <span class="op">-</span><span class="va">time_of_day</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 18
+#&gt;   incident_date       airport…¹ airport opera…² atype type_…³ speci…⁴ species
+#&gt;   &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 2018-12-31 00:00:00 KMIA      MIAMI … AMERIC… B-73… D       UNKBL   Unknow…
+#&gt; 2 2018-12-29 00:00:00 KIND      INDIAN… AMERIC… B-73… D       R       Owls   
+#&gt; 3 2018-12-29 00:00:00 ZZZZ      UNKNOWN AMERIC… UNKN… &lt;NA&gt;    R2004   Short-…
+#&gt; 4 2018-12-27 00:00:00 ZZZZ      UNKNOWN AMERIC… B-73… D       N5205   Southe…
+#&gt; 5 2018-12-27 00:00:00 ZZZZ      UNKNOWN AMERIC… B-73… D       J2139   Lesser…
+#&gt; 6 2018-12-27 00:00:00 KMIA      MIAMI … AMERIC… A-319 D       UNKB    Unknow…
+#&gt; # … with 56,972 more rows, 10 more variables: num_engs &lt;dbl&gt;,
+#&gt; #   incident_month &lt;dbl&gt;, incident_year &lt;dbl&gt;, time &lt;dbl&gt;, height &lt;dbl&gt;,
+#&gt; #   speed &lt;dbl&gt;, phase_of_flt &lt;chr&gt;, sky &lt;chr&gt;, precip &lt;chr&gt;,
+#&gt; #   cost_repairs_infl_adj &lt;dbl&gt;, and abbreviated variable names ¹​airport_id,
+#&gt; #   ²​operator, ³​type_eng, ⁴​species_id</code></pre>
+</div>
+</div>
+<p>Some additional options to select columns based on a specific criteria include:</p>
+<ol type="1">
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code> = Select columns that end with a character string</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code> = Select columns that contain a character string</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> = Select columns that match a regular expression</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/one_of.html">one_of()</a></code> = Select column names that are from a group of names</li>
+</ol></section><section id="select-rows-with-filter" class="level3" data-number="12.2.3"><h3 data-number="12.2.3" class="anchored" data-anchor-id="select-rows-with-filter">
+<span class="header-section-number">12.2.3</span> Select rows with <code>filter()</code>
+</h3>
+<p><img src="images/rstudio-cheatsheet-filter.png" class="img-fluid" width="500"></p>
+<p>Filter the rows for wildlife impacts that occurred in DC:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 1,228 × 21
+#&gt;   incident_date       state airport_id airport  opera…¹ atype type_…² speci…³
+#&gt;   &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 2018-10-23 00:00:00 DC    KDCA       RONALD … AMERIC… B-73… D       UNKBS  
+#&gt; 2 2018-10-17 00:00:00 DC    KDCA       RONALD … AMERIC… B-73… D       UNKBS  
+#&gt; 3 2018-10-16 00:00:00 DC    KDCA       RONALD … AMERIC… B-73… D       YL001  
+#&gt; 4 2018-10-12 00:00:00 DC    KDCA       RONALD … AMERIC… B-73… D       UNKBS  
+#&gt; 5 2018-09-04 00:00:00 DC    KDCA       RONALD … AMERIC… A-319 D       UNKB   
+#&gt; 6 2018-09-01 00:00:00 DC    KDCA       RONALD … AMERIC… A-321 D       UNKBS  
+#&gt; # … with 1,222 more rows, 13 more variables: species &lt;chr&gt;, damage &lt;chr&gt;,
+#&gt; #   num_engs &lt;dbl&gt;, incident_month &lt;dbl&gt;, incident_year &lt;dbl&gt;,
+#&gt; #   time_of_day &lt;chr&gt;, time &lt;dbl&gt;, height &lt;dbl&gt;, speed &lt;dbl&gt;,
+#&gt; #   phase_of_flt &lt;chr&gt;, sky &lt;chr&gt;, precip &lt;chr&gt;,
+#&gt; #   cost_repairs_infl_adj &lt;dbl&gt;, and abbreviated variable names ¹​operator,
+#&gt; #   ²​type_eng, ³​species_id</code></pre>
+</div>
+</div>
+<p>Filter the rows for wildlife impacts that cost more than $1 million in damages:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">cost_repairs_infl_adj</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 41 × 21
+#&gt;   incident_date       state airport_id airport  opera…¹ atype type_…² speci…³
+#&gt;   &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 2015-05-26 00:00:00 N/A   SVMI       SIMON B… AMERIC… B-73… D       K1     
+#&gt; 2 2015-04-25 00:00:00 FL    KJAX       JACKSON… AMERIC… A-319 D       J2204  
+#&gt; 3 2015-04-02 00:00:00 MA    KBOS       GENERAL… AMERIC… B-73… D       UNKBL  
+#&gt; 4 2001-04-02 00:00:00 N/A   LFPG       CHARLES… AMERIC… B-76… D       J2131  
+#&gt; 5 2015-10-08 00:00:00 WA    KSEA       SEATTLE… DELTA … A-330 D       K3302  
+#&gt; 6 2015-09-23 00:00:00 UT    KSLC       SALT LA… DELTA … B-73… D       I6107  
+#&gt; # … with 35 more rows, 13 more variables: species &lt;chr&gt;, damage &lt;chr&gt;,
+#&gt; #   num_engs &lt;dbl&gt;, incident_month &lt;dbl&gt;, incident_year &lt;dbl&gt;,
+#&gt; #   time_of_day &lt;chr&gt;, time &lt;dbl&gt;, height &lt;dbl&gt;, speed &lt;dbl&gt;,
+#&gt; #   phase_of_flt &lt;chr&gt;, sky &lt;chr&gt;, precip &lt;chr&gt;,
+#&gt; #   cost_repairs_infl_adj &lt;dbl&gt;, and abbreviated variable names ¹​operator,
+#&gt; #   ²​type_eng, ³​species_id</code></pre>
+</div>
+</div>
+</section><section id="sequence-operations-with-pipes" class="level3" data-number="12.2.4"><h3 data-number="12.2.4" class="anchored" data-anchor-id="sequence-operations-with-pipes">
+<span class="header-section-number">12.2.4</span> Sequence operations with pipes (<code>%&gt;%</code>)</h3>
+<p><img src="images/magrittr.png" class="img-fluid" width="200"> (logo is a reference to <a href="https://en.wikipedia.org/wiki/The_Treachery_of_Images">The Treachery of Images</a>)</p>
+<p>What if you want to select and filter at the same time? Well, one way to do this is to use intermediate steps. To do this, you first create a temporary data frame and then use that as input to the next function, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dc_impacts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span></span>
+<span><span class="va">dc_impacts_airlineTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dc_impacts</span>, <span class="va">operator</span>, <span class="va">time</span>, <span class="va">time_of_day</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dc_impacts_airlineTime</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 6 × 3
+#&gt;   operator           time time_of_day
+#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;      
+#&gt; 1 AMERICAN AIRLINES  2130 Night      
+#&gt; 2 AMERICAN AIRLINES  2043 Night      
+#&gt; 3 AMERICAN AIRLINES   730 Dawn       
+#&gt; 4 AMERICAN AIRLINES  2245 Night      
+#&gt; 5 AMERICAN AIRLINES  2150 Night      
+#&gt; 6 AMERICAN AIRLINES  2022 Night</code></pre>
+</div>
+</div>
+<p>This works, but it can also clutter up your workspace with lots of objects with different names.</p>
+<p>Another approach is to use <strong>pipes</strong>, which is a more recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset.</p>
+<p>The pipe operator is <code>%&gt;%</code> and comes from the <a href="https://github.com/tidyverse/magrittr"><code>magrittr</code></a> package, which is installed automatically with <code>dplyr</code>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac. Here’s the same thing as the previous example but with pipes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">operator</span>, <span class="va">time</span>, <span class="va">time_of_day</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 6 × 3
+#&gt;   operator           time time_of_day
+#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;      
+#&gt; 1 AMERICAN AIRLINES  2130 Night      
+#&gt; 2 AMERICAN AIRLINES  2043 Night      
+#&gt; 3 AMERICAN AIRLINES   730 Dawn       
+#&gt; 4 AMERICAN AIRLINES  2245 Night      
+#&gt; 5 AMERICAN AIRLINES  2150 Night      
+#&gt; 6 AMERICAN AIRLINES  2022 Night</code></pre>
+</div>
+</div>
+<p>In the above code, we use the pipe to send the <code>df</code> data frame first through <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to keep only rows from DC, and then through <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to keep only the columns <code>operator</code>, <code>time</code>, and <code>time_of_day</code>.</p>
+<p>Since <code>%&gt;%</code> takes the object on its left and passes it as the first argument to the function on its right, we don’t need to explicitly include the data frame as an argument to the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> functions.</p>
+<p>Consider reading the <code>%&gt;%</code> operator as the words “…and then…”. For instance, in the above example I would read the code as “First, filter to only data from DC, <strong>and then</strong> select the columns <code>operator</code>, <code>time</code>, and <code>time_of_day</code>, <strong>and then</strong> show the first 6 rows.”</p>
+<p>Here’s another analogy:</p>
+<p><strong>Without Pipes</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leave_house</span><span class="op">(</span><span class="fu">get_dressed</span><span class="op">(</span><span class="fu">get_out_of_bed</span><span class="op">(</span><span class="fu">wake_up</span><span class="op">(</span><span class="va">me</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>With Pipes</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">me</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="va">wake_up</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="va">get_out_of_bed</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="va">get_dressed</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="va">leave_house</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above example, adding pipes makes the flow of operations easier to read from left to right, with the <code>%&gt;%</code> operator reading as “…and then…”</p>
+<p>If you want to create a new object with the output of a “pipeline”, you just put the object name at the start of the first pipe:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dc_impacts</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">operator</span>, <span class="va">time</span>, <span class="va">time_of_day</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dc_impacts</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 6 × 3
+#&gt;   operator           time time_of_day
+#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;      
+#&gt; 1 AMERICAN AIRLINES  2130 Night      
+#&gt; 2 AMERICAN AIRLINES  2043 Night      
+#&gt; 3 AMERICAN AIRLINES   730 Dawn       
+#&gt; 4 AMERICAN AIRLINES  2245 Night      
+#&gt; 5 AMERICAN AIRLINES  2150 Night      
+#&gt; 6 AMERICAN AIRLINES  2022 Night</code></pre>
+</div>
+</div>
+</section><section id="sort-rows-with-arrange" class="level3" data-number="12.2.5"><h3 data-number="12.2.5" class="anchored" data-anchor-id="sort-rows-with-arrange">
+<span class="header-section-number">12.2.5</span> Sort rows with <code>arrange()</code>
+</h3>
+<p>Use the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function to sort a data frame by a column. For example, if you wanted to view the least expensive accidents, you could arrange the data frame by the variable <code>cost_repairs_infl_adj</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Arrange by least expensive accident</span></span>
+<span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">cost_repairs_infl_adj</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 21
+#&gt;   incident_date       state airport_id airport  opera…¹ atype type_…² speci…³
+#&gt;   &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 2013-09-05 00:00:00 MI    KFNT       BISHOP … SOUTHW… B-73… D       UNKBS  
+#&gt; 2 2011-04-17 00:00:00 TX    KDFW       DALLAS/… AMERIC… MD-80 D       UNKBS  
+#&gt; 3 2018-07-10 00:00:00 NM    KABQ       ALBUQUE… SOUTHW… B-73… D       UNKBL  
+#&gt; 4 2017-10-31 00:00:00 PA    KPIT       PITTSBU… AMERIC… B-73… D       UNKBS  
+#&gt; 5 2014-01-17 00:00:00 UT    KSLC       SALT LA… SOUTHW… B-73… D       J21    
+#&gt; 6 2006-04-28 00:00:00 TX    KIAH       GEORGE … UNITED… B-73… D       UNKBM  
+#&gt; # … with 56,972 more rows, 13 more variables: species &lt;chr&gt;, damage &lt;chr&gt;,
+#&gt; #   num_engs &lt;dbl&gt;, incident_month &lt;dbl&gt;, incident_year &lt;dbl&gt;,
+#&gt; #   time_of_day &lt;chr&gt;, time &lt;dbl&gt;, height &lt;dbl&gt;, speed &lt;dbl&gt;,
+#&gt; #   phase_of_flt &lt;chr&gt;, sky &lt;chr&gt;, precip &lt;chr&gt;,
+#&gt; #   cost_repairs_infl_adj &lt;dbl&gt;, and abbreviated variable names ¹​operator,
+#&gt; #   ²​type_eng, ³​species_id</code></pre>
+</div>
+</div>
+<p>To sort in descending order, add the <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> function inside the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function. For example, here are the <em>most</em> expensive accidents:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Arrange by most expensive accident</span></span>
+<span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">cost_repairs_infl_adj</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 21
+#&gt;   incident_date       state airport_id airport  opera…¹ atype type_…² speci…³
+#&gt;   &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 2009-02-03 00:00:00 CO    KDEN       DENVER … UNITED… B-75… D       K3201  
+#&gt; 2 2007-11-22 00:00:00 N/A   LFMN       NICE CO… DELTA … B-76… D       NE138  
+#&gt; 3 2011-09-26 00:00:00 CO    KDEN       DENVER … UNITED… B-75… D       K3302  
+#&gt; 4 2017-07-11 00:00:00 CO    KDEN       DENVER … UNITED… B-73… D       K3302  
+#&gt; 5 2008-10-25 00:00:00 UT    KSLC       SALT LA… DELTA … DC-9… D       K3312  
+#&gt; 6 2011-07-30 00:00:00 CA    KBUR       BOB HOP… SOUTHW… B-73… D       O2111  
+#&gt; # … with 56,972 more rows, 13 more variables: species &lt;chr&gt;, damage &lt;chr&gt;,
+#&gt; #   num_engs &lt;dbl&gt;, incident_month &lt;dbl&gt;, incident_year &lt;dbl&gt;,
+#&gt; #   time_of_day &lt;chr&gt;, time &lt;dbl&gt;, height &lt;dbl&gt;, speed &lt;dbl&gt;,
+#&gt; #   phase_of_flt &lt;chr&gt;, sky &lt;chr&gt;, precip &lt;chr&gt;,
+#&gt; #   cost_repairs_infl_adj &lt;dbl&gt;, and abbreviated variable names ¹​operator,
+#&gt; #   ²​type_eng, ³​species_id</code></pre>
+</div>
+</div>
+</section><section id="create-new-variables-with-mutate" class="level3" data-number="12.2.6"><h3 data-number="12.2.6" class="anchored" data-anchor-id="create-new-variables-with-mutate">
+<span class="header-section-number">12.2.6</span> Create new variables with <code>mutate()</code>
+</h3>
+<p><img src="images/rstudio-cheatsheet-mutate.png" class="img-fluid" width="500"></p>
+<p>You will often need to create new columns based on the values in existing columns. For this use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. For example, let’s create a new variable converting the <code>height</code> variable from feet to miles:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height_miles <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">5280</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">height_miles</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 2
+#&gt;   height height_miles
+#&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+#&gt; 1    700        0.133
+#&gt; 2      0        0    
+#&gt; 3     NA       NA    
+#&gt; 4     NA       NA    
+#&gt; 5     NA       NA    
+#&gt; 6     NA       NA    
+#&gt; # … with 56,972 more rows</code></pre>
+</div>
+</div>
+<p>You can also create a second new column based on the first new column within the same call of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height_miles <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">5280</span>,</span>
+<span>           height_half_miles <span class="op">=</span> <span class="va">height_miles</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">height_miles</span>, <span class="va">height_half_miles</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 56,978 × 3
+#&gt;   height height_miles height_half_miles
+#&gt;    &lt;dbl&gt;        &lt;dbl&gt;             &lt;dbl&gt;
+#&gt; 1    700        0.133            0.0663
+#&gt; 2      0        0                0     
+#&gt; 3     NA       NA               NA     
+#&gt; 4     NA       NA               NA     
+#&gt; 5     NA       NA               NA     
+#&gt; 6     NA       NA               NA     
+#&gt; # … with 56,972 more rows</code></pre>
+</div>
+</div>
+<p>You’ll notice that the variables created have a lot of <code>NA</code>s - that’s because there are missing data. If you wanted to remove those, you could insert a <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> in the pipe chain:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height_miles <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">5280</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">height_miles</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 38,940 × 2
+#&gt;   height height_miles
+#&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+#&gt; 1    700        0.133
+#&gt; 2      0        0    
+#&gt; 3    600        0.114
+#&gt; 4      0        0    
+#&gt; 5      0        0    
+#&gt; 6      0        0    
+#&gt; # … with 38,934 more rows</code></pre>
+</div>
+</div>
+<p><code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> is a function that determines whether something is an <code>NA</code>. The <code>!</code> symbol negates the result, so we’re asking for every row where weight <em>is not</em> an <code>NA</code>.</p>
+</section></section><section id="split-apply-combine" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="split-apply-combine">
+<span class="header-section-number">12.3</span> Split-apply-combine</h2>
+<p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm:</p>
+<ol type="1">
+<li>Split the data into groups</li>
+<li>Apply some analysis to each group</li>
+<li>Combine the results.</li>
+</ol>
+<p><code>dplyr</code> makes this very easy through the use of the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function.</p>
+<section id="the-group_by-function" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="the-group_by-function">
+<span class="header-section-number">12.3.1</span> The <code>group_by()</code> function</h3>
+<p><img src="images/rstudio-cheatsheet-group_by.png" class="img-fluid" width="500"></p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function enables you to perform operations across groups within the data frame. It is typically used by inserting it in the “pipeline” before the desired group operation. For example, if we wanted to add a a new column that computed the mean height of reported wildlife impacts for each state, we could insert <code>group_by(state)</code> in the pipeline:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>          <span class="co"># Here we're grouping by state</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">mean_height</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 38,940 × 2
+#&gt; # Groups:   state [59]
+#&gt;   state mean_height
+#&gt;   &lt;chr&gt;       &lt;dbl&gt;
+#&gt; 1 FL           892.
+#&gt; 2 IN           719.
+#&gt; 3 FL           892.
+#&gt; 4 FL           892.
+#&gt; 5 TX          1177.
+#&gt; 6 NY           937.
+#&gt; # … with 38,934 more rows</code></pre>
+</div>
+</div>
+<p>You’ll see that the same value for <code>mean_height</code> is reported for the same states (e.g.&nbsp;the mean height in Florida is 892 ft).</p>
+</section><section id="the-summarize-function" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="the-summarize-function">
+<span class="header-section-number">12.3.2</span> The <code>summarize()</code> function</h3>
+<p><img src="images/rstudio-cheatsheet-summarise.png" class="img-fluid" width="500"></p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function is often used together with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, which collapses each group into a single-row summary of that group. For example, we collapse the result of the previous example by using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 59 × 2
+#&gt;   state mean_height
+#&gt;   &lt;chr&gt;       &lt;dbl&gt;
+#&gt; 1 AB           327.
+#&gt; 2 AK           334.
+#&gt; 3 AL           861.
+#&gt; 4 AR           968.
+#&gt; 5 AZ          2134.
+#&gt; 6 BC           497.
+#&gt; # … with 53 more rows</code></pre>
+</div>
+</div>
+<p>You can also group by multiple columns - here let’s group by state and the airline:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">operator</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; `summarise()` has grouped output by 'state'. You can override using the
+#&gt; `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 213 × 3
+#&gt; # Groups:   state [59]
+#&gt;   state operator          mean_height
+#&gt;   &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;
+#&gt; 1 AB    AMERICAN AIRLINES        318.
+#&gt; 2 AB    UNITED AIRLINES          350 
+#&gt; 3 AK    AMERICAN AIRLINES          0 
+#&gt; 4 AK    DELTA AIR LINES          414.
+#&gt; 5 AK    UNITED AIRLINES          311.
+#&gt; 6 AL    AMERICAN AIRLINES       1038.
+#&gt; # … with 207 more rows</code></pre>
+</div>
+</div>
+<p>Notice that in the above examples I’ve kept the early filter to drop <code>NA</code>s. This is important when performing summarizing functions like <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> or <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. If <code>NA</code>s are present, the result will also be <code>NA</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 59 × 2
+#&gt;   state mean_height
+#&gt;   &lt;chr&gt;       &lt;dbl&gt;
+#&gt; 1 AB            NA 
+#&gt; 2 AK           334.
+#&gt; 3 AL            NA 
+#&gt; 4 AR            NA 
+#&gt; 5 AZ            NA 
+#&gt; 6 BC            NA 
+#&gt; # … with 53 more rows</code></pre>
+</div>
+</div>
+<p>Once the data are grouped, you can also summarize multiple variables at the same time (and not necessarily on the same variable). For instance, you could add two more columns computing the minimum and maximum height:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">operator</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,</span>
+<span>              min_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,</span>
+<span>              max_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; `summarise()` has grouped output by 'state'. You can override using the
+#&gt; `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 213 × 5
+#&gt; # Groups:   state [59]
+#&gt;   state operator          mean_height min_height max_height
+#&gt;   &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+#&gt; 1 AB    AMERICAN AIRLINES        318.          0       1300
+#&gt; 2 AB    UNITED AIRLINES          350           0       1400
+#&gt; 3 AK    AMERICAN AIRLINES          0           0          0
+#&gt; 4 AK    DELTA AIR LINES          414.          0       1700
+#&gt; 5 AK    UNITED AIRLINES          311.          0       1200
+#&gt; 6 AL    AMERICAN AIRLINES       1038.          0      11300
+#&gt; # … with 207 more rows</code></pre>
+</div>
+</div>
+</section><section id="counting" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="counting">
+<span class="header-section-number">12.3.3</span> Counting</h3>
+<p>Often times you will want to know the number of observations found for each variable or combination of variables. One way to do this is to use the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> functions in combination. For example, here is the number of observations for each aircraft engine type:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">type_eng</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 5 × 2
+#&gt;   type_eng count
+#&gt;   &lt;chr&gt;    &lt;int&gt;
+#&gt; 1 A            2
+#&gt; 2 C           34
+#&gt; 3 D        56705
+#&gt; 4 F            3
+#&gt; 5 &lt;NA&gt;       234</code></pre>
+</div>
+</div>
+<p>Since this is such a common task, <code>dplyr</code> provides the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function to do the same thing:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">type_eng</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 5 × 2
+#&gt;   type_eng     n
+#&gt;   &lt;chr&gt;    &lt;int&gt;
+#&gt; 1 A            2
+#&gt; 2 C           34
+#&gt; 3 D        56705
+#&gt; 4 F            3
+#&gt; 5 &lt;NA&gt;       234</code></pre>
+</div>
+</div>
+<p>For convenience, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> also provides the <code>sort</code> argument:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">type_eng</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 5 × 2
+#&gt;   type_eng     n
+#&gt;   &lt;chr&gt;    &lt;int&gt;
+#&gt; 1 D        56705
+#&gt; 2 &lt;NA&gt;       234
+#&gt; 3 C           34
+#&gt; 4 F            3
+#&gt; 5 A            2</code></pre>
+</div>
+</div>
+<p>You can also count the <em>combination of variables</em> by providing more than one column name to <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">type_eng</span>, <span class="va">num_engs</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 10 × 3
+#&gt;   type_eng num_engs     n
+#&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+#&gt; 1 D               2 53652
+#&gt; 2 D               3  2753
+#&gt; 3 D               4   299
+#&gt; 4 &lt;NA&gt;           NA   232
+#&gt; 5 C               2    34
+#&gt; 6 F               2     3
+#&gt; # … with 4 more rows</code></pre>
+</div>
+</div>
+<p>Hmm, looks like most reported wildlife impacts involve planes with 2 D-type engines.</p>
+</section></section><section id="exporting-data" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="exporting-data">
+<span class="header-section-number">12.4</span> Exporting data</h2>
+<p>Now that you have learned how to use <code>dplyr</code> to extract information from or summarize your raw data, you may want to export these new data sets. Similar to the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function used for reading CSV files into R, there is a <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> function that generates CSV files from data frames.</p>
+<p><strong>Important</strong>: Before using <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code>, create a new folder called “data_output” and put it in your R Project folder. In general, you should never write generated datasets in the same directory as your raw data. The “data” folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it.</p>
+<p>Let’s save one of the summary data frames from the earlier examples where we computed the min, mean, and max heights of impacts by each state and airline:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heightSummary</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">operator</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,</span>
+<span>              min_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>,</span>
+<span>              max_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; `summarise()` has grouped output by 'state'. You can override using the
+#&gt; `.groups` argument.</code></pre>
+</div>
+</div>
+<p>Save the the new <code>heightSummary</code> data frame as a CSV file in your “data_output” folder:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(heightSummary, <span class="at">path =</span> <span class="fu">file.path</span>(<span class="st">'data_output'</span>, <span class="st">'heightSummary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="tips" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="tips">
+<span class="header-section-number">12.5</span> Tips</h2>
+<p>You will often need to create new variables based on a condition. To do this, you can use the <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> function. Here’s the general syntax:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(<span class="sc">&lt;</span>condition<span class="sc">&gt;</span>, <span class="sc">&lt;</span><span class="cf">if</span> <span class="cn">TRUE</span><span class="sc">&gt;</span>, <span class="sc">&lt;</span><span class="cf">else</span><span class="sc">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first argument is a condition. If the condition is TRUE, then the value given to the second argument will be used; if not, then the third argument value will be used.</p>
+<p>Here’s an example of creating a variable to determine which months in the wildlife impacts data are in the summer:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>        summer_month <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">incident_month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Of course, in this particular case the <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> function isn’t even needed because the condition returns <code>TRUE</code> and <code>FALSE</code> values. However, if you wanted to extend this example to determine all four seasons, you could use a series of nested <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> functions:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>season <span class="op">=</span></span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
+<span>            <span class="va">incident_month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, <span class="st">'Spring'</span>,</span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
+<span>            <span class="va">incident_month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>, <span class="st">'Summer'</span>,</span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
+<span>            <span class="va">incident_month</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, <span class="st">'Fall'</span>, <span class="st">'Winter'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: The Base R version of this function is <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, but I recommend using the <code>dplyr</code> version, <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, as it is a <a href="https://stackoverflow.com/questions/50646133/dplyr-if-else-vs-base-r-ifelse">stricter function</a>.</p>
+</section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
+<p>Some content on this page has been modified from other courses, including:</p>
+<ul>
+<li>
+<a href="https://datacarpentry.org/R-ecology-lesson/">Data Analysis and Visualization in R for Ecologists</a>, by François Michonneau &amp; Auriel Fournier. Zenodo: http://doi.org/10.5281/zenodo.3264888</li>
+<li>The amazing illustrations by <a href="https://github.com/allisonhorst">Allison Horst</a>
+</li>
+</ul>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./data-frames.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data-visualization.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

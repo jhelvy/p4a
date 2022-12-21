@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="John Paul Helveston">
+<title>Introduction to Programming for Analytics in R - 2&nbsp; Getting Started</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./functions-packages.html" rel="next">
+<link href="./programming.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Programming for Analytics in R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">Data Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./extensions.html" class="sidebar-item-text sidebar-link">Extensions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link active" data-scroll-target="#r-and-rstudio"> <span class="header-section-number">2.1</span> R and RStudio</a></li>
+  <li><a href="#your-first-conversation" id="toc-your-first-conversation" class="nav-link" data-scroll-target="#your-first-conversation"> <span class="header-section-number">2.2</span> Your first conveRsation</a></li>
+  <li>
+<a href="#storing-values" id="toc-storing-values" class="nav-link" data-scroll-target="#storing-values"> <span class="header-section-number">2.3</span> Storing values</a>
+  <ul class="collapse">
+<li><a href="#use-meaningful-variable-names" id="toc-use-meaningful-variable-names" class="nav-link" data-scroll-target="#use-meaningful-variable-names"> <span class="header-section-number">2.3.1</span> Use meaningful variable names</a></li>
+  <li><a href="#use-standard-casing-styles" id="toc-use-standard-casing-styles" class="nav-link" data-scroll-target="#use-standard-casing-styles"> <span class="header-section-number">2.3.2</span> Use standard casing styles</a></li>
+  <li><a href="#r-is-case-sensitive" id="toc-r-is-case-sensitive" class="nav-link" data-scroll-target="#r-is-case-sensitive"> <span class="header-section-number">2.3.3</span> R is case sensitive</a></li>
+  <li><a href="#the-workspace" id="toc-the-workspace" class="nav-link" data-scroll-target="#the-workspace"> <span class="header-section-number">2.3.4</span> The workspace</a></li>
+  </ul>
+</li>
+  <li><a href="#what-else-can-r-do" id="toc-what-else-can-r-do" class="nav-link" data-scroll-target="#what-else-can-r-do"> <span class="header-section-number">2.4</span> What else can R do?</a></li>
+  <li>
+<a href="#a-couple-more-important-points" id="toc-a-couple-more-important-points" class="nav-link" data-scroll-target="#a-couple-more-important-points"> <span class="header-section-number">2.5</span> A couple more important points</a>
+  <ul class="collapse">
+<li><a href="#r-ignores-excess-spacing" id="toc-r-ignores-excess-spacing" class="nav-link" data-scroll-target="#r-ignores-excess-spacing"> <span class="header-section-number">2.5.1</span> R ignores excess spacing</a></li>
+  <li><a href="#using-comments" id="toc-using-comments" class="nav-link" data-scroll-target="#using-comments"> <span class="header-section-number">2.5.2</span> Using comments</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#staying-organized" id="toc-staying-organized" class="nav-link" data-scroll-target="#staying-organized"> <span class="header-section-number">2.6</span> Staying organized</a>
+  <ul class="collapse">
+<li><a href="#the-history-pane" id="toc-the-history-pane" class="nav-link" data-scroll-target="#the-history-pane"> <span class="header-section-number">2.6.1</span> The history pane</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory"> <span class="header-section-number">2.6.2</span> Working directory</a></li>
+  <li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link" data-scroll-target="#rstudio-projects"> <span class="header-section-number">2.6.3</span> RStudio projects</a></li>
+  <li><a href="#save-your-code-in-.r-files" id="toc-save-your-code-in-.r-files" class="nav-link" data-scroll-target="#save-your-code-in-.r-files"> <span class="header-section-number">2.6.4</span> Save your code in .R Files</a></li>
+  </ul>
+</li>
+  <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/getting-started.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-getting-started" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<blockquote class="blockquote">
+<h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
+<ul>
+<li>Get familiar with using R in RStudio</li>
+<li>Be able to use R to create and store values as objects.</li>
+<li>Know some of the ways R handles certain things, like spaces.</li>
+<li>Know how to create comments with the <code>#</code> symbol.</li>
+<li>Know some best practices for staying organized in R with R projects.</li>
+</ul>
+</blockquote>
+<section id="r-and-rstudio" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="r-and-rstudio">
+<span class="header-section-number">2.1</span> R and RStudio</h2>
+<p>R is a programming language that runs computations, and RStudio is an interface for working with R with a lot of convenient tools and features. It is the primary <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">integrated development environment (IDE)</a> for R users.</p>
+<p>You can think of the two like this:</p>
+<ul>
+<li>R is like a car’s <em>engine</em>.</li>
+<li>RStudio is like a car’s <em>dashboard</em>.</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">R: Engine</th>
+<th style="text-align: center;">RStudio: Dashboard</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td style="text-align: center;"><img src="images/engine.jpg" class="img-fluid" width="200"></td>
+<td style="text-align: center;"><img src="images/dashboard.jpg" class="img-fluid" width="250"></td>
+</tr></tbody>
+</table>
+<p>Your car needs an engine (R) to run, but having a speedometer and rear view mirrors (RStudio) makes driving a lot easier.</p>
+<p>To get started using R , you need to download and install both R and RStudio (Desktop version) on your computer. Go to the <a href="L0-course-prep.html">course prep</a> page for instructions.</p>
+<p>Once you have everything installed, open RStudio. You should see the following:</p>
+<p><img src="images/rstudio_session.png"></p>
+<p>Notice the default panes:</p>
+<ul>
+<li>Console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help (tabbed in lower right)</li>
+</ul>
+<p>FYI: you can change the default location of the panes, among many other things: <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">Customizing RStudio</a>.</p>
+<p>Go into the Console on the left with the <code>&gt;</code> (that’s the <em>command prompt</em>).</p>
+<p>Let’s get started using R!</p>
+</section><section id="your-first-conversation" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="your-first-conversation">
+<span class="header-section-number">2.2</span> Your first conveRsation</h2>
+<p>When you type something into the console, R will give you a reply. Think of it like having a conversation with R. For example, let’s ask R to add two numbers:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 7</code></pre>
+</div>
+</div>
+<p>As you probably expected, R returned <code>7</code>. No surprises here!</p>
+<blockquote class="blockquote">
+<p>Quick note: you can ignore the <code>[1]</code> you see in the returned value…that’s just R saying there’s only one value to return.</p>
+</blockquote>
+<p>But what happens if you ask R to add a number surrounded by quotations marks?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">+</span> <span class="st">"4"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>#&gt; Error in 3 + "4": non-numeric argument to binary operator</code></pre>
+</div>
+</div>
+<p>Looks like R didn’t like that. That’s because you asked R to add a number to something that is not a number (<code>"4"</code> is a <em>character</em>, which is different from the number <code>4</code>), so R returned an error message. This is R’s what of telling you that you asked it to do something that it can’t do.</p>
+<p>Here’s a helpful tip:</p>
+<blockquote class="blockquote">
+<p>EMBRACE THE ERROR MESSAGES!</p>
+</blockquote>
+<p>By the end of this course, you will have seen loads of error messages. This doesn’t mean you “can’t code” or that you’re “bad at coding” - it just means you’ve still got more work to do to solve the problem.</p>
+<p>In fact, the best coders sometimes <em>intentionally</em> write code with known errors in it in order to get an error message. This is because when R gives you an error message, most of the time there is a hint in it that can help you solve the problem that led to the error. For example, take a look at the error message from the last example:</p>
+<pre><code>Error in 3 + "4" : non-numeric argument to binary operator</code></pre>
+<p>Here R is saying that there was a “non-numeric argument” somewhere. That suggests that the problem might be with something not being a number. As we just discussed, <code>"4"</code> is a character, or a “non-numeric argument”.</p>
+<p>With practice, you’ll get better at embracing and interpreting R’s error messages.</p>
+</section><section id="storing-values" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="storing-values">
+<span class="header-section-number">2.3</span> Storing values</h2>
+<p>You can store values by “assigning” them to an <em>object</em> with the <code>&lt;-</code> symbol, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here the symbol <code>&lt;-</code> is meant to look like an arrow. It means “assign the value <code>2</code> to the object named <code>x</code>”.</p>
+<blockquote class="blockquote">
+<p>PRO TIP: To quickly type <code>&lt;-</code>, use the shortcut <code>option</code> + <code>-</code> (mac) or <code>alt</code> + <code>-</code> (windows). There are lots of other helpful <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">shortcuts</a>. Type <code>Alt</code> + <code>Shift</code> + <code>K</code> to bring up a shortcut reference card).</p>
+</blockquote>
+<p>Since we assigned the value <code>2</code> to <code>x</code>, if we type <code>x</code> into the console and press “enter” R will return the stored value:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 2</code></pre>
+</div>
+</div>
+<p>If you overwrite an object with a different value, R will “forget” the previous assigned value and only keep the new assignment:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
+<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 42</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>PRO TIP: Always surround <code>&lt;-</code> with spaces to avoid confusion! For example, if you typed <code>x&lt;-2</code> (no spaces), it’s not clear if you meant <code>x &lt;- 2</code> or <code>x &lt; -2</code>. The first one assigns <code>2</code> to <code>x</code>, but the second one compares whether <code>x</code> is less than <code>-2</code>.</p>
+</blockquote>
+<section id="use-meaningful-variable-names" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="use-meaningful-variable-names">
+<span class="header-section-number">2.3.1</span> Use meaningful variable names</h3>
+<p>You can choose almost any name you like for an object, so long as the name does not begin with a <em>number</em> or a special character like <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>!</code>, <code>@</code>, or <code>&amp;</code>. But you should always use variable names that <strong>describe the thing you’re assigning</strong>. This practice will save you major headaches later when you have lots of objects in your environment.</p>
+<p>For example, let’s say you have measured the length of a caterpillar and want to store it as an object. Here are three options for creating the object:</p>
+<p><strong>Poor</strong> variable name:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Good</strong> variable name:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">length_mm</span> <span class="op">&lt;-</span> <span class="fl">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Even better</strong> variable name:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">caterpillar_length_mm</span> <span class="op">&lt;-</span> <span class="fl">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first name, <code>x</code>, tells us nothing about what the value <code>42</code> means (are we counting something? <code>42</code> of what?). The second name, <code>length_mm</code>, tells us that <code>42</code> is the length of something, and that it’s measured in millimeters. Finally, the last name, <code>caterpillar_length_mm</code>, tells us that <code>42</code> is the length of a caterpillar, measured in millimeters.</p>
+</section><section id="use-standard-casing-styles" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="use-standard-casing-styles">
+<span class="header-section-number">2.3.2</span> Use standard casing styles</h3>
+<p><img src="images/horst_casing.jpg" width="600"> Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></p>
+<p>You will be wise to adopt a <a href="https://en.wikipedia.org/wiki/Camel_case">convention for demarcating words</a> in names. I recommend using one of these:</p>
+<ul>
+<li><code>snake_case_uses_underscores</code></li>
+<li><code>camelCaseUsesCaps</code></li>
+</ul>
+<p>Make another assignment:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">this_is_a_long_name</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To inspect this, try out RStudio’s completion facility: type the first few characters, press TAB - voila! RStudio auto-completes the long name for you :)</p>
+</section><section id="r-is-case-sensitive" class="level3" data-number="2.3.3"><h3 data-number="2.3.3" class="anchored" data-anchor-id="r-is-case-sensitive">
+<span class="header-section-number">2.3.3</span> R is case sensitive</h3>
+<p>To understand what this means, try this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases_matter</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">Cases_matter</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s try to inspect:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases_matter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 2</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Cases_matter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+<p>Although the two objects look_ similar, one has a capital “C”, and R stores that as a different object.</p>
+<p>In general, type carefully. Typos matter. Case matters. <strong>Get better at typing</strong>.</p>
+</section><section id="the-workspace" class="level3" data-number="2.3.4"><h3 data-number="2.3.4" class="anchored" data-anchor-id="the-workspace">
+<span class="header-section-number">2.3.4</span> The workspace</h3>
+<p>Look at your workspace in the upper-right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">objects</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "cases_matter"          "Cases_matter"          "caterpillar_length_mm"
+#&gt; [4] "length_mm"             "this_is_a_long_name"   "x"</code></pre>
+</div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "cases_matter"          "Cases_matter"          "caterpillar_length_mm"
+#&gt; [4] "length_mm"             "this_is_a_long_name"   "x"</code></pre>
+</div>
+</div>
+<p>If you want to remove the object named <code>x</code>, you can do this</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To remove everything, use this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or click the broom symbol.</p>
+</section></section><section id="what-else-can-r-do" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="what-else-can-r-do">
+<span class="header-section-number">2.4</span> What else can R do?</h2>
+<p>R can do a LOT more than what we’ve seen thus far. For example, you can ask R to print text to the console using the <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hello world!"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Hello world!</code></pre>
+</div>
+</div>
+<p>In the next section, we’ll learn more about some of the distinctions between different types of values in R (like numbers and characters).</p>
+<p>While R is a programming language, it is perhaps most commonly known as a tool for analyzing data and creating plots. For example, here’s how you can use R to make a simple plot of the equation <span class="math inline">\(y = x^2\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="op">-</span><span class="fl">10</span>, to <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="figs/simple-plot-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But you can plot way more than equations in R! For example, take a look at this plot of some <a href="https://allisonhorst.github.io/palmerpenguins/">actual data about penguins</a> (don’t worry about the code for now - by the end of this course you’ll know what it all does!):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">species</span>, shape <span class="op">=</span> <span class="va">species</span><span class="op">)</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">3</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Penguin size, Palmer Station LTER"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Body mass (g)"</span>,</span>
+<span>       color <span class="op">=</span> <span class="st">"Penguin species"</span>,</span>
+<span>       shape <span class="op">=</span> <span class="st">"Penguin species"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.7</span><span class="op">)</span>,</span>
+<span>        legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>        plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,</span>
+<span>        plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span>, face<span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>        plot.caption.position <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="figs/mass-flipper-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="a-couple-more-important-points" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="a-couple-more-important-points">
+<span class="header-section-number">2.5</span> A couple more important points</h2>
+<section id="r-ignores-excess-spacing" class="level3" data-number="2.5.1"><h3 data-number="2.5.1" class="anchored" data-anchor-id="r-ignores-excess-spacing">
+<span class="header-section-number">2.5.1</span> R ignores excess spacing</h3>
+<p>When I typed <code>3 + 4</code> before, I could equally have done this</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span>        <span class="op">+</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 7</code></pre>
+</div>
+</div>
+<p>or this</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>            <span class="fl">3</span>   <span class="op">+</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 7</code></pre>
+</div>
+</div>
+<p>Both produce the same result. The point here is that R ignores extra spaces. This may seem irrelevant for now, but in some programming languages (e.g.&nbsp;Python) blank spaces matter a lot!</p>
+<p>This doesn’t mean extra spaces <em>never</em> matter. For example, if you wanted to input the value <code>3.14</code> but you put a space after the <code>3</code>, you’ll get an error:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   .<span class="dv">14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>#&gt; Error: &lt;text&gt;:1:5: unexpected numeric constant
+#&gt; 1: 3   .14
+#&gt;         ^</code></pre>
+</div>
+</div>
+<p>Basically, you can put spaces between <em>different</em> values, and you can put as many as you want and R won’t care. But if you break a value up with a space, R will send an error message.</p>
+</section><section id="using-comments" class="level3" data-number="2.5.2"><h3 data-number="2.5.2" class="anchored" data-anchor-id="using-comments">
+<span class="header-section-number">2.5.2</span> Using comments</h3>
+<p>In R, the <code>#</code> symbol is a special symbol that denotes a comment. R will ignore anything on the same line that follows the <code>#</code> symbol. This enables us to write comments around our code to explain what we’re doing:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">speed</span> <span class="op">&lt;-</span> <span class="fl">55</span> <span class="co"># This is km/h, not mph!</span></span>
+<span><span class="va">speed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 55</code></pre>
+</div>
+</div>
+<p>Notice that R ignores the whole sentence after the <code>#</code> symbol.</p>
+</section></section><section id="staying-organized" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="staying-organized">
+<span class="header-section-number">2.6</span> Staying organized</h2>
+<section id="the-history-pane" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="the-history-pane">
+<span class="header-section-number">2.6.1</span> The history pane</h3>
+<p>R keeps track of your “command history.” If you click on the console and hit the “up” key, the R console will show you the most recent command that you’ve typed. Hit it again, and it will show you the command before that, and so on.</p>
+<p>The second way to get access to your command history is to look at the history panel in Rstudio. On the upper right hand side of the Rstudio window you’ll see a tab labeled “History.” Click on that and you’ll see a list of all your recent commands displayed in that panel. It should look something like this:</p>
+<center>
+<img src="images/rstudio_history.png" width="600">
+</center>
+<p>If you double click on one of the commands, it will be copied to the R console.</p>
+</section><section id="working-directory" class="level3" data-number="2.6.2"><h3 data-number="2.6.2" class="anchored" data-anchor-id="working-directory">
+<span class="header-section-number">2.6.2</span> Working directory</h3>
+<p>Any process running on your computer has a notion of its “working directory”. In R, this is where R will look for files you ask it to load. It’s also where any files you write to disk will go.</p>
+<p>You can explicitly check your working directory with:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It is also displayed at the top of the RStudio console.</p>
+<p>As a beginning R user, it’s OK let your home directory or any other weird directory on your computer be R’s working directory. <em>Very soon</em>, I urge you to evolve to the next level, where you organize your analytical projects into directories and, when working on project A, set R’s working directory to the associated directory.</p>
+<p><strong>Although I do not recommend it</strong>, in case you’re curious, you can set R’s working directory at the command line like so:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"~/myCoolProject"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Although I do not recommend it</strong>, you can also use RStudio’s Files pane to navigate to a directory and then set it as working directory from the menu:</p>
+<blockquote class="blockquote">
+<p>Session &gt; Set Working Directory &gt; To Files Pane Location.</p>
+</blockquote>
+<p>You’ll see even more options there). Or within the Files pane, choose <strong>More</strong> and <strong>Set As Working Directory</strong>.</p>
+<p>But there’s a better way. A way that also puts you on the path to managing your R work like an expert.</p>
+</section><section id="rstudio-projects" class="level3" data-number="2.6.3"><h3 data-number="2.6.3" class="anchored" data-anchor-id="rstudio-projects">
+<span class="header-section-number">2.6.3</span> RStudio projects</h3>
+<p>Keeping all the files associated with a project organized together – input data, R scripts, analytical results, figures – is such a wise and common practice that RStudio has built-in support for this via its <em>projects</em>.</p>
+<p><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">Using Projects</a></p>
+<p>Let’s make one for practice. Do this:</p>
+<blockquote class="blockquote">
+<p>File &gt; New Project ….</p>
+</blockquote>
+<p>You should see the following pane:</p>
+<center>
+<img src="images/rstudio_new_project.png" width="500">
+</center>
+<p>Choose “New Directory”. The directory name you choose here will be the project name. Call it whatever you want. RStudio will create a folder with that name to put all your project files.</p>
+<p>As a demo, I created a project on my Desktop called “demo”. RStudio created a new project called “demo”, and in this folder there is a file called “demo.Rproj”. If I double-click on this file, RStudio will open up, and my working directory will be automatically set to this folder! You can double check this by typing:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="save-your-code-in-.r-files" class="level3" data-number="2.6.4"><h3 data-number="2.6.4" class="anchored" data-anchor-id="save-your-code-in-.r-files">
+<span class="header-section-number">2.6.4</span> Save your code in .R Files</h3>
+<p>It is traditional to save R scripts with a <code>.R</code> or <code>.r</code> suffix. Any code you wish to re-run again later should be saved in this way and stored within your project folder. For example, if you wanted to re-run all of the code in this tutorial, open a new <code>.R</code> file and save it to your R project folder. Do this:</p>
+<blockquote class="blockquote">
+<p>File &gt; New File &gt; R Script</p>
+</blockquote>
+<p>You can copy some of the code we’ve typed so far into this file to re-run it again later:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span></span>
+<span><span class="fl">3</span> <span class="op">+</span> <span class="st">"4"</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">x</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
+<span><span class="va">x</span></span>
+<span><span class="va">this_is_a_long_name</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span>
+<span><span class="va">cases_matter</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">Cases_matter</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">cases_matter</span></span>
+<span><span class="va">Cases_matter</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">objects</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hello world!"</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="op">-</span><span class="fl">10</span>, to <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="fl">3</span>        <span class="op">+</span> <span class="fl">4</span></span>
+<span>            <span class="fl">3</span>   <span class="op">+</span> <span class="fl">4</span></span>
+<span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span> <span class="co"># I'm adding two numbers</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then save this new R script with some name. Do this:</p>
+<blockquote class="blockquote">
+<p>File &gt; Save</p>
+</blockquote>
+<p>I called the file “tutorial.R” and saved it in my R project folder called “demo”.</p>
+<p>Now when I open the “demo.Rproj” file, I see in my files pane the “tutorial.R” code script. I can click on that file and continue editing it!</p>
+<p>I can also run any line in the script by typing “Command + Enter” (Mac) or “Control + Enter” (Windows).</p>
+</section></section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
+<p>Some content on this page has been modified from other courses, including:</p>
+<ul>
+<li>Palmer penguins plot from the <a href="https://github.com/allisonhorst/palmerpenguins/"><strong>palmerpenguins</strong></a> package by Allison Horst.</li>
+<li>“Case” art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>
+</li>
+<li>Danielle Navarro’s book <a href="https://learningstatisticswithr.com/book/introR.html">“Learning Statistics With R”</a>
+</li>
+<li>Jenny Bryan’s <a href="http://stat545.com/">STAT 545 Course</a>
+</li>
+<li>
+<a href="https://moderndive.netlify.com/">Modern Dive</a>, by Chester Ismay &amp; Albert Y. Kim</li>
+</ul>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./programming.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Programming</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./functions-packages.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

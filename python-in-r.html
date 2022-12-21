@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="John Paul Helveston">
+<title>Introduction to Programming for Analytics in R - 16&nbsp; Introduction to Python (in R)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./monte-carlo-methods.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Programming for Analytics in R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">Data Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./extensions.html" class="sidebar-item-text sidebar-link">Extensions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#getting-started-with-python-in-r" id="toc-getting-started-with-python-in-r" class="nav-link active" data-scroll-target="#getting-started-with-python-in-r"> <span class="header-section-number">16.1</span> Getting started with Python (in R)</a>
+  <ul class="collapse">
+<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">16.1.1</span> Installation</a></li>
+  <li><a href="#starting-python" id="toc-starting-python" class="nav-link" data-scroll-target="#starting-python"> <span class="header-section-number">16.1.2</span> Starting Python</a></li>
+  <li><a href="#exiting-python" id="toc-exiting-python" class="nav-link" data-scroll-target="#exiting-python"> <span class="header-section-number">16.1.3</span> Exiting Python</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics"> <span class="header-section-number">16.2</span> Python basics</a>
+  <ul class="collapse">
+<li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"> <span class="header-section-number">16.2.1</span> Operators</a></li>
+  <li><a href="#variable-assignment" id="toc-variable-assignment" class="nav-link" data-scroll-target="#variable-assignment"> <span class="header-section-number">16.2.2</span> Variable assignment</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"> <span class="header-section-number">16.2.3</span> Data types</a></li>
+  <li><a href="#coercing-data-types" id="toc-coercing-data-types" class="nav-link" data-scroll-target="#coercing-data-types"> <span class="header-section-number">16.2.4</span> Coercing data types</a></li>
+  </ul>
+</li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"> <span class="header-section-number">16.3</span> Loops</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"> <span class="header-section-number">16.4</span> Functions</a></li>
+  <li><a href="#python-methods" id="toc-python-methods" class="nav-link" data-scroll-target="#python-methods"> <span class="header-section-number">16.5</span> Python Methods</a></li>
+  <li>
+<a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"> <span class="header-section-number">16.6</span> Strings</a>
+  <ul class="collapse">
+<li><a href="#functions-and-methods" id="toc-functions-and-methods" class="nav-link" data-scroll-target="#functions-and-methods"> <span class="header-section-number">16.6.1</span> Functions and methods</a></li>
+  <li><a href="#slicing" id="toc-slicing" class="nav-link" data-scroll-target="#slicing"> <span class="header-section-number">16.6.2</span> Slicing</a></li>
+  </ul>
+</li>
+  <li><a href="#splitting-strings" id="toc-splitting-strings" class="nav-link" data-scroll-target="#splitting-strings"> <span class="header-section-number">16.7</span> Splitting strings</a></li>
+  <li><a href="#running-a-python-script-in-r" id="toc-running-a-python-script-in-r" class="nav-link" data-scroll-target="#running-a-python-script-in-r"> <span class="header-section-number">16.8</span> Running a Python script in R</a></li>
+  <li><a href="#summary-of-rpython-differences" id="toc-summary-of-rpython-differences" class="nav-link" data-scroll-target="#summary-of-rpython-differences"> <span class="header-section-number">16.9</span> Summary of R/Python differences</a></li>
+  <li>
+<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"> <span class="header-section-number">16.10</span> Tips</a>
+  <ul class="collapse">
+<li><a href="#making-your-own-python-class" id="toc-making-your-own-python-class" class="nav-link" data-scroll-target="#making-your-own-python-class"> <span class="header-section-number">16.10.1</span> Making your own Python class</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/python-in-r.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-python-in-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<!-- Note: None of the Python chunks evaluate. Outputs are all hard-coded so that rmarkdown doesn't have to call Python. This is because the page will be build with Github Actions and Python is having problems for some reason with that -->
+<blockquote class="blockquote">
+<h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
+<ul>
+<li>Learn how to use the <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> R package to work with python in R.</li>
+<li>Learn basic python syntax and how it compares to R.</li>
+<li>Learn how to write functions, conditional statements, loops in python.</li>
+<li>Learn how to use Python methods.</li>
+<li>Learn basic string manipulation in python.</li>
+<li>Learn how to run a Python script fromr R.</li>
+</ul>
+<h3 id="suggested-readings" class="unnumbered anchored">Suggested readings</h3>
+<ul>
+<li>The <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> R package documentation.</li>
+</ul>
+</blockquote>
+<section id="getting-started-with-python-in-r" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="getting-started-with-python-in-r">
+<span class="header-section-number">16.1</span> Getting started with Python (in R)</h2>
+<p>Python is another very popular computing language for data analysis and general purpose computing. Since R is the main language for this course, we will not cover all the many wonderous things that Python can do. Instead, we will introduce Python through the lens of how it is used for <em>data analysis</em>, with a particular focus on comparing its similarities and differences with R.</p>
+<p>While you can work with Python in a number of ways, we will use the <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> to access it directly from R!</p>
+<section id="installation" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="installation">
+<span class="header-section-number">16.1.1</span> Installation</h3>
+<p>To get started, install the package (remember, you only need to do this once on your computer):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">install.package</span><span class="op">(</span><span class="st">'reticulate'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once installed, load the package:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you already have Python installed on your computer, you should be okay, but you may see the following message pop up in the console:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Would you like to install Miniconda? [Y<span class="sc">/</span>n]<span class="sc">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If so, I recommend you go ahead and install Miniconda by typing <code>y</code> and pressing enter. Miniconda is a smaller version of the larger <a href="https://docs.conda.io/en/latest/">“Conda”</a> distribution that most people use to install Python, and it is the preferred setup for using Python in R.</p>
+</section><section id="starting-python" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="starting-python">
+<span class="header-section-number">16.1.2</span> Starting Python</h3>
+<p>Once you’ve loaded the <strong>reticulate</strong> library, use the following command to open up a Python REPL (which stands for “<strong>R</strong>ead–<strong>E</strong>val–<strong>P</strong>rint-<strong>L</strong>oop”):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/repl_python.html">repl_python</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now look at your console - you should see three <code>&gt;&gt;&gt;</code> symbols. This means you’re now using Python! (Remember, the R console has only one <code>&gt;</code> symbol).</p>
+<p><strong>Check your Python version!</strong></p>
+<p>Above the <code>&gt;&gt;&gt;</code> symbols, you should see a message indicating which version of Python you are using. <strong>It should say “Python 3….”</strong>. Python has two versions (2 and 3) - we’ll be using Python 3. If you see Python 2, then you’ll need to adjust your <a href="https://rstudio.github.io/reticulate/articles/versions.html">configuration</a> to use Python 3. If you installed Miniconda, this should be Python 3.</p>
+</section><section id="exiting-python" class="level3" data-number="16.1.3"><h3 data-number="16.1.3" class="anchored" data-anchor-id="exiting-python">
+<span class="header-section-number">16.1.3</span> Exiting Python</h3>
+<p>If you want to get back to good ’ol R, just type the command <code>exit</code> into the Python console:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that you should <code>exit</code> and not <code>exit()</code> with parenthesis.</p>
+</section></section><section id="python-basics" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="python-basics">
+<span class="header-section-number">16.2</span> Python basics</h2>
+<section id="operators" class="level3" data-number="16.2.1"><h3 data-number="16.2.1" class="anchored" data-anchor-id="operators">
+<span class="header-section-number">16.2.1</span> Operators</h3>
+<p>Python has all the same arithmetic (<code>+-*/</code>), relational (<code>&lt;&gt;=</code>), and logical (<code>&amp;|!</code>) operators as R, but some of the symbols are a little different. Here’s a quick comparison of these differences:</p>
+<div style="width:450px">
+<table class="table">
+<thead><tr class="header">
+<th>Arithmetic operators</th>
+<th>R</th>
+<th>Python</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Integer division</td>
+<td><code>%/%</code></td>
+<td><code>//</code></td>
+</tr>
+<tr class="even">
+<td>Modulus</td>
+<td><code>%%</code></td>
+<td><code>%</code></td>
+</tr>
+<tr class="odd">
+<td>Powers</td>
+<td><code>^</code></td>
+<td><code>**</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="width:450px">
+<table class="table">
+<thead><tr class="header">
+<th>Logical operators</th>
+<th>R</th>
+<th>Python</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>And</td>
+<td><code>&amp;</code></td>
+<td>
+<code>&amp;</code> or <code>and</code>
+</td>
+</tr>
+<tr class="even">
+<td>Or</td>
+<td><code>|</code></td>
+<td>
+<code>|</code> or <code>or</code>
+</td>
+</tr>
+<tr class="odd">
+<td>Not</td>
+<td><code>!</code></td>
+<td>
+<code>!</code> or <code>not</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Python uses the same symbols <code>&amp;</code>, <code>|</code>, and <code>!</code> for assessing logical statements, but Python also supports the use of the English words <code>and</code>, <code>or</code>, and <code>not</code>. For example, the following statements will both return <code>True</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (<span class="dv">4</span> <span class="op">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## True</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>) <span class="kw">and</span> (<span class="dv">4</span> <span class="op">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## True</code></pre>
+</section><section id="variable-assignment" class="level3" data-number="16.2.2"><h3 data-number="16.2.2" class="anchored" data-anchor-id="variable-assignment">
+<span class="header-section-number">16.2.2</span> Variable assignment</h3>
+<p>While in R you can use either <code>=</code> or <code>&lt;-</code> to assign values to objects, in Python only the <code>=</code> symbol can be used:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 3</code></pre>
+</section><section id="data-types" class="level3" data-number="16.2.3"><h3 data-number="16.2.3" class="anchored" data-anchor-id="data-types">
+<span class="header-section-number">16.2.3</span> Data types</h3>
+<p>For the most part, Python has the same data types as R: “numeric”, “string”, and “logical”. But they use different words to describe them:</p>
+<div style="width:450px">
+<table class="table">
+<thead><tr class="header">
+<th>Description</th>
+<th>R</th>
+<th>Python</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>numeric (w/decimal)</td>
+<td><code>"double"</code></td>
+<td><code>"float"</code></td>
+</tr>
+<tr class="even">
+<td>integer</td>
+<td><code>"integer"</code></td>
+<td><code>"int"</code></td>
+</tr>
+<tr class="odd">
+<td>character</td>
+<td><code>"character"</code></td>
+<td><code>"str"</code></td>
+</tr>
+<tr class="even">
+<td>logical</td>
+<td><code>"logical"</code></td>
+<td><code>"bool"</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There are three important distinctions between the languages on data types:</p>
+<ol type="1">
+<li>
+<strong>Logicals</strong>: Logical statements in R use the words <code>TRUE</code> and <code>FALSE</code> (in all caps) to denote logical statements that are “True” or “False”, but in Python you only capitalize the first letter: <code>True</code> or <code>False</code>
+</li>
+<li>
+<strong>Integers vs.&nbsp;Floats</strong>: In R, all numbers are “floats” by default (i.e.&nbsp;they have decimal places), so even numbers that <em>look</em> like integers (e.g.&nbsp;<code>3</code>) are technically floats. In Python, numbers are integers by default unless they have decimal values (e.g.&nbsp;<code>3</code> is an <code>int</code> type, but <code>3.14</code> is a <code>float</code> type).</li>
+<li>
+<strong>NULL</strong>: In R, a value of “nothing” is represented by <code>NULL</code>, but in Python we use <code>None</code>.</li>
+</ol>
+<p>You can check the type using <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> in R or <code>type()</code> in Python:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "double"</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "integer"</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="st">"3"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "character"</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "logical"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">3.14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;class 'float'&gt;</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;class 'int'&gt;</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="st">"3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;class 'str'&gt;</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;class 'bool'&gt;</code></pre>
+</div>
+</div>
+</section><section id="coercing-data-types" class="level3" data-number="16.2.4"><h3 data-number="16.2.4" class="anchored" data-anchor-id="coercing-data-types">
+<span class="header-section-number">16.2.4</span> Coercing data types</h3>
+<p>In R, you can convert data types using the general form of <code>as.something()</code>, replacing “<code>something</code>” with a data type. In Python, you can simply use the data type name to convert types. Here’s a comparison:</p>
+<div class="row">
+<div class="col-md-4">
+
+</div>
+<div class="col-md-4">
+<p><strong>R</strong></p>
+</div>
+<div class="col-md-4">
+<p><strong>Python</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<p><strong>Convert to double / float</strong>:</p>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">float</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 3.0</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<p><strong>Convert to integer</strong>:</p>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="fl">3.14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 3</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<p><strong>Convert to string</strong>:</p>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "3.14"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(<span class="fl">3.14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## '3.14'</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<p><strong>Convert to logical</strong>:</p>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>(<span class="fl">3.14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## True</code></pre>
+</div>
+</div>
+<p>Remember that “logical” types convert to <code>TRUE</code> for any number other than <code>0</code>, which converts to <code>FALSE</code>.</p>
+</section></section><section id="loops" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="loops">
+<span class="header-section-number">16.3</span> Loops</h2>
+<p>Perhaps the biggest syntax difference between R and Python is that <strong>Python uses white space to define things</strong>.</p>
+<p>For example, to write a loop in Python, you have to indent the second line by four character spaces, otherwise you’ll get an error. The benefits of this is that it forces you to use good style practices, and you don’t have to use the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> symbols like you do in R. The downside is that if you have a single space character missing, you’ll get an error, and sometimes that’s hard to notice.</p>
+<p>Here’s a comparison of loops in R and Python:</p>
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-5">
+<p><strong>R</strong></p>
+</div>
+<div class="col-md-5">
+<p><strong>Python</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><code>for</code> loop:</p>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 1
+#&gt; [1] 3
+#&gt; [1] 5</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>]:</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 1
+## 3
+## 5</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><code>while</code> loop:</p>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span>    <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">2</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 1
+#&gt; [1] 3
+#&gt; [1] 5</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 1
+## 3
+## 5</code></pre>
+</div>
+</div>
+<p>One of the things many people love about Python is just how “clean” the syntax looks. Compared to R, the Python code above is more compact and contains less distracting elements, like the “<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>” symbols. You also don’t need to include <code>()</code> symbols on the first line.</p>
+<p>Other than these differences in syntax, loops are essentially the same across the two languages.</p>
+</section><section id="functions" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="functions">
+<span class="header-section-number">16.4</span> Functions</h2>
+<p>Functions use the same “spacing” format as loops, and again the Python syntax is more compact. Here’s a comparison of the <code>isEven(n)</code> function:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">isEven</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> isEven(n):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(<span class="va">True</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Note the difference in the ordering of the first lines. In R, you first define the function name, then you assign to that name the function and argument(s).</p>
+<p>In Python, you do not use any assignment to create a function. Rather, you use the command <code>def</code> followed by the function name and argument(s). Here, the Python syntax is quite natural - you use the same syntax that you would use when calling the function (e.g.&nbsp;<code>isEven(n)</code>).</p>
+<p>Note also that the <code>if</code> statement in Python also uses the same general syntax of indented white space instead of using the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> symbols.</p>
+</section><section id="python-methods" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="python-methods">
+<span class="header-section-number">16.5</span> Python Methods</h2>
+<p>You might have heard people (i.e.&nbsp;me) say that Python is more “object-oriented” whereas R is more “functional.” What I mean is that in R you mostly apply <em>functions</em> to <em>objects</em>, but in Python you often call special functions that <em>belong</em> to certain object types. Here’s an example of converting a string to upper case:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>: We use the string <code>"foo"</code> as an argument to the <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper()</a></code> function from the <strong>stringr</strong> library, which returns <code>"FOO"</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "FOO"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>: we use the <code>.upper()</code> <em>method</em> that belongs to the string <code>"foo"</code>, which returns <code>"FOO"</code>. All strings in Python have this method.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">"foo"</span>.upper()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'FOO'</code></pre>
+</div>
+</div>
+<p>Methods are special functions that belong to objects of a certain <em>class</em>. You “call” methods using the name of the object followed by the <code>.</code> symbol, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">object.method</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also see the different methods available for a particular object by calling the <code>dir</code> function on the object:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"foo"</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## ['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']</code></pre>
+<p>Wow, strings have a lot of methods!</p>
+<p>The concept of using methods is a major part of the “object-oriented” way of programming, since it’s the <em>object</em> that is the center of attention. The <em>object</em> in Python is more than just a stored value - it’s a source of other methods (depending on the object’s class).</p>
+<p>Now that you’ve seen a little about how Python methods work, we’ll get to use some working with strings!</p>
+</section><section id="strings" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="strings">
+<span class="header-section-number">16.6</span> Strings</h2>
+<p>String manipulation is one area where more substantial differences emerge between Python and R. Because R’s built in functions for dealing with strings are rather unintuitive, we’ve relied on the <strong>stringr</strong> package:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In Python, many of the basic string manipulations are actually done with basic arithmatic operators, just like with numbers. Here are a few comparisons:</p>
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-5">
+<p><strong>R</strong></p>
+</div>
+<div class="col-md-5">
+<p><strong>Python</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>String concatenation</strong>:</p>
+</div>
+<div class="col-md-5">
+<p>In R, we use the function <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> to combine strings:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "foobar"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p>In Python, you can combine strings by “adding” them together. The default is to merge them with no space in between:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">"foo"</span> <span class="op">+</span> <span class="st">"bar"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'foobar'</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>String repetition</strong>:</p>
+</div>
+<div class="col-md-5">
+<p>Creating a repeated string is even more complicated in R. You first have to create a <em>vector</em> of repeated strings, and then “collapse” them using the <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="fl">3</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">''</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "foofoofoo"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p>In Python, you can just “multiply” the string, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">"foo"</span> <span class="op">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'foofoofoo'</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>Sub-string detection</strong>:</p>
+</div>
+<div class="col-md-5">
+<p>In R, we use the <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="st">'Apple'</span>, <span class="st">'ppl'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p>In Python, you can detect sub-strings using the <code>in</code> operator:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">'ppl'</span> <span class="kw">in</span> <span class="st">'Apple'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## True</code></pre>
+</div>
+</div>
+<section id="functions-and-methods" class="level3" data-number="16.6.1"><h3 data-number="16.6.1" class="anchored" data-anchor-id="functions-and-methods">
+<span class="header-section-number">16.6.1</span> Functions and methods</h3>
+<p>Because Python has both functions and object methods, it can sometimes be tricky to remember which to use for a specific purpose. For example, if you want to know how many characters are in a string, you use a function, just like in R:</p>
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-5">
+<p><strong>R</strong></p>
+</div>
+<div class="col-md-5">
+<p><strong>Python</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>String length</strong>:</p>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="st">'foo'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(<span class="st">'foo'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 3</code></pre>
+</div>
+</div>
+<p>However, lots of basic string manipulations are done with string methods:</p>
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-5">
+<p><strong>R</strong></p>
+</div>
+<div class="col-md-5">
+<p><strong>Python</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>Case converstion</strong>:</p>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"A longer string"</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "A LONGER STRING"</code></pre>
+</div>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "a longer string"</code></pre>
+</div>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "A Longer String"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"A longer string"</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>s.upper()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'A LONGER STRING'</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>s.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'a longer string'</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>s.title()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'A Longer String'</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>Remove excess white space</strong>:</p>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"     A string with space     "</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "A string with space"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"     A string with space     "</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>s.strip()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'A string with space'</code></pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2">
+<p><strong>Detect if string contains only numbers</strong>:</p>
+</div>
+<div class="col-md-5">
+<p>R doesn’t have a function for this, but you can convert it to a number and check if the result is not <code>NA</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"42"</span></span>
+<span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p>Python has some handy string methods!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"42"</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>s.isnumeric()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## True</code></pre>
+</div>
+</div>
+</section><section id="slicing" class="level3" data-number="16.6.2"><h3 data-number="16.6.2" class="anchored" data-anchor-id="slicing">
+<span class="header-section-number">16.6.2</span> Slicing</h3>
+<p>To extract a sub-string, in R we have to use the <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> function. But in Python, you can simply use the <code>[]</code> symbols. In either case, you have to provide indices of where to start and stop the “slice”.</p>
+<p>For example, here’s how to extract the sub-string <code>"App"</code> from <code>"Apple"</code> in each language:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Apple"</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">s</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "App"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Apple"</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>s[<span class="dv">0</span>:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'App'</code></pre>
+</div>
+</div>
+<p>Note that we had to use a different starting index here to get the same sub-string in each language. That’s because <strong>indexing starts at 0 in Python</strong>.</p>
+<p>If this seems strange, just imagine “fence posts”. In Python, the elements in a sequence are like items sitting <em>between</em> fence posts. So the index of each character in the string <code>"Apple"</code> look like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>index<span class="sc">:</span> <span class="dv">0</span>     <span class="dv">1</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">4</span>     <span class="dv">5</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>       <span class="sc">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>       <span class="er">|</span> <span class="st">"A"</span> <span class="sc">|</span> <span class="st">"p"</span> <span class="sc">|</span> <span class="st">"p"</span> <span class="sc">|</span> <span class="st">"l"</span> <span class="sc">|</span> <span class="st">"e"</span> <span class="sc">|</span></span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>       <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span>     <span class="er">|</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When you make a slice in Python, you slice at the <em>fence post</em> number to get the elements <em>between</em> the posts. So in this case, if we want to get the sub-string <code>"App"</code> from <code>"Apple"</code>, we need to slice from the post <code>0</code> to <code>3</code>.</p>
+<p>Negative indices are also handled differently.</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>: Negative indices start from the end of the string <em>inclusively</em>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">s</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "e"</code></pre>
+</div>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">s</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "ple"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>: Negative indices start from the end of the string, but only return the <em>character at that index</em>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>s[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'e'</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>s[<span class="op">-</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'p'</code></pre>
+<p>To get an inclusive string, you have to provide a starting and ending index:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>s[<span class="op">-</span><span class="dv">3</span>:<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'pl'</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>s[<span class="op">-</span><span class="dv">3</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'ple'</code></pre>
+</div>
+</div>
+<p>You can get the index of a character or sub-string in Python using the <code>.index()</code> method:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>: Returns the starting and ending indices of the sub-string</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"pp"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;      start end
+#&gt; [1,]     2   3</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>: Returns only the starting index of the sub-string</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>s.index(<span class="st">"pp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 1</code></pre>
+</div>
+</div>
+</section></section><section id="splitting-strings" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="splitting-strings">
+<span class="header-section-number">16.7</span> Splitting strings</h2>
+<p>Like in R, splitting a string returns a list of strings. Python lists are similar to R lists, but they only have single brackets. Here’s an example:</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>R</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Apple"</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"pp"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [[1]]
+#&gt; [1] "A"  "le"</code></pre>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<p><strong>Python</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Apple"</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>s.split(<span class="st">"pp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## ['A', 'le']</code></pre>
+</div>
+</div>
+<p>In both languages, the returned list contains the remaining characters after splitting the string (in this case, <code>"A"</code> and <code>"le"</code>). One main difference though is that R returns a list of <em>vectors</em>, so to access the returned vector containing <code>"A"</code> and <code>"le"</code> you have to access the first element in the list, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"pp"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "A"  "le"</code></pre>
+</div>
+</div>
+<p>This is because in R the <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> function is <em>vectorized</em>, meaning that the function can also be performed on a <em>vector</em> of strings, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Apple"</span>, <span class="st">"Snapple"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"pp"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [[1]]
+#&gt; [1] "A"  "le"
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] "Sna" "le"</code></pre>
+</div>
+</div>
+<p>In this example, it’s easier to see that R is returning a list of vectors. In contrast, Python cannot perform a split on multiple strings:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [<span class="st">"Apple"</span>, <span class="st">"Snapple"</span>]</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>s.split(<span class="st">"pp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## AttributeError: 'list' object has no attribute 'split'</code></pre>
+<p>To handle this, you will need to import the <strong>numpy</strong> package, which has an “array” structure similar to R vectors (we’ll cover this in more detail on week 13). Here’s an example:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.array([<span class="st">"Apple"</span>, <span class="st">"Snapple"</span>])</span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a>np.char.split(s, <span class="st">"pp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## array([list(['A', 'le']), list(['Sna', 'le'])], dtype=object)</code></pre>
+</section><section id="running-a-python-script-in-r" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="running-a-python-script-in-r">
+<span class="header-section-number">16.8</span> Running a Python script in R</h2>
+<p>While R scripts end in <code>.R</code>, Python scripts end in <code>.py</code>. You can open up and save a blank Python script in RStudio by clicking</p>
+<blockquote class="blockquote">
+<p>File -&gt; New File -&gt; Python Script</p>
+</blockquote>
+<p>Save it as <code>foo.py</code> in your project folder. Now that it’s saved, let’s add some code to run. As a quick example, I’m going to add code defining the function <code>isOdd()</code> and then create a few values testing it:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> isOdd(n):</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>):</span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(<span class="va">True</span>)</span>
+<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="va">False</span>)</span>
+<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a>n1 <span class="op">=</span> isOdd(<span class="dv">4</span>)</span>
+<span id="cb131-7"><a href="#cb131-7" aria-hidden="true" tabindex="-1"></a>n2 <span class="op">=</span> isOdd(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that you have this code stored in your <code>foo.py</code> file, you can source the file from inside R, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/source_python.html">source_python</a></span><span class="op">(</span><span class="st">'foo.py'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Magically, the function <code>isOdd()</code> and the objects we created (<code>n1</code> and <code>n2</code>) are now accessible from R!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">isOdd</span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1] TRUE</code></pre>
+</section><section id="summary-of-rpython-differences" class="level2" data-number="16.9"><h2 data-number="16.9" class="anchored" data-anchor-id="summary-of-rpython-differences">
+<span class="header-section-number">16.9</span> Summary of R/Python differences</h2>
+<ul>
+<li>Indexing starts at 0 in Python and 1 in R.</li>
+<li>Strings in Python can be manipulated with arithmetic operators.</li>
+<li>Python is more “object-oriented” whereas R is more “functional”.</li>
+</ul></section><section id="tips" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="tips">
+<span class="header-section-number">16.10</span> Tips</h2>
+<section id="making-your-own-python-class" class="level3" data-number="16.10.1"><h3 data-number="16.10.1" class="anchored" data-anchor-id="making-your-own-python-class">
+<span class="header-section-number">16.10.1</span> Making your own Python class</h3>
+<p>You can get really creative with object-oriented programming in Python by creating your own custom classes, allowing you to embed values and methods that belong only to objects of that class. For example, here’s how to create a class called <code>Animal</code>, which is defined by two values: <code>species</code> and <code>sound</code>. Note the white space indentations - without them Python will error:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Animal:</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, species, sound):</span>
+<span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.species <span class="op">=</span> species</span>
+<span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sound <span class="op">=</span> sound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first function in any custom class is the <code>__init__</code> function. This is where to define any arguments that must be input when defining an object of the custom class. The use of <code>self</code> here defines which methods and values will be stored in the object onces it’s created.</p>
+<p>Here’s a example of how we could use the <code>Animal</code> class:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>riley <span class="op">=</span> Animal(<span class="st">"Dog"</span>, <span class="st">"Woof"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here I’ve defined an object named <code>riley</code> (my dog’s name), and it has two stored values: <code>"Dog"</code> (the species) and <code>"Woof"</code> (the sound). I can access these stored values by calling the <code>species</code> and <code>sound</code> values from the <code>riley</code> object:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>riley.species</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'Dog'</code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>riley.sound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 'Woof'</code></pre>
+<p>I can also ask Python what type of object <code>riley</code> is, and it will tell me it’s of the <code>Animal</code> class:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(riley)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>&lt;class '__main__.Animal'&gt;</code></pre>
+<p>In addition to just storing values, you can create custom methods that will only be accessible to objects of the custom class. Here I’m adding the method <code>introduce()</code> to the class <code>Animal</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Animal:</span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, species, sound):</span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.species <span class="op">=</span> species</span>
+<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sound <span class="op">=</span> sound</span>
+<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-6"><a href="#cb147-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> introduce(<span class="va">self</span>):</span>
+<span id="cb147-7"><a href="#cb147-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"I'm a "</span> <span class="op">+</span> <span class="va">self</span>.species <span class="op">+</span> <span class="st">" and I say "</span> <span class="op">+</span> <span class="va">self</span>.sound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s re-define my <code>riley</code> object and try out our new method!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>riley <span class="op">=</span> Animal(<span class="st">"Dog"</span>, <span class="st">"Woof"</span>)</span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>riley.introduce()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## I'm a Dog and I say Woof</code></pre>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./monte-carlo-methods.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>

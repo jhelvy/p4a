@@ -1,9 +1,0 @@
-# Preface {#sec-preface .unnumbered}
-
-```{r}
-#| echo: false
-#| message: false
-source("_common.R")
-```
-
-This is a Quarto book.

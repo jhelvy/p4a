@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="John Paul Helveston">
+<title>Introduction to Programming for Analytics in R - 3&nbsp; Functions &amp; Packages</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./operators-data-types.html" rel="next">
+<link href="./getting-started.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Programming for Analytics in R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">Data Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./extensions.html" class="sidebar-item-text sidebar-link">Extensions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#functions" id="toc-functions" class="nav-link active" data-scroll-target="#functions"> <span class="header-section-number">3.1</span> Functions</a>
+  <ul class="collapse">
+<li><a href="#multiple-arguments" id="toc-multiple-arguments" class="nav-link" data-scroll-target="#multiple-arguments"> <span class="header-section-number">3.1.1</span> Multiple arguments</a></li>
+  <li><a href="#argument-names" id="toc-argument-names" class="nav-link" data-scroll-target="#argument-names"> <span class="header-section-number">3.1.2</span> Argument names</a></li>
+  <li><a href="#default-values" id="toc-default-values" class="nav-link" data-scroll-target="#default-values"> <span class="header-section-number">3.1.3</span> Default values</a></li>
+  <li><a href="#function-help" id="toc-function-help" class="nav-link" data-scroll-target="#function-help"> <span class="header-section-number">3.1.4</span> Function help</a></li>
+  <li><a href="#combining-functions" id="toc-combining-functions" class="nav-link" data-scroll-target="#combining-functions"> <span class="header-section-number">3.1.5</span> Combining functions</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#frequently-used-functions" id="toc-frequently-used-functions" class="nav-link" data-scroll-target="#frequently-used-functions"> <span class="header-section-number">3.2</span> Frequently used functions</a>
+  <ul class="collapse">
+<li><a href="#math-functions" id="toc-math-functions" class="nav-link" data-scroll-target="#math-functions"> <span class="header-section-number">3.2.1</span> Math functions</a></li>
+  <li><a href="#functions-for-manipulating-data-types" id="toc-functions-for-manipulating-data-types" class="nav-link" data-scroll-target="#functions-for-manipulating-data-types"> <span class="header-section-number">3.2.2</span> Functions for manipulating data types</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#more-functions-with-packages" id="toc-more-functions-with-packages" class="nav-link" data-scroll-target="#more-functions-with-packages"> <span class="header-section-number">3.3</span> More functions with <strong>packages</strong></a>
+  <ul class="collapse">
+<li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"> <span class="header-section-number">3.3.1</span> Installing packages</a></li>
+  <li><a href="#using-packages" id="toc-using-packages" class="nav-link" data-scroll-target="#using-packages"> <span class="header-section-number">3.3.2</span> Using packages</a></li>
+  <li><a href="#example-wikifacts" id="toc-example-wikifacts" class="nav-link" data-scroll-target="#example-wikifacts"> <span class="header-section-number">3.3.3</span> Example: <strong>wikifacts</strong></a></li>
+  <li><a href="#using-only-some-package-functions" id="toc-using-only-some-package-functions" class="nav-link" data-scroll-target="#using-only-some-package-functions"> <span class="header-section-number">3.3.4</span> Using only <em>some</em> package functions</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#turtle-graphics" id="toc-turtle-graphics" class="nav-link" data-scroll-target="#turtle-graphics"> <span class="header-section-number">3.4</span> Turtle Graphics</a>
+  <ul class="collapse">
+<li><a href="#getting-to-know-your-turtle" id="toc-getting-to-know-your-turtle" class="nav-link" data-scroll-target="#getting-to-know-your-turtle"> <span class="header-section-number">3.4.1</span> Getting to know your turtle</a></li>
+  <li><a href="#turtle-loops" id="toc-turtle-loops" class="nav-link" data-scroll-target="#turtle-loops"> <span class="header-section-number">3.4.2</span> Turtle loops</a></li>
+  </ul>
+</li>
+  <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/functions-packages.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-functions-packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><div class="cell">
+
+</div>
+<blockquote class="blockquote">
+<h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
+<ul>
+<li>Know some common functions in R.</li>
+<li>Know how R handles function arguments and named arguments.</li>
+<li>Know how to install, load, and use functions from external R packages.</li>
+<li>Practice programming with functions using the TurtleGraphics package.</li>
+</ul>
+<h3 id="suggested-readings" class="unnumbered anchored">Suggested Readings</h3>
+<ul>
+<li>Chapter 3.5 of Danielle Navarro’s book <a href="https://learningstatisticswithr.com/book/introR.html#usingfunctions">“Learning Statistics With R”</a>
+</li>
+</ul>
+</blockquote>
+<section id="functions" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="functions">
+<span class="header-section-number">3.1</span> Functions</h2>
+<p>You can do a lot with the basic operators like <code>+</code>, <code>-</code>, and <code>*</code>, but to do more advanced calculations you’re going to need to start using functions.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<blockquote class="blockquote">
+<p><a href="https://vimeo.com/220490105">Watch this 1-minute video for a quick summary of <strong>functions</strong></a></p>
+</blockquote>
+<p>R has a lot of very useful built-in functions. For example, if I wanted to take the square root of 225, I could use R’s built-in square root function <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">225</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 15</code></pre>
+</div>
+</div>
+<p>Here the letters <code>sqrt</code> are short for “square root,” and the value inside the <code>()</code> is the “argument” to the function. In the example above, the value <code>225</code> is the “argument”.</p>
+<p>Keep in mind that not all functions have (or require) arguments:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Returns the current date and time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "Wed Dec 21 10:36:13 2022"</code></pre>
+</div>
+</div>
+<p>(the date above is the date this page was last built)</p>
+<section id="multiple-arguments" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="multiple-arguments">
+<span class="header-section-number">3.1.1</span> Multiple arguments</h3>
+<p>Some functions have more than one argument. For example, the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function can be used to round some value to the nearest integer or to a specified decimal place:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.14165</span><span class="op">)</span>    <span class="co"># Rounds to the nearest integer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.14165</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># Rounds to the 2nd decimal place</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.14</code></pre>
+</div>
+</div>
+<p>Not all arguments are mandatory. With the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function, the decimal place is an <em>optional</em> input - if nothing is provided, the function will round to the nearest integer by default.</p>
+</section><section id="argument-names" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="argument-names">
+<span class="header-section-number">3.1.2</span> Argument names</h3>
+<p>In the case of <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, it’s not too hard to remember which argument comes first and which one comes second. But it starts to get very difficult once you start using complicated functions that have lots of arguments. Fortunately, most R functions use <strong>argument names</strong> to make your life a little easier. For the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function, for example, the number that needs to be rounded is specified using the <code>x</code> argument, and the number of decimal points that you want it rounded to is specified using the <code>digits</code> argument, like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">3.1415</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.14</code></pre>
+</div>
+</div>
+</section><section id="default-values" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="default-values">
+<span class="header-section-number">3.1.3</span> Default values</h3>
+<p>Notice that the first time I called the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function I didn’t actually specify the <code>digits</code> argument at all, and yet R somehow knew that this meant it should round to the nearest whole number. How did that happen? The answer is that the <code>digits</code> argument has a <strong>default value</strong> of <code>0</code>, meaning that if you decide not to specify a value for <code>digits</code> then R will act as if you had typed <code>digits = 0</code>.</p>
+<p>This is quite handy: most of the time when you want to round a number you want to round it to the nearest <em>whole</em> number, and it would be pretty annoying to have to specify the <code>digits</code> argument every single time. On the other hand, sometimes you actually do want to round to something other than the nearest whole number, and it would be even more annoying if R didn’t allow this! Thus, by having <code>digits = 0</code> as the default value, we get the best of both worlds.</p>
+</section><section id="function-help" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="function-help">
+<span class="header-section-number">3.1.4</span> Function help</h3>
+<p>Not sure what a function does, how many arguments it has, or what the argument names are? Ask R for help by typing <code>?</code> and then the function name, and R will return some documentation about it. For example, type <code>?round()</code> into the console and R will return information about how to use the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function.</p>
+</section><section id="combining-functions" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="combining-functions">
+<span class="header-section-number">3.1.5</span> Combining functions</h3>
+<p>In the same way that R allows us to put multiple operations together into a longer command (like <code>1 + 2 * 4</code> for instance), it also lets us put functions together and even combine functions with operators if we so desire. For example, the following is a perfectly legitimate command:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 2.65</code></pre>
+</div>
+</div>
+<p>When R executes this command, starts out by calculating the value of <code>sqrt(7)</code>, which produces an intermediate value of <code>2.645751</code>. The command then simplifies to <code>round(2.645751, digits = 2)</code>, which rounds the value to <code>2.65</code>.</p>
+</section></section><section id="frequently-used-functions" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="frequently-used-functions">
+<span class="header-section-number">3.2</span> Frequently used functions</h2>
+<section id="math-functions" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="math-functions">
+<span class="header-section-number">3.2.1</span> Math functions</h3>
+<p>R has LOTS of functions. Many of the basic math functions are somewhat self-explanatory, but it can be hard to remember the specific function name. Below is a reference table of some frequently used math functions.</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 24%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example input</th>
+<th>Example output</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>round(x, digits=0)</code></td>
+<td>Round <code>x</code> to the <code>digits</code> decimal place</td>
+<td><code>round(3.1415, digits=2)</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="even">
+<td><code>floor(x)</code></td>
+<td>Round <code>x</code> <strong>down</strong> the nearest integer</td>
+<td><code>floor(3.1415)</code></td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td><code>ceiling(x)</code></td>
+<td>Round <code>x</code> <strong>up</strong> the nearest integer</td>
+<td><code>ceiling(3.1415)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></td>
+<td>Absolute value</td>
+<td><code>abs(-42)</code></td>
+<td><code>42</code></td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code></td>
+<td>Minimum value</td>
+<td><code>min(1, 2, 3)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code></td>
+<td>Maximum value</td>
+<td><code>max(1, 2, 3)</code></td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code></td>
+<td>Square root</td>
+<td><code>sqrt(64)</code></td>
+<td><code>8</code></td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code></td>
+<td>Exponential</td>
+<td><code>exp(0)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/Log.html">log()</a></code></td>
+<td>Natural log</td>
+<td><code>log(1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/Special.html">factorial()</a></code></td>
+<td>Factorial</td>
+<td><code>factorial(5)</code></td>
+<td><code>120</code></td>
+</tr>
+</tbody>
+</table></section><section id="functions-for-manipulating-data-types" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="functions-for-manipulating-data-types">
+<span class="header-section-number">3.2.2</span> Functions for manipulating data types</h3>
+<p>You will often need to check the data type of objects and convert them to other types. To handle this, use these patterns:</p>
+<ul>
+<li>Check the type of <code>x</code>: <code>is.______()</code>
+</li>
+<li>Convert the type of <code>x</code>: <code>as.______()</code>
+</li>
+</ul>
+<p>In each of these patterns, replace “<code>______</code>” with:</p>
+<ul>
+<li><code>character</code></li>
+<li><code>logical</code></li>
+<li>
+<code>numeric</code> / <code>double</code> / <code>integer</code>
+</li>
+</ul>
+<section id="converting-data-types" class="level4" data-number="3.2.2.1"><h4 data-number="3.2.2.1" class="anchored" data-anchor-id="converting-data-types">
+<span class="header-section-number">3.2.2.1</span> Converting data types</h4>
+<p>You can convert an object from one type to another using <code>as.______()</code>, replacing “<code>______</code>” with a data type:</p>
+<p>Convert <strong>numeric</strong> types:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">"3.1415"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.1415</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="st">"3.1415"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.1415</code></pre>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="st">"3.1415"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+<p>Convert <strong>non-numeric</strong> types:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "3.1415"</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+<p>A few notes to keep in mind:</p>
+<ol type="1">
+<li>
+<p>When converting from a <strong>numeric</strong> to a <strong>logical</strong>, <code><a href="https://rdrr.io/r/base/logical.html">as.logical()</a></code> will always return <code>TRUE</code> for any numeric value other than <code>0</code>, for which it returns <code>FALSE</code>.</p>
+<p>::: {.cell layout-align=“center”}</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] TRUE</code> :::</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] FALSE</code> ::: :::</p>
+<p>The reverse is also true</p>
+<p>::: {.cell layout-align=“center”}</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 1</code> :::</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 0</code> ::: :::</p>
+</li>
+<li>
+<p>Not everything can be converted. For example, if you try to coerce a character that contains letters into a number, R will return <code>NA</code>, because it doesn’t know what number to choose:</p>
+<p>::: {.cell layout-align=“center”}</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">'foo'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stderr} <code>#&gt; Warning: NAs introduced by coercion</code> :::</p>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] NA</code> ::: :::</p>
+</li>
+<li>
+<p>The <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> function behaves the same as <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>:</p>
+<p>::: {.cell layout-align=“center”}</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 3</code> :::</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.99</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 3</code> ::: :::</p>
+</li>
+</ol></section><section id="checking-data-types" class="level4" data-number="3.2.2.2"><h4 data-number="3.2.2.2" class="anchored" data-anchor-id="checking-data-types">
+<span class="header-section-number">3.2.2.2</span> Checking data types</h4>
+<p>Similar to the <code>as.______()</code> format, you can check if an object is a specific data type using <code>is.______()</code>, replacing “<code>______</code>” with a data type.</p>
+<p>Checking <strong>numeric</strong> types:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/double.html">is.double</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+</div>
+<p>Checking <strong>non-numeric</strong> types:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+</div>
+<p>One thing you’ll notice is that <code><a href="https://rdrr.io/r/base/integer.html">is.integer()</a></code> often gives you a surprising result. For example, why did <code>is.integer(7)</code> return <code>FALSE</code>?. Well, this is because numbers are <em>doubles</em> by default in R, so even though <code>7</code> <em>looks</em> like an integer, R thinks it’s a double.</p>
+<p>The safer way to check if a number is an integer in <em>value</em> is to compare it against itself converted into an integer:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">7</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</section></section></section><section id="more-functions-with-packages" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="more-functions-with-packages">
+<span class="header-section-number">3.3</span> More functions with <strong>packages</strong>
+</h2>
+<p>When you start R, it only loads the “Base R” functions (e.g.&nbsp;<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, etc.), but there are thousands and thousands of additional functions stored in external <strong>packages</strong>.</p>
+<blockquote class="blockquote">
+<p><a href="https://vimeo.com/220490447">Watch this 1-minute video for a quick summary of <strong>packages</strong></a></p>
+</blockquote>
+<section id="installing-packages" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="installing-packages">
+<span class="header-section-number">3.3.1</span> Installing packages</h3>
+<p>To install a package, use the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. Make sure you put the package name in quotes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span>   <span class="co"># This doesn't work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Just like most software, you only need to <em>install</em> a package once.</p>
+</section><section id="using-packages" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="using-packages">
+<span class="header-section-number">3.3.2</span> Using packages</h3>
+<p>After installing a package, you can’t immediately use the functions that the package contains. This is because when you start up R only the “base” functions are loaded. If you want R to also load the functions inside a package, you have to <em>load</em> that package, which you do with the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function. In contrast to the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function, you don’t need quotes around the package name to load it:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span>   <span class="co"># This also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here’s a helpful image to keep the two ideas of <em>installing</em> vs <em>loading</em> separate:</p>
+<p><img src="images/package_lightbulb.png" class="img-fluid" width="800"></p>
+</section><section id="example-wikifacts" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="example-wikifacts">
+<span class="header-section-number">3.3.3</span> Example: <strong>wikifacts</strong>
+</h3>
+<p>As an example, try installing the <a href="https://github.com/keithmcnulty/wikifacts">Wikifacts</a> package, by Keith McNulty:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"wikifacts"</span><span class="op">)</span> <span class="co"># Remember - you only have to do this once!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that you have the package installed on your computer, try loading it using <code><a href="https://rdrr.io/r/base/library.html">library(wikifacts)</a></code>, then trying using some of it’s functions:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">wikifacts</span><span class="op">)</span> <span class="co"># Load the library</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "Did you know that endocrinologist Reginald Hall, who studied the thyroid gland and its diseases, received a heart transplant in 1984? (Courtesy of Wikipedia)"</code></pre>
+</div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_didyouknow.html">wiki_didyouknow</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "Did you know that the 2001 manga series World of the S&amp;M was released in English as The World Exists for Me? (Courtesy of Wikipedia)"</code></pre>
+</div>
+</div>
+<p>In case you’re wondering, the only thing this package does is generate messages containing random facts from <a href="https://www.wikipedia.org/">Wikipedia</a>.</p>
+</section><section id="using-only-some-package-functions" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="using-only-some-package-functions">
+<span class="header-section-number">3.3.4</span> Using only <em>some</em> package functions</h3>
+<p>Sometimes you may only want to use a single function from a library without having to load the whole thing. To do so, use this recipe:</p>
+<blockquote class="blockquote">
+<p>packagename::functionname()</p>
+</blockquote>
+<p>Here I use the name of the <em>package</em> followed by <code>::</code> to tell R that I’m looking for a function that is in that package. For example, if I didn’t want to load the whole <strong>wikifacts</strong> library but still wanted to use the <code><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact()</a></code> function, I could do this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wikifacts</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "Did you know that Kiriko, a \"fox girl\" character for Overwatch&nbsp;2, was teased through a coded message that translates to \"What Does the Fox Say?\" (Courtesy of Wikipedia)"</code></pre>
+</div>
+</div>
+<p>Where this is particularly handy is when two packages have a function with the same name. If you load both library, R might not know which function to use. In those cases, it’s best to also provide the <strong>package</strong> name. For example, let’s say there was a package called <strong>apples</strong> and another called <strong>bananas</strong>, and each had a function named <code>fruitName()</code>. If I wanted to use each of them in my code, I would need to specify the package names like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">apples</span><span class="fu">::</span><span class="fu">fruitName</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">bananas</span><span class="fu">::</span><span class="fu">fruitName</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="turtle-graphics" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="turtle-graphics">
+<span class="header-section-number">3.4</span> Turtle Graphics</h2>
+<p><a href="https://en.wikipedia.org/wiki/Turtle_graphics">Turtle graphics</a> is a classic teaching tool in computer science, originally invented in the 1960s and re-implemented over and over again in different programming languages.</p>
+<p>In R, there is a similar package called <a href="http://www.gagolewski.com/software/TurtleGraphics/?section=software&amp;subsection=TurtleGraphics"><strong>TurtleGraphics</strong></a>. To get started, install the package (remember, you only need to do this once on your computer):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'TurtleGraphics'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once installed, load the package (remember, you have to load this every time you restart R to use the package!):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.gagolewski.com/software/TurtleGraphics/">TurtleGraphics</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Loading required package: grid</code></pre>
+</div>
+</div>
+<section id="getting-to-know-your-turtle" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="getting-to-know-your-turtle">
+<span class="header-section-number">3.4.1</span> Getting to know your turtle</h3>
+<p>Here’s the idea. You have a turtle, and she lives in a nice warm terrarium. The terrarium is 100 x 100 units in size, where the lower-left corner is at the <code>(x, y)</code> position of <code>(0, 0)</code>. When you call <code><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init()</a></code>, the turtle is initially positioned in the center of the terrarium at <code>(50, 50)</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/turtle_init.png" class="img-fluid" width="456"></p>
+<p>You can move the turtle using a variety of movement functions (see <code>?turtle_move()</code>), and she will leave a trail where ever she goes. For example, you can move her 10 units forward from her starting position:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/turtle_forward.png" class="img-fluid" width="456"></p>
+<p>You can also make the turtle jump to a new position (without drawing a line) by using the <code>turtle_setpos(x, y)</code>, where <code>(x, y)</code> is a coordinate within the 100 x 100 terrarium:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_goto.html">turtle_setpos</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">10</span>, y<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/turtle_setpos.png" class="img-fluid" width="456"></p>
+</section><section id="turtle-loops" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="turtle-loops">
+<span class="header-section-number">3.4.2</span> Turtle loops</h3>
+<p>Simple enough, right? But what if I want my turtle to draw a more complicated shape? Let’s say I want her to draw a hexagon. There are six sides to the hexagon, so the most natural way to write code for this is to write a <code>for</code> loop that loops over the sides (don’t worry if this doesn’t make sense yet - we’ll get to <a href="L5-loops.html">loops in week 5</a>!). At each iteration within the loop, I’ll have the turtle walk forwards, and then turn 60 degrees to the left. Here’s what happens:</p>
+<!-- ```{r, fig.show='animate', interval=0.05, cache=TRUE, message=FALSE} -->
+<!-- ffmpeg is a pain, so manually sticking video in -->
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">side</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_turn.html">turtle_left</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<video width="456" controls="" loop=""><source src="images/turtle_hexagon.webm"></video><p>Cool! As you draw more complex shapes, you can speed up the process by wrapping your turtle commands inside the <code>turtle_do({})</code> function. This will skip the animations of the turtle moving and will jump straight to the final position. For example, here’s the hexagon again without animations:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_do.html">turtle_do</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">side</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_turn.html">turtle_left</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/turtle_hexagon.png" class="img-fluid" width="456"></p>
+</section></section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
+<p>Some content on this page has been modified from other courses, including:</p>
+<ul>
+<li>Danielle Navarro’s book <a href="https://learningstatisticswithr.com/book/introR.html#usingfunctions">“Learning Statistics With R”</a>
+</li>
+<li>Danielle Navarro’s website <a href="https://psyr.djnavarro.net/">“R for Psychological Science”</a>
+</li>
+<li>Jenny Bryan’s <a href="http://stat545.com/">STAT 545 Course</a>
+</li>
+<li><a href="https://rstudio.cloud/learn/primers/1.2">RStudio primers</a></li>
+<li>Xiao Ping Song’s <a href="https://github.com/xp-song/Intro2R">Intro2R crash course</a>
+</li>
+</ul>
+
+
+</section><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p>Technically speaking, operators are functions in R: the addition operator <code>+</code> is a convenient way of calling the addition function <code><a href="https://rdrr.io/r/base/Arithmetic.html">'+'()</a></code>. Thus <code>10+20</code> is equivalent to the function call <code>'+'(20, 30)</code>. Not surprisingly, no-one ever uses this version.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./getting-started.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./operators-data-types.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>
