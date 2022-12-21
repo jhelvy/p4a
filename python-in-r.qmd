@@ -435,7 +435,12 @@ Now that you've seen a little about how Python methods work, we'll get to use so
 
 ## Strings
 
-String manipulation is one area where more substantial differences emerge between Python and R. Because R's built in functions for dealing with strings are rather unintuitive, we've relied on the **stringr** package.
+String manipulation is one area where more substantial differences emerge between Python and R. Because R's built in functions for dealing with strings are rather unintuitive, we've relied on the **stringr** package:
+
+```{r}
+#| message: false
+library(stringr)
+```
 
 In Python, many of the basic string manipulations are actually done with basic arithmatic operators, just like with numbers. Here are a few comparisons:
 
@@ -473,43 +478,60 @@ In Python, you can combine strings by "adding" them together. The default is to 
 
 <div class = "row">
 <div class = "col-md-2">
+
 **String repetition**:
+
 </div>
 <div class = "col-md-5">
+
 Creating a repeated string is even more complicated in R. You first have to create a _vector_ of repeated strings, and then "collapse" them using the `paste()` function:
+
 ```{r}
 paste(rep("foo", 3), collapse = '')
 ```
+
 </div>
 <div class = "col-md-5">
+
 In Python, you can just "multiply" the string, like this:
+
 ```{python, eval=FALSE}
 "foo" * 3
 ```
 ```
 ## 'foofoofoo'
 ```
+
 </div>
 </div>
 
 <div class = "row">
 <div class = "col-md-2">
+
 **Sub-string detection**:
+
 </div>
 <div class = "col-md-5">
+
 In R, we use the `str_detect()` function:
+
 ```{r}
+#| message: false 
 str_detect('Apple', 'ppl')
 ```
+
 </div>
 <div class = "col-md-5">
+
 In Python, you can detect sub-strings using the `in` operator:
+
 ```{python, eval=FALSE}
 'ppl' in 'Apple'
 ```
 ```
 ## True
 ```
+
 </div>
 </div>
 
@@ -521,29 +543,39 @@ Because Python has both functions and object methods, it can sometimes be tricky
 <div class = "col-md-2">
 </div>
 <div class = "col-md-5">
+
 **R**
+
 </div>
 <div class = "col-md-5">
+
 **Python**
+
 </div>
 </div>
 
 <div class = "row">
 <div class = "col-md-2">
+
 **String length**:
+
 </div>
 <div class = "col-md-5">
+
 ```{r}
 str_length('foo')
 ```
+
 </div>
 <div class = "col-md-5">
+
 ```{python, eval=FALSE}
 len('foo')
 ```
 ```
 ## 3
 ```
+
 </div>
 </div>
 
@@ -553,30 +585,40 @@ However, lots of basic string manipulations are done with string methods:
 <div class = "col-md-2">
 </div>
 <div class = "col-md-5">
+
 **R**
+
 </div>
 <div class = "col-md-5">
+
 **Python**
+
 </div>
 </div>
 
 <div class = "row">
 <div class = "col-md-2">
+
 **Case converstion**:
+
 </div>
 <div class = "col-md-5">
+
 ```{r}
 s <- "A longer string"
 str_to_upper(s)
 str_to_lower(s)
 str_to_title(s)
 ```
+
 </div>
 <div class = "col-md-5">
+
 ```{python, eval=FALSE}
 s = "A longer string"
 s.upper()
 ```
+
 ```
 ## 'A LONGER STRING'
 ```
@@ -597,45 +639,61 @@ s.title()
 
 <div class = "row">
 <div class = "col-md-2">
+
 **Remove excess white space**:
+
 </div>
 <div class = "col-md-5">
+
 ```{r}
 s <- "     A string with space     "
 str_trim(s)
 ```
+
 </div>
 <div class = "col-md-5">
+
 ```{python, eval=FALSE}
 s = "     A string with space     "
 s.strip()
 ```
+
 ```
 ## 'A string with space'
 ```
+
 </div>
 </div>
 
 <div class = "row">
 <div class = "col-md-2">
+
 **Detect if string contains only numbers**:
+
 </div>
 <div class = "col-md-5">
+
 R doesn't have a function for this, but you can convert it to a number and check if the result is not `NA`:
+
 ```{r}
 s <- "42"
 !is.na(as.numeric(s))
 ```
+
 </div>
 <div class = "col-md-5">
+
 Python has some handy string methods!
+
 ```{python, eval=FALSE}
 s = "42"
 s.isnumeric()
 ```
+
 ```
 ## True
 ```
+
 </div>
 </div>
 

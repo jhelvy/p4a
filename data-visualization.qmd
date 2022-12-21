@@ -137,8 +137,8 @@ The `ggplot2` library is built on the ["Grammar of Graphics"](https://www.spring
 
 We will start using `ggplot2` by re-creating some of the above plots, but using ggplot functions to get a feel for the syntax. But first, install and load the library:
 
-```{r, eval=FALSE}
-install.packages("ggplot2")
+```{r}
+#| message: false
 library(ggplot2)
 ```
 

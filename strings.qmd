@@ -89,6 +89,9 @@ letters
 In addition to the Base R constants, the `stringr` library also comes with three constants: `words`, `sentences`, and `fruit`. These are much longer, so let's use the `head()` function to just preview the first 6 elements in each:
 
 ```{r}
+#| message: false
+library(stringr)
+
 head(words)
 head(sentences)
 head(fruit)
