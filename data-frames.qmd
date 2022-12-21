@@ -337,9 +337,9 @@ pathToData
 
 **Note**: Avoid hard-coding file paths (e.g. `'data/msleep.csv'`)!
 
-This can break on different computers `r emo::ji("poop")``r emo::ji("poop")``r emo::ji("poop")`
+This can break on different computers 💩💩💩
 
-File paths create so many issues that the brilliant [Allison Horst](https://github.com/allisonhorst/stats-illustrations) even made this lovely art to remind us about the joy of the **here** package `r emo::ji("smile")`
+File paths create so many issues that the brilliant [Allison Horst](https://github.com/allisonhorst/stats-illustrations) even made this lovely art to remind us about the joy of the **here** package 😄
 
 <img src="images/horst_monsters_here.png" width=500>
 

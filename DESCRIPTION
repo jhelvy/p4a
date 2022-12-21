@@ -16,7 +16,6 @@ Imports:
     DAAG,
     devtools,
     dslabs,
-    emo,
     fastDummies,
     fontawesome,
     gapminder,
@@ -42,7 +41,6 @@ Imports:
     wikifacts,
     yaml
 Remotes:
-    hadley/emo,
     hrbrmstr/hrbrthemes,
     jrnold/ggthemes,
     gadenbuie/xaringanExtra
