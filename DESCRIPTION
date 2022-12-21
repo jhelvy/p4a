@@ -35,8 +35,5 @@ Imports:
     tidyverse,
     TurtleGraphics,
     viridis,
-    xaringanExtra,
     wikifacts,
     yaml
-Remotes:
-    gadenbuie/xaringanExtra
