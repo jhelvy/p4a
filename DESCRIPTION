@@ -18,4 +18,5 @@ Imports:
     palmerpenguins,
     readr,
     rmarkdown,
-    stringr
+    stringr,
+    wikifacts
