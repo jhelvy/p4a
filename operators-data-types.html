@@ -2,17 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.25">
+<meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
 <title>Introduction to Programming for Analytics in R - 3&nbsp; Operators &amp; Data Types</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -51,7 +56,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -64,7 +69,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -270,33 +275,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#r-as-a-calculator" id="toc-r-as-a-calculator" class="nav-link active" data-scroll-target="#r-as-a-calculator"> <span class="header-section-number">3.1</span> R as a calculator</a>
+<a href="#r-as-a-calculator" id="toc-r-as-a-calculator" class="nav-link active" data-scroll-target="#r-as-a-calculator"><span class="toc-section-number">3.1</span>  R as a calculator</a>
   <ul class="collapse">
-<li><a href="#doing-basic-math" id="toc-doing-basic-math" class="nav-link" data-scroll-target="#doing-basic-math"> <span class="header-section-number">3.1.1</span> Doing basic math</a></li>
-  <li><a href="#slightly-more-tricky-math" id="toc-slightly-more-tricky-math" class="nav-link" data-scroll-target="#slightly-more-tricky-math"> <span class="header-section-number">3.1.2</span> Slightly more tricky math</a></li>
-  <li><a href="#tricks-with-and" id="toc-tricks-with-and" class="nav-link" data-scroll-target="#tricks-with-and"> <span class="header-section-number">3.1.3</span> Tricks with <code>%%</code> and <code>%/%</code></a></li>
-  <li><a href="#number-chopping-with-10s" id="toc-number-chopping-with-10s" class="nav-link" data-scroll-target="#number-chopping-with-10s"> <span class="header-section-number">3.1.4</span> Number “chopping” with 10s</a></li>
+<li><a href="#doing-basic-math" id="toc-doing-basic-math" class="nav-link" data-scroll-target="#doing-basic-math"><span class="toc-section-number">3.1.1</span>  Doing basic math</a></li>
+  <li><a href="#slightly-more-tricky-math" id="toc-slightly-more-tricky-math" class="nav-link" data-scroll-target="#slightly-more-tricky-math"><span class="toc-section-number">3.1.2</span>  Slightly more tricky math</a></li>
+  <li><a href="#tricks-with-and" id="toc-tricks-with-and" class="nav-link" data-scroll-target="#tricks-with-and"><span class="toc-section-number">3.1.3</span>  Tricks with <code>%%</code> and <code>%/%</code></a></li>
+  <li><a href="#number-chopping-with-10s" id="toc-number-chopping-with-10s" class="nav-link" data-scroll-target="#number-chopping-with-10s"><span class="toc-section-number">3.1.4</span>  Number “chopping” with 10s</a></li>
   </ul>
 </li>
-  <li><a href="#comparing-things-in-r" id="toc-comparing-things-in-r" class="nav-link" data-scroll-target="#comparing-things-in-r"> <span class="header-section-number">3.2</span> Comparing things in R</a></li>
-  <li><a href="#comparing-two-things" id="toc-comparing-two-things" class="nav-link" data-scroll-target="#comparing-two-things"> <span class="header-section-number">3.3</span> Comparing two things</a></li>
+  <li><a href="#comparing-things-in-r" id="toc-comparing-things-in-r" class="nav-link" data-scroll-target="#comparing-things-in-r"><span class="toc-section-number">3.2</span>  Comparing things in R</a></li>
+  <li><a href="#comparing-two-things" id="toc-comparing-two-things" class="nav-link" data-scroll-target="#comparing-two-things"><span class="toc-section-number">3.3</span>  Comparing two things</a></li>
   <li>
-<a href="#making-multiple-comparisons" id="toc-making-multiple-comparisons" class="nav-link" data-scroll-target="#making-multiple-comparisons"> <span class="header-section-number">3.4</span> Making multiple comparisons</a>
+<a href="#making-multiple-comparisons" id="toc-making-multiple-comparisons" class="nav-link" data-scroll-target="#making-multiple-comparisons"><span class="toc-section-number">3.4</span>  Making multiple comparisons</a>
   <ul class="collapse">
-<li><a href="#order-of-operations" id="toc-order-of-operations" class="nav-link" data-scroll-target="#order-of-operations"> <span class="header-section-number">3.4.1</span> Order of operations</a></li>
+<li><a href="#order-of-operations" id="toc-order-of-operations" class="nav-link" data-scroll-target="#order-of-operations"><span class="toc-section-number">3.4.1</span>  Order of operations</a></li>
   </ul>
 </li>
   <li>
-<a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"> <span class="header-section-number">3.5</span> Data types</a>
+<a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">3.5</span>  Data types</a>
   <ul class="collapse">
-<li><a href="#numeric-types" id="toc-numeric-types" class="nav-link" data-scroll-target="#numeric-types"> <span class="header-section-number">3.5.1</span> Numeric types</a></li>
-  <li><a href="#character-types" id="toc-character-types" class="nav-link" data-scroll-target="#character-types"> <span class="header-section-number">3.5.2</span> Character types</a></li>
-  <li><a href="#logical-types" id="toc-logical-types" class="nav-link" data-scroll-target="#logical-types"> <span class="header-section-number">3.5.3</span> Logical types</a></li>
-  <li><a href="#special-values" id="toc-special-values" class="nav-link" data-scroll-target="#special-values"> <span class="header-section-number">3.5.4</span> Special values</a></li>
+<li><a href="#numeric-types" id="toc-numeric-types" class="nav-link" data-scroll-target="#numeric-types"><span class="toc-section-number">3.5.1</span>  Numeric types</a></li>
+  <li><a href="#character-types" id="toc-character-types" class="nav-link" data-scroll-target="#character-types"><span class="toc-section-number">3.5.2</span>  Character types</a></li>
+  <li><a href="#logical-types" id="toc-logical-types" class="nav-link" data-scroll-target="#logical-types"><span class="toc-section-number">3.5.3</span>  Logical types</a></li>
+  <li><a href="#special-values" id="toc-special-values" class="nav-link" data-scroll-target="#special-values"><span class="toc-section-number">3.5.4</span>  Special values</a></li>
   </ul>
 </li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
@@ -312,6 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -1011,10 +1017,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 
-</section><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p>For a more precise statement, see the <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">operator precedence</a> for R.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Why <code>L</code>? Well, it’s a bit <a href="https://stackoverflow.com/questions/24350733/why-would-r-use-the-l-suffix-to-denote-an-integer">complicated</a>, but R supports complex numbers which are denoted by <code>i</code>, so <code>i</code> was already taken. A quick answer is that R uses 32-bit <em>long</em> integers, so <code>L</code> for “long”.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For a more precise statement, see the <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">operator precedence</a> for R.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Why <code>L</code>? Well, it’s a bit <a href="https://stackoverflow.com/questions/24350733/why-would-r-use-the-l-suffix-to-denote-an-integer">complicated</a>, but R supports complex numbers which are denoted by <code>i</code>, so <code>i</code> was already taken. A quick answer is that R uses 32-bit <em>long</em> integers, so <code>L</code> for “long”.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1056,7 +1062,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1084,31 +1107,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">

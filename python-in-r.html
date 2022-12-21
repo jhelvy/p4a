@@ -2,17 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.25">
+<meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
 <title>Introduction to Programming for Analytics in R - 16&nbsp; Introduction to Python (in R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -51,7 +56,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -64,7 +69,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -269,43 +274,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#getting-started-with-python-in-r" id="toc-getting-started-with-python-in-r" class="nav-link active" data-scroll-target="#getting-started-with-python-in-r"> <span class="header-section-number">16.1</span> Getting started with Python (in R)</a>
+<a href="#getting-started-with-python-in-r" id="toc-getting-started-with-python-in-r" class="nav-link active" data-scroll-target="#getting-started-with-python-in-r"><span class="toc-section-number">16.1</span>  Getting started with Python (in R)</a>
   <ul class="collapse">
-<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">16.1.1</span> Installation</a></li>
-  <li><a href="#starting-python" id="toc-starting-python" class="nav-link" data-scroll-target="#starting-python"> <span class="header-section-number">16.1.2</span> Starting Python</a></li>
-  <li><a href="#exiting-python" id="toc-exiting-python" class="nav-link" data-scroll-target="#exiting-python"> <span class="header-section-number">16.1.3</span> Exiting Python</a></li>
+<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="toc-section-number">16.1.1</span>  Installation</a></li>
+  <li><a href="#starting-python" id="toc-starting-python" class="nav-link" data-scroll-target="#starting-python"><span class="toc-section-number">16.1.2</span>  Starting Python</a></li>
+  <li><a href="#exiting-python" id="toc-exiting-python" class="nav-link" data-scroll-target="#exiting-python"><span class="toc-section-number">16.1.3</span>  Exiting Python</a></li>
   </ul>
 </li>
   <li>
-<a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics"> <span class="header-section-number">16.2</span> Python basics</a>
+<a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics"><span class="toc-section-number">16.2</span>  Python basics</a>
   <ul class="collapse">
-<li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"> <span class="header-section-number">16.2.1</span> Operators</a></li>
-  <li><a href="#variable-assignment" id="toc-variable-assignment" class="nav-link" data-scroll-target="#variable-assignment"> <span class="header-section-number">16.2.2</span> Variable assignment</a></li>
-  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"> <span class="header-section-number">16.2.3</span> Data types</a></li>
-  <li><a href="#coercing-data-types" id="toc-coercing-data-types" class="nav-link" data-scroll-target="#coercing-data-types"> <span class="header-section-number">16.2.4</span> Coercing data types</a></li>
+<li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="toc-section-number">16.2.1</span>  Operators</a></li>
+  <li><a href="#variable-assignment" id="toc-variable-assignment" class="nav-link" data-scroll-target="#variable-assignment"><span class="toc-section-number">16.2.2</span>  Variable assignment</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">16.2.3</span>  Data types</a></li>
+  <li><a href="#coercing-data-types" id="toc-coercing-data-types" class="nav-link" data-scroll-target="#coercing-data-types"><span class="toc-section-number">16.2.4</span>  Coercing data types</a></li>
   </ul>
 </li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"> <span class="header-section-number">16.3</span> Loops</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"> <span class="header-section-number">16.4</span> Functions</a></li>
-  <li><a href="#python-methods" id="toc-python-methods" class="nav-link" data-scroll-target="#python-methods"> <span class="header-section-number">16.5</span> Python Methods</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="toc-section-number">16.3</span>  Loops</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">16.4</span>  Functions</a></li>
+  <li><a href="#python-methods" id="toc-python-methods" class="nav-link" data-scroll-target="#python-methods"><span class="toc-section-number">16.5</span>  Python Methods</a></li>
   <li>
-<a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"> <span class="header-section-number">16.6</span> Strings</a>
+<a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="toc-section-number">16.6</span>  Strings</a>
   <ul class="collapse">
-<li><a href="#functions-and-methods" id="toc-functions-and-methods" class="nav-link" data-scroll-target="#functions-and-methods"> <span class="header-section-number">16.6.1</span> Functions and methods</a></li>
-  <li><a href="#slicing" id="toc-slicing" class="nav-link" data-scroll-target="#slicing"> <span class="header-section-number">16.6.2</span> Slicing</a></li>
+<li><a href="#functions-and-methods" id="toc-functions-and-methods" class="nav-link" data-scroll-target="#functions-and-methods"><span class="toc-section-number">16.6.1</span>  Functions and methods</a></li>
+  <li><a href="#slicing" id="toc-slicing" class="nav-link" data-scroll-target="#slicing"><span class="toc-section-number">16.6.2</span>  Slicing</a></li>
   </ul>
 </li>
-  <li><a href="#splitting-strings" id="toc-splitting-strings" class="nav-link" data-scroll-target="#splitting-strings"> <span class="header-section-number">16.7</span> Splitting strings</a></li>
-  <li><a href="#running-a-python-script-in-r" id="toc-running-a-python-script-in-r" class="nav-link" data-scroll-target="#running-a-python-script-in-r"> <span class="header-section-number">16.8</span> Running a Python script in R</a></li>
-  <li><a href="#summary-of-rpython-differences" id="toc-summary-of-rpython-differences" class="nav-link" data-scroll-target="#summary-of-rpython-differences"> <span class="header-section-number">16.9</span> Summary of R/Python differences</a></li>
+  <li><a href="#splitting-strings" id="toc-splitting-strings" class="nav-link" data-scroll-target="#splitting-strings"><span class="toc-section-number">16.7</span>  Splitting strings</a></li>
+  <li><a href="#running-a-python-script-in-r" id="toc-running-a-python-script-in-r" class="nav-link" data-scroll-target="#running-a-python-script-in-r"><span class="toc-section-number">16.8</span>  Running a Python script in R</a></li>
+  <li><a href="#summary-of-rpython-differences" id="toc-summary-of-rpython-differences" class="nav-link" data-scroll-target="#summary-of-rpython-differences"><span class="toc-section-number">16.9</span>  Summary of R/Python differences</a></li>
   <li>
-<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"> <span class="header-section-number">16.10</span> Tips</a>
+<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">16.10</span>  Tips</a>
   <ul class="collapse">
-<li><a href="#making-your-own-python-class" id="toc-making-your-own-python-class" class="nav-link" data-scroll-target="#making-your-own-python-class"> <span class="header-section-number">16.10.1</span> Making your own Python class</a></li>
+<li><a href="#making-your-own-python-class" id="toc-making-your-own-python-class" class="nav-link" data-scroll-target="#making-your-own-python-class"><span class="toc-section-number">16.10.1</span>  Making your own Python class</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/python-in-r.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -320,6 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -1259,7 +1265,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1287,31 +1310,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">

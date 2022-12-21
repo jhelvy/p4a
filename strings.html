@@ -2,17 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.25">
+<meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
 <title>Introduction to Programming for Analytics in R - 9&nbsp; Strings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -51,7 +56,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -64,7 +69,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -270,37 +275,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#making-a-string" id="toc-making-a-string" class="nav-link active" data-scroll-target="#making-a-string"> <span class="header-section-number">9.1</span> Making a string</a></li>
-  <li><a href="#string-constants" id="toc-string-constants" class="nav-link" data-scroll-target="#string-constants"> <span class="header-section-number">9.2</span> String constants</a></li>
+<li><a href="#making-a-string" id="toc-making-a-string" class="nav-link active" data-scroll-target="#making-a-string"><span class="toc-section-number">9.1</span>  Making a string</a></li>
+  <li><a href="#string-constants" id="toc-string-constants" class="nav-link" data-scroll-target="#string-constants"><span class="toc-section-number">9.2</span>  String constants</a></li>
   <li>
-<a href="#basic-stringr-operations" id="toc-basic-stringr-operations" class="nav-link" data-scroll-target="#basic-stringr-operations"> <span class="header-section-number">9.3</span> Basic <code>"stringr"</code> Operations</a>
+<a href="#basic-stringr-operations" id="toc-basic-stringr-operations" class="nav-link" data-scroll-target="#basic-stringr-operations"><span class="toc-section-number">9.3</span>  Basic <code>"stringr"</code> Operations</a>
   <ul class="collapse">
-<li><a href="#case-conversion" id="toc-case-conversion" class="nav-link" data-scroll-target="#case-conversion"> <span class="header-section-number">9.3.1</span> Case conversion</a></li>
-  <li><a href="#get-the-number-of-characters-in-a-string" id="toc-get-the-number-of-characters-in-a-string" class="nav-link" data-scroll-target="#get-the-number-of-characters-in-a-string"> <span class="header-section-number">9.3.2</span> Get the number of characters in a string</a></li>
-  <li><a href="#access-characters-by-their-index" id="toc-access-characters-by-their-index" class="nav-link" data-scroll-target="#access-characters-by-their-index"> <span class="header-section-number">9.3.3</span> Access characters by their index</a></li>
-  <li><a href="#get-the-indices-of-substrings" id="toc-get-the-indices-of-substrings" class="nav-link" data-scroll-target="#get-the-indices-of-substrings"> <span class="header-section-number">9.3.4</span> Get the indices of substrings</a></li>
-  <li><a href="#repeat-a-string" id="toc-repeat-a-string" class="nav-link" data-scroll-target="#repeat-a-string"> <span class="header-section-number">9.3.5</span> Repeat a string</a></li>
-  <li><a href="#removing-whitespace" id="toc-removing-whitespace" class="nav-link" data-scroll-target="#removing-whitespace"> <span class="header-section-number">9.3.6</span> Removing “whitespace”</a></li>
-  <li><a href="#add-whitespace-or-other-characters" id="toc-add-whitespace-or-other-characters" class="nav-link" data-scroll-target="#add-whitespace-or-other-characters"> <span class="header-section-number">9.3.7</span> Add whitespace (or other characters)</a></li>
-  <li><a href="#combine-strings-into-one-string" id="toc-combine-strings-into-one-string" class="nav-link" data-scroll-target="#combine-strings-into-one-string"> <span class="header-section-number">9.3.8</span> Combine strings into one string</a></li>
-  <li><a href="#split-a-string-into-multiple-strings" id="toc-split-a-string-into-multiple-strings" class="nav-link" data-scroll-target="#split-a-string-into-multiple-strings"> <span class="header-section-number">9.3.9</span> Split a string into multiple strings</a></li>
-  <li><a href="#word-extraction-with-word" id="toc-word-extraction-with-word" class="nav-link" data-scroll-target="#word-extraction-with-word"> <span class="header-section-number">9.3.10</span> Word extraction with <code>word()</code></a></li>
-  <li><a href="#alphabetically-sorting-string-vectors" id="toc-alphabetically-sorting-string-vectors" class="nav-link" data-scroll-target="#alphabetically-sorting-string-vectors"> <span class="header-section-number">9.3.11</span> Alphabetically sorting string vectors</a></li>
-  <li><a href="#detect-if-a-pattern-is-in-a-string" id="toc-detect-if-a-pattern-is-in-a-string" class="nav-link" data-scroll-target="#detect-if-a-pattern-is-in-a-string"> <span class="header-section-number">9.3.12</span> Detect if a pattern is in a string</a></li>
-  <li><a href="#anchors" id="toc-anchors" class="nav-link" data-scroll-target="#anchors"> <span class="header-section-number">9.3.13</span> Anchors</a></li>
-  <li><a href="#replacing-matched-pattern-with-another-string" id="toc-replacing-matched-pattern-with-another-string" class="nav-link" data-scroll-target="#replacing-matched-pattern-with-another-string"> <span class="header-section-number">9.3.14</span> Replacing matched pattern with another string</a></li>
+<li><a href="#case-conversion" id="toc-case-conversion" class="nav-link" data-scroll-target="#case-conversion"><span class="toc-section-number">9.3.1</span>  Case conversion</a></li>
+  <li><a href="#get-the-number-of-characters-in-a-string" id="toc-get-the-number-of-characters-in-a-string" class="nav-link" data-scroll-target="#get-the-number-of-characters-in-a-string"><span class="toc-section-number">9.3.2</span>  Get the number of characters in a string</a></li>
+  <li><a href="#access-characters-by-their-index" id="toc-access-characters-by-their-index" class="nav-link" data-scroll-target="#access-characters-by-their-index"><span class="toc-section-number">9.3.3</span>  Access characters by their index</a></li>
+  <li><a href="#get-the-indices-of-substrings" id="toc-get-the-indices-of-substrings" class="nav-link" data-scroll-target="#get-the-indices-of-substrings"><span class="toc-section-number">9.3.4</span>  Get the indices of substrings</a></li>
+  <li><a href="#repeat-a-string" id="toc-repeat-a-string" class="nav-link" data-scroll-target="#repeat-a-string"><span class="toc-section-number">9.3.5</span>  Repeat a string</a></li>
+  <li><a href="#removing-whitespace" id="toc-removing-whitespace" class="nav-link" data-scroll-target="#removing-whitespace"><span class="toc-section-number">9.3.6</span>  Removing “whitespace”</a></li>
+  <li><a href="#add-whitespace-or-other-characters" id="toc-add-whitespace-or-other-characters" class="nav-link" data-scroll-target="#add-whitespace-or-other-characters"><span class="toc-section-number">9.3.7</span>  Add whitespace (or other characters)</a></li>
+  <li><a href="#combine-strings-into-one-string" id="toc-combine-strings-into-one-string" class="nav-link" data-scroll-target="#combine-strings-into-one-string"><span class="toc-section-number">9.3.8</span>  Combine strings into one string</a></li>
+  <li><a href="#split-a-string-into-multiple-strings" id="toc-split-a-string-into-multiple-strings" class="nav-link" data-scroll-target="#split-a-string-into-multiple-strings"><span class="toc-section-number">9.3.9</span>  Split a string into multiple strings</a></li>
+  <li><a href="#word-extraction-with-word" id="toc-word-extraction-with-word" class="nav-link" data-scroll-target="#word-extraction-with-word"><span class="toc-section-number">9.3.10</span>  Word extraction with <code>word()</code></a></li>
+  <li><a href="#alphabetically-sorting-string-vectors" id="toc-alphabetically-sorting-string-vectors" class="nav-link" data-scroll-target="#alphabetically-sorting-string-vectors"><span class="toc-section-number">9.3.11</span>  Alphabetically sorting string vectors</a></li>
+  <li><a href="#detect-if-a-pattern-is-in-a-string" id="toc-detect-if-a-pattern-is-in-a-string" class="nav-link" data-scroll-target="#detect-if-a-pattern-is-in-a-string"><span class="toc-section-number">9.3.12</span>  Detect if a pattern is in a string</a></li>
+  <li><a href="#anchors" id="toc-anchors" class="nav-link" data-scroll-target="#anchors"><span class="toc-section-number">9.3.13</span>  Anchors</a></li>
+  <li><a href="#replacing-matched-pattern-with-another-string" id="toc-replacing-matched-pattern-with-another-string" class="nav-link" data-scroll-target="#replacing-matched-pattern-with-another-string"><span class="toc-section-number">9.3.14</span>  Replacing matched pattern with another string</a></li>
   </ul>
 </li>
-  <li><a href="#stringr-functions-work-on-vectors" id="toc-stringr-functions-work-on-vectors" class="nav-link" data-scroll-target="#stringr-functions-work-on-vectors"> <span class="header-section-number">9.4</span> <code>stringr</code> functions work on vectors</a></li>
+  <li><a href="#stringr-functions-work-on-vectors" id="toc-stringr-functions-work-on-vectors" class="nav-link" data-scroll-target="#stringr-functions-work-on-vectors"><span class="toc-section-number">9.4</span>  <code>stringr</code> functions work on vectors</a></li>
   <li>
-<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"> <span class="header-section-number">9.5</span> Tips</a>
+<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">9.5</span>  Tips</a>
   <ul class="collapse">
-<li><a href="#breaking-a-string-into-characters" id="toc-breaking-a-string-into-characters" class="nav-link" data-scroll-target="#breaking-a-string-into-characters"> <span class="header-section-number">9.5.1</span> Breaking a string into characters</a></li>
-  <li><a href="#breaking-a-sentence-into-words" id="toc-breaking-a-sentence-into-words" class="nav-link" data-scroll-target="#breaking-a-sentence-into-words"> <span class="header-section-number">9.5.2</span> Breaking a sentence into words</a></li>
-  <li><a href="#comparing-strings" id="toc-comparing-strings" class="nav-link" data-scroll-target="#comparing-strings"> <span class="header-section-number">9.5.3</span> Comparing strings</a></li>
+<li><a href="#breaking-a-string-into-characters" id="toc-breaking-a-string-into-characters" class="nav-link" data-scroll-target="#breaking-a-string-into-characters"><span class="toc-section-number">9.5.1</span>  Breaking a string into characters</a></li>
+  <li><a href="#breaking-a-sentence-into-words" id="toc-breaking-a-sentence-into-words" class="nav-link" data-scroll-target="#breaking-a-sentence-into-words"><span class="toc-section-number">9.5.2</span>  Breaking a sentence into words</a></li>
+  <li><a href="#comparing-strings" id="toc-comparing-strings" class="nav-link" data-scroll-target="#comparing-strings"><span class="toc-section-number">9.5.3</span>  Comparing strings</a></li>
   </ul>
 </li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
@@ -316,6 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -1111,7 +1117,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1139,31 +1162,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
