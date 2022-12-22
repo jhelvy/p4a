@@ -6,4 +6,100 @@
 source("_common.R")
 ```
 
-The goal of this section is to...
+> "Data science is not just about AI or machine learning. It is the discipline of turning raw data into understanding."
+>
+> \- [Julia Silge](https://juliasilge.com/), useR Conference 2019
+
+The goal of this section is to develop a general literacy in data analytics. The concepts addressed in this section are critical in achieving the "big picture" goal of being able to turn raw **data** into **information**. While the technical details of achieving this goal will require practice to master, the goal should always be kept in mind first and foremost.
+
+As an example of what I mean, consider the following case study on the [1986 Space Shuttle Challenger explosion](https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster). In this case study, we'll be examining data about the relationship between the temperature of different NASA rocket launches and damage to the rock O-rings - the root cause of the accident. Don't worry yet if you don't understand the specific code used - just try to follow along to see how we can pull out _information_ from raw data.
+
+## The Challenger disaster
+
+On January 28, 1986 the space shuttle Challenger exploded. In his book titled ["Visual Explanations"](https://www.edwardtufte.com/tufte/books_visex), Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.
+
+![](images/challenger_crew.jpg)
+[[Image source](https://www.flickr.com/photos/gsfc/12191288154)]
+
+## The data
+
+The R package `DAAG` has a dataset called `orings` which contains data on temperatures and O-ring damage during launches prior to the Challenger incident. Let's load the `DAAG` library and preview the data:
+
+```{r}
+#| message: false
+library(DAAG)
+
+head(orings)
+```
+
+We can see that the dataset contains observations about the temperatures of launches and O-ring damage, but we don't yet have _information_. One step forward towards _information_ is to simply plot the data to _see_ if there might be a relationship between temperature and O-ring damage:
+
+```{r}
+#| message: false
+#| fig.width: 8
+#| fig.height: 3
+library(ggplot2)
+
+challengerPlot <- ggplot(
+        data = orings, 
+        aes(x = Temperature, y = Total)
+    ) +
+    geom_point(size = 1.5) +
+    scale_x_continuous(
+        limits = c(25, 85), 
+        breaks = seq(25, 85, 5)
+    ) +
+    scale_y_continuous(
+        limits = c(-0.15, 8), 
+        breaks = seq(0, 8, 2)
+    ) +
+    labs(
+        x = 'Temperature (°F) of field joints at time of launch',
+        y = 'Total o-ring damage'
+    ) +
+    theme_bw() +
+    theme(panel.grid.minor = element_blank())
+
+challengerPlot
+```
+
+The graph above shows O-ring damage on the y-axis and temperature on the x-axis. We can easily see that no prior launches below 66 degrees F were damage-free, and it appears that at lower temperatures (such as 55 degrees) the damage was even more severe.
+
+Now, what temperature was forecasted for the day of the Challenger launch? **26 to 29 degrees**. Let's add that context to our plot:
+
+```{r}
+#| message: false
+#| fig.width: 8
+#| fig.height: 3
+annotation <- paste(
+    "26°-29°:", "Range of forecasted temperatures",
+    "for Jan. 28, 1986 Challenger launch", sep = "\n"
+)
+
+challengerPlot +
+    annotate(
+        "rect", 
+        xmin = 26, xmax = 29,  ymin = -0.15, ymax = 0.15,
+        alpha = 0.6, fill = "grey60"
+    ) +
+    annotate(
+        "text", 
+        x = 26, y = 1.4, label = annotation, 
+        hjust = 0
+    )
+```
+
+Now we have some _information_. The transformation of the raw data into a visualization makes it obvious that the temperature forecasted for the day of the Challenger launch should raise red flags. It falls far below the temperature range of prior launches, and those prior launches suggest that O-ring damage may be correlated with decreasing temperature.
+
+To their credit, the engineers working on the Challenger were worried about the potential for O-ring failure. But the critical step in making the link to temperature was not thoroughly communicated. Instead, the _raw data_ was presented in tabular form along with diagrams like the one below, which show how erosion in the primary O-ring interacted with the secondary O-ring:
+
+![](images/rockets_chart.png){ width=600 }
+[[Image source](https://www.edwardtufte.com/tufte/books_visex)]
+
+While the above diagram contains a lot of _data_, the critical **information** about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.
+
+## References {.unnumbered}
+
+- The [Space shuttle Challenger explosion](https://vizdatar.wordpress.com/2015/05/06/space-shuttle-challenger-explosion-2/) blog post, by Vikram Dayal
+- Robison et al. (2002) [Representation and Misrepresentation: Tufte and the Morton Thiokol Engineers on the Challenger](https://people.rit.edu/wlrgsh/FINRobison.pdf), _Science and Engineering Ethics_, 8, 59-81.
+- Tufte, Edward R. (1997) ["Visual Explanations: Images and Quantities, Evidence and Narrative"](https://www.edwardtufte.com/tufte/books_visex), Graphics Press, Cheshire, Connecticut.

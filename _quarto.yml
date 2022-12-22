@@ -48,7 +48,6 @@ book:
 
     - part: data-analysis.qmd
       chapters:
-        - data-analysis-prelude.qmd
         - data-frames.qmd
         - data-wrangling.qmd
         - data-visualization.qmd

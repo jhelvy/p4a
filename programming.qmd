@@ -1,9 +1,5 @@
 # Programming {#sec-programming .unnumbered}
 
-```{r}
-#| echo: false
-#| message: false
-source("_common.R")
-```
+The goal of this section is to develop a general literacy in programming and computational thinking. While we will focus on learning these concepts in R, they will translate well to other similar languages, such as Python and Matlab. 
 
-The goal of this section is to...
+Go on to the next page to get started on your journey learning to program in R!
