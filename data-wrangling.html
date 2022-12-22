@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Introduction to Programming for Analytics in R - 12&nbsp; Data Wrangling</title>
+<title>Programming for Analytics in R - 13&nbsp; Data Wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -134,9 +134,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Programming for Analytics in R</a> 
+      <a href="./">Programming for Analytics in R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jhelvy/p4a/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -154,12 +154,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -172,47 +172,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Strings</span></a>
   </div>
 </li>
       </ul>
@@ -227,27 +227,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -262,12 +262,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -278,34 +278,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="toc-section-number">12.1</span>  R Setup</a></li>
+<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="toc-section-number">13.1</span>  R Setup</a></li>
   <li>
-<a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"><span class="toc-section-number">12.2</span>  Data wrangling with <code>dplyr</code></a>
+<a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"><span class="toc-section-number">13.2</span>  Data wrangling with <code>dplyr</code></a>
   <ul class="collapse">
-<li><a href="#what-is-dplyr" id="toc-what-is-dplyr" class="nav-link" data-scroll-target="#what-is-dplyr"><span class="toc-section-number">12.2.1</span>  What is <code>dplyr</code></a></li>
-  <li><a href="#select-columns-with-select" id="toc-select-columns-with-select" class="nav-link" data-scroll-target="#select-columns-with-select"><span class="toc-section-number">12.2.2</span>  Select columns with <code>select()</code></a></li>
-  <li><a href="#select-rows-with-filter" id="toc-select-rows-with-filter" class="nav-link" data-scroll-target="#select-rows-with-filter"><span class="toc-section-number">12.2.3</span>  Select rows with <code>filter()</code></a></li>
-  <li><a href="#sequence-operations-with-pipes" id="toc-sequence-operations-with-pipes" class="nav-link" data-scroll-target="#sequence-operations-with-pipes"><span class="toc-section-number">12.2.4</span>  Sequence operations with pipes (<code>%&gt;%</code>)</a></li>
-  <li><a href="#sort-rows-with-arrange" id="toc-sort-rows-with-arrange" class="nav-link" data-scroll-target="#sort-rows-with-arrange"><span class="toc-section-number">12.2.5</span>  Sort rows with <code>arrange()</code></a></li>
-  <li><a href="#create-new-variables-with-mutate" id="toc-create-new-variables-with-mutate" class="nav-link" data-scroll-target="#create-new-variables-with-mutate"><span class="toc-section-number">12.2.6</span>  Create new variables with <code>mutate()</code></a></li>
+<li><a href="#what-is-dplyr" id="toc-what-is-dplyr" class="nav-link" data-scroll-target="#what-is-dplyr"><span class="toc-section-number">13.2.1</span>  What is <code>dplyr</code></a></li>
+  <li><a href="#select-columns-with-select" id="toc-select-columns-with-select" class="nav-link" data-scroll-target="#select-columns-with-select"><span class="toc-section-number">13.2.2</span>  Select columns with <code>select()</code></a></li>
+  <li><a href="#select-rows-with-filter" id="toc-select-rows-with-filter" class="nav-link" data-scroll-target="#select-rows-with-filter"><span class="toc-section-number">13.2.3</span>  Select rows with <code>filter()</code></a></li>
+  <li><a href="#sequence-operations-with-pipes" id="toc-sequence-operations-with-pipes" class="nav-link" data-scroll-target="#sequence-operations-with-pipes"><span class="toc-section-number">13.2.4</span>  Sequence operations with pipes (<code>%&gt;%</code>)</a></li>
+  <li><a href="#sort-rows-with-arrange" id="toc-sort-rows-with-arrange" class="nav-link" data-scroll-target="#sort-rows-with-arrange"><span class="toc-section-number">13.2.5</span>  Sort rows with <code>arrange()</code></a></li>
+  <li><a href="#create-new-variables-with-mutate" id="toc-create-new-variables-with-mutate" class="nav-link" data-scroll-target="#create-new-variables-with-mutate"><span class="toc-section-number">13.2.6</span>  Create new variables with <code>mutate()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#split-apply-combine" id="toc-split-apply-combine" class="nav-link" data-scroll-target="#split-apply-combine"><span class="toc-section-number">12.3</span>  Split-apply-combine</a>
+<a href="#split-apply-combine" id="toc-split-apply-combine" class="nav-link" data-scroll-target="#split-apply-combine"><span class="toc-section-number">13.3</span>  Split-apply-combine</a>
   <ul class="collapse">
-<li><a href="#the-group_by-function" id="toc-the-group_by-function" class="nav-link" data-scroll-target="#the-group_by-function"><span class="toc-section-number">12.3.1</span>  The <code>group_by()</code> function</a></li>
-  <li><a href="#the-summarize-function" id="toc-the-summarize-function" class="nav-link" data-scroll-target="#the-summarize-function"><span class="toc-section-number">12.3.2</span>  The <code>summarize()</code> function</a></li>
-  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting"><span class="toc-section-number">12.3.3</span>  Counting</a></li>
+<li><a href="#the-group_by-function" id="toc-the-group_by-function" class="nav-link" data-scroll-target="#the-group_by-function"><span class="toc-section-number">13.3.1</span>  The <code>group_by()</code> function</a></li>
+  <li><a href="#the-summarize-function" id="toc-the-summarize-function" class="nav-link" data-scroll-target="#the-summarize-function"><span class="toc-section-number">13.3.2</span>  The <code>summarize()</code> function</a></li>
+  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting"><span class="toc-section-number">13.3.3</span>  Counting</a></li>
   </ul>
 </li>
-  <li><a href="#exporting-data" id="toc-exporting-data" class="nav-link" data-scroll-target="#exporting-data"><span class="toc-section-number">12.4</span>  Exporting data</a></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">12.5</span>  Tips</a></li>
+  <li><a href="#exporting-data" id="toc-exporting-data" class="nav-link" data-scroll-target="#exporting-data"><span class="toc-section-number">13.4</span>  Exporting data</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">13.5</span>  Tips</a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/data-wrangling.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-wrangling.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-data-wrangling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></h1>
+<h1 class="title"><span id="sec-data-wrangling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></h1>
 </div>
 
 
@@ -341,8 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://resources.rstudio.com/the-essentials-of-data-science/data-transformation"><code>dplyr</code> cheatsheet</a></li>
 </ul>
 </blockquote>
-<section id="r-setup" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="r-setup">
-<span class="header-section-number">12.1</span> R Setup</h2>
+<section id="r-setup" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="r-setup">
+<span class="header-section-number">13.1</span> R Setup</h2>
 <p>Before we get started, let’s set up our analysis environment:</p>
 <ol type="1">
 <li>Open up your “data-analysis-tutorial” R Project that you created in the last lesson - if you didn’t do this, <a href="L10-data-analysis-1-data-frames.html#41_r_setup">go back and do it now</a>.</li>
@@ -518,16 +518,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>…over 5 strikes per day!</p>
-</section><section id="data-wrangling-with-dplyr" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="data-wrangling-with-dplyr">
-<span class="header-section-number">12.2</span> Data wrangling with <code>dplyr</code>
+</section><section id="data-wrangling-with-dplyr" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="data-wrangling-with-dplyr">
+<span class="header-section-number">13.2</span> Data wrangling with <code>dplyr</code>
 </h2>
 <p><img src="images/horst_monsters_data_wrangling.png" class="img-fluid" width="500"><a href="https://github.com/allisonhorst">[Art by Allison Horst]</a></p>
 <p>“Data Wrangling” refers to the art of getting your data into R in a useful form for visualization and modeling. Wrangling is the first step in the general data science process:</p>
 <center>
 <img src="images/data-wrangle.png" class="img-fluid">
 </center>
-<section id="what-is-dplyr" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="what-is-dplyr">
-<span class="header-section-number">12.2.1</span> What is <code>dplyr</code>
+<section id="what-is-dplyr" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="what-is-dplyr">
+<span class="header-section-number">13.2.1</span> What is <code>dplyr</code>
 </h3>
 <p>As we saw in the last section, we can use brackets (<code>[]</code>) to access elements of a data frame. While this is handy, it can be cumbersome and difficult to read, especially for complicated operations.</p>
 <p><strong>Enter <code>dplyr</code></strong></p>
@@ -551,8 +551,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>: create summary statistics (usually on grouped data)</li>
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>: count discrete rows</li>
-</ul></section><section id="select-columns-with-select" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="select-columns-with-select">
-<span class="header-section-number">12.2.2</span> Select columns with <code>select()</code>
+</ul></section><section id="select-columns-with-select" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="select-columns-with-select">
+<span class="header-section-number">13.2.2</span> Select columns with <code>select()</code>
 </h3>
 <p><img src="images/rstudio-cheatsheet-select.png" class="img-fluid" width="500"></p>
 <p>To select specific columns, use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. The first argument to this function is the data frame (<code>df</code>), and the subsequent arguments are the columns to keep:</p>
@@ -602,8 +602,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code> = Select columns that match a regular expression</li>
 <li>
 <code><a href="https://tidyselect.r-lib.org/reference/one_of.html">one_of()</a></code> = Select column names that are from a group of names</li>
-</ol></section><section id="select-rows-with-filter" class="level3" data-number="12.2.3"><h3 data-number="12.2.3" class="anchored" data-anchor-id="select-rows-with-filter">
-<span class="header-section-number">12.2.3</span> Select rows with <code>filter()</code>
+</ol></section><section id="select-rows-with-filter" class="level3" data-number="13.2.3"><h3 data-number="13.2.3" class="anchored" data-anchor-id="select-rows-with-filter">
+<span class="header-section-number">13.2.3</span> Select rows with <code>filter()</code>
 </h3>
 <p><img src="images/rstudio-cheatsheet-filter.png" class="img-fluid" width="500"></p>
 <p>Filter the rows for wildlife impacts that occurred in DC:</p>
@@ -648,8 +648,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; #   ²​type_eng, ³​species_id</code></pre>
 </div>
 </div>
-</section><section id="sequence-operations-with-pipes" class="level3" data-number="12.2.4"><h3 data-number="12.2.4" class="anchored" data-anchor-id="sequence-operations-with-pipes">
-<span class="header-section-number">12.2.4</span> Sequence operations with pipes (<code>%&gt;%</code>)</h3>
+</section><section id="sequence-operations-with-pipes" class="level3" data-number="13.2.4"><h3 data-number="13.2.4" class="anchored" data-anchor-id="sequence-operations-with-pipes">
+<span class="header-section-number">13.2.4</span> Sequence operations with pipes (<code>%&gt;%</code>)</h3>
 <p><img src="images/magrittr.png" class="img-fluid" width="200"> (logo is a reference to <a href="https://en.wikipedia.org/wiki/The_Treachery_of_Images">The Treachery of Images</a>)</p>
 <p>What if you want to select and filter at the same time? Well, one way to do this is to use intermediate steps. To do this, you first create a temporary data frame and then use that as input to the next function, like this:</p>
 <div class="cell" data-layout-align="center">
@@ -723,8 +723,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 6 AMERICAN AIRLINES  2022 Night</code></pre>
 </div>
 </div>
-</section><section id="sort-rows-with-arrange" class="level3" data-number="12.2.5"><h3 data-number="12.2.5" class="anchored" data-anchor-id="sort-rows-with-arrange">
-<span class="header-section-number">12.2.5</span> Sort rows with <code>arrange()</code>
+</section><section id="sort-rows-with-arrange" class="level3" data-number="13.2.5"><h3 data-number="13.2.5" class="anchored" data-anchor-id="sort-rows-with-arrange">
+<span class="header-section-number">13.2.5</span> Sort rows with <code>arrange()</code>
 </h3>
 <p>Use the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function to sort a data frame by a column. For example, if you wanted to view the least expensive accidents, you could arrange the data frame by the variable <code>cost_repairs_infl_adj</code>:</p>
 <div class="cell" data-layout-align="center">
@@ -772,8 +772,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; #   ²​type_eng, ³​species_id</code></pre>
 </div>
 </div>
-</section><section id="create-new-variables-with-mutate" class="level3" data-number="12.2.6"><h3 data-number="12.2.6" class="anchored" data-anchor-id="create-new-variables-with-mutate">
-<span class="header-section-number">12.2.6</span> Create new variables with <code>mutate()</code>
+</section><section id="create-new-variables-with-mutate" class="level3" data-number="13.2.6"><h3 data-number="13.2.6" class="anchored" data-anchor-id="create-new-variables-with-mutate">
+<span class="header-section-number">13.2.6</span> Create new variables with <code>mutate()</code>
 </h3>
 <p><img src="images/rstudio-cheatsheet-mutate.png" class="img-fluid" width="500"></p>
 <p>You will often need to create new columns based on the values in existing columns. For this use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. For example, let’s create a new variable converting the <code>height</code> variable from feet to miles:</p>
@@ -833,8 +833,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> is a function that determines whether something is an <code>NA</code>. The <code>!</code> symbol negates the result, so we’re asking for every row where weight <em>is not</em> an <code>NA</code>.</p>
-</section></section><section id="split-apply-combine" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="split-apply-combine">
-<span class="header-section-number">12.3</span> Split-apply-combine</h2>
+</section></section><section id="split-apply-combine" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="split-apply-combine">
+<span class="header-section-number">13.3</span> Split-apply-combine</h2>
 <p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm:</p>
 <ol type="1">
 <li>Split the data into groups</li>
@@ -842,8 +842,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Combine the results.</li>
 </ol>
 <p><code>dplyr</code> makes this very easy through the use of the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function.</p>
-<section id="the-group_by-function" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="the-group_by-function">
-<span class="header-section-number">12.3.1</span> The <code>group_by()</code> function</h3>
+<section id="the-group_by-function" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="the-group_by-function">
+<span class="header-section-number">13.3.1</span> The <code>group_by()</code> function</h3>
 <p><img src="images/rstudio-cheatsheet-group_by.png" class="img-fluid" width="500"></p>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function enables you to perform operations across groups within the data frame. It is typically used by inserting it in the “pipeline” before the desired group operation. For example, if we wanted to add a a new column that computed the mean height of reported wildlife impacts for each state, we could insert <code>group_by(state)</code> in the pipeline:</p>
 <div class="cell" data-layout-align="center">
@@ -867,8 +867,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>You’ll see that the same value for <code>mean_height</code> is reported for the same states (e.g.&nbsp;the mean height in Florida is 892 ft).</p>
-</section><section id="the-summarize-function" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="the-summarize-function">
-<span class="header-section-number">12.3.2</span> The <code>summarize()</code> function</h3>
+</section><section id="the-summarize-function" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="the-summarize-function">
+<span class="header-section-number">13.3.2</span> The <code>summarize()</code> function</h3>
 <p><img src="images/rstudio-cheatsheet-summarise.png" class="img-fluid" width="500"></p>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function is often used together with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, which collapses each group into a single-row summary of that group. For example, we collapse the result of the previous example by using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
 <div class="cell" data-layout-align="center">
@@ -957,8 +957,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; # … with 207 more rows</code></pre>
 </div>
 </div>
-</section><section id="counting" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="counting">
-<span class="header-section-number">12.3.3</span> Counting</h3>
+</section><section id="counting" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="counting">
+<span class="header-section-number">13.3.3</span> Counting</h3>
 <p>Often times you will want to know the number of observations found for each variable or combination of variables. One way to do this is to use the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> functions in combination. For example, here is the number of observations for each aircraft engine type:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1023,8 +1023,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Hmm, looks like most reported wildlife impacts involve planes with 2 D-type engines.</p>
-</section></section><section id="exporting-data" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="exporting-data">
-<span class="header-section-number">12.4</span> Exporting data</h2>
+</section></section><section id="exporting-data" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="exporting-data">
+<span class="header-section-number">13.4</span> Exporting data</h2>
 <p>Now that you have learned how to use <code>dplyr</code> to extract information from or summarize your raw data, you may want to export these new data sets. Similar to the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function used for reading CSV files into R, there is a <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> function that generates CSV files from data frames.</p>
 <p><strong>Important</strong>: Before using <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code>, create a new folder called “data_output” and put it in your R Project folder. In general, you should never write generated datasets in the same directory as your raw data. The “data” folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it.</p>
 <p>Let’s save one of the summary data frames from the earlier examples where we computed the min, mean, and max heights of impacts by each state and airline:</p>
@@ -1044,8 +1044,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(heightSummary, <span class="at">path =</span> <span class="fu">file.path</span>(<span class="st">'data_output'</span>, <span class="st">'heightSummary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="tips" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="tips">
-<span class="header-section-number">12.5</span> Tips</h2>
+</section><section id="tips" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="tips">
+<span class="header-section-number">13.5</span> Tips</h2>
 <p>You will often need to create new variables based on a condition. To do this, you can use the <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> function. Here’s the general syntax:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(<span class="sc">&lt;</span>condition<span class="sc">&gt;</span>, <span class="sc">&lt;</span><span class="cf">if</span> <span class="cn">TRUE</span><span class="sc">&gt;</span>, <span class="sc">&lt;</span><span class="cf">else</span><span class="sc">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1213,18 +1213,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./data-frames.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data-visualization.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-left">Programming for Analytics in R was written by John Paul Helveston</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

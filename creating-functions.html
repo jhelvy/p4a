@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Introduction to Programming for Analytics in R - 4&nbsp; Creating Functions</title>
+<title>Programming for Analytics in R - 5&nbsp; Creating Functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -134,9 +134,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Programming for Analytics in R</a> 
+      <a href="./">Programming for Analytics in R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jhelvy/p4abook/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jhelvy/p4a/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -154,12 +154,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -172,47 +172,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
+  <a href="./functions-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Functions &amp; Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
+  <a href="./operators-data-types.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
+  <a href="./creating-functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
+  <a href="./testing-debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration</span></a>
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Vectors</span></a>
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Strings</span></a>
+  <a href="./strings.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Strings</span></a>
   </div>
 </li>
       </ul>
@@ -227,27 +227,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -262,12 +262,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -278,19 +278,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#basic-syntax" id="toc-basic-syntax" class="nav-link active" data-scroll-target="#basic-syntax"><span class="toc-section-number">4.1</span>  Basic syntax</a></li>
-  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments"><span class="toc-section-number">4.2</span>  Arguments</a></li>
-  <li><a href="#the-return-statement" id="toc-the-return-statement" class="nav-link" data-scroll-target="#the-return-statement"><span class="toc-section-number">4.3</span>  The <code>return()</code> statement</a></li>
-  <li><a href="#the-cat-statement" id="toc-the-cat-statement" class="nav-link" data-scroll-target="#the-cat-statement"><span class="toc-section-number">4.4</span>  The <code>cat()</code> statement</a></li>
-  <li><a href="#helper-functions" id="toc-helper-functions" class="nav-link" data-scroll-target="#helper-functions"><span class="toc-section-number">4.5</span>  Helper functions</a></li>
-  <li><a href="#local-vs.-global-variables" id="toc-local-vs.-global-variables" class="nav-link" data-scroll-target="#local-vs.-global-variables"><span class="toc-section-number">4.6</span>  Local vs.&nbsp;global variables</a></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">4.7</span>  Tips</a></li>
+<li><a href="#basic-syntax" id="toc-basic-syntax" class="nav-link active" data-scroll-target="#basic-syntax"><span class="toc-section-number">5.1</span>  Basic syntax</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments"><span class="toc-section-number">5.2</span>  Arguments</a></li>
+  <li><a href="#the-return-statement" id="toc-the-return-statement" class="nav-link" data-scroll-target="#the-return-statement"><span class="toc-section-number">5.3</span>  The <code>return()</code> statement</a></li>
+  <li><a href="#the-cat-statement" id="toc-the-cat-statement" class="nav-link" data-scroll-target="#the-cat-statement"><span class="toc-section-number">5.4</span>  The <code>cat()</code> statement</a></li>
+  <li><a href="#helper-functions" id="toc-helper-functions" class="nav-link" data-scroll-target="#helper-functions"><span class="toc-section-number">5.5</span>  Helper functions</a></li>
+  <li><a href="#local-vs.-global-variables" id="toc-local-vs.-global-variables" class="nav-link" data-scroll-target="#local-vs.-global-variables"><span class="toc-section-number">5.6</span>  Local vs.&nbsp;global variables</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">5.7</span>  Tips</a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4abook/edit/main/creating-functions.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4abook/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/creating-functions.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-creating-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Creating Functions</span></span></h1>
+<h1 class="title"><span id="sec-creating-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Creating Functions</span></span></h1>
 </div>
 
 
@@ -325,8 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </blockquote>
 <p>We already know how to use built-in functions like <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>, etc. And we can access other functions by installing external packages. But many times there just isn’t a function out there to do what you need. Fortunately, you can write your own!</p>
-<section id="basic-syntax" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="basic-syntax">
-<span class="header-section-number">4.1</span> Basic syntax</h2>
+<section id="basic-syntax" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="basic-syntax">
+<span class="header-section-number">5.1</span> Basic syntax</h2>
 <p>Here’s the syntax that you use to create a function:</p>
 <pre><code>FNAME &lt;- function(ARG1, ARG2, ETC) {
   STATEMENT1
@@ -393,8 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">n</span><span class="op">^</span><span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="arguments" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="arguments">
-<span class="header-section-number">4.2</span> Arguments</h2>
+</section><section id="arguments" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="arguments">
+<span class="header-section-number">5.2</span> Arguments</h2>
 <p>Here’s a function with one argument:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">square</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -458,8 +458,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] 6</code></pre>
 </div>
 </div>
-</section><section id="the-return-statement" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="the-return-statement">
-<span class="header-section-number">4.3</span> The <code>return()</code> statement</h2>
+</section><section id="the-return-statement" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="the-return-statement">
+<span class="header-section-number">5.3</span> The <code>return()</code> statement</h2>
 <p>Here’s a basic example of using <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> to return a value:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">isPositive</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -523,8 +523,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] 12</code></pre>
 </div>
 </div>
-</section><section id="the-cat-statement" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="the-cat-statement">
-<span class="header-section-number">4.4</span> The <code>cat()</code> statement</h2>
+</section><section id="the-cat-statement" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="the-cat-statement">
+<span class="header-section-number">5.4</span> The <code>cat()</code> statement</h2>
 <p>The <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> (short for “concatenating”) statement prints whatever arguments it is given to the console. The arguments can be of mixed types and it will convert them all to a concatenated string:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">printX</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -576,8 +576,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] 16</code></pre>
 </div>
 </div>
-</section><section id="helper-functions" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="helper-functions">
-<span class="header-section-number">4.5</span> Helper functions</h2>
+</section><section id="helper-functions" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="helper-functions">
+<span class="header-section-number">5.5</span> Helper functions</h2>
 <p>It is often useful to break down more complicated problems into smaller “helper functions”. These helpers can be called in other functions. Here’s an example of using the helper functions <code>square()</code> and <code>squareRoot()</code> to compute the hypotenuse of a triangle:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">square</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -599,8 +599,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] 5</code></pre>
 </div>
 </div>
-</section><section id="local-vs.-global-variables" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="local-vs.-global-variables">
-<span class="header-section-number">4.6</span> Local vs.&nbsp;global variables</h2>
+</section><section id="local-vs.-global-variables" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="local-vs.-global-variables">
+<span class="header-section-number">5.6</span> Local vs.&nbsp;global variables</h2>
 <p>All variables <strong>inside</strong> a function are called <em>“local”</em> variables and will <strong>NOT</strong> be created in the working environment. They can only be used locally within the function. For example:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">minSquared</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
@@ -643,8 +643,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; 5</code></pre>
 </div>
 </div>
-</section><section id="tips" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="tips">
-<span class="header-section-number">4.7</span> Tips</h2>
+</section><section id="tips" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="tips">
+<span class="header-section-number">5.7</span> Tips</h2>
 <p>One particularly useful function is <code>almostEqual()</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">almostEqual</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span> <span class="op">{</span></span>
@@ -827,18 +827,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./operators-data-types.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Operators &amp; Data Types</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./conditionals.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Intro to P4A in R was written by John Paul Helveston</div>   
+    <div class="nav-footer-left">Programming for Analytics in R was written by John Paul Helveston</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
