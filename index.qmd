@@ -1,9 +1,23 @@
-# Preface {#sec-preface .unnumbered}
+# Welcome {.unnumbered}
 
-```{r}
-#| echo: false
-#| message: false
-source("_common.R")
-```
+This is the website for the 1st edition of **"Programming for Analytics in R"**.
 
-This is a Quarto book.
+This book was originally written as a companion set of readings for the course ["EMSE 4571 / 6571: Intro. to Programming for Analytics"](https://p4a.seas.gwu.edu/) at GWU. The book teaches you how to program in R and how to do some basic data science with R. It is designed for novice coders with little to no prior programming experience.
+
+After reading this book, you should be able to:
+
+- Develop simple programs to effectively solve medium-sized tasks by:
+    - Employing modular, top-down design in program construction.
+    - Pro-actively creating and writing test cases to test and debug code.
+    - Applying computational problem-solving skills to new problems.
+
+- Write clear, robust, and reasonably efficient code for working with data using:
+    - Sequential, conditional, and loop statements.
+    - Numeric, string, and logical data types.
+    - Data structures, including lists, vectors, and data frames.
+
+- Reproducibly import, export, wrangle, and visualize data in R.
+
+This website is and will always be free, licensed under the [CC BY-NC-ND 3.0](http://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
+
+If you appreciate reading the book for free, please leave feedback on the [GitHub repository](https://github.com/jhelvy/p4a/issues/1) for the source code to the book.

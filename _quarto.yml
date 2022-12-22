@@ -12,21 +12,21 @@ project:
     - "figs/"
 
 book:
-  title: "Introduction to Programming for Analytics in R"
+  title: "Programming for Analytics in R"
   reader-mode: true
   author: "John Paul Helveston"
   date: "12/19/2022"
 
   page-footer:
     left: |
-      Intro to P4A in R was written by John Paul Helveston
+      Programming for Analytics in R was written by John Paul Helveston
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
   favicon: cover.png
 
   site-url: https://p4a.jhelvy.com/
-  repo-url: https://github.com/jhelvy/p4abook/
+  repo-url: https://github.com/jhelvy/p4a/
   repo-branch: main
   repo-actions: [edit, issue]
 

@@ -1,4 +1,4 @@
-# Introduction {#sec-introduction .unnumbered}
+# Introduction {#sec-intro}
 
 ```{r}
 #| echo: false
@@ -6,10 +6,31 @@
 source("_common.R")
 ```
 
-This is a Quarto book.
+This book was originally written as a companion set of readings for the course ["EMSE 4571 / 6571: Intro. to Programming for Analytics"](https://p4a.seas.gwu.edu/) at GWU. 
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+## What you will learn
 
-```{r}
-1 + 1
-```
+The goal of the book is to develop a foundation in two domains:
+
+1. Literacy in programming and computational thinking.
+2. Literacy in data analytics.
+
+This book implements both domains in R - an open source and powerful language for both programming and data science. 
+
+### Programming
+
+Just like learning a spoken language, learning to program in a computing language requires lots of practice. In that regard, this book is designed as a _guidebook_ or _referenc manual_ for your practice. It explains many of the most fundamental aspects of the R programming language, such as operators, data types, functions, conditional statements, testing, debugging, iteration, vectors, and strings. Becoming fluent in these concepts requires many hours of practice writing code. By the end of the first main section of the book on "Programming," you should be familiar with these concepts, but by no means should you expect to already be _fluent_ in them. It is fully expected that you will return to these chapters many times as you practice and become more fluent at programming in R. 
+
+### Data Analytics
+
+The name "data analytics" was carefully chosen to emphasize an important distinction with the broader category of "data science". Whereas data analytics involves importing, exporting, cleaning, wrangling, and visualizing data, the broader category of "data science" includes _modeling_, in which data are used to estimate or train models used for inference or prediction. 
+
+While this book does not cover modeling, the data concepts it does cover are all critical for being able to work with, inspect, and prepare data for modeling. In this section of the book, you will learn how to import and export data to and from R. You will also learn about the core data structure used to work with tabular data in R: the **data frame**. You will learn how to "wrangle" data in data frames and use them to make data visualizations. For this section, we will rely heavily on the **tidyverse**, a collection of R packages, data, and documentation that extends the capabilities of base R for working with data.
+
+### R
+
+You can download and install R from CRAN, the **C**omprehensive **R** **A**rchive **N**etwork, at <https://cloud.r-project.org/index.html> This book assumes you will install at least R 4.1.0 for this book.
+
+### RStudio
+
+RStudio is an "Integrated Development Environment (IDE) for programming in R. Download and install it from <https://posit.co/download/rstudio-desktop/>.
