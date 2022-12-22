@@ -1,3 +1,3 @@
-# p4a-book
+# p4a
 
-Readings for Introduction to Programming for Analytics
+Source code for my book "Programming for Analytics in R", which I use for my course ["Intro. to Programming for Analytics"](https://p4a.seas.gwu.edu/) at GWU.
