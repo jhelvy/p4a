@@ -19,7 +19,7 @@ This book implements both domains in R - an open source and powerful language fo
 
 ### Programming
 
-Just like learning a spoken language, learning to program in a computing language requires lots of practice. In that regard, this book is designed as a _guidebook_ or _referenc manual_ for your practice. It explains many of the most fundamental aspects of the R programming language, such as operators, data types, functions, conditional statements, testing, debugging, iteration, vectors, and strings. Becoming fluent in these concepts requires many hours of practice writing code. By the end of the first main section of the book on "Programming," you should be familiar with these concepts, but by no means should you expect to already be _fluent_ in them. It is fully expected that you will return to these chapters many times as you practice and become more fluent at programming in R. 
+Just like learning a spoken language, learning to program in a computing language requires lots of practice. In that regard, this book is designed as a _guidebook_ or _reference manual_ for your practice. It explains many of the most fundamental aspects of the R programming language, such as operators, data types, functions, conditional statements, testing, debugging, iteration, vectors, and strings. Becoming fluent in these concepts requires many hours of practice writing code. By the end of the first main section of the book on "Programming," you should be familiar with these concepts, but by no means should you expect to already be _fluent_ in them. It is fully expected that you will return to these chapters many times as you practice and become more fluent at programming in R.
 
 ### Data Analytics
 
