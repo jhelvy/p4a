@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 12&nbsp; Data Frames</title>
+<title>Programming for Analytics in R - 11&nbsp; Data Frames</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,7 +91,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./data-wrangling.html" rel="next">
-<link href="./data-analysis-prelude.html" rel="prev">
+<link href="./data-analysis.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -125,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -227,27 +227,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -262,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -279,42 +274,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
 <li>
-<a href="#the-data-frame" id="toc-the-data-frame" class="nav-link active" data-scroll-target="#the-data-frame"><span class="toc-section-number">12.1</span>  The data frame</a>
+<a href="#the-data-frame" id="toc-the-data-frame" class="nav-link active" data-scroll-target="#the-data-frame"><span class="toc-section-number">11.1</span>  The data frame</a>
   <ul class="collapse">
-<li><a href="#what-are-data-frames" id="toc-what-are-data-frames" class="nav-link" data-scroll-target="#what-are-data-frames"><span class="toc-section-number">12.1.1</span>  What are data frames?</a></li>
-  <li><a href="#the-data.frame-function" id="toc-the-data.frame-function" class="nav-link" data-scroll-target="#the-data.frame-function"><span class="toc-section-number">12.1.2</span>  The <code>data.frame()</code> function</a></li>
-  <li><a href="#the-tibble-function" id="toc-the-tibble-function" class="nav-link" data-scroll-target="#the-tibble-function"><span class="toc-section-number">12.1.3</span>  The <code>tibble()</code> function</a></li>
-  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions"><span class="toc-section-number">12.1.4</span>  Dimensions</a></li>
-  <li><a href="#row-and-column-names" id="toc-row-and-column-names" class="nav-link" data-scroll-target="#row-and-column-names"><span class="toc-section-number">12.1.5</span>  Row and column names</a></li>
-  <li><a href="#combining-data-frames" id="toc-combining-data-frames" class="nav-link" data-scroll-target="#combining-data-frames"><span class="toc-section-number">12.1.6</span>  Combining data frames</a></li>
+<li><a href="#what-are-data-frames" id="toc-what-are-data-frames" class="nav-link" data-scroll-target="#what-are-data-frames"><span class="toc-section-number">11.1.1</span>  What are data frames?</a></li>
+  <li><a href="#the-data.frame-function" id="toc-the-data.frame-function" class="nav-link" data-scroll-target="#the-data.frame-function"><span class="toc-section-number">11.1.2</span>  The <code>data.frame()</code> function</a></li>
+  <li><a href="#the-tibble-function" id="toc-the-tibble-function" class="nav-link" data-scroll-target="#the-tibble-function"><span class="toc-section-number">11.1.3</span>  The <code>tibble()</code> function</a></li>
+  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions"><span class="toc-section-number">11.1.4</span>  Dimensions</a></li>
+  <li><a href="#row-and-column-names" id="toc-row-and-column-names" class="nav-link" data-scroll-target="#row-and-column-names"><span class="toc-section-number">11.1.5</span>  Row and column names</a></li>
+  <li><a href="#combining-data-frames" id="toc-combining-data-frames" class="nav-link" data-scroll-target="#combining-data-frames"><span class="toc-section-number">11.1.6</span>  Combining data frames</a></li>
   </ul>
 </li>
   <li>
-<a href="#accessing-elements" id="toc-accessing-elements" class="nav-link" data-scroll-target="#accessing-elements"><span class="toc-section-number">12.2</span>  Accessing elements</a>
+<a href="#accessing-elements" id="toc-accessing-elements" class="nav-link" data-scroll-target="#accessing-elements"><span class="toc-section-number">11.2</span>  Accessing elements</a>
   <ul class="collapse">
-<li><a href="#using-the-operator" id="toc-using-the-operator" class="nav-link" data-scroll-target="#using-the-operator"><span class="toc-section-number">12.2.1</span>  Using the <code>$</code> operator</a></li>
-  <li><a href="#using-integer-indices" id="toc-using-integer-indices" class="nav-link" data-scroll-target="#using-integer-indices"><span class="toc-section-number">12.2.2</span>  Using integer indices</a></li>
-  <li><a href="#using-character-indices" id="toc-using-character-indices" class="nav-link" data-scroll-target="#using-character-indices"><span class="toc-section-number">12.2.3</span>  Using character indices</a></li>
-  <li><a href="#using-logical-indices" id="toc-using-logical-indices" class="nav-link" data-scroll-target="#using-logical-indices"><span class="toc-section-number">12.2.4</span>  Using logical indices</a></li>
-  <li><a href="#modifying-data-frames" id="toc-modifying-data-frames" class="nav-link" data-scroll-target="#modifying-data-frames"><span class="toc-section-number">12.2.5</span>  Modifying data frames</a></li>
+<li><a href="#using-the-operator" id="toc-using-the-operator" class="nav-link" data-scroll-target="#using-the-operator"><span class="toc-section-number">11.2.1</span>  Using the <code>$</code> operator</a></li>
+  <li><a href="#using-integer-indices" id="toc-using-integer-indices" class="nav-link" data-scroll-target="#using-integer-indices"><span class="toc-section-number">11.2.2</span>  Using integer indices</a></li>
+  <li><a href="#using-character-indices" id="toc-using-character-indices" class="nav-link" data-scroll-target="#using-character-indices"><span class="toc-section-number">11.2.3</span>  Using character indices</a></li>
+  <li><a href="#using-logical-indices" id="toc-using-logical-indices" class="nav-link" data-scroll-target="#using-logical-indices"><span class="toc-section-number">11.2.4</span>  Using logical indices</a></li>
+  <li><a href="#modifying-data-frames" id="toc-modifying-data-frames" class="nav-link" data-scroll-target="#modifying-data-frames"><span class="toc-section-number">11.2.5</span>  Modifying data frames</a></li>
   </ul>
 </li>
   <li>
-<a href="#dealing-with-actual-data" id="toc-dealing-with-actual-data" class="nav-link" data-scroll-target="#dealing-with-actual-data"><span class="toc-section-number">12.3</span>  Dealing with actual data</a>
+<a href="#dealing-with-actual-data" id="toc-dealing-with-actual-data" class="nav-link" data-scroll-target="#dealing-with-actual-data"><span class="toc-section-number">11.3</span>  Dealing with actual data</a>
   <ul class="collapse">
-<li><a href="#r-setup" id="toc-r-setup" class="nav-link" data-scroll-target="#r-setup"><span class="toc-section-number">12.3.1</span>  R Setup</a></li>
-  <li><a href="#method-1-loading-data-from-a-package" id="toc-method-1-loading-data-from-a-package" class="nav-link" data-scroll-target="#method-1-loading-data-from-a-package"><span class="toc-section-number">12.3.2</span>  Method 1: Loading data from a package</a></li>
-  <li><a href="#method-2-importing-data" id="toc-method-2-importing-data" class="nav-link" data-scroll-target="#method-2-importing-data"><span class="toc-section-number">12.3.3</span>  Method 2: Importing data</a></li>
-  <li><a href="#previewing-the-data" id="toc-previewing-the-data" class="nav-link" data-scroll-target="#previewing-the-data"><span class="toc-section-number">12.3.4</span>  Previewing the data</a></li>
+<li><a href="#r-setup" id="toc-r-setup" class="nav-link" data-scroll-target="#r-setup"><span class="toc-section-number">11.3.1</span>  R Setup</a></li>
+  <li><a href="#method-1-loading-data-from-a-package" id="toc-method-1-loading-data-from-a-package" class="nav-link" data-scroll-target="#method-1-loading-data-from-a-package"><span class="toc-section-number">11.3.2</span>  Method 1: Loading data from a package</a></li>
+  <li><a href="#method-2-importing-data" id="toc-method-2-importing-data" class="nav-link" data-scroll-target="#method-2-importing-data"><span class="toc-section-number">11.3.3</span>  Method 2: Importing data</a></li>
+  <li><a href="#previewing-the-data" id="toc-previewing-the-data" class="nav-link" data-scroll-target="#previewing-the-data"><span class="toc-section-number">11.3.4</span>  Previewing the data</a></li>
   </ul>
 </li>
-  <li><a href="#now-what" id="toc-now-what" class="nav-link" data-scroll-target="#now-what"><span class="toc-section-number">12.4</span>  Now what?</a></li>
+  <li><a href="#now-what" id="toc-now-what" class="nav-link" data-scroll-target="#now-what"><span class="toc-section-number">11.4</span>  Now what?</a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-frames.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-data-frames" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></span></h1>
+<h1 class="title"><span id="sec-data-frames" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span></h1>
 </div>
 
 
@@ -350,15 +345,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="https://rstudio-education.github.io/hopr/r-objects.html#data-frames">Chapters 5.8 - 5.11</a> of “Hands-On Programming with R”, by Garrett Grolemund</li>
 </ul>
 </blockquote>
-<section id="the-data-frame" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="the-data-frame">
-<span class="header-section-number">12.1</span> The data frame</h2>
-<section id="what-are-data-frames" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="what-are-data-frames">
-<span class="header-section-number">12.1.1</span> What are data frames?</h3>
+<section id="the-data-frame" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="the-data-frame">
+<span class="header-section-number">11.1</span> The data frame</h2>
+<section id="what-are-data-frames" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="what-are-data-frames">
+<span class="header-section-number">11.1.1</span> What are data frames?</h3>
 <p>Data frames are the <em>de facto</em> data structure for most tabular data in R. A data frame can be created by hand, but most commonly they are generated by reading in a data file (typically a <code>.csv</code> file).</p>
 <p>A data frame is the representation of data in the format of a table where the columns are <strong>vectors</strong> of the same length. Because columns are vectors, each column must contain a single type of data (e.g., numeric, character, integer, logical). For example, here is a figure depicting a data frame comprising a numeric, a character, and a logical vector:</p>
 <p><img src="./images/data-frame.png" class="img-fluid"></p>
-</section><section id="the-data.frame-function" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="the-data.frame-function">
-<span class="header-section-number">12.1.2</span> The <code>data.frame()</code> function</h3>
+</section><section id="the-data.frame-function" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="the-data.frame-function">
+<span class="header-section-number">11.1.2</span> The <code>data.frame()</code> function</h3>
 <p>You can create a data frame using the <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> function. Here is an example using of members of the Beatles band:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beatles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
@@ -378,8 +373,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Notice how the data frame is created - you just hand the <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> function a bunch of vectors! This should hopefully help make it clear that a data frame is indeed a series of same-length vectors structured side-by-side.</p>
-</section><section id="the-tibble-function" class="level3" data-number="12.1.3"><h3 data-number="12.1.3" class="anchored" data-anchor-id="the-tibble-function">
-<span class="header-section-number">12.1.3</span> The <code>tibble()</code> function</h3>
+</section><section id="the-tibble-function" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="the-tibble-function">
+<span class="header-section-number">11.1.3</span> The <code>tibble()</code> function</h3>
 <p>The <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a> is an improved version of the Base R data frame, and it comes from the <strong>dplyr</strong> library (which we’ll get into next lesson). If you haven’t already, go ahead and install and load the <strong>dplyr</strong> library now:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -412,8 +407,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Columns of class <code>character</code> are never converted into factors (don’t worry about this for now…just know that keeping strings as a <code>character</code> class generally makes life easier in R).</li>
 </ol>
 <p>Now that we have a data frame (tibble) defined, let’s see what we can do with it!</p>
-</section><section id="dimensions" class="level3" data-number="12.1.4"><h3 data-number="12.1.4" class="anchored" data-anchor-id="dimensions">
-<span class="header-section-number">12.1.4</span> Dimensions</h3>
+</section><section id="dimensions" class="level3" data-number="11.1.4"><h3 data-number="11.1.4" class="anchored" data-anchor-id="dimensions">
+<span class="header-section-number">11.1.4</span> Dimensions</h3>
 <p>You can get the dimensions of a data frame using the <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code>, <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code>, and <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> functions:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">beatles</span><span class="op">)</span> <span class="co"># Returns the number of rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -429,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] 4 5</code></pre>
 </div>
 </div>
-</section><section id="row-and-column-names" class="level3" data-number="12.1.5"><h3 data-number="12.1.5" class="anchored" data-anchor-id="row-and-column-names">
-<span class="header-section-number">12.1.5</span> Row and column names</h3>
+</section><section id="row-and-column-names" class="level3" data-number="11.1.5"><h3 data-number="11.1.5" class="anchored" data-anchor-id="row-and-column-names">
+<span class="header-section-number">11.1.5</span> Row and column names</h3>
 <p>Data frames <strong>must</strong> have column names, but row names are optional (by default, row names are just a sequence of numbers). The <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> function returns the column names, or you can also be more specific and use the <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> and <code><a href="https://rdrr.io/r/base/colnames.html">rownames()</a></code> functions:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">beatles</span><span class="op">)</span> <span class="co"># Returns a vector of the column names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -446,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] "1" "2" "3" "4"</code></pre>
 </div>
 </div>
-</section><section id="combining-data-frames" class="level3" data-number="12.1.6"><h3 data-number="12.1.6" class="anchored" data-anchor-id="combining-data-frames">
-<span class="header-section-number">12.1.6</span> Combining data frames</h3>
+</section><section id="combining-data-frames" class="level3" data-number="11.1.6"><h3 data-number="11.1.6" class="anchored" data-anchor-id="combining-data-frames">
+<span class="header-section-number">11.1.6</span> Combining data frames</h3>
 <p>You can combine data frames using the <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> functions:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Combine columns</span></span>
@@ -504,10 +499,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 4 George    &lt;NA&gt;      Harrison</code></pre>
 </div>
 </div>
-</section></section><section id="accessing-elements" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="accessing-elements">
-<span class="header-section-number">12.2</span> Accessing elements</h2>
-<section id="using-the-operator" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="using-the-operator">
-<span class="header-section-number">12.2.1</span> Using the <code>$</code> operator</h3>
+</section></section><section id="accessing-elements" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="accessing-elements">
+<span class="header-section-number">11.2</span> Accessing elements</h2>
+<section id="using-the-operator" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="using-the-operator">
+<span class="header-section-number">11.2.1</span> Using the <code>$</code> operator</h3>
 <p>You can extract columns from a data frame by name by using the <code>$</code> operator plus the column name. For example, the <code>instrument</code> column can be accessed using <code>beatles$instrument</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beatles</span><span class="op">$</span><span class="va">instrument</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -515,8 +510,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>#&gt; [1] "guitar" "bass"   "drums"  "guitar"</code></pre>
 </div>
 </div>
-</section><section id="using-integer-indices" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="using-integer-indices">
-<span class="header-section-number">12.2.2</span> Using integer indices</h3>
+</section><section id="using-integer-indices" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="using-integer-indices">
+<span class="header-section-number">11.2.2</span> Using integer indices</h3>
 <p>You can access elements in a data frame using brackets <code>[]</code> and indices inside the brackets. The general form is:</p>
 <pre><code>DF[ROWS, COLUMNS]</code></pre>
 <p>To index with integers, specify the row numbers and column numbers as vectors.</p>
@@ -578,8 +573,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 3 George    Harrison  guitar            1943 TRUE</code></pre>
 </div>
 </div>
-</section><section id="using-character-indices" class="level3" data-number="12.2.3"><h3 data-number="12.2.3" class="anchored" data-anchor-id="using-character-indices">
-<span class="header-section-number">12.2.3</span> Using character indices</h3>
+</section><section id="using-character-indices" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="using-character-indices">
+<span class="header-section-number">11.2.3</span> Using character indices</h3>
 <p>You can use the column names to select elements in a data frame. If you do not include a <code>,</code> to designate which rows to select, R will return all the rows for the selected columns:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beatles</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'firstName'</span>, <span class="st">'lastName'</span><span class="op">)</span><span class="op">]</span> <span class="co"># Select all rows for the "firstName" and "lastName" columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -601,8 +596,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 2 Paul      McCartney</code></pre>
 </div>
 </div>
-</section><section id="using-logical-indices" class="level3" data-number="12.2.4"><h3 data-number="12.2.4" class="anchored" data-anchor-id="using-logical-indices">
-<span class="header-section-number">12.2.4</span> Using logical indices</h3>
+</section><section id="using-logical-indices" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="using-logical-indices">
+<span class="header-section-number">11.2.4</span> Using logical indices</h3>
 <p>When using a logical vector for indexing, the position where the logical vector is <code>TRUE</code> is returned. This is helpful for filtering data frame rows based on conditions. For example, if you wanted to filter out the rows for which Beatles members were still alive, you could first create a logical vector using the <code>deceased</code> column:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beatles</span><span class="op">$</span><span class="va">deceased</span> <span class="op">==</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -621,8 +616,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 2 Ringo     Starr     drums             1940 FALSE</code></pre>
 </div>
 </div>
-</section><section id="modifying-data-frames" class="level3" data-number="12.2.5"><h3 data-number="12.2.5" class="anchored" data-anchor-id="modifying-data-frames">
-<span class="header-section-number">12.2.5</span> Modifying data frames</h3>
+</section><section id="modifying-data-frames" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="modifying-data-frames">
+<span class="header-section-number">11.2.5</span> Modifying data frames</h3>
 <p>You can use any of the above methods for accessing elements in a data frame to also modify those elements using the assignment operator (<code>&lt;-</code>). In addition to using brackets to modify specific elements, you can use the <code>$</code> operator to create new columns in a data frame.</p>
 <p>For example, let’s create the variable <code>age</code> by subtracting the <code>yearOfBirth</code> variable from the current year:</p>
 <div class="cell" data-layout-align="center">
@@ -652,8 +647,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 4 George    Harrison  guitar            1943 TRUE        76 Liverpool</code></pre>
 </div>
 </div>
-</section></section><section id="dealing-with-actual-data" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="dealing-with-actual-data">
-<span class="header-section-number">12.3</span> Dealing with actual data</h2>
+</section></section><section id="dealing-with-actual-data" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="dealing-with-actual-data">
+<span class="header-section-number">11.3</span> Dealing with actual data</h2>
 <p>Now that we know what a data frame is, let’s start working with actual data! We are going to use the <code>msleep</code> dataset, which contains data on sleep times and weights of different mammals. The data are taken from <a href="https://www.pnas.org/content/104/3/1051.long">V. M. Savage and G. B. West. “A quantitative, theoretical framework for understanding mammalian sleep.” <em>Proceedings of the National Academy of Sciences</em>, 104 (3):1051-1056, 2007.</a>.</p>
 <p>The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
 <table class="table">
@@ -708,8 +703,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<section id="r-setup" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="r-setup">
-<span class="header-section-number">12.3.1</span> R Setup</h3>
+<section id="r-setup" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="r-setup">
+<span class="header-section-number">11.3.1</span> R Setup</h3>
 <p>Before we dig into the data, let’s prepare our analysis environment by following these steps:</p>
 <ol type="1">
 <li>Create a new R Project called “data_analysis_tutorial” and save the folder somewhere on your computer (see the <a href="L1-getting-started.html#83_RStudio_projects">“RStudio projects”</a> section from lesson 1 if you’re not sure what this is). This will create a folder called “data_analysis_tutorial” and also a <code>data_analysis_tutorial.RProj</code> file inside that folder.</li>
@@ -718,8 +713,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Now that you’ve gotten your setup organized, go ahead and open the <code>data_analysis_tutorial.RProj</code> file to open RStudio, then click on the <code>data_frames.R</code> file. We’ll write code in this file.</p>
 <p>There are generally two ways to load external data.</p>
-</section><section id="method-1-loading-data-from-a-package" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="method-1-loading-data-from-a-package">
-<span class="header-section-number">12.3.2</span> Method 1: Loading data from a package</h3>
+</section><section id="method-1-loading-data-from-a-package" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="method-1-loading-data-from-a-package">
+<span class="header-section-number">11.3.2</span> Method 1: Loading data from a package</h3>
 <p>Many R packages come with pre-loaded datasets. For example, the <strong>ggplot2</strong> library (which we’ll <a href="L12-da3-data-visualization.html">use soon</a> to make plots in R) comes with the <code>msleep</code> dataset already loaded. To see this, install <strong>ggplot2</strong> and load the library:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span>
@@ -760,8 +755,8 @@ msleep                  An updated and expanded version of the mammals
 presidential            Terms of 11 presidents from Eisenhower to Obama
 seals                   Vector field of seal movements
 txhousing               Housing sales in TX</code></pre>
-</section><section id="method-2-importing-data" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="method-2-importing-data">
-<span class="header-section-number">12.3.3</span> Method 2: Importing data</h3>
+</section><section id="method-2-importing-data" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="method-2-importing-data">
+<span class="header-section-number">11.3.3</span> Method 2: Importing data</h3>
 <p>What do you do when a dataset isn’t available from a package? Well, you can “read” the data into R from an external file. One of the most common format for storing tabular data (i.e.&nbsp;data that is stored as rows and columns) is the comma separated value (CSV) file.</p>
 <p>To try this out yourself, download <a href="https://raw.githubusercontent.com/emse-p4a-gwu/2020-Fall/master/data/msleep.csv">this msleep.csv file</a> (click the link, then go to “File -&gt; Save” to save it) and put the file in your “data” folder that you created inside your “data_analysis_tutorial” folder.</p>
 <p><strong>Note</strong>:</p>
@@ -772,8 +767,8 @@ txhousing               Housing sales in TX</code></pre>
 <strong>DO NOT</strong> open it in Excel!</li>
 </ul>
 <p>We are going to read this data into R, so fight the temptation to open it in any other program!</p>
-<section id="steps-to-importing-external-data-files" class="level4" data-number="12.3.3.1"><h4 data-number="12.3.3.1" class="anchored" data-anchor-id="steps-to-importing-external-data-files">
-<span class="header-section-number">12.3.3.1</span> Steps to importing external data files</h4>
+<section id="steps-to-importing-external-data-files" class="level4" data-number="11.3.3.1"><h4 data-number="11.3.3.1" class="anchored" data-anchor-id="steps-to-importing-external-data-files">
+<span class="header-section-number">11.3.3.1</span> Steps to importing external data files</h4>
 <ol type="1">
 <li>
 <p>Create a path to the data</p>
@@ -828,8 +823,8 @@ txhousing               Housing sales in TX</code></pre>
 </div>
 </div>
 <p>R tells us that we’ve successfully read in some data and a quick summary of the data type for each column in the dataset.</p>
-</section></section><section id="previewing-the-data" class="level3" data-number="12.3.4"><h3 data-number="12.3.4" class="anchored" data-anchor-id="previewing-the-data">
-<span class="header-section-number">12.3.4</span> Previewing the data</h3>
+</section></section><section id="previewing-the-data" class="level3" data-number="11.3.4"><h3 data-number="11.3.4" class="anchored" data-anchor-id="previewing-the-data">
+<span class="header-section-number">11.3.4</span> Previewing the data</h3>
 <p>You can view the entire dataset in a tabular format (similar to how Excel looks) by using the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function, which opens up another tab to view the data. Note that you cannot modify the data this way - you can just look at it:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -955,8 +950,8 @@ txhousing               Housing sales in TX</code></pre>
 </li>
 </ul>
 <p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
-</section></section><section id="now-what" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="now-what">
-<span class="header-section-number">12.4</span> Now what?</h2>
+</section></section><section id="now-what" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="now-what">
+<span class="header-section-number">11.4</span> Now what?</h2>
 <p>Now that you’ve got some data into R and are up to speed with what a data frame / tibble is, you may be asking, “so what now?” Well, over the next two lessons we will learn more about how to manipulate data frames and explore the underlying information with visualizations.</p>
 <p>But just to give you an idea of where we’re going, here are a few pieces of information from the <code>msleep</code> dataset:</p>
 <ol type="1">
@@ -1153,13 +1148,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./data-analysis-prelude.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></span>
+      <a href="./data-analysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Analysis</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data-wrangling.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

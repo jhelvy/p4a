@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 16&nbsp; Monte Carlo Methods</title>
+<title>Programming for Analytics in R - 15&nbsp; Monte Carlo Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -227,27 +227,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -262,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -279,21 +274,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
 <li>
-<a href="#what-is-monte-carlo-simulation" id="toc-what-is-monte-carlo-simulation" class="nav-link active" data-scroll-target="#what-is-monte-carlo-simulation"><span class="toc-section-number">16.1</span>  What is Monte Carlo simulation?</a>
+<a href="#what-is-monte-carlo-simulation" id="toc-what-is-monte-carlo-simulation" class="nav-link active" data-scroll-target="#what-is-monte-carlo-simulation"><span class="toc-section-number">15.1</span>  What is Monte Carlo simulation?</a>
   <ul class="collapse">
-<li><a href="#basic-idea" id="toc-basic-idea" class="nav-link" data-scroll-target="#basic-idea"><span class="toc-section-number">16.1.1</span>  Basic idea</a></li>
-  <li><a href="#why-the-name-monte-carlo" id="toc-why-the-name-monte-carlo" class="nav-link" data-scroll-target="#why-the-name-monte-carlo"><span class="toc-section-number">16.1.2</span>  Why the name “Monte Carlo”?</a></li>
-  <li><a href="#why-even-do-this" id="toc-why-even-do-this" class="nav-link" data-scroll-target="#why-even-do-this"><span class="toc-section-number">16.1.3</span>  Why even do this?</a></li>
+<li><a href="#basic-idea" id="toc-basic-idea" class="nav-link" data-scroll-target="#basic-idea"><span class="toc-section-number">15.1.1</span>  Basic idea</a></li>
+  <li><a href="#why-the-name-monte-carlo" id="toc-why-the-name-monte-carlo" class="nav-link" data-scroll-target="#why-the-name-monte-carlo"><span class="toc-section-number">15.1.2</span>  Why the name “Monte Carlo”?</a></li>
+  <li><a href="#why-even-do-this" id="toc-why-even-do-this" class="nav-link" data-scroll-target="#why-even-do-this"><span class="toc-section-number">15.1.3</span>  Why even do this?</a></li>
   </ul>
 </li>
-  <li><a href="#monte-carlo-integration" id="toc-monte-carlo-integration" class="nav-link" data-scroll-target="#monte-carlo-integration"><span class="toc-section-number">16.2</span>  Monte Carlo integration</a></li>
-  <li><a href="#monte-carlo-pi" id="toc-monte-carlo-pi" class="nav-link" data-scroll-target="#monte-carlo-pi"><span class="toc-section-number">16.3</span>  Monte Carlo <span class="math inline">\(\pi\)</span></a></li>
+  <li><a href="#monte-carlo-integration" id="toc-monte-carlo-integration" class="nav-link" data-scroll-target="#monte-carlo-integration"><span class="toc-section-number">15.2</span>  Monte Carlo integration</a></li>
+  <li><a href="#monte-carlo-pi" id="toc-monte-carlo-pi" class="nav-link" data-scroll-target="#monte-carlo-pi"><span class="toc-section-number">15.3</span>  Monte Carlo <span class="math inline">\(\pi\)</span></a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/monte-carlo-methods.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-monte-carlo-methods" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span></h1>
+<h1 class="title"><span id="sec-monte-carlo-methods" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span></h1>
 </div>
 
 
@@ -316,10 +311,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>But when I hear Monte Carlo, I envision this:</p>
 <p><img src="images/monte_carlo_pi.gif" class="img-fluid" width="300"></p>
 <p>No, that’s not some grainy image coming into focus - that’s a <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a> approximating the value of <span class="math inline">\(\pi\)</span> (3.1415927…).</p>
-<section id="what-is-monte-carlo-simulation" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="what-is-monte-carlo-simulation">
-<span class="header-section-number">16.1</span> What is Monte Carlo simulation?</h2>
-<section id="basic-idea" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="basic-idea">
-<span class="header-section-number">16.1.1</span> Basic idea</h3>
+<section id="what-is-monte-carlo-simulation" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="what-is-monte-carlo-simulation">
+<span class="header-section-number">15.1</span> What is Monte Carlo simulation?</h2>
+<section id="basic-idea" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="basic-idea">
+<span class="header-section-number">15.1.1</span> Basic idea</h3>
 <p>Monte Carlo simulation uses (pseudo)random numbers to solve (not-so-random) problems. The general approach goes like this:</p>
 <ul>
 <li>Run a series of trials.</li>
@@ -332,15 +327,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol type="1">
 <li>As # of trials increases, observed odds –&gt; expected odds.</li>
 <li>More trials –&gt; more accurate (+ more time).</li>
-</ol></section><section id="why-the-name-monte-carlo" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="why-the-name-monte-carlo">
-<span class="header-section-number">16.1.2</span> Why the name “Monte Carlo”?</h3>
+</ol></section><section id="why-the-name-monte-carlo" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="why-the-name-monte-carlo">
+<span class="header-section-number">15.1.2</span> Why the name “Monte Carlo”?</h3>
 <p>The name “Monte Carlo” comes from the (pseudo)random nature of the simulation process. Running a series of trials is similar to how many gambling games work in casinos, and <a href="https://en.wikipedia.org/wiki/Monte_Carlo">Monte Carlo</a> is famous for gambling. Of course, in the casinos the odds are always slightly in the favor of the house, so after millions of trials the odds are that the house will win more money than the gamblers.</p>
-</section><section id="why-even-do-this" class="level3" data-number="16.1.3"><h3 data-number="16.1.3" class="anchored" data-anchor-id="why-even-do-this">
-<span class="header-section-number">16.1.3</span> Why even do this?</h3>
+</section><section id="why-even-do-this" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="why-even-do-this">
+<span class="header-section-number">15.1.3</span> Why even do this?</h3>
 <p>Many problems have “closed-form” solutions, meaning they can be solved with math alone. But there are also many problems for which no known closed-form solution exists. Integration is a classic example - there are many integrals for which a purely mathematical solution cannot be determined. However, solutions can be <em>approximated</em> using simulation.</p>
 <p>R comes with many tools for running (pseudo)random simulations, which is one reason R is such a popular programming language for people who build and work with statistical models that involve simulations.</p>
-</section></section><section id="monte-carlo-integration" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="monte-carlo-integration">
-<span class="header-section-number">16.2</span> Monte Carlo integration</h2>
+</section></section><section id="monte-carlo-integration" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="monte-carlo-integration">
+<span class="header-section-number">15.2</span> Monte Carlo integration</h2>
 <p>Integration is ultimately about computing the area below the curve of a function. Let’s take a simple example - suppose we want to find the integral from 3 to 7 of the following function:</p>
 <p><span class="math display">\[f(x) = x^2\]</span></p>
 <p>That is, we want to compute the area under the curve of <span class="math inline">\(x^2\)</span> between <span class="math inline">\(3 &lt; x &lt; 7\)</span>. Here’s what that looks like:</p>
@@ -398,8 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>So our estimate error is: <code>105.333 -</code> <code>105.23632</code> <code>=</code> <code>0.0970133</code>.</p>
 <p>That’s an error of just 0.09 % - not bad!</p>
-</section><section id="monte-carlo-pi" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="monte-carlo-pi">
-<span class="header-section-number">16.3</span> Monte Carlo <span class="math inline">\(\pi\)</span>
+</section><section id="monte-carlo-pi" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="monte-carlo-pi">
+<span class="header-section-number">15.3</span> Monte Carlo <span class="math inline">\(\pi\)</span>
 </h2>
 <p>Now let’s look at something a bit trickier - approximating <span class="math inline">\(\pi\)</span>!</p>
 <p>Watch this quick video to see a summary of how this works (…I hope you like lounge music)</p>
@@ -643,7 +638,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./python-in-r.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

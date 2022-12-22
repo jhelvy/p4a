@@ -18,6 +18,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -27,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-analysis-prelude.html" rel="next">
+<link href="./data-frames.html" rel="next">
 <link href="./strings.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -164,27 +227,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -199,12 +257,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -212,7 +270,13 @@ ul.task-list li input[type="checkbox"] {
     </ul>
 </div>
 </nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#the-challenger-disaster" id="toc-the-challenger-disaster" class="nav-link active" data-scroll-target="#the-challenger-disaster">The Challenger disaster</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-analysis.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -232,11 +296,102 @@ ul.task-list li input[type="checkbox"] {
 </header><div class="cell">
 
 </div>
-<p>The goal of this section is to…</p>
+<blockquote class="blockquote">
+<p>“Data science is not just about AI or machine learning. It is the discipline of turning raw data into understanding.”</p>
+<p>- <a href="https://juliasilge.com/">Julia Silge</a>, useR Conference 2019</p>
+</blockquote>
+<p>The goal of this section is to develop a general literacy in data analytics. The concepts addressed in this section are critical in achieving the “big picture” goal of being able to turn raw <strong>data</strong> into <strong>information</strong>. While the technical details of achieving this goal will require practice to master, the goal should always be kept in mind first and foremost.</p>
+<p>As an example of what I mean, consider the following case study on the <a href="https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster">1986 Space Shuttle Challenger explosion</a>. In this case study, we’ll be examining data about the relationship between the temperature of different NASA rocket launches and damage to the rock O-rings - the root cause of the accident. Don’t worry yet if you don’t understand the specific code used - just try to follow along to see how we can pull out <em>information</em> from raw data.</p>
+<section id="the-challenger-disaster" class="level2"><h2 class="anchored" data-anchor-id="the-challenger-disaster">The Challenger disaster</h2>
+<p>On January 28, 1986 the space shuttle Challenger exploded. In his book titled <a href="https://www.edwardtufte.com/tufte/books_visex">“Visual Explanations”</a>, Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.</p>
+<p><img src="images/challenger_crew.jpg" class="img-fluid"> [<a href="https://www.flickr.com/photos/gsfc/12191288154">Image source</a>]</p>
+</section><section id="the-data" class="level2"><h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>The R package <code>DAAG</code> has a dataset called <code>orings</code> which contains data on temperatures and O-ring damage during launches prior to the Challenger incident. Let’s load the <code>DAAG</code> library and preview the data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gitlab.com/daagur">DAAG</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">orings</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   Temperature Erosion Blowby Total
+#&gt; 1          53       3      2     5
+#&gt; 2          57       1      0     1
+#&gt; 3          58       1      0     1
+#&gt; 4          63       1      0     1
+#&gt; 5          66       0      0     0
+#&gt; 6          67       0      0     0</code></pre>
+</div>
+</div>
+<p>We can see that the dataset contains observations about the temperatures of launches and O-ring damage, but we don’t yet have <em>information</em>. One step forward towards <em>information</em> is to simply plot the data to <em>see</em> if there might be a relationship between temperature and O-ring damage:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">challengerPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>        data <span class="op">=</span> <span class="va">orings</span>, </span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Temperature</span>, y <span class="op">=</span> <span class="va">Total</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">85</span><span class="op">)</span>, </span>
+<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">85</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span>, <span class="fl">8</span><span class="op">)</span>, </span>
+<span>        breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">8</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>        x <span class="op">=</span> <span class="st">'Temperature (°F) of field joints at time of launch'</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">'Total o-ring damage'</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">challengerPlot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="figs/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The graph above shows O-ring damage on the y-axis and temperature on the x-axis. We can easily see that no prior launches below 66 degrees F were damage-free, and it appears that at lower temperatures (such as 55 degrees) the damage was even more severe.</p>
+<p>Now, what temperature was forecasted for the day of the Challenger launch? <strong>26 to 29 degrees</strong>. Let’s add that context to our plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">annotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span></span>
+<span>    <span class="st">"26°-29°:"</span>, <span class="st">"Range of forecasted temperatures"</span>,</span>
+<span>    <span class="st">"for Jan. 28, 1986 Challenger launch"</span>, sep <span class="op">=</span> <span class="st">"\n"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">challengerPlot</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span></span>
+<span>        <span class="st">"rect"</span>, </span>
+<span>        xmin <span class="op">=</span> <span class="fl">26</span>, xmax <span class="op">=</span> <span class="fl">29</span>,  ymin <span class="op">=</span> <span class="op">-</span><span class="fl">0.15</span>, ymax <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>        alpha <span class="op">=</span> <span class="fl">0.6</span>, fill <span class="op">=</span> <span class="st">"grey60"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span></span>
+<span>        <span class="st">"text"</span>, </span>
+<span>        x <span class="op">=</span> <span class="fl">26</span>, y <span class="op">=</span> <span class="fl">1.4</span>, label <span class="op">=</span> <span class="va">annotation</span>, </span>
+<span>        hjust <span class="op">=</span> <span class="fl">0</span></span>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="figs/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we have some <em>information</em>. The transformation of the raw data into a visualization makes it obvious that the temperature forecasted for the day of the Challenger launch should raise red flags. It falls far below the temperature range of prior launches, and those prior launches suggest that O-ring damage may be correlated with decreasing temperature.</p>
+<p>To their credit, the engineers working on the Challenger were worried about the potential for O-ring failure. But the critical step in making the link to temperature was not thoroughly communicated. Instead, the <em>raw data</em> was presented in tabular form along with diagrams like the one below, which show how erosion in the primary O-ring interacted with the secondary O-ring:</p>
+<p><img src="images/rockets_chart.png" class="img-fluid" width="600"> [<a href="https://www.edwardtufte.com/tufte/books_visex">Image source</a>]</p>
+<p>While the above diagram contains a lot of <em>data</em>, the critical <strong>information</strong> about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.</p>
+</section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>The <a href="https://vizdatar.wordpress.com/2015/05/06/space-shuttle-challenger-explosion-2/">Space shuttle Challenger explosion</a> blog post, by Vikram Dayal</li>
+<li>Robison et al.&nbsp;(2002) <a href="https://people.rit.edu/wlrgsh/FINRobison.pdf">Representation and Misrepresentation: Tufte and the Morton Thiokol Engineers on the Challenger</a>, <em>Science and Engineering Ethics</em>, 8, 59-81.</li>
+<li>Tufte, Edward R. (1997) <a href="https://www.edwardtufte.com/tufte/books_visex">“Visual Explanations: Images and Quantities, Evidence and Narrative”</a>, Graphics Press, Cheshire, Connecticut.</li>
+</ul>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -374,8 +529,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-analysis-prelude.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-frames.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

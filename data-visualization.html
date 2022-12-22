@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 14&nbsp; Data Visualization</title>
+<title>Programming for Analytics in R - 13&nbsp; Data Visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -227,27 +227,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis-prelude.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Prelude to Data Analysis</span></a>
+  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Frames</span></a>
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
+  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-visualization.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
       </ul>
@@ -262,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -278,39 +273,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="toc-section-number">14.1</span>  R Setup</a></li>
+<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="toc-section-number">13.1</span>  R Setup</a></li>
   <li>
-<a href="#basic-plots-in-r" id="toc-basic-plots-in-r" class="nav-link" data-scroll-target="#basic-plots-in-r"><span class="toc-section-number">14.2</span>  Basic plots in R</a>
+<a href="#basic-plots-in-r" id="toc-basic-plots-in-r" class="nav-link" data-scroll-target="#basic-plots-in-r"><span class="toc-section-number">13.2</span>  Basic plots in R</a>
   <ul class="collapse">
-<li><a href="#scatterplots-with-plot" id="toc-scatterplots-with-plot" class="nav-link" data-scroll-target="#scatterplots-with-plot"><span class="toc-section-number">14.2.1</span>  Scatterplots with <code>plot()</code></a></li>
-  <li><a href="#histograms-with-hist" id="toc-histograms-with-hist" class="nav-link" data-scroll-target="#histograms-with-hist"><span class="toc-section-number">14.2.2</span>  Histograms with <code>hist()</code></a></li>
+<li><a href="#scatterplots-with-plot" id="toc-scatterplots-with-plot" class="nav-link" data-scroll-target="#scatterplots-with-plot"><span class="toc-section-number">13.2.1</span>  Scatterplots with <code>plot()</code></a></li>
+  <li><a href="#histograms-with-hist" id="toc-histograms-with-hist" class="nav-link" data-scroll-target="#histograms-with-hist"><span class="toc-section-number">13.2.2</span>  Histograms with <code>hist()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#advanced-figures-with-ggplot2" id="toc-advanced-figures-with-ggplot2" class="nav-link" data-scroll-target="#advanced-figures-with-ggplot2"><span class="toc-section-number">14.3</span>  Advanced figures with <code>ggplot2</code></a>
+<a href="#advanced-figures-with-ggplot2" id="toc-advanced-figures-with-ggplot2" class="nav-link" data-scroll-target="#advanced-figures-with-ggplot2"><span class="toc-section-number">13.3</span>  Advanced figures with <code>ggplot2</code></a>
   <ul class="collapse">
-<li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="toc-section-number">14.3.1</span>  The Grammar of Graphics</a></li>
-  <li><a href="#a-blank-slate" id="toc-a-blank-slate" class="nav-link" data-scroll-target="#a-blank-slate"><span class="toc-section-number">14.3.2</span>  A blank slate</a></li>
-  <li><a href="#geoms-and-aesthetics" id="toc-geoms-and-aesthetics" class="nav-link" data-scroll-target="#geoms-and-aesthetics"><span class="toc-section-number">14.3.3</span>  Geoms and aesthetics</a></li>
-  <li><a href="#scatterplots-with-geom_point" id="toc-scatterplots-with-geom_point" class="nav-link" data-scroll-target="#scatterplots-with-geom_point"><span class="toc-section-number">14.3.4</span>  Scatterplots with <code>geom_point()</code></a></li>
-  <li><a href="#bar-charts-with-geom_col" id="toc-bar-charts-with-geom_col" class="nav-link" data-scroll-target="#bar-charts-with-geom_col"><span class="toc-section-number">14.3.5</span>  Bar charts with <code>geom_col()</code></a></li>
+<li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="toc-section-number">13.3.1</span>  The Grammar of Graphics</a></li>
+  <li><a href="#a-blank-slate" id="toc-a-blank-slate" class="nav-link" data-scroll-target="#a-blank-slate"><span class="toc-section-number">13.3.2</span>  A blank slate</a></li>
+  <li><a href="#geoms-and-aesthetics" id="toc-geoms-and-aesthetics" class="nav-link" data-scroll-target="#geoms-and-aesthetics"><span class="toc-section-number">13.3.3</span>  Geoms and aesthetics</a></li>
+  <li><a href="#scatterplots-with-geom_point" id="toc-scatterplots-with-geom_point" class="nav-link" data-scroll-target="#scatterplots-with-geom_point"><span class="toc-section-number">13.3.4</span>  Scatterplots with <code>geom_point()</code></a></li>
+  <li><a href="#bar-charts-with-geom_col" id="toc-bar-charts-with-geom_col" class="nav-link" data-scroll-target="#bar-charts-with-geom_col"><span class="toc-section-number">13.3.5</span>  Bar charts with <code>geom_col()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#customizing-your-ggplot" id="toc-customizing-your-ggplot" class="nav-link" data-scroll-target="#customizing-your-ggplot"><span class="toc-section-number">14.4</span>  Customizing your ggplot</a>
+<a href="#customizing-your-ggplot" id="toc-customizing-your-ggplot" class="nav-link" data-scroll-target="#customizing-your-ggplot"><span class="toc-section-number">13.4</span>  Customizing your ggplot</a>
   <ul class="collapse">
-<li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="toc-section-number">14.4.1</span>  Labels</a></li>
-  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="toc-section-number">14.4.2</span>  Themes</a></li>
+<li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="toc-section-number">13.4.1</span>  Labels</a></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="toc-section-number">13.4.2</span>  Themes</a></li>
   </ul>
 </li>
-  <li><a href="#saving-figures" id="toc-saving-figures" class="nav-link" data-scroll-target="#saving-figures"><span class="toc-section-number">14.5</span>  Saving figures</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="toc-section-number">14.6</span>  Other resources</a></li>
+  <li><a href="#saving-figures" id="toc-saving-figures" class="nav-link" data-scroll-target="#saving-figures"><span class="toc-section-number">13.5</span>  Saving figures</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="toc-section-number">13.6</span>  Other resources</a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-visualization.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
+<h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
 </div>
 
 
@@ -356,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><p>Go through the “Introduction” chapter of Rick Scavetta’s <a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-1">“Data Visualization with ggplot2 (Part 1)”</a> lesson on DataCamp. The introduction section is free and contains three 5-minute summary videos along with some practice exercises.</p></li>
 </ol>
-<section id="r-setup" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="r-setup">
-<span class="header-section-number">14.1</span> R Setup</h2>
+<section id="r-setup" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="r-setup">
+<span class="header-section-number">13.1</span> R Setup</h2>
 <p>Before we get started, let’s set up our analysis environment like before:</p>
 <ol type="1">
 <li>Open up your “data_analysis_tutorial” R Project that you created in the first data analysis lesson - if you didn’t do this, <a href="L3-data-frames.html#31_R_Setup">go back and do it now</a>.</li>
@@ -478,11 +473,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Look’s good - let’s start making some plots!</p>
-</section><section id="basic-plots-in-r" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="basic-plots-in-r">
-<span class="header-section-number">14.2</span> Basic plots in R</h2>
+</section><section id="basic-plots-in-r" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="basic-plots-in-r">
+<span class="header-section-number">13.2</span> Basic plots in R</h2>
 <p>R has a number of built-in tools for basic graph types. We will only cover two here because they are so common and convenient: scatterplots and histograms.</p>
-<section id="scatterplots-with-plot" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="scatterplots-with-plot">
-<span class="header-section-number">14.2.1</span> Scatterplots with <code>plot()</code>
+<section id="scatterplots-with-plot" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="scatterplots-with-plot">
+<span class="header-section-number">13.2.1</span> Scatterplots with <code>plot()</code>
 </h3>
 <p>A scatter plot provides a graphical view of the relationship between two variables. Typically these are used for “continuous” variables, like <em>time</em>, <em>age</em>, <em>money</em>, etc…things that are not categorical in nature (as opposed to “discrete” variables, like <em>nationality</em>). Here’s a scatterplot of the age of the bear killing victims over time:</p>
 <div class="cell" data-layout-align="center">
@@ -511,8 +506,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Looks like bear killings are becoming more frequent over time (hmm, why might that be?), though pretty evenly-distributed across age (I guess bears will kill you regardless of your age).</p>
-</section><section id="histograms-with-hist" class="level3" data-number="14.2.2"><h3 data-number="14.2.2" class="anchored" data-anchor-id="histograms-with-hist">
-<span class="header-section-number">14.2.2</span> Histograms with <code>hist()</code>
+</section><section id="histograms-with-hist" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="histograms-with-hist">
+<span class="header-section-number">13.2.2</span> Histograms with <code>hist()</code>
 </h3>
 <p>The <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a> is one of the most common ways to visualize the <em>distribution</em> of a variable. The <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> function takes just one variable: <code>x</code>. Here’s a histogram of the <code>month</code> variable:</p>
 <div class="cell" data-layout-align="center">
@@ -539,13 +534,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section></section><section id="advanced-figures-with-ggplot2" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="advanced-figures-with-ggplot2">
-<span class="header-section-number">14.3</span> Advanced figures with <code>ggplot2</code>
+</section></section><section id="advanced-figures-with-ggplot2" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="advanced-figures-with-ggplot2">
+<span class="header-section-number">13.3</span> Advanced figures with <code>ggplot2</code>
 </h2>
 <p><img src="images/horst_monsters_ggplot2.png" class="img-fluid" width="500"><a href="https://github.com/allisonhorst">[Art by Allison Horst]</a></p>
 <p>While Base R plot functions are useful for making simple, quick plots, many R users have adopted the <a href="http://docs.ggplot2.org/"><code>ggplot2</code></a> package as their primary tool for visualizing data.</p>
-<section id="the-grammar-of-graphics" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="the-grammar-of-graphics">
-<span class="header-section-number">14.3.1</span> The Grammar of Graphics</h3>
+<section id="the-grammar-of-graphics" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="the-grammar-of-graphics">
+<span class="header-section-number">13.3.1</span> The Grammar of Graphics</h3>
 <p>The <code>ggplot2</code> library is built on the <a href="https://www.springer.com/in/book/9780387245447">“Grammar of Graphics”</a> concept developed by Leland Wilkinson. A “grammar of graphics” (that’s what the “gg” in “ggplot2” stands for) is a framework that uses <em>layers</em> to describe and construct visualizations or graphics in a structured manner. Here’s a visual summary of the concept:</p>
 <center>
 <img src="images/making_a_ggplot.jpeg" class="img-fluid" width="700">
@@ -554,8 +549,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="a-blank-slate" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="a-blank-slate">
-<span class="header-section-number">14.3.2</span> A blank slate</h3>
+</section><section id="a-blank-slate" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="a-blank-slate">
+<span class="header-section-number">13.3.2</span> A blank slate</h3>
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function is used to initialize the basic graph structure, and then we add layers to it. The basic idea is that you specify different parts of the plot, and add them together using the <code>+</code> operator. We will start with a blank plot and will add layers as we go along:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -566,8 +561,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="geoms-and-aesthetics" class="level3" data-number="14.3.3"><h3 data-number="14.3.3" class="anchored" data-anchor-id="geoms-and-aesthetics">
-<span class="header-section-number">14.3.3</span> Geoms and aesthetics</h3>
+</section><section id="geoms-and-aesthetics" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="geoms-and-aesthetics">
+<span class="header-section-number">13.3.3</span> Geoms and aesthetics</h3>
 <p>Geometric objects (called “geoms”) are the shapes we put on a plot (e.g.&nbsp;points, bars, etc.). You can have an unlimited number of layers, but at a minimum a plot <strong>must have at least one geom</strong>. Examples include:</p>
 <ul>
 <li>
@@ -595,8 +590,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code>linetype</code> (solid, dashed, dotted etc.)</li>
 <li>
 <code>size</code> (of geoms)</li>
-</ul></section><section id="scatterplots-with-geom_point" class="level3" data-number="14.3.4"><h3 data-number="14.3.4" class="anchored" data-anchor-id="scatterplots-with-geom_point">
-<span class="header-section-number">14.3.4</span> Scatterplots with <code>geom_point()</code>
+</ul></section><section id="scatterplots-with-geom_point" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="scatterplots-with-geom_point">
+<span class="header-section-number">13.3.4</span> Scatterplots with <code>geom_point()</code>
 </h3>
 <p>Now that we know what geoms and aesthetics are, let’s put them to practice by making a scatterplot. To start, we will add the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> geom and we’ll set the position for the x- and y-axis inside the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function:</p>
 <div class="cell" data-layout-align="center">
@@ -641,8 +636,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="bar-charts-with-geom_col" class="level3" data-number="14.3.5"><h3 data-number="14.3.5" class="anchored" data-anchor-id="bar-charts-with-geom_col">
-<span class="header-section-number">14.3.5</span> Bar charts with <code>geom_col()</code>
+</section><section id="bar-charts-with-geom_col" class="level3" data-number="13.3.5"><h3 data-number="13.3.5" class="anchored" data-anchor-id="bar-charts-with-geom_col">
+<span class="header-section-number">13.3.5</span> Bar charts with <code>geom_col()</code>
 </h3>
 <p>I recommend using the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> layer to create bar charts, which are great for comparing different numerical values across a categorical variable. One of the simplest things to show with bars is the <em>count</em> of how many observations you have. You can compute this by using the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function, and then use the resulting data frame to create bars of those counts:</p>
 <div class="cell" data-layout-align="center">
@@ -702,11 +697,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section></section><section id="customizing-your-ggplot" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="customizing-your-ggplot">
-<span class="header-section-number">14.4</span> Customizing your ggplot</h2>
+</section></section><section id="customizing-your-ggplot" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="customizing-your-ggplot">
+<span class="header-section-number">13.4</span> Customizing your ggplot</h2>
 <p>There are lots of ways to tweak your ggplot to make it more aesthetically pleasing and easier for others to understand. We’ll cover just two here: labels and themes.</p>
-<section id="labels" class="level3" data-number="14.4.1"><h3 data-number="14.4.1" class="anchored" data-anchor-id="labels">
-<span class="header-section-number">14.4.1</span> Labels</h3>
+<section id="labels" class="level3" data-number="13.4.1"><h3 data-number="13.4.1" class="anchored" data-anchor-id="labels">
+<span class="header-section-number">13.4.1</span> Labels</h3>
 <p>You can change the labels of your plot by adding the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> layer:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
@@ -728,8 +723,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> layer enables you to modify the labels of any of the variables that you have mapped in your <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> call, as well as some other labels like the title, subtitle, and caption.</p>
-</section><section id="themes" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="themes">
-<span class="header-section-number">14.4.2</span> Themes</h3>
+</section><section id="themes" class="level3" data-number="13.4.2"><h3 data-number="13.4.2" class="anchored" data-anchor-id="themes">
+<span class="header-section-number">13.4.2</span> Themes</h3>
 <p>Adding theme layers can change some global aspects of the plot, such as the background color, grid lines, legend appearance, etc. There are <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">many themes to choose from</a>, but using simple themes like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> often improves the plot from the default theme settings:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
@@ -783,8 +778,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section></section><section id="saving-figures" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="saving-figures">
-<span class="header-section-number">14.5</span> Saving figures</h2>
+</section></section><section id="saving-figures" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="saving-figures">
+<span class="header-section-number">13.5</span> Saving figures</h2>
 <p>The first (and easiest) is to export directly from the RStudio ‘Plots’ panel, by clicking on <code>Export</code> when the image is plotted. This will give you the option of <code>.png</code> or <code>.pdf</code> and selecting the directory to which you wish to save it to. I strongly recommend you save images as <code>.pdf</code> types as these won’t pixelate when you change the image size.</p>
 <p>Another easy way to save a ggplot figure is to use the <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> function. First, create your plot and save it as an object:</p>
 <div class="cell" data-layout-align="center">
@@ -798,8 +793,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>       width  <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>       height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="other-resources" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="other-resources">
-<span class="header-section-number">14.6</span> Other resources</h2>
+</section><section id="other-resources" class="level2" data-number="13.6"><h2 data-number="13.6" class="anchored" data-anchor-id="other-resources">
+<span class="header-section-number">13.6</span> Other resources</h2>
 <p>While the <code>ggplot2</code> library offers a wide variety of options for customizing your plots, remembering exactly how to do specific tasks (like changing the color of a line, or changing the position of a legend) can be difficult. Fortunately, there are wonderful resources for looking up all the tricks to make the perfect ggplot. Here are a few:</p>
 <ul>
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">RStudio <code>ggplot2</code> Cheatsheet</a></li>
@@ -950,12 +945,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./data-wrangling.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./webscraping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
