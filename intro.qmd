@@ -27,6 +27,10 @@ The name "data analytics" was carefully chosen to emphasize an important distinc
 
 While this book does not cover modeling, the data concepts it does cover are all critical for being able to work with, inspect, and prepare data for modeling. In this section of the book, you will learn how to import and export data to and from R. You will also learn about the core data structure used to work with tabular data in R: the **data frame**. You will learn how to "wrangle" data in data frames and use them to make data visualizations. For this section, we will rely heavily on the **tidyverse**, a collection of R packages, data, and documentation that extends the capabilities of base R for working with data.
 
+## Software
+
+You will need both R and RStudio for this book. You will also need to install some R packages, but we'll get to those later.
+
 ### R
 
 You can download and install R from CRAN, the **C**omprehensive **R** **A**rchive **N**etwork, at <https://cloud.r-project.org/index.html> This book assumes you will install at least R 4.1.0 for this book.

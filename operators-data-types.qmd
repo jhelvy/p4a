@@ -14,7 +14,7 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
+> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book_c3>}})
 
 ## R as a calculator
 
@@ -28,12 +28,16 @@ R handles simple arithmetic using the following **arithmetic** operators:
 
 ```{r arithmetic, echo=FALSE}
 knitr::kable(rbind(
-              c("addition", "`+`", "`10 + 2`", "`12`"),
-              c("subtraction", "`-`", "`9 - 3`", "`6`"),
-              c("multiplication", "`*`", "`5 * 5`", "`25`"),
-              c("division", "`/`", "`9 / 3`", "`3`"),
-              c("power", "`^`", "`5 ^ 2`", "`25`")
-), col.names = c("operation", "operator", "example input" , "example output"), align="lccc")
+    c("addition", "`+`", "`10 + 2`", "`12`"),
+    c("subtraction", "`-`", "`9 - 3`", "`6`"),
+    c("multiplication", "`*`", "`5 * 5`", "`25`"),
+    c("division", "`/`", "`9 / 3`", "`3`"),
+    c("power", "`^`", "`5 ^ 2`", "`25`")
+), 
+    col.names = c(
+        "operation", "operator", "example input" , "example output"), 
+    align = "lccc"
+)
 ```
 
 </div>
@@ -143,6 +147,7 @@ This trick also works with negative numbers!
 ### Number "chopping" with 10s
 
 When you use the mod operator `%%` on a **positive** number with factors of 10, it "chops" the number and returns everything to the _right_ of the "chop" point:
+
 ```{r}
 123456 %% 1 # Chops to the right of the *ones* digit
 123456 %% 10 # Chops to the right of the *tens* digit
@@ -150,6 +155,7 @@ When you use the mod operator `%%` on a **positive** number with factors of 10, 
 ```
 
 Integer division `%/%` works the same way, except it returns everything to the _left_ of the "chop" point:
+
 ```{r}
 123456 %/% 1 # "Chops to the right of the ones digit
 123456 %/% 10 # "Chops to the right of the tens digit
@@ -157,12 +163,14 @@ Integer division `%/%` works the same way, except it returns everything to the _
 ```
 
 This trick works with non-integers too!
+
 ```{r}
 3.1415 %% 1
 3.1415 %/% 1
 ```
 
 But **be careful** - this "trick" only works with _positive_ numbers:
+
 ```{r}
 -123.456 %% 10
 -123.456 %/% 10
@@ -175,6 +183,7 @@ Here's some mental notes to remember how this works:
 - The "chop" point is always just to the _right_ of the chopping digit:
 
 <div style="width:500px">
+
 Example         | "Chop" point | "Chop" point description
 ----------------|--------------|----------------------------
 `1234 %% 1`     | `1234 | `    | Right of the `1`'s digit
@@ -182,6 +191,7 @@ Example         | "Chop" point | "Chop" point description
 `1234 %% 100`   | `12 | 34`    | Right of the `100`'s digit
 `1234 %% 1000`  | `1 | 234`    | Right of the `1,000`'s digit
 `1234 %% 10000` | ` | 1234`    | Right of the `10,000`'s digit
+
 </div>
 
 ## Comparing things in R
@@ -373,16 +383,19 @@ Numbers in R have the `numeric` data type, which is also the default computation
 - **Non-integers** (aka "double" or "float")
 
 The difference is that integers don't have decimal values. A non-integer in R has the type "`double`":
+
 ```{r}
 typeof(3.14)
 ```
 
 By default, R assumes all numbers have a decimal place, even if it _looks_ like an integer:
+
 ```{r}
 typeof(3)
 ```
 
 In this case, R assumes that `3` is really `3.0`. To make sure R knows you really do mean to create an integer, you have to add an `L` to the end of the number^[Why `L`? Well, it's a bit [complicated](https://stackoverflow.com/questions/24350733/why-would-r-use-the-l-suffix-to-denote-an-integer), but R supports complex numbers which are denoted by `i`, so `i` was already taken. A quick answer is that R uses 32-bit _long_ integers, so `L` for "long".]:
+
 ```{r}
 typeof(3L)
 ```
@@ -409,7 +422,9 @@ typeof("don't")
 
 If you used single quotes, you'll get an error because R reads `'don'` as a character:
 
-```{r, error=TRUE}
+```{r}
+#| error: true
+
 typeof('don't')
 ```
 
@@ -418,17 +433,20 @@ We will go into much more detail about working with character values later on in
 ### Logical types
 
 Logical data only have two values: `TRUE` or `FALSE`. Note that these are not in quotes and are in all caps.
+
 ```{r}
 typeof(TRUE)
 typeof(FALSE)
 ```
 
 R uses these two special values to help answer questions about logical statements. For example, let's compare whether `1` is greater than `2`:
+
 ```{r}
 1 > 2
 ```
 
 R returns the values `FALSE` because 1 is not greater than 2. If I flip the question to whether `1` is _less_ than `2`, I'll get `TRUE`:
+
 ```{r}
 1 < 2
 ```
@@ -457,7 +475,7 @@ In addition to the four main data types mentioned, there are a few additional "s
 
 Some content on this page has been modified from other courses, including:
 
-- Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
-- Jenny Bryan's [STAT 545 Course](http://stat545.com/)
+- Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book >}})
+- Jenny Bryan's [STAT 545 Course]({{< var stat545 >}})
 - [RStudio primers](https://rstudio.cloud/learn/primers/1.2)
-- Xiao Ping Song's [Intro2R crash course](https://github.com/xp-song/Intro2R)
+- Xiao Ping Song's [Intro2R crash course]({{< var song_book >}})
