@@ -337,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <h3 id="suggested-readings" class="unnumbered anchored">Suggested Readings</h3>
 <ul>
-<li>Chapter 3.5 of Danielle Navarro’s book <a href="https://learningstatisticswithr.com/book/introR.html#usingfunctions">“Learning Statistics With R”</a>
+<li>Chapter 3 of Danielle Navarro’s book <a href="{{< var navarro_book_c3>}}">“Learning Statistics With R”</a>
 </li>
 </ul>
 </blockquote>
@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/date.html">date</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Returns the current date and time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] "Thu Dec 22 20:27:36 2022"</code></pre>
+<pre><code>#&gt; [1] "Thu Jan  5 21:39:35 2023"</code></pre>
 </div>
 </div>
 <p>(the date above is the date this page was last built)</p>
@@ -531,60 +531,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>A few notes to keep in mind:</p>
 <ol type="1">
-<li>
-<p>When converting from a <strong>numeric</strong> to a <strong>logical</strong>, <code><a href="https://rdrr.io/r/base/logical.html">as.logical()</a></code> will always return <code>TRUE</code> for any numeric value other than <code>0</code>, for which it returns <code>FALSE</code>.</p>
-<p>::: {.cell layout-align=“center”}</p>
+<li>When converting from a <strong>numeric</strong> to a <strong>logical</strong>, <code><a href="https://rdrr.io/r/base/logical.html">as.logical()</a></code> will always return <code>TRUE</code> for any numeric value other than <code>0</code>, for which it returns <code>FALSE</code>.</li>
+</ol>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] TRUE</code> :::</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] FALSE</code> ::: :::</p>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+</div>
 <p>The reverse is also true</p>
-<p>::: {.cell layout-align=“center”}</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 1</code> :::</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 0</code> ::: :::</p>
-</li>
-<li>
-<p>Not everything can be converted. For example, if you try to coerce a character that contains letters into a number, R will return <code>NA</code>, because it doesn’t know what number to choose:</p>
-<p>::: {.cell layout-align=“center”}</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">'foo'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stderr} <code>#&gt; Warning: NAs introduced by coercion</code> :::</p>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] NA</code> ::: :::</p>
-</li>
-<li>
-<p>The <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> function behaves the same as <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>:</p>
-<p>::: {.cell layout-align=“center”}</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 3</code> :::</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.99</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stdout} <code>#&gt; [1] 3</code> ::: :::</p>
-</li>
-</ol></section><section id="checking-data-types" class="level4" data-number="3.2.2.2"><h4 data-number="3.2.2.2" class="anchored" data-anchor-id="checking-data-types">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 1</code></pre>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Not everything can be converted. For example, if you try to coerce a character that contains letters into a number, R will return <code>NA</code>, because it doesn’t know what number to choose:</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">'foo'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] NA</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>The <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> function behaves the same as <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>:</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.14</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">3.99</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+</div>
+</section><section id="checking-data-types" class="level4" data-number="3.2.2.2"><h4 data-number="3.2.2.2" class="anchored" data-anchor-id="checking-data-types">
 <span class="header-section-number">3.2.2.2</span> Checking data types</h4>
 <p>Similar to the <code>as.______()</code> format, you can check if an object is a specific data type using <code>is.______()</code>, replacing “<code>______</code>” with a data type.</p>
 <p>Checking <strong>numeric</strong> types:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/double.html">is.double</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/double.html">is.double</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] TRUE</code></pre>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] FALSE</code></pre>
 </div>
 </div>
 <p>Checking <strong>non-numeric</strong> types:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] FALSE</code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="fl">3.1415</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] FALSE</code></pre>
 </div>
@@ -592,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One thing you’ll notice is that <code><a href="https://rdrr.io/r/base/integer.html">is.integer()</a></code> often gives you a surprising result. For example, why did <code>is.integer(7)</code> return <code>FALSE</code>?. Well, this is because numbers are <em>doubles</em> by default in R, so even though <code>7</code> <em>looks</em> like an integer, R thinks it’s a double.</p>
 <p>The safer way to check if a number is an integer in <em>value</em> is to compare it against itself converted into an integer:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">7</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">7</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] TRUE</code></pre>
 </div>
@@ -608,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">3.3.1</span> Installing packages</h3>
 <p>To install a package, use the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. Make sure you put the package name in quotes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span>   <span class="co"># This doesn't work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just like most software, you only need to <em>install</em> a package once.</p>
@@ -616,7 +635,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">3.3.2</span> Using packages</h3>
 <p>After installing a package, you can’t immediately use the functions that the package contains. This is because when you start up R only the “base” functions are loaded. If you want R to also load the functions inside a package, you have to <em>load</em> that package, which you do with the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function. In contrast to the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function, you don’t need quotes around the package name to load it:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename"</span><span class="op">)</span> <span class="co"># This works</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">packagename</span><span class="op">)</span>   <span class="co"># This also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here’s a helpful image to keep the two ideas of <em>installing</em> vs <em>loading</em> separate:</p>
@@ -626,18 +645,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </h3>
 <p>As an example, try installing the <a href="https://github.com/keithmcnulty/wikifacts">Wikifacts</a> package, by Keith McNulty:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"wikifacts"</span><span class="op">)</span> <span class="co"># Remember - you only have to do this once!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"wikifacts"</span><span class="op">)</span> <span class="co"># Remember - you only have to do this once!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that you have the package installed on your computer, try loading it using <code><a href="https://rdrr.io/r/base/library.html">library(wikifacts)</a></code>, then trying using some of it’s functions:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">wikifacts</span><span class="op">)</span> <span class="co"># Load the library</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">wikifacts</span><span class="op">)</span> <span class="co"># Load the library</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] "Did you know that endocrinologist Reginald Hall, who studied the thyroid gland and its diseases, received a heart transplant in 1984? (Courtesy of Wikipedia)"</code></pre>
 </div>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_didyouknow.html">wiki_didyouknow</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_didyouknow.html">wiki_didyouknow</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] "Did you know that the 2001 manga series World of the S&amp;M was released in English as The World Exists for Me? (Courtesy of Wikipedia)"</code></pre>
 </div>
@@ -651,14 +670,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Here I use the name of the <em>package</em> followed by <code>::</code> to tell R that I’m looking for a function that is in that package. For example, if I didn’t want to load the whole <strong>wikifacts</strong> library but still wanted to use the <code><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact()</a></code> function, I could do this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wikifacts</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wikifacts</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wikifacts/man/wiki_randomfact.html">wiki_randomfact</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] "Did you know that Kiriko, a \"fox girl\" character for Overwatch&nbsp;2, was teased through a coded message that translates to \"What Does the Fox Say?\" (Courtesy of Wikipedia)"</code></pre>
 </div>
 </div>
 <p>Where this is particularly handy is when two packages have a function with the same name. If you load both library, R might not know which function to use. In those cases, it’s best to also provide the <strong>package</strong> name. For example, let’s say there was a package called <strong>apples</strong> and another called <strong>bananas</strong>, and each had a function named <code>fruitName()</code>. If I wanted to use each of them in my code, I would need to specify the package names like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">apples</span><span class="fu">::</span><span class="fu">fruitName</span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">apples</span><span class="fu">::</span><span class="fu">fruitName</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">bananas</span><span class="fu">::</span><span class="fu">fruitName</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="turtle-graphics" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="turtle-graphics">
@@ -666,11 +685,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://en.wikipedia.org/wiki/Turtle_graphics">Turtle graphics</a> is a classic teaching tool in computer science, originally invented in the 1960s and re-implemented over and over again in different programming languages.</p>
 <p>In R, there is a similar package called <a href="http://www.gagolewski.com/software/TurtleGraphics/?section=software&amp;subsection=TurtleGraphics"><strong>TurtleGraphics</strong></a>. To get started, install the package (remember, you only need to do this once on your computer):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'TurtleGraphics'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'TurtleGraphics'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once installed, load the package (remember, you have to load this every time you restart R to use the package!):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.gagolewski.com/software/TurtleGraphics/">TurtleGraphics</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.gagolewski.com/software/TurtleGraphics/">TurtleGraphics</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; Loading required package: grid</code></pre>
 </div>
@@ -679,18 +698,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">3.4.1</span> Getting to know your turtle</h3>
 <p>Here’s the idea. You have a turtle, and she lives in a nice warm terrarium. The terrarium is 100 x 100 units in size, where the lower-left corner is at the <code>(x, y)</code> position of <code>(0, 0)</code>. When you call <code><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init()</a></code>, the turtle is initially positioned in the center of the terrarium at <code>(50, 50)</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/turtle_init.png" class="img-fluid" width="456"></p>
 <p>You can move the turtle using a variety of movement functions (see <code>?turtle_move()</code>), and she will leave a trail where ever she goes. For example, you can move her 10 units forward from her starting position:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/turtle_forward.png" class="img-fluid" width="456"></p>
 <p>You can also make the turtle jump to a new position (without drawing a line) by using the <code>turtle_setpos(x, y)</code>, where <code>(x, y)</code> is a coordinate within the 100 x 100 terrarium:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_goto.html">turtle_setpos</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">10</span>, y<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/turtle_setpos.png" class="img-fluid" width="456"></p>
@@ -700,7 +719,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ```{r, fig.show='animate', interval=0.05, cache=TRUE, message=FALSE} -->
 <!-- ffmpeg is a pain, so manually sticking video in -->
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">side</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_turn.html">turtle_left</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span>
@@ -708,7 +727,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <video width="456" controls="" loop=""><source src="images/turtle_hexagon.webm"></video><p>Cool! As you draw more complex shapes, you can speed up the process by wrapping your turtle commands inside the <code>turtle_do({})</code> function. This will skip the animations of the turtle moving and will jump straight to the final position. For example, here’s the hexagon again without animations:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_init.html">turtle_init</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_do.html">turtle_do</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">side</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/pkg/TurtleGraphics/man/turtle_move.html">turtle_forward</a></span><span class="op">(</span>distance <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -720,11 +739,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
 <p>Some content on this page has been modified from other courses, including:</p>
 <ul>
-<li>Danielle Navarro’s book <a href="https://learningstatisticswithr.com/book/introR.html#usingfunctions">“Learning Statistics With R”</a>
+<li>Danielle Navarro’s book <a href="{{< var navarro_book_c3>}}">“Learning Statistics With R”</a>
 </li>
-<li>Danielle Navarro’s website <a href="https://psyr.djnavarro.net/">“R for Psychological Science”</a>
+<li>Danielle Navarro’s website <a href="{{< var navarro_psy_book>}}">“R for Psychological Science”</a>
 </li>
-<li>Jenny Bryan’s <a href="http://stat545.com/">STAT 545 Course</a>
+<li>Jenny Bryan’s <a href="{{< var stat545>}}">STAT 545 Course</a>
 </li>
 <li><a href="https://rstudio.cloud/learn/primers/1.2">RStudio primers</a></li>
 <li>Xiao Ping Song’s <a href="https://github.com/xp-song/Intro2R">Intro2R crash course</a>
