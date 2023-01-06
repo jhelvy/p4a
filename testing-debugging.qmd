@@ -15,15 +15,15 @@ source("_common.R")
 > ### Suggested Readings {.unnumbered}
 >
 > * [Chapter 11](https://whattheyforgot.org/debugging-r-code.html) in Jenny Bryan and Jim Hester's fantastic book, ["What They Forgot to Teach You About R"](https://whattheyforgot.org/).
-
-Here are some other great resources:
 > * [Debugging techniques in RStudio](https://resources.rstudio.com/wistia-rstudio-conf-2018-2/debugging-techniques-in-rstudio-amanda-gadrow-4) - Amanda Gadrow's talk at rstudio::conf 2018.
 > * [Debugging in RStudio article](https://support.rstudio.com/hc/en-us/articles/200713843)
 
 ## Writing test cases
 
 <center>
-![](images/test_cases_fry.png){ width=300 }
+
+![](images/test_cases_fry.png){ width=500 }
+
 </center>
 
 Writing test cases is part of the process of understanding a problem; if you don't know what the result of an example input should be, you can't know how to solve the problem.
@@ -32,13 +32,13 @@ Test cases are also used to verify that a solution to a problem is correct -- th
 
 ### Test case types
 
-Test cases vary based on the problem, but you generally want to ensure that you have at least one or two of each of the following test case types:
+Test cases vary based on the problem, but you generally want to ensure that you have at least one or two of each of the following test case types. I use the acronym **NOLES**:
 
-- **Normal Cases**: Typical input that should follow the main path through the code.
-- **Large Cases**: Typical input, but of a larger size than usual. This ensures that bugs don't appear after multiple iterations.
-- **Edge Cases**: Pairs of inputs that test different choice points in the code. For example, if a condition in the problem checks whether `n < 2`, two important edge cases are when `n = 2` and `n = 3`, which trigger different behaviors. Other edge cases include the first / last characters in a string or items in a list.
-- **Special Cases**: Some inputs need to be special-cased for many problems. This includes negative numbers, `0` and `1` for integers, the empty string (`""`), and input values of different types than are expected.
-- **Varying Results**: Finally, test cases should cover multiple possible results. This is especially important for logical functions; make sure that you have both `TRUE` and `FALSE` cases among your tests!
+- **N**ormal Cases: Typical input that should follow the main path through the code.
+- **O**pposites: Cases that return opposite outputs (e.g. `TRUE` and `FALSE`).
+- **L**arge Cases: Typical input, but of a larger size than usual. This ensures that bugs don't appear after multiple iterations.
+- **E**dge Cases: Pairs of inputs that test different choice points in the code. For example, if a condition in the problem checks whether `n < 2`, two important edge cases are when `n = 2` and `n = 3`, which trigger different behaviors. Other edge cases include the first / last characters in a string or items in a list.
+- **S**pecial Cases: Some inputs need to be special-cased for many problems. This includes negative numbers, `0` and `1` for integers, the empty string (`""`), and input values of different types than are expected.
 
 ### Testing with `stopifnot()`
 

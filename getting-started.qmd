@@ -135,7 +135,8 @@ The first name, `x`, tells us nothing about what the value `42` means (are we co
 
 ### Use standard casing styles
 
-<img src="images/horst_casing.jpg" width=600> Art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)
+<img src="images/horst_casing.jpg" width=600> 
+[Art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]{.aside}
 
 You will be wise to adopt a [convention for demarcating words](https://en.wikipedia.org/wiki/Camel_case) in names. I recommend using one of these:
 

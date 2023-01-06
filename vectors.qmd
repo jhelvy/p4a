@@ -41,7 +41,7 @@ x <- c(1, 2, 3)
 length(x)
 ```
 
-As we saw in the [loops](L5-loops.html) lesson, you can also create vectors of sequences using the `:` operator or the `seq()` function:
+As we saw in the lesson on [iteration](iteration.html), you can also create vectors of sequences using the `:` operator or the `seq()` function:
 
 ```{r}
 seq(1, 10)
@@ -114,7 +114,7 @@ x
 
 ### Numeric vectors
 
-As we saw in the [loops](5-loops.html) lesson, you can create a vector of integers using the `:` operator or the `seq()` function:
+As we saw in the lesson on [iteration](iteration.html), you can create a vector of integers using the `:` operator or the `seq()` function:
 
 ```{r}
 1:10
@@ -379,7 +379,7 @@ a[order(a)] # Same as sort(a)
 
 ### Use vectors instead of a loop
 
-As we saw in the [loops](5-loops.html) lesson, you can use a loop to perform an operation on each element in a vector. For example, the following loop get the decimal values for each element in a vector of floats:
+As we saw in the lesson on [iteration](iteration.html), you can use a loop to perform an operation on each element in a vector. For example, the following loop get the decimal values for each element in a vector of floats:
 
 ```{r}
 x <- c(3.1415, 1.618, 2.718)
@@ -404,5 +404,5 @@ In many cases, using a vector can save you a whole lot of code (and time!) by av
 Some content on this page has been modified from other courses, including:
 
 - CMU [15-112: Fundamentals of Programming](http://www.kosbie.net/cmu/spring-17/15-112/), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
-- Danielle Navarro's website ["R for Psychological Science"](https://psyr.org/index.html)
+- Danielle Navarro's website ["R for Psychological Science"](https://psyr.djnavarro.net/)
 - [RStudio primers](https://rstudio.cloud/learn/primers/1.2)

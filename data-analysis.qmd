@@ -19,7 +19,7 @@ As an example of what I mean, consider the following case study on the [1986 Spa
 On January 28, 1986 the space shuttle Challenger exploded. In his book titled ["Visual Explanations"](https://www.edwardtufte.com/tufte/books_visex), Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.
 
 ![](images/challenger_crew.jpg)
-[[Image source](https://www.flickr.com/photos/gsfc/12191288154)]
+[[Image source](https://www.flickr.com/photos/gsfc/12191288154)]{.aside}
 
 ## The data
 
@@ -94,7 +94,7 @@ Now we have some _information_. The transformation of the raw data into a visual
 To their credit, the engineers working on the Challenger were worried about the potential for O-ring failure. But the critical step in making the link to temperature was not thoroughly communicated. Instead, the _raw data_ was presented in tabular form along with diagrams like the one below, which show how erosion in the primary O-ring interacted with the secondary O-ring:
 
 ![](images/rockets_chart.png){ width=600 }
-[[Image source](https://www.edwardtufte.com/tufte/books_visex)]
+[[Image source](https://www.edwardtufte.com/tufte/books_visex)]{.aside}
 
 While the above diagram contains a lot of _data_, the critical **information** about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.
 

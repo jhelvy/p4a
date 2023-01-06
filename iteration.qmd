@@ -17,7 +17,7 @@ source("_common.R")
 > * [Chapter 21](https://r4ds.had.co.nz/iteration.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Chapters 11](https://rstudio-education.github.io/hopr/loops.html) of "Hands-On Programming with R", by Garrett Grolemund
 
-Similar to conditionals (remember those [if / else statements](L4.1-conditionals.html)?), loops are another kind of "flow control" - that is, code that alters the otherwise linear flow of operations from the top of a script straight through to the end. The idea is simple: a loop is a block of code (i.e., a sequence of commands) that R will execute over and over again until some *termination criterion* is met.
+Similar to conditionals (remember those [if / else statements](conditionals.html)?), loops are another kind of "flow control" - that is, code that alters the otherwise linear flow of operations from the top of a script straight through to the end. The idea is simple: a loop is a block of code (i.e., a sequence of commands) that R will execute over and over again until some *termination criterion* is met.
 
 The main two types of loops are `for` and `while` loops.
 
@@ -175,4 +175,4 @@ In the above example, we use the `next` statement inside an `if` statement to ch
 Some content on this page has been modified from other courses, including:
 
 - CMU [15-112: Fundamentals of Programming](http://www.kosbie.net/cmu/spring-17/15-112/), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
-- Danielle Navarro's website ["R for Psychological Science"](https://psyr.org/index.html)
+- Danielle Navarro's website ["R for Psychological Science"](https://psyr.djnavarro.net/)
