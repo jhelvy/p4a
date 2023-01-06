@@ -122,7 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/getting-started.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-getting-started" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></h1>
 </div>
 
@@ -402,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>Error in 3 + "4" : non-numeric argument to binary operator</code></pre>
 <p>Here R is saying that there was a “non-numeric argument” somewhere. That suggests that the problem might be with something not being a number. As we just discussed, <code>"4"</code> is a character, or a “non-numeric argument”.</p>
 <p>With practice, you’ll get better at embracing and interpreting R’s error messages.</p>
-</section><section id="storing-values" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="storing-values">
+</section><section id="storing-values" class="level2 page-columns page-full" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="storing-values">
 <span class="header-section-number">2.3</span> Storing values</h2>
 <p>You can store values by “assigning” them to an <em>object</em> with the <code>&lt;-</code> symbol, like this:</p>
 <div class="cell" data-layout-align="center">
@@ -447,9 +447,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">caterpillar_length_mm</span> <span class="op">&lt;-</span> <span class="fl">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first name, <code>x</code>, tells us nothing about what the value <code>42</code> means (are we counting something? <code>42</code> of what?). The second name, <code>length_mm</code>, tells us that <code>42</code> is the length of something, and that it’s measured in millimeters. Finally, the last name, <code>caterpillar_length_mm</code>, tells us that <code>42</code> is the length of a caterpillar, measured in millimeters.</p>
-</section><section id="use-standard-casing-styles" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="use-standard-casing-styles">
+</section><section id="use-standard-casing-styles" class="level3 page-columns page-full" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="use-standard-casing-styles">
 <span class="header-section-number">2.3.2</span> Use standard casing styles</h3>
-<p><img src="images/horst_casing.jpg" width="600"> Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></p>
+<div class="page-columns page-full"><p><img src="images/horst_casing.jpg" width="600"></p><div class="no-row-height column-margin column-container"><span class="">Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></span></div></div>
 <p>You will be wise to adopt a <a href="https://en.wikipedia.org/wiki/Camel_case">convention for demarcating words</a> in names. I recommend using one of these:</p>
 <ul>
 <li><code>snake_case_uses_underscores</code></li>
