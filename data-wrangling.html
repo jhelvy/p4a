@@ -121,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 </head>
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Webscraping</span></a>
   </div>
 </li>
       </ul>
@@ -299,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-wrangling.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-data-wrangling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></h1>
 </div>
 
@@ -333,20 +333,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>
 <a href="https://r4ds.had.co.nz/transform.html">Chapter 5</a> of “R for Data Science”, by Garrett Grolemund and Hadley Wickham</li>
-<li><a href="https://resources.rstudio.com/the-essentials-of-data-science/data-transformation"><code>dplyr</code> cheatsheet</a></li>
+<li><a href="https://posit.co/resources/cheatsheets/"><code>dplyr</code> cheatsheet</a></li>
 </ul>
 </blockquote>
 <section id="r-setup" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="r-setup">
 <span class="header-section-number">12.1</span> R Setup</h2>
 <p>Before we get started, let’s set up our analysis environment:</p>
 <ol type="1">
-<li>Open up your “data-analysis-tutorial” R Project that you created in the last lesson - if you didn’t do this, <a href="L10-data-analysis-1-data-frames.html#41_r_setup">go back and do it now</a>.</li>
+<li>Open up your “data-analysis-tutorial” R Project that you created in the last lesson - if you didn’t do this, <a href="data-frames.html#r-setup">go back and do it now</a>.</li>
 <li>Create a new <code>.R</code> file (File &gt; New File &gt; R Script), and save it as “<code>data_wrangling.R</code>” inside your “data-analysis-tutorial” R Project folder.</li>
 <li>Use the <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> function to download the <code>wildlife_impacts.csv</code> dataset, and save it in the <code>data</code> folder in your R Project:</li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span></span>
-<span>    url <span class="op">=</span> <span class="st">"https://github.com/emse6574-gwu/2019-Fall/raw/gh-pages/data/wildlife_impacts.csv"</span>,</span>
+<span>    url <span class="op">=</span> <span class="st">"https://github.com/jhelvy/p4a/raw/main/data/wildlife_impacts.csv"</span>,</span>
 <span>    destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'wildlife_impacts.csv'</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -513,14 +513,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>…over 5 strikes per day!</p>
-</section><section id="data-wrangling-with-dplyr" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="data-wrangling-with-dplyr">
+</section><section id="data-wrangling-with-dplyr" class="level2 page-columns page-full" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="data-wrangling-with-dplyr">
 <span class="header-section-number">12.2</span> Data wrangling with <code>dplyr</code>
 </h2>
-<p><img src="images/horst_monsters_data_wrangling.png" class="img-fluid" width="500"><a href="https://github.com/allisonhorst">[Art by Allison Horst]</a></p>
+<div class="page-columns page-full"><p><img src="images/horst_monsters_data_wrangling.png" class="img-fluid" width="600"></p><div class="no-row-height column-margin column-container"><span class="">Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></span></div></div>
 <p>“Data Wrangling” refers to the art of getting your data into R in a useful form for visualization and modeling. Wrangling is the first step in the general data science process:</p>
 <center>
-<img src="images/data-wrangle.png" class="img-fluid">
+<img src="images/data-wrangle.png" class="img-fluid" width="600">
 </center>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://r4ds.had.co.nz/introduction.html">Image source</a></span></div></div>
 <section id="what-is-dplyr" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="what-is-dplyr">
 <span class="header-section-number">12.2.1</span> What is <code>dplyr</code>
 </h3>
@@ -549,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></section><section id="select-columns-with-select" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="select-columns-with-select">
 <span class="header-section-number">12.2.2</span> Select columns with <code>select()</code>
 </h3>
-<p><img src="images/rstudio-cheatsheet-select.png" class="img-fluid" width="500"></p>
+<p><img src="images/rstudio-cheatsheet-select.png" class="img-fluid" width="600"></p>
 <p>To select specific columns, use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. The first argument to this function is the data frame (<code>df</code>), and the subsequent arguments are the columns to keep:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Select only a few columns</span></span>
@@ -600,7 +601,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></section><section id="select-rows-with-filter" class="level3" data-number="12.2.3"><h3 data-number="12.2.3" class="anchored" data-anchor-id="select-rows-with-filter">
 <span class="header-section-number">12.2.3</span> Select rows with <code>filter()</code>
 </h3>
-<p><img src="images/rstudio-cheatsheet-filter.png" class="img-fluid" width="500"></p>
+<p><img src="images/rstudio-cheatsheet-filter.png" class="img-fluid" width="600"></p>
 <p>Filter the rows for wildlife impacts that occurred in DC:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,9 +644,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; #   ²​type_eng, ³​species_id</code></pre>
 </div>
 </div>
-</section><section id="sequence-operations-with-pipes" class="level3" data-number="12.2.4"><h3 data-number="12.2.4" class="anchored" data-anchor-id="sequence-operations-with-pipes">
+</section><section id="sequence-operations-with-pipes" class="level3 page-columns page-full" data-number="12.2.4"><h3 data-number="12.2.4" class="anchored" data-anchor-id="sequence-operations-with-pipes">
 <span class="header-section-number">12.2.4</span> Sequence operations with pipes (<code>%&gt;%</code>)</h3>
-<p><img src="images/magrittr.png" class="img-fluid" width="200"> (logo is a reference to <a href="https://en.wikipedia.org/wiki/The_Treachery_of_Images">The Treachery of Images</a>)</p>
+<div class="page-columns page-full"><p><img src="images/magrittr.png" class="img-fluid" width="200"></p><div class="no-row-height column-margin column-container"><span class="">Logo is a reference to <a href="https://en.wikipedia.org/wiki/The_Treachery_of_Images">The Treachery of Images</a> by Belgian surrealist painter René Magritte.</span></div></div>
 <p>What if you want to select and filter at the same time? Well, one way to do this is to use intermediate steps. To do this, you first create a temporary data frame and then use that as input to the next function, like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dc_impacts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">state</span> <span class="op">==</span> <span class="st">'DC'</span><span class="op">)</span></span>
@@ -770,7 +771,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="create-new-variables-with-mutate" class="level3" data-number="12.2.6"><h3 data-number="12.2.6" class="anchored" data-anchor-id="create-new-variables-with-mutate">
 <span class="header-section-number">12.2.6</span> Create new variables with <code>mutate()</code>
 </h3>
-<p><img src="images/rstudio-cheatsheet-mutate.png" class="img-fluid" width="500"></p>
+<p><img src="images/rstudio-cheatsheet-mutate.png" class="img-fluid" width="600"></p>
 <p>You will often need to create new columns based on the values in existing columns. For this use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. For example, let’s create a new variable converting the <code>height</code> variable from feet to miles:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -839,7 +840,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>dplyr</code> makes this very easy through the use of the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function.</p>
 <section id="the-group_by-function" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="the-group_by-function">
 <span class="header-section-number">12.3.1</span> The <code>group_by()</code> function</h3>
-<p><img src="images/rstudio-cheatsheet-group_by.png" class="img-fluid" width="500"></p>
+<p><img src="images/rstudio-cheatsheet-group_by.png" class="img-fluid" width="600"></p>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function enables you to perform operations across groups within the data frame. It is typically used by inserting it in the “pipeline” before the desired group operation. For example, if we wanted to add a a new column that computed the mean height of reported wildlife impacts for each state, we could insert <code>group_by(state)</code> in the pipeline:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -864,7 +865,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You’ll see that the same value for <code>mean_height</code> is reported for the same states (e.g.&nbsp;the mean height in Florida is 892 ft).</p>
 </section><section id="the-summarize-function" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="the-summarize-function">
 <span class="header-section-number">12.3.2</span> The <code>summarize()</code> function</h3>
-<p><img src="images/rstudio-cheatsheet-summarise.png" class="img-fluid" width="500"></p>
+<p><img src="images/rstudio-cheatsheet-summarise.png" class="img-fluid" width="600"></p>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function is often used together with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>, which collapses each group into a single-row summary of that group. For example, we collapse the result of the previous example by using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>

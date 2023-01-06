@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Webscraping</span></a>
   </div>
 </li>
       </ul>
@@ -325,7 +325,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
-<p>This is the first lesson in a sequence on data analysis in R. Before reading this lesson, check out the <a href="L11.1-data-analysis-prelude.html">“Prelude to Data Analysis”</a>.</p>
 <blockquote class="blockquote">
 <h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
 <ul>
@@ -707,7 +706,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">11.3.1</span> R Setup</h3>
 <p>Before we dig into the data, let’s prepare our analysis environment by following these steps:</p>
 <ol type="1">
-<li>Create a new R Project called “data_analysis_tutorial” and save the folder somewhere on your computer (see the <a href="L1-getting-started.html#83_RStudio_projects">“RStudio projects”</a> section from lesson 1 if you’re not sure what this is). This will create a folder called “data_analysis_tutorial” and also a <code>data_analysis_tutorial.RProj</code> file inside that folder.</li>
+<li>Create a new R Project called “data_analysis_tutorial” and save the folder somewhere on your computer (see the <a href="getting-started.html#rstudio-projects">“RStudio projects”</a> section from lesson 1 if you’re not sure what this is). This will create a folder called “data_analysis_tutorial” and also a <code>data_analysis_tutorial.RProj</code> file inside that folder.</li>
 <li>Create a new <code>.R</code> file (File &gt; New File &gt; R Script), and save it as <code>data_frames.R</code> inside your “data_analysis_tutorial” folder. From here on, we’ll type all code for this lesson inside this <code>data_frames.R</code> file.</li>
 <li>Create another folder in your R Project folder called “data” - we’ll put data in this folder real soon.</li>
 </ol>
@@ -715,7 +714,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are generally two ways to load external data.</p>
 </section><section id="method-1-loading-data-from-a-package" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="method-1-loading-data-from-a-package">
 <span class="header-section-number">11.3.2</span> Method 1: Loading data from a package</h3>
-<p>Many R packages come with pre-loaded datasets. For example, the <strong>ggplot2</strong> library (which we’ll <a href="L12-da3-data-visualization.html">use soon</a> to make plots in R) comes with the <code>msleep</code> dataset already loaded. To see this, install <strong>ggplot2</strong> and load the library:</p>
+<p>Many R packages come with pre-loaded datasets. For example, the <strong>ggplot2</strong> library (which we’ll <a href="data-visualization.html">use soon</a> to make plots in R) comes with the <code>msleep</code> dataset already loaded. To see this, install <strong>ggplot2</strong> and load the library:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
@@ -758,7 +757,7 @@ txhousing               Housing sales in TX</code></pre>
 </section><section id="method-2-importing-data" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="method-2-importing-data">
 <span class="header-section-number">11.3.3</span> Method 2: Importing data</h3>
 <p>What do you do when a dataset isn’t available from a package? Well, you can “read” the data into R from an external file. One of the most common format for storing tabular data (i.e.&nbsp;data that is stored as rows and columns) is the comma separated value (CSV) file.</p>
-<p>To try this out yourself, download <a href="https://raw.githubusercontent.com/emse-p4a-gwu/2020-Fall/master/data/msleep.csv">this msleep.csv file</a> (click the link, then go to “File -&gt; Save” to save it) and put the file in your “data” folder that you created inside your “data_analysis_tutorial” folder.</p>
+<p>To try this out yourself, download <a href="https://raw.githubusercontent.com/jhelvy/p4a/main/data/msleep.csv">this msleep.csv file</a> (click the link, then go to “File -&gt; Save” to save it) and put the file in your “data” folder that you created inside your “data_analysis_tutorial” folder.</p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li>
@@ -770,31 +769,31 @@ txhousing               Housing sales in TX</code></pre>
 <section id="steps-to-importing-external-data-files" class="level4" data-number="11.3.3.1"><h4 data-number="11.3.3.1" class="anchored" data-anchor-id="steps-to-importing-external-data-files">
 <span class="header-section-number">11.3.3.1</span> Steps to importing external data files</h4>
 <ol type="1">
-<li>
-<p>Create a path to the data</p>
-<p>::: {.cell layout-align=“center”}</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output .cell-output-stderr} <code>#&gt; here() starts at /Users/runner/work/p4a/p4a</code> :::</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pathToData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'data.csv'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-</li>
-<li>
-<p>Import the data</p>
-<p>::: {.cell layout-align=“center”}</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">pathToData</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
-</li>
+<li>Create a path to the data</li>
 </ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; here() starts at /Users/runner/work/p4a/p4a</code></pre>
+</div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pathToData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'data.csv'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Import the data</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">pathToData</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Let’s break these steps down. First, I <strong>strongly</strong> recommend that you create the path to the data using the <strong>here</strong> package. The <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function builds the path to your current <em>working directory</em> (this is where your <code>data_analysis_tutorial.Rproj</code> file lives!). For example, if I put my “data analysis tutorial” folder on my computer’s desktop and opened up the <code>data_analysis_tutorial.Rproj</code> file, this is what the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function would produce:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>"/Users/jhelvy/Desktop/data_analysis_tutorial"</code></pre>
 <p>The specific path will look different depending on where you put your project, and that’s what is so powerful! Now I can run this code on <strong>any</strong> computer and I’ll get a dynamically-generated path!</p>
 <p>The arguments I give to the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function are the sequence of folders and files that are inside my working directory. Since I put the <code>msleep.csv</code> file inside a folder called “data”, I can get the path to that file like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pathToData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'msleep.csv'</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pathToData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'msleep.csv'</span><span class="op">)</span></span>
 <span><span class="va">pathToData</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>"/Users/jhelvy/Desktop/data_analysis_tutorial/data/msleep.csv"</code></pre>
@@ -805,11 +804,11 @@ txhousing               Housing sales in TX</code></pre>
 <p>Once you’ve got your file path, you are now ready to load the data! The Base R function for reading in a csv file is called <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>, but it has some quirky aspects in how it formats the data (in particular, character variables). So instead we are going to use an improved function, <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, from the <code>readr</code> package.</p>
 <p>First, install the readr package if you haven’t already:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"readr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"readr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now load the data:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
 <span><span class="va">msleep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'msleep.csv'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; Rows: 83 Columns: 11
@@ -827,11 +826,11 @@ txhousing               Housing sales in TX</code></pre>
 <span class="header-section-number">11.3.4</span> Previewing the data</h3>
 <p>You can view the entire dataset in a tabular format (similar to how Excel looks) by using the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function, which opens up another tab to view the data. Note that you cannot modify the data this way - you can just look at it:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In addition to viewing the whole dataset with <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>, you can quickly view summaries of the data frame with a few convenient functions. For example, you can look at the first 6 rows by using the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 6 × 11
 #&gt;   name       genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake  brainwt
@@ -848,7 +847,7 @@ txhousing               Housing sales in TX</code></pre>
 </div>
 <p>Similarly, you can view the <em>last</em> 6 rows by using the <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 6 × 11
 #&gt;   name        genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake brainwt
@@ -865,7 +864,7 @@ txhousing               Housing sales in TX</code></pre>
 </div>
 <p>You can also view an overview summary of each column and it’s data types by using the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> or <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> functions (these both do the same thing, but I prefer the output of <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Rows: 83
 #&gt; Columns: 11
@@ -884,7 +883,7 @@ txhousing               Housing sales in TX</code></pre>
 </div>
 <p>Finally, you can view summary statistics for each column using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;      name              genus               vore              order          
 #&gt;  Length:83          Length:83          Length:83          Length:83         
@@ -958,7 +957,7 @@ txhousing               Housing sales in TX</code></pre>
 <li>It appears that mammalian brain and body weight are logarithmically correlated - cool!</li>
 </ol>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">msleep</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">brainwt</span>, y<span class="op">=</span><span class="va">bodywt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span>, col<span class="op">=</span><span class="st">'red'</span>, se<span class="op">=</span><span class="cn">F</span>, size<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
@@ -977,7 +976,7 @@ txhousing               Housing sales in TX</code></pre>
 <li>It appears there may also be a negative, logarithmic relationship (albeit weaker) between the size of mammalian brains and how much they sleep - cool!</li>
 </ol>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">msleep</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">brainwt</span>, y<span class="op">=</span><span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">msleep</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">brainwt</span>, y<span class="op">=</span><span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -995,7 +994,7 @@ txhousing               Housing sales in TX</code></pre>
 <li>Wow, there’s a lot of variation in how much different mammals sleep - cool!</li>
 </ol>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">msleep</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">msleep</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x     <span class="op">=</span> <span class="st">'Total sleep time in hours'</span>,</span>
 <span>         title <span class="op">=</span> <span class="st">'Histogram of total sleep time'</span><span class="op">)</span> <span class="op">+</span></span>
