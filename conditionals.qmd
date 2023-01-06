@@ -12,7 +12,7 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * [Chapters 9.2 - 9.3]({{< var hands_on_c9 >}}) of "Hands-On Programming with R", by Garrett Grolemund
+> * [Chapters 9.2 - 9.3](https://rstudio-education.github.io/hopr/programs.html#if-statements) of "Hands-On Programming with R", by Garrett Grolemund
 
 Like most programming languages, R can evaluate **conditional statements**. A conditional statement is a switch - it tells the code which command to execute depending on a _condition_ that is specified by the programmer.
 
@@ -150,6 +150,5 @@ cat(" 22 -->", getLetterGrade(22))
 
 Some content on this page has been modified from other courses, including:
 
-- CMU [15-112: Fundamentals of Programming]({{<var cmu_15112 >}}), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
+- CMU [15-112: Fundamentals of Programming](http://www.kosbie.net/cmu/spring-17/15-112/notes/notes-conditionals.html), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
 - Danielle Navarro's website ["R for Psychological Science"](https://psyr.djnavarro.net/)
-

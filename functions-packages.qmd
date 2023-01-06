@@ -16,7 +16,7 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book_c3>}})
+> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book_c3 >}})
 
 ## Functions
 

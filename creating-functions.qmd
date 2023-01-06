@@ -17,8 +17,8 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * [Chapter 19]({{< var r4ds_c19 >}}) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
-> * [Chapters 2.4 - 2.7]({{< var hands_on_c2 >}}) of "Hands-On Programming with R", by Garrett Grolemund
+> * [Chapter 19](https://r4ds.had.co.nz/functions.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
+> * [Chapters 2.4 - 2.7](https://rstudio-education.github.io/hopr/basics.html#write-functions) of "Hands-On Programming with R", by Garrett Grolemund
 
 We already know how to use built-in functions like `sum()`, `round()`, `sqrt()`, etc. And we can access other functions by installing external packages. But many times there just isn't a function out there to do what you need. Fortunately, you can write your own!
 
@@ -310,5 +310,5 @@ It only compares numbers out to a predefined decimal place, after which it ignor
 
 Some content on this page has been modified from other courses, including:
 
-- CMU [15-112: Fundamentals of Programming]({{< var cmu_15112 >}}), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
-- Danielle Navarro's website ["R for Psychological Science"]({{< var navarro_psy_book>}})
+- CMU [15-112: Fundamentals of Programming](http://www.kosbie.net/cmu/spring-17/15-112/notes/notes-conditionals.html), by [David Kosbie](http://www.kosbie.net/cmu/) & [Kelly Rivers](https://hcii.cmu.edu/people/kelly-rivers)
+- Danielle Navarro's website ["R for Psychological Science"](https://psyr.djnavarro.net/)

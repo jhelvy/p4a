@@ -14,7 +14,7 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book_c3>}})
+> * Chapter 3 of Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
 
 ## R as a calculator
 
@@ -475,7 +475,7 @@ In addition to the four main data types mentioned, there are a few additional "s
 
 Some content on this page has been modified from other courses, including:
 
-- Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book >}})
-- Jenny Bryan's [STAT 545 Course]({{< var stat545 >}})
+- Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
+- Jenny Bryan's [STAT 545 Course](http://stat545.com/)
 - [RStudio primers](https://rstudio.cloud/learn/primers/1.2)
-- Xiao Ping Song's [Intro2R crash course]({{< var song_book >}})
+- Xiao Ping Song's [Intro2R crash course](https://github.com/xp-song/Intro2R)

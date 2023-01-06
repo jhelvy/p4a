@@ -388,8 +388,8 @@ I can also run any line in the script by typing "Command + Enter" (Mac) or "Cont
 
 Some content on this page has been modified from other courses, including:
 
-- Palmer penguins plot from the [**palmerpenguins**]({{< var penguins >}}) package by Allison Horst.
-- "Case" art by [Allison Horst]({{< var horst_art >}})
-- Danielle Navarro's book ["Learning Statistics With R"]({{< var navarro_book >}})
-- Jenny Bryan's [STAT 545 Course]({{< var stat545 >}})
-- [Modern Dive]({{< var modern_dive >}}), by Chester Ismay & Albert Y. Kim
+- Palmer penguins plot from the [**palmerpenguins**](https://github.com/allisonhorst/palmerpenguins/) package by Allison Horst.
+- "Case" art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)
+- Danielle Navarro's book ["Learning Statistics With R"](https://learningstatisticswithr.com/book/introR.html)
+- Jenny Bryan's [STAT 545 Course](http://stat545.com/)
+- [Modern Dive](https://moderndive.netlify.com/), by Chester Ismay & Albert Y. Kim.
