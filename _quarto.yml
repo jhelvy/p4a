@@ -30,6 +30,10 @@ book:
   repo-branch: main
   repo-actions: [edit, issue]
 
+  sidebar:
+    search: true
+    style: docked
+    
   chapters:
     - index.qmd
     - intro.qmd
@@ -60,9 +64,11 @@ book:
 
 format:
   html:
-    theme:
-      - cosmo
+    theme: cosmo
     code-link: true
-
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    link-external-icon: false
     author-meta: "John Paul Helveston"
     callout-appearance: simple
