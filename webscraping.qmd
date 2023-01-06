@@ -1,9 +1,3 @@
-# Introduction {#sec-introduction}
+# Webscraping {#sec-webscraping}
 
-```{r}
-#| echo: false
-#| message: false
-source("_common.R")
-```
-
-This is a Quarto book.
+Coming soon!

@@ -21,19 +21,19 @@ source("_common.R")
 > ### Suggested Readings {.unnumbered}
 >
 > * [Chapter 5](https://r4ds.had.co.nz/transform.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
-> * [`dplyr` cheatsheet](https://resources.rstudio.com/the-essentials-of-data-science/data-transformation)
+> * [`dplyr` cheatsheet](https://posit.co/resources/cheatsheets/)
 
 ## R Setup
 
 Before we get started, let's set up our analysis environment:
 
-1) Open up your "data-analysis-tutorial" R Project that you created in the last lesson - if you didn't do this, [go back and do it now](L10-data-analysis-1-data-frames.html#41_r_setup).
+1) Open up your "data-analysis-tutorial" R Project that you created in the last lesson - if you didn't do this, [go back and do it now](data-frames.html#r-setup).
 2) Create a new `.R` file (File > New File > R Script), and save it as "`data_wrangling.R`" inside your "data-analysis-tutorial" R Project folder.
 3) Use the `download.file()` function to download the `wildlife_impacts.csv` dataset, and save it in the `data` folder in your R Project:
 
 ```{r, eval=FALSE}
 download.file(
-    url = "https://github.com/emse6574-gwu/2019-Fall/raw/gh-pages/data/wildlife_impacts.csv",
+    url = "https://github.com/jhelvy/p4a/raw/main/data/wildlife_impacts.csv",
     destfile = file.path('data', 'wildlife_impacts.csv')
 )
 ```
@@ -88,14 +88,15 @@ nrow(df) / (2019 - 1990) / 365
 
 ## Data wrangling with `dplyr`
 
-![](images/horst_monsters_data_wrangling.png){ width=500 }
-[[Art by Allison Horst]](https://github.com/allisonhorst)
+![](images/horst_monsters_data_wrangling.png){ width=600 }
+[Art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]{.aside}
 
 "Data Wrangling" refers to the art of getting your data into R in a useful form for visualization and modeling. Wrangling is the first step in the general data science process:
 
 <center>
-![](images/data-wrangle.png)
+![](images/data-wrangle.png){ width=600 }
 </center>
+[[Image source](https://r4ds.had.co.nz/introduction.html)]{.aside}
 
 ### What is `dplyr`
 
@@ -121,7 +122,7 @@ In this lesson, we are going to learn some of the most common `dplyr` functions:
 
 ### Select columns with `select()`
 
-![](images/rstudio-cheatsheet-select.png){ width=500 }
+![](images/rstudio-cheatsheet-select.png){ width=600 }
 
 To select specific columns, use `select()`. The first argument
 to this function is the data frame (`df`), and the subsequent
@@ -148,7 +149,7 @@ Some additional options to select columns based on a specific criteria include:
 
 ### Select rows with `filter()`
 
-![](images/rstudio-cheatsheet-filter.png){ width=500 }
+![](images/rstudio-cheatsheet-filter.png){ width=600 }
 
 Filter the rows for wildlife impacts that occurred in DC:
 
@@ -164,7 +165,8 @@ filter(df, cost_repairs_infl_adj > 10^6)
 
 ### Sequence operations with pipes (`%>%`)
 
-![](images/magrittr.png){ width=200 } (logo is a reference to [The Treachery of Images](https://en.wikipedia.org/wiki/The_Treachery_of_Images))
+![](images/magrittr.png){ width=200 }
+[Logo is a reference to [The Treachery of Images](https://en.wikipedia.org/wiki/The_Treachery_of_Images) by Belgian surrealist painter René Magritte.]{.aside}
 
 What if you want to select and filter at the same time? Well, one way to do this is to use intermediate steps. To do this, you first create a temporary data frame and then use that as input to the next function, like this:
 
@@ -241,7 +243,7 @@ df %>%
 
 ### Create new variables with `mutate()`
 
-![](images/rstudio-cheatsheet-mutate.png){ width=500 }
+![](images/rstudio-cheatsheet-mutate.png){ width=600 }
 
 You will often need to create new columns based on the values in existing
 columns. For this use `mutate()`. For example, let's create a new variable converting the `height` variable from feet to miles:
@@ -286,7 +288,7 @@ paradigm:
 
 ### The `group_by()` function
 
-![](images/rstudio-cheatsheet-group_by.png){ width=500 }
+![](images/rstudio-cheatsheet-group_by.png){ width=600 }
 
 The `group_by()` function enables you to perform operations across groups within the data frame. It is typically used by inserting it in the "pipeline" before the desired group operation. For example, if we wanted to add a a new column that computed the mean height of reported wildlife impacts for each state, we could insert `group_by(state)` in the pipeline:
 
@@ -302,7 +304,7 @@ You'll see that the same value for `mean_height` is reported for the same states
 
 ### The `summarize()` function
 
-![](images/rstudio-cheatsheet-summarise.png){ width=500 }
+![](images/rstudio-cheatsheet-summarise.png){ width=600 }
 
 The `group_by()` function is often used together with `summarize()`, which collapses each group into a single-row summary of that group. For example, we collapse the result of the previous example by using `summarise()` instead of `mutate()`:
 

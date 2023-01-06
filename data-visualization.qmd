@@ -16,7 +16,6 @@ source("_common.R")
 >
 > ### Suggested Readings {.unnumbered}
 >
-> * The "Introduction" chapter of Rick Scavetta's ["Data Visualization with ggplot2 (Part 1)"](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) lesson on DataCamp (it's free!).
 > * [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) of "R for Data Science", by Garrett Grolemund and Hadley Wickham
 > * [Data Visualization: A practical introduction](http://socviz.co/), by Kieran Healy
 
@@ -24,26 +23,22 @@ source("_common.R")
 >
 > \- [Richard Hamming](https://en.wikipedia.org/wiki/Richard_Hamming)
 
-...and one of the best ways to develop insights from data is to _visualize_ the data. If you're completely new to data visualization, I recommend checking out the following two resources:
-
-1. Watch [this 40-minute video](https://www.youtube.com/watch?v=fSgEeI2Xpdc) on how humans see data, by John Rauser. This is one of the best overviews I've ever seen of how we can exploit our understanding of human psychology to design effective charts:
+...and one of the best ways to develop insights from data is to _visualize_ the data. If you're completely new to data visualization, I recommend watching [this 40-minute video](https://www.youtube.com/watch?v=fSgEeI2Xpdc) on how humans see data, by John Rauser. This is one of the best overviews I've ever seen of how we can exploit our understanding of human psychology to design effective charts:
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/fSgEeI2Xpdc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-2. Go through the "Introduction" chapter of Rick Scavetta's ["Data Visualization with ggplot2 (Part 1)"](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) lesson on DataCamp. The introduction section is free and contains three 5-minute summary videos along with some practice exercises.
 
 ## R Setup
 
 Before we get started, let's set up our analysis environment like before:
 
-1) Open up your "data_analysis_tutorial" R Project that you created in the first data analysis lesson - if you didn't do this, [go back and do it now](L3-data-frames.html#31_R_Setup).
+1) Open up your "data_analysis_tutorial" R Project that you created in the first data analysis lesson - if you didn't do this, [go back and do it now](data-frames.html#r-setup).
 2) Create a new `.R` file (File > New File > R Script), and save it as "`data_viz.R`" inside your "data_analysis_tutorial" R Project folder.
 3) This time, instead of downloading the data file and saving it in our `data` folder, let's just read it in directly from the web!
 
 ```{r, message=FALSE}
 library(readr)
 library(dplyr)
-df <- read_csv("https://raw.githubusercontent.com/emse-p4a-gwu/2020-Fall/master/data/north_america_bear_killings.csv")
+df <- read_csv("https://raw.githubusercontent.com/jhelvy/p4a/main/data/north_america_bear_killings.csv")
 ```
 
 For this lesson, we are going to use the [North American Bear Killings](https://data.world/ajsanne/north-america-bear-killings) dataset, which was compiled by [Ali Sanne](https://data.world/ajsanne) from the [Wikipedia page](https://en.wikipedia.org/wiki/List_of_fatal_bear_attacks_in_North_America) on fatal bear attacks in North America. The dataset contains recorded killings by black, brown, or polar bears from 1900 to 2019 in North America. Each row in the dataset holds information for a single incident with the following columns:
@@ -83,13 +78,19 @@ R has a number of built-in tools for basic graph types. We will only cover two h
 
 A scatter plot provides a graphical view of the relationship between two variables. Typically these are used for "continuous" variables, like _time_, _age_, _money_, etc...things that are not categorical in nature (as opposed to "discrete" variables, like _nationality_). Here's a scatterplot of the age of the bear killing victims over time:
 
-```{r, fig.height=5, fig.width=6}
+```{r}
+#| fig.height: 5
+#| fig.width: 6
+
 plot(x = df$year, y = df$age)
 ```
 
 The basic inputs to the `plot()` function are `x` and `y`, which must be vectors of the same length. You can customize many features (fonts, colors, axes, shape, titles, etc.) through [graphic options](http://www.statmethods.net/advgraphs/parameters.html). Here's the same plot with a few customizations:
 
-```{r, fig.height=5, fig.width=6}
+```{r}
+#| fig.height: 5
+#| fig.width: 6
+
 plot(x    = df$year,
      y    = df$age,
      col  = 'darkblue', # "col" changes the point color
@@ -105,13 +106,19 @@ Looks like bear killings are becoming more frequent over time (hmm, why might th
 
 The [histogram](https://en.wikipedia.org/wiki/Histogram) is one of the most common ways to visualize the _distribution_ of a variable. The `hist()` function takes just one variable: `x`. Here's a histogram of the `month` variable:
 
-```{r, fig.height=5, fig.width=6}
+```{r}
+#| fig.height: 5
+#| fig.width: 6
+
 hist(x = df$month)
 ```
 
 As you might expect, most bear attacks occur during the summer months, when parks get more visitors. As with the `plot()` function, you can customize a lot of the histogram features. One common customization is to modify the number of "bins" in the histogram by changing the `breaks` argument. Here we'll fix the number of bins to `12` - one for each month:
 
-```{r, fig.height=5, fig.width=6}
+```{r}
+#| fig.height: 5
+#| fig.width: 6
+
 hist(x      = df$month,
      breaks = 12,
      col    = 'darkred',
@@ -123,13 +130,13 @@ hist(x      = df$month,
 ## Advanced figures with `ggplot2`
 
 ![](images/horst_monsters_ggplot2.png){ width=500 }
-[[Art by Allison Horst]](https://github.com/allisonhorst)
+[Art by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]{.aside}
 
-While Base R plot functions are useful for making simple, quick plots, many R users have adopted the [`ggplot2`](http://docs.ggplot2.org/) package as their primary tool for visualizing data.
+While Base R plot functions are useful for making simple, quick plots, many R users have adopted the `ggplot2` package as their primary tool for visualizing data.
 
 ### The Grammar of Graphics
 
-The `ggplot2` library is built on the ["Grammar of Graphics"](https://www.springer.com/in/book/9780387245447) concept developed by Leland Wilkinson. A "grammar of graphics" (that's what the "gg" in "ggplot2" stands for) is a framework that uses _layers_ to describe and construct visualizations or graphics in a structured manner. Here's a visual summary of the concept:
+The `ggplot2` library is built on the ["Grammar of Graphics"](https://www.springer.com/in/book/9780387245447) concept developed by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson). A "grammar of graphics" (that's what the "gg" in "ggplot2" stands for) is a framework that uses _layers_ to describe and construct visualizations or graphics in a structured manner. Here's a visual summary of the concept:
 
 <center>
 ![](images/making_a_ggplot.jpeg){ width=700 }
@@ -139,6 +146,7 @@ We will start using `ggplot2` by re-creating some of the above plots, but using 
 
 ```{r}
 #| message: false
+
 library(ggplot2)
 ```
 
@@ -146,7 +154,10 @@ library(ggplot2)
 
 The `ggplot()` function is used to initialize the basic graph structure, and then we add layers to it. The basic idea is that you specify different parts of the plot, and add them together using the `+` operator. We will start with a blank plot and will add layers as we go along:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df)
 ```
 
@@ -173,7 +184,10 @@ Each type of geom usually has a **required set of aesthetics** to be set, and us
 
 Now that we know what geoms and aesthetics are, let's put them to practice by making a scatterplot. To start, we will add the `geom_point()` geom and we'll set the position for the x- and y-axis inside the `aes()` function:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df) +
     geom_point(aes(x = year, y = age))
 ```
@@ -182,14 +196,20 @@ Notice how we've "added" the `geom_point()` layer to the previous blank slate. A
 
 If I wanted to change the point color, I could add that inside the `geom_point()` layer:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df) +
     geom_point(aes(x = year, y = age), color = "blue")
 ```
 
 But I could also _map_ one of my variables to the point color by placing the `color` variable inside the `aes()` function:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df) +
     geom_point(aes(x = year, y = age, color = gender))
 ```
@@ -198,7 +218,10 @@ ggplot(data = df) +
 
 I recommend using the `geom_col()` layer to create bar charts, which are great for comparing different numerical values across a categorical variable. One of the simplest things to show with bars is the _count_ of how many observations you have. You can compute this by using the `count()` function, and then use the resulting data frame to create bars of those counts:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 # Compute the counts
 monthCounts <- df %>%
   count(month)
@@ -210,7 +233,10 @@ ggplot(data = monthCounts) +
 
 Alternatively, you could use the `%>%` operator to pipe the results of a summary data frame directly into ggplot:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 df %>%
   count(month) %>%  # Compute the counts
   ggplot() +
@@ -219,7 +245,10 @@ df %>%
 
 Just like how we mapped the point color to a variable in scatter plots, you can map the bar color to a variable with bar charts using the `fill` argument in the `aes()` call. For example, here's the same bar chart of the count of observations with the bar colors representing the type of bear.
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 df %>%
   count(month, bearType) %>%  # Compute the counts for month and bear type
   ggplot() +
@@ -230,7 +259,10 @@ Hmm, looks like brown bears are the most frequent killers, though black bears ar
 
 You can plot variables other than the count. For example, here is a plot of the mean age of the victim in each year:
 
-```{r, fig.height=4, fig.width=7}
+```{r}
+#| fig.height: 4
+#| fig.width: 7
+
 df %>%
   filter(!is.na(age)) %>%
   group_by(year) %>%
@@ -247,7 +279,10 @@ There are lots of ways to tweak your ggplot to make it more aesthetically pleasi
 
 You can change the labels of your plot by adding the `labs()` layer:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df) +
     geom_point(aes(x = year, y = age, color = gender)) +
     labs(x = "Year",
@@ -264,7 +299,10 @@ The `labs()` layer enables you to modify the labels of any of the variables that
 
 Adding theme layers can change some global aspects of the plot, such as the background color, grid lines, legend appearance, etc. There are [many themes to choose from](https://ggplot2.tidyverse.org/reference/ggtheme.html), but using simple themes like `theme_bw()` or `theme_minimal()` often improves the plot from the default theme settings:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 ggplot(data = df) +
     geom_point(aes(x = year, y = age)) +
     theme_minimal()
@@ -272,7 +310,9 @@ ggplot(data = df) +
 
 There are LOTS of other themes from external packages as well. Some of my favorites are `theme_ipsum()` and `theme_ft_rc()` from the [**hrbrthemes**](https://github.com/hrbrmstr/hrbrthemes) package:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 library(hrbrthemes)
 
 ggplot(data = df) +
@@ -284,7 +324,9 @@ ggplot(data = df) +
 <img src="images/hrbrthemes_theme_ipsum.png" width=600>
 </center>
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 library(hrbrthemes)
 
 ggplot(data = df) +
@@ -298,7 +340,10 @@ ggplot(data = df) +
 
 Want to make a plot look fancy like those in the Economist magazine? Try `theme_economist()` from the [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) library:
 
-```{r, fig.height=4, fig.width=6}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+
 library(ggthemes)
 
 ggplot(data = df) +
@@ -312,14 +357,18 @@ The first (and easiest) is to export directly from the RStudio 'Plots' panel, by
 
 Another easy way to save a ggplot figure is to use the `ggsave()` function. First, create your plot and save it as an object:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 scatterPlot <- ggplot(data = df) +
     geom_point(aes(x = year, y = age))
 ```
 
 Then save the plot using `ggsave()` (make sure you create a folder called "plots" in which to save your plot):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 ggsave(filename = here('data', 'scatterPlot.pdf'),
        plot   = scatterPlot,
        width  = 6,
@@ -330,12 +379,10 @@ ggsave(filename = here('data', 'scatterPlot.pdf'),
 
 While the `ggplot2` library offers a wide variety of options for customizing your plots, remembering exactly how to do specific tasks (like changing the color of a line, or changing the position of a legend) can be difficult. Fortunately, there are wonderful resources for looking up all the tricks to make the perfect ggplot. Here are a few:
 
-- [RStudio `ggplot2` Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+- [RStudio `ggplot2` Cheatsheet](https://posit.co/resources/cheatsheets/)
 - [Tidyverse `ggplot2` reference guide](https://ggplot2.tidyverse.org/reference/)
 - [R Cookbook for `ggplot2`](http://www.cookbook-r.com/Graphs/)
 - [Top 50 `ggplot2` visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
-For more resources, check out the [data viz resource page](ref-visualizing-data.html)
 
 ## Page sources {.unnumbered}
 

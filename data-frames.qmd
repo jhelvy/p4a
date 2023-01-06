@@ -6,8 +6,6 @@
 source("_common.R")
 ```
 
-This is the first lesson in a sequence on data analysis in R. Before reading this lesson, check out the ["Prelude to Data Analysis"](L11.1-data-analysis-prelude.html).
-
 > ### Learning Objectives {.unnumbered}
 >
 > * Describe what a data frame is.
@@ -240,7 +238,7 @@ bodywt             | Body weight in kilograms
 
 Before we dig into the data, let's prepare our analysis environment by following these steps:
 
-1. Create a new R Project called "data_analysis_tutorial" and save the folder somewhere on your computer (see the ["RStudio projects"](L1-getting-started.html#83_RStudio_projects) section from lesson 1 if you're not sure what this is). This will create a folder called "data_analysis_tutorial" and also a `data_analysis_tutorial.RProj` file inside that folder.
+1. Create a new R Project called "data_analysis_tutorial" and save the folder somewhere on your computer (see the ["RStudio projects"](getting-started.html#rstudio-projects) section from lesson 1 if you're not sure what this is). This will create a folder called "data_analysis_tutorial" and also a `data_analysis_tutorial.RProj` file inside that folder.
 2. Create a new `.R` file (File > New File > R Script), and save it as `data_frames.R` inside your "data_analysis_tutorial" folder. From here on, we'll type all code for this lesson inside this `data_frames.R` file.
 3. Create another folder in your R Project folder called "data" - we'll put data in this folder real soon.
 
@@ -250,7 +248,7 @@ There are generally two ways to load external data.
 
 ### Method 1: Loading data from a package
 
-Many R packages come with pre-loaded datasets. For example, the **ggplot2** library (which we'll [use soon](L12-da3-data-visualization.html) to make plots in R) comes with the `msleep` dataset already loaded. To see this, install **ggplot2** and load the library:
+Many R packages come with pre-loaded datasets. For example, the **ggplot2** library (which we'll [use soon](data-visualization.html) to make plots in R) comes with the `msleep` dataset already loaded. To see this, install **ggplot2** and load the library:
 
 ```{r, eval=FALSE, message=FALSE}
 install.packages("ggplot2")
@@ -289,7 +287,7 @@ txhousing               Housing sales in TX
 
 What do you do when a dataset isn't available from a package? Well, you can "read" the data into R from an external file. One of the most common format for storing tabular data (i.e. data that is stored as rows and columns) is the comma separated value (CSV) file.
 
-To try this out yourself, download [this msleep.csv file](https://raw.githubusercontent.com/emse-p4a-gwu/2020-Fall/master/data/msleep.csv) (click the link, then go to "File -> Save" to save it) and put the file in your "data" folder that you created inside your "data_analysis_tutorial" folder.
+To try this out yourself, download [this msleep.csv file](https://raw.githubusercontent.com/jhelvy/p4a/main/data/msleep.csv) (click the link, then go to "File -> Save" to save it) and put the file in your "data" folder that you created inside your "data_analysis_tutorial" folder.
 
 **Note**:
 
@@ -302,23 +300,26 @@ We are going to read this data into R, so fight the temptation to open it in any
 
 1. Create a path to the data
 
-    ```{r}
-    library(here)
-    pathToData <- here('data', 'data.csv')
-    ```
+```{r}
+library(here)
+pathToData <- here('data', 'data.csv')
+```
 
 2. Import the data
 
-    ```{r, eval=FALSE}
-    library(readr)
-    df <- read_csv(pathToData)
-    ```
+```{r, eval=FALSE}
+library(readr)
+df <- read_csv(pathToData)
+```
 
 Let's break these steps down. First, I **strongly** recommend that you create the path to the data using the **here** package. The `here()` function builds the path to your current _working directory_ (this is where your `data_analysis_tutorial.Rproj` file lives!). For example, if I put my "data analysis tutorial" folder on my computer's desktop and opened up the `data_analysis_tutorial.Rproj` file, this is what the `here()` function would produce:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 here()
 ```
+
 ```
 "/Users/jhelvy/Desktop/data_analysis_tutorial"
 ```
@@ -327,10 +328,13 @@ The specific path will look different depending on where you put your project, a
 
 The arguments I give to the `here()` function are the sequence of folders and files that are inside my working directory. Since I put the `msleep.csv` file inside a folder called "data", I can get the path to that file like this:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 pathToData <- here('data', 'msleep.csv')
 pathToData
 ```
+
 ```
 "/Users/jhelvy/Desktop/data_analysis_tutorial/data/msleep.csv"
 ```
@@ -347,7 +351,9 @@ Once you've got your file path, you are now ready to load the data! The Base R f
 
 First, install the readr package if you haven't already:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 install.packages("readr")
 ```
 
@@ -364,7 +370,9 @@ R tells us that we've successfully read in some data and a quick summary of the 
 
 You can view the entire dataset in a tabular format (similar to how Excel looks) by using the `View()` function, which opens up another tab to view the data. Note that you cannot modify the data this way - you can just look at it:
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 View(msleep)
 ```
 
@@ -422,7 +430,12 @@ But just to give you an idea of where we're going, here are a few pieces of info
 
 1) It appears that mammalian brain and body weight are logarithmically correlated - cool!
 
-```{r fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+#| message: false
+#| warning: false
+
 library(ggplot2)
 ggplot(msleep, aes(x=brainwt, y=bodywt)) +
     geom_point(alpha=0.6) +
@@ -435,7 +448,12 @@ ggplot(msleep, aes(x=brainwt, y=bodywt)) +
 
 2) It appears there may also be a negative, logarithmic relationship (albeit weaker) between the size of mammalian brains and how much they sleep - cool!
 
-```{r fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+#| message: false
+#| warning: false
+
 ggplot(msleep, aes(x=brainwt, y=sleep_total)) +
     geom_point(alpha=0.6) +
     scale_x_log10() +
@@ -447,7 +465,12 @@ ggplot(msleep, aes(x=brainwt, y=sleep_total)) +
 
 3) Wow, there's a lot of variation in how much different mammals sleep - cool!
 
-```{r fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+```{r}
+#| fig.height: 4
+#| fig.width: 6
+#| message: false
+#| warning: false
+
 ggplot(msleep, aes(x=sleep_total)) +
     geom_histogram() +
     labs(x     = 'Total sleep time in hours',
