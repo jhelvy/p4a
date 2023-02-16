@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.335">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
 <title>Programming for Analytics in R - 15&nbsp; Monte Carlo Methods</title>
@@ -306,11 +306,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 <p>When you hear the words “Monte Carlo”, most people envision this:</p>
-<p><img src="images/monte_carlo_slots.gif" class="img-fluid" width="200"></p>
+<center>
+<img src="images/monte_carlo_slots.gif" width="200">
+</center>
 <p>…or this:</p>
-<p><img src="images/monte_carlo_f1.gif" class="img-fluid" width="300"></p>
+<center>
+<img src="images/monte_carlo_f1.gif" width="300">
+</center>
 <p>But when I hear Monte Carlo, I envision this:</p>
-<p><img src="images/monte_carlo_pi.gif" class="img-fluid" width="300"></p>
+<center>
+<img src="images/monte_carlo_pi.gif" width="300">
+</center>
 <p>No, that’s not some grainy image coming into focus - that’s a <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a> approximating the value of <span class="math inline">\(\pi\)</span> (3.1415927…).</p>
 <section id="what-is-monte-carlo-simulation" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="what-is-monte-carlo-simulation">
 <span class="header-section-number">15.1</span> What is Monte Carlo simulation?</h2>
@@ -368,19 +374,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s simulate some random points inside the box:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
+<span></span>
 <span><span class="co"># The function runif() samples from a "uniform" distribution</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, min <span class="op">=</span> <span class="fl">3</span>, max <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> <span class="co"># Values of x between 3 and 7</span></span>
+<span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, min <span class="op">=</span> <span class="fl">3</span>, max <span class="op">=</span> <span class="fl">7</span><span class="op">)</span>   <span class="co"># Values of x between 3 and 7</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">7</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="co"># Values of y between 0 and 7^2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have our points, we can use them to estimate the area under the curve. The logic here is that the ratio of points below the curve to the total number of points will be equal to the ratio of the area under <span class="math inline">\(f(x)\)</span> to the total area of the rectangle. That is:</p>
-<p><span class="math display">\[\frac{\text{# Points Under Curve}}{\text{# Total Points}} = \frac{\text{Area Under Curve}}{\text{Area of Rectangle}}\]</span></p>
-<p>So, to get the area under the curve, we need to compute the area of the rectangle and multiply it by <span class="math inline">\((\text{# Points Under Curve}) / (\text{# Total Points})\)</span>. We know the total area of the rectangle is its length (<span class="math inline">\((7 - 3) = 4\)</span>) times its height (<span class="math inline">\(7^2\)</span>), which is <span class="math inline">\(4 * 49 = 196\)</span>. So the area under the curve should be 196 times the ratio of points under the curve to the total number of points. Let’s write the code!</p>
+<p><span class="math display">\[\frac{\text{\# Points Under Curve}}{\text{\# Total Points}} = \frac{\text{Area Under Curve}}{\text{Area of Rectangle}}\]</span></p>
+<p>So, to get the area under the curve, we need to compute the area of the rectangle and multiply it by <span class="math inline">\((\text{\# Points Under Curve}) / (\text{\# Total Points})\)</span>. We know the total area of the rectangle is its length (<span class="math inline">\((7 - 3) = 4\)</span>) times its height (<span class="math inline">\(7^2\)</span>), which is <span class="math inline">\(4 * 49 = 196\)</span>. So the area under the curve should be 196 times the ratio of points under the curve to the total number of points. Let’s write the code!</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Determine which y points are less than or equal to x^2:</span></span>
-<span><span class="va">belowCurve</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;=</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="co"># This will create a vector of TRUE and FALSE values</span></span>
+<span></span>
+<span><span class="va">belowCurve</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;=</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="co"># Creates a vector of TRUE and FALSE values</span></span>
+<span></span>
 <span><span class="co"># Compute the ratio of points below the curve:</span></span>
+<span></span>
 <span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">belowCurve</span><span class="op">)</span> <span class="op">/</span> <span class="va">numTrials</span></span>
-<span><span class="va">totalArea</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">7</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span> <span class="op">*</span> <span class="fl">7</span><span class="op">^</span><span class="fl">2</span> <span class="co"># Rectangle length x height = 196</span></span>
+<span><span class="va">totalArea</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">7</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span> <span class="op">*</span> <span class="fl">7</span><span class="op">^</span><span class="fl">2</span> <span class="co"># length x height</span></span>
 <span><span class="va">areaUnderCurve</span> <span class="op">&lt;-</span> <span class="va">ratio</span> <span class="op">*</span> <span class="va">totalArea</span></span>
 <span><span class="va">areaUnderCurve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -388,7 +399,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>So, using Monte Carlo simulation with 100,000 points, we estimate that the area under the curve is 105.23632. How’d we do? Well, if you’re familiar with calculus, the integral of <span class="math inline">\(f(x) = x^2\)</span> has a closed-form solution (<span class="math inline">\(\frac{x^3}{3} + C\)</span>), so we can check our estimate against the pure-math solution:</p>
-<p><span class="math display">\[\int_{3}^{7} x^2 \mathrm{dx} = \left ( \frac{x^3}{3} \right ) \Big|_3^7 = \frac{7^3}{3} - \frac{3^3}{3} = 105.33\bar{3}\]</span></p>
+<p><span class="math display">\[
+\int_{3}^{7} x^2 \mathrm{dx} = \left ( \frac{x^3}{3} \right ) \Big|_3^7 = \frac{7^3}{3} - \frac{3^3}{3} = 105.33\bar{3}
+\]</span></p>
 <div class="cell" data-layout-align="center">
 
 </div>
@@ -399,8 +412,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </h2>
 <p>Now let’s look at something a bit trickier - approximating <span class="math inline">\(\pi\)</span>!</p>
 <p>Watch this quick video to see a summary of how this works (…I hope you like lounge music)</p>
+<center>
 <iframe width="640" height="400" src="https://www.youtube.com/embed/ELetCV_wX_c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
+</center>
 <p>Now let’s approximate <span class="math inline">\(\pi\)</span> ourselves! Let’s start with some basic geometry.</p>
 <p>The area of a circle is:</p>
 <blockquote class="blockquote">
@@ -411,7 +426,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(A_{square} = 4r^2\)</span></p>
 </blockquote>
 <p>This is because each side of the square is simply <span class="math inline">\(2r\)</span>, as can be seen in this image:</p>
-<p><img src="images/pi.png" class="img-fluid"></p>
+<center>
+<img src="images/pi.png" width="300">
+</center>
 <p>Knowing these two equations for the areas of a circle and square, we can compute <span class="math inline">\(\pi\)</span> by taking the ratio, <span class="math inline">\(R\)</span>, of the area of a circle to that of a square containing that circle:</p>
 <p><span class="math inline">\(R = \dfrac{\pi r^2}{4r^2} = \dfrac{\pi}{4}\)</span></p>
 <p>So to compute <span class="math inline">\(\pi\)</span>, all we need to do is multiply 4 times the ratio of the area of the circle to that of the square. Just like with integration, we can approximate that ratio by simulating lots of points in the square and then simply counting the number that fall inside the circle.</p>
@@ -421,7 +438,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;              x            y
@@ -436,17 +454,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For this example, we’re putting the points in a data frame to make it easier to work with. Now that we have random x and y points, let’s compute the radius to each point (the distance from <code>(x, y) = (0, 0)</code>) so we can determine which points fall inside the circle (which has a radius of 0.5):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">points</span> <span class="op">&lt;-</span> <span class="va">points</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>        radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">y</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span>        pointInCircle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">radius</span> <span class="op">&lt;=</span> <span class="fl">0.5</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>        pointInCircle <span class="op">=</span> <span class="va">radius</span> <span class="op">&lt;=</span> <span class="fl">0.5</span></span>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just to make sure we correctly labeled the points, let’s plot them, coloring them based on the <code>pointInCircle</code> variable we just created:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">pointInCircle</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="figs/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
@@ -456,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Looks like we correctly labeled the points! Now we have everything we need to estimate <span class="math inline">\(\pi\)</span>!</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span><span class="op">$</span><span class="va">pointInCircle</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span><span class="op">$</span><span class="va">pointInCircle</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
 <span><span class="va">piApprox</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">ratio</span></span>
 <span><span class="va">piApprox</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -470,20 +486,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>That’s an error of just 1.83 % - not bad for only 1,000 points!</p>
 <p>To get an even better estimate of <span class="math inline">\(\pi\)</span>, we can increase N. Let’s see what we get with 100,000 trials:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
+<span></span>
 <span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>        radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">y</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span>        pointInCircle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">radius</span> <span class="op">&lt;=</span> <span class="fl">0.5</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span>        pointInCircle <span class="op">=</span> <span class="va">radius</span> <span class="op">&lt;=</span> <span class="fl">0.5</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
 <span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span><span class="op">$</span><span class="va">pointInCircle</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
 <span><span class="va">piApprox</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">ratio</span></span>
 <span><span class="va">piApprox</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 3.13844</code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute error:</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute error:</span></span>
 <span><span class="va">error</span> <span class="op">&lt;-</span> <span class="va">piApprox</span> <span class="op">-</span> <span class="va">pi</span></span>
 <span><span class="va">percentError</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">error</span> <span class="op">/</span> <span class="va">pi</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">percentError</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
