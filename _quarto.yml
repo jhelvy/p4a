@@ -65,7 +65,6 @@ book:
 format:
   html:
     theme: cosmo
-    highlight-style: haddock
     code-link: true
     anchor-sections: true
     smooth-scroll: true
