@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
 <title>Programming for Analytics in R - 11&nbsp; Data Frames</title>
@@ -723,16 +723,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 6 × 11
-#&gt;   name       genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake  brainwt
-#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 Cheetah    Acin… carni Carn… lc         12.1    NA    NA      11.9 NA      
-#&gt; 2 Owl monkey Aotus omni  Prim… &lt;NA&gt;       17       1.8  NA       7    0.0155 
-#&gt; 3 Mountain … Aplo… herbi Rode… nt         14.4     2.4  NA       9.6 NA      
-#&gt; 4 Greater s… Blar… omni  Sori… lc         14.9     2.3   0.133   9.1  0.00029
-#&gt; 5 Cow        Bos   herbi Arti… domest…     4       0.7   0.667  20    0.423  
-#&gt; 6 Three-toe… Brad… herbi Pilo… &lt;NA&gt;       14.4     2.2   0.767   9.6 NA      
-#&gt; # … with 1 more variable: bodywt &lt;dbl&gt;, and abbreviated variable names
-#&gt; #   ¹​conservation, ²​sleep_total, ³​sleep_rem, ⁴​sleep_cycle</code></pre>
+#&gt;   name       genus vore  order conservation sleep_total sleep_rem sleep_cycle
+#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1 Cheetah    Acin… carni Carn… lc                  12.1      NA        NA    
+#&gt; 2 Owl monkey Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+#&gt; 3 Mountain … Aplo… herbi Rode… nt                  14.4       2.4      NA    
+#&gt; 4 Greater s… Blar… omni  Sori… lc                  14.9       2.3       0.133
+#&gt; 5 Cow        Bos   herbi Arti… domesticated         4         0.7       0.667
+#&gt; 6 Three-toe… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+#&gt; # ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>If you want to see all of the different datasets that any particular package contains, you can call the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function after loading a library. For example, here are all the dataset that are contained in the <strong>ggplot2</strong> library:</p>
@@ -833,16 +832,15 @@ txhousing               Housing sales in TX</code></pre>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 6 × 11
-#&gt;   name       genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake  brainwt
-#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 Cheetah    Acin… carni Carn… lc         12.1    NA    NA      11.9 NA      
-#&gt; 2 Owl monkey Aotus omni  Prim… &lt;NA&gt;       17       1.8  NA       7    0.0155 
-#&gt; 3 Mountain … Aplo… herbi Rode… nt         14.4     2.4  NA       9.6 NA      
-#&gt; 4 Greater s… Blar… omni  Sori… lc         14.9     2.3   0.133   9.1  0.00029
-#&gt; 5 Cow        Bos   herbi Arti… domest…     4       0.7   0.667  20    0.423  
-#&gt; 6 Three-toe… Brad… herbi Pilo… &lt;NA&gt;       14.4     2.2   0.767   9.6 NA      
-#&gt; # … with 1 more variable: bodywt &lt;dbl&gt;, and abbreviated variable names
-#&gt; #   ¹​conservation, ²​sleep_total, ³​sleep_rem, ⁴​sleep_cycle</code></pre>
+#&gt;   name       genus vore  order conservation sleep_total sleep_rem sleep_cycle
+#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1 Cheetah    Acin… carni Carn… lc                  12.1      NA        NA    
+#&gt; 2 Owl monkey Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA    
+#&gt; 3 Mountain … Aplo… herbi Rode… nt                  14.4       2.4      NA    
+#&gt; 4 Greater s… Blar… omni  Sori… lc                  14.9       2.3       0.133
+#&gt; 5 Cow        Bos   herbi Arti… domesticated         4         0.7       0.667
+#&gt; 6 Three-toe… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767
+#&gt; # ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Similarly, you can view the <em>last</em> 6 rows by using the <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> function:</p>
@@ -850,16 +848,15 @@ txhousing               Housing sales in TX</code></pre>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">msleep</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 6 × 11
-#&gt;   name        genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake brainwt
-#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Tenrec      Tenr… omni  Afro… &lt;NA&gt;       15.6     2.3  NA       8.4  0.0026
-#&gt; 2 Tree shrew  Tupa… omni  Scan… &lt;NA&gt;        8.9     2.6   0.233  15.1  0.0025
-#&gt; 3 Bottle-nos… Turs… carni Ceta… &lt;NA&gt;        5.2    NA    NA      18.8 NA     
-#&gt; 4 Genet       Gene… carni Carn… &lt;NA&gt;        6.3     1.3  NA      17.7  0.0175
-#&gt; 5 Arctic fox  Vulp… carni Carn… &lt;NA&gt;       12.5    NA    NA      11.5  0.0445
-#&gt; 6 Red fox     Vulp… carni Carn… &lt;NA&gt;        9.8     2.4   0.35   14.2  0.0504
-#&gt; # … with 1 more variable: bodywt &lt;dbl&gt;, and abbreviated variable names
-#&gt; #   ¹​conservation, ²​sleep_total, ³​sleep_rem, ⁴​sleep_cycle</code></pre>
+#&gt;   name       genus vore  order conservation sleep_total sleep_rem sleep_cycle
+#&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1 Tenrec     Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA    
+#&gt; 2 Tree shrew Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233
+#&gt; 3 Bottle-no… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA    
+#&gt; 4 Genet      Gene… carni Carn… &lt;NA&gt;                 6.3       1.3      NA    
+#&gt; 5 Arctic fox Vulp… carni Carn… &lt;NA&gt;                12.5      NA        NA    
+#&gt; 6 Red fox    Vulp… carni Carn… &lt;NA&gt;                 9.8       2.4       0.35 
+#&gt; # ℹ 3 more variables: awake &lt;dbl&gt;, brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>You can also view an overview summary of each column and it’s data types by using the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> or <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> functions (these both do the same thing, but I prefer the output of <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>):</p>
