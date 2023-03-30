@@ -38,6 +38,8 @@ We can see that the dataset contains observations about the temperatures of laun
 #| message: false
 #| fig.width: 8
 #| fig.height: 3
+#| label: "challenger-temps"
+
 library(ggplot2)
 
 challengerPlot <- ggplot(
@@ -71,6 +73,8 @@ Now, what temperature was forecasted for the day of the Challenger launch? **26 
 #| message: false
 #| fig.width: 8
 #| fig.height: 3
+#| label: "challenger-temps-labeled"
+
 annotation <- paste(
     "26°-29°:", "Range of forecasted temperatures",
     "for Jan. 28, 1986 Challenger launch", sep = "\n"
