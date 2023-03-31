@@ -352,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="figs/integration-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -361,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="figs/integration-box-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -430,20 +430,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Let’s write the code!</strong></p>
 <p>First, generate lots of random points in a square. For this example, we’ll use a square with side length of 1 centered at <code>(x, y) = (0, 0)</code>, so we need to draw random points between <code>x = (-0.5, 0.5)</code> and <code>y = (-0.5, 0.5)</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">10000</span></span>
 <span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;              x            y
-#&gt; 1  0.229506132  0.139484990
-#&gt; 2 -0.007594905 -0.002580851
-#&gt; 3  0.109975740 -0.202333914
-#&gt; 4 -0.219826613  0.163189993
-#&gt; 5 -0.011846287  0.301705838
-#&gt; 6 -0.175026551 -0.030729181</code></pre>
+<pre><code>#&gt;              x           y
+#&gt; 1  0.229506132 -0.08053840
+#&gt; 2 -0.007594905  0.04727206
+#&gt; 3  0.109975740  0.18632628
+#&gt; 4 -0.219826613  0.35889460
+#&gt; 5 -0.011846287 -0.09219395
+#&gt; 6 -0.175026551 -0.23989452</code></pre>
 </div>
 </div>
 <p>For this example, we’re putting the points in a data frame to make it easier to work with. Now that we have random x and y points, let’s compute the radius to each point (the distance from <code>(x, y) = (0, 0)</code>) so we can determine which points fall inside the circle (which has a radius of 0.5):</p>
@@ -458,30 +458,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Just to make sure we correctly labeled the points, let’s plot them, coloring them based on the <code>pointInCircle</code> variable we just created:</p>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">pointInCircle</span><span class="op">)</span>,</span>
+<span>        size <span class="op">=</span> <span class="fl">0.5</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="figs/monte-carlo-pie-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Looks like we correctly labeled the points! Now we have everything we need to estimate <span class="math inline">\(\pi\)</span>!</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span><span class="op">$</span><span class="va">pointInCircle</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span><span class="op">$</span><span class="va">pointInCircle</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
 <span><span class="va">piApprox</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">ratio</span></span>
 <span><span class="va">piApprox</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 3.084</code></pre>
+<pre><code>#&gt; [1] 3.1256</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
 
 </div>
-<p>So our estimate error is: <code>3.1415 -</code> <code>3.084</code> <code>=</code> <code>-0.0575927</code>.</p>
-<p>That’s an error of just 1.83 % - not bad for only 1,000 points!</p>
+<p>So our estimate error is: <code>3.1415 -</code> <code>3.1256</code> <code>=</code> <code>-0.0159927</code>.</p>
+<p>That’s an error of just 0.51 % - not bad for only 1,000 points!</p>
 <p>To get an even better estimate of <span class="math inline">\(\pi\)</span>, we can increase N. Let’s see what we get with 100,000 trials:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numTrials</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
 <span></span>
 <span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">numTrials</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
@@ -495,17 +503,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">piApprox</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">ratio</span></span>
 <span><span class="va">piApprox</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 3.13844</code></pre>
+<pre><code>#&gt; [1] 3.13876</code></pre>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute error:</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute error:</span></span>
 <span><span class="va">error</span> <span class="op">&lt;-</span> <span class="va">piApprox</span> <span class="op">-</span> <span class="va">pi</span></span>
 <span><span class="va">percentError</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">error</span> <span class="op">/</span> <span class="va">pi</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">percentError</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.1</code></pre>
+<pre><code>#&gt; [1] 0.09</code></pre>
 </div>
 </div>
-<p>By increasing the number of trials from 1,000 to 100,000, we improved our estimate error from 1.83 % to 0.1 %!</p>
+<p>By increasing the number of trials from 1,000 to 100,000, we improved our estimate error from 0.51 % to 0.09 %!</p>
 </section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
 <p>Some content on this page has been modified from other courses, including:</p>
 <ul>
