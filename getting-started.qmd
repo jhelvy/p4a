@@ -61,7 +61,9 @@ As you probably expected, R returned `7`. No surprises here!
 
 But what happens if you ask R to add a number surrounded by quotations marks?
 
-```{r, error=TRUE}
+```{r}
+#| error: true 
+
 3 + "4"
 ```
 
@@ -206,7 +208,12 @@ In the next section, we'll learn more about some of the distinctions between dif
 
 While R is a programming language, it is perhaps most commonly known as a tool for analyzing data and creating plots. For example, here's how you can use R to make a simple plot of the equation $y  = x^2$:
 
-```{r simple-plot, warning = FALSE, message = FALSE, out.width='75%'}
+```{r}
+#| label: 'simple-plot' 
+#| warning: false
+#| message: false
+#| out.width: '75%'
+
 x <- seq(from = -10, to = 10)
 y <- x^2
 plot(x, y)
@@ -215,7 +222,13 @@ lines(x, y)
 
 But you can plot way more than equations in R! For example, take a look at this plot of some [actual data about penguins](https://allisonhorst.github.io/palmerpenguins/) (don't worry about the code for now - by the end of this course you'll know what it all does!):
 
-```{r mass-flipper, warning = FALSE, message = FALSE, fig.height=5, fig.width=7}
+```{r}
+#| label: 'mass-flipper'
+#| warning: false
+#| message: false
+#| fig.height: 5
+#| fig.width: 7
+
 library(ggplot2)
 library(palmerpenguins)
 
@@ -257,7 +270,9 @@ Both produce the same result. The point here is that R ignores extra spaces. Thi
 
 This doesn't mean extra spaces _never_ matter. For example, if you wanted to input the value `3.14` but you put a space after the `3`, you'll get an error:
 
-```{r, error=TRUE}
+```{r}
+#| error: true
+
 3   .14
 ```
 
@@ -294,7 +309,9 @@ Any process running on your computer has a notion of its "working directory". In
 
 You can explicitly check your working directory with:
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
+
 getwd()
 ```
 
@@ -304,7 +321,9 @@ As a beginning R user, it's OK let your home directory or any other weird direct
 
 __Although I do not recommend it__, in case you're curious, you can set R's working directory at the command line like so:
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
+
 setwd("~/myCoolProject")
 ```
 
@@ -336,7 +355,9 @@ Choose "New Directory". The directory name you choose here will be the project n
 
 As a demo, I created a project on my Desktop called "demo". RStudio created a new project called "demo", and in this folder there is a file called "demo.Rproj". If I double-click on this file, RStudio will open up, and my working directory will be automatically set to this folder! You can double check this by typing:
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
+
 getwd()
 ```
 
@@ -348,7 +369,9 @@ It is traditional to save R scripts with a `.R` or `.r` suffix. Any code you wis
 
 You can copy some of the code we've typed so far into this file to re-run it again later:
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
+
 3 + 4
 3 + "4"
 x <- 2

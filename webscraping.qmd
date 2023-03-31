@@ -1,3 +1,0 @@
-# Webscraping {#sec-webscraping}
-
-Coming soon!

@@ -55,7 +55,6 @@ book:
         - data-frames.qmd
         - data-wrangling.qmd
         - data-visualization.qmd
-        - webscraping.qmd
 
     - part: extensions.qmd
       chapters:
