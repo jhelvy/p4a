@@ -2,82 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://p4a.jhelvy.com/index.html</loc>
-    <lastmod>2023-03-30T11:46:45.496Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.636Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/intro.html</loc>
-    <lastmod>2023-03-30T11:46:45.498Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.637Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/programming.html</loc>
-    <lastmod>2023-03-30T11:46:45.499Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.638Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/getting-started.html</loc>
-    <lastmod>2023-03-30T11:46:45.502Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.642Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/functions-packages.html</loc>
-    <lastmod>2023-03-30T11:46:45.506Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.645Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/operators-data-types.html</loc>
-    <lastmod>2023-03-30T11:46:45.527Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.650Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/creating-functions.html</loc>
-    <lastmod>2023-03-30T11:46:45.535Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.661Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/conditionals.html</loc>
-    <lastmod>2023-03-30T11:46:45.540Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.664Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/testing-debugging.html</loc>
-    <lastmod>2023-03-30T11:46:45.543Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.666Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/iteration.html</loc>
-    <lastmod>2023-03-30T11:46:45.545Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.669Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/vectors.html</loc>
-    <lastmod>2023-03-30T11:46:45.550Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.674Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/strings.html</loc>
-    <lastmod>2023-03-30T11:46:45.558Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.896Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/data-analysis.html</loc>
-    <lastmod>2023-03-30T11:46:45.560Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.899Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/data-frames.html</loc>
-    <lastmod>2023-03-30T11:46:45.565Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.912Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/data-wrangling.html</loc>
-    <lastmod>2023-03-30T11:46:45.570Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.983Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/data-visualization.html</loc>
-    <lastmod>2023-03-30T11:46:45.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://p4a.jhelvy.com/webscraping.html</loc>
-    <lastmod>2023-03-30T11:46:45.575Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.986Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/extensions.html</loc>
-    <lastmod>2023-03-30T11:46:45.576Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.987Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/monte-carlo-methods.html</loc>
-    <lastmod>2023-03-30T11:46:45.578Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.989Z</lastmod>
   </url>
   <url>
     <loc>https://p4a.jhelvy.com/python-in-r.html</loc>
-    <lastmod>2023-03-30T11:46:45.583Z</lastmod>
+    <lastmod>2023-03-31T11:44:37.995Z</lastmod>
   </url>
 </urlset>

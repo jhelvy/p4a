@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 16&nbsp; Introduction to Python (in R)</title>
+<title>Programming for Analytics in R - 15&nbsp; Introduction to Python (in R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -239,11 +239,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./data-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./webscraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Webscraping</span></a>
-  </div>
-</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -256,12 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
+  <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
+  <a href="./python-in-r.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></a>
   </div>
 </li>
       </ul>
@@ -273,46 +268,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
 <li>
-<a href="#getting-started-with-python-in-r" id="toc-getting-started-with-python-in-r" class="nav-link active" data-scroll-target="#getting-started-with-python-in-r"><span class="toc-section-number">16.1</span>  Getting started with Python (in R)</a>
+<a href="#getting-started-with-python-in-r" id="toc-getting-started-with-python-in-r" class="nav-link active" data-scroll-target="#getting-started-with-python-in-r"><span class="toc-section-number">15.1</span>  Getting started with Python (in R)</a>
   <ul class="collapse">
-<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="toc-section-number">16.1.1</span>  Installation</a></li>
-  <li><a href="#starting-python" id="toc-starting-python" class="nav-link" data-scroll-target="#starting-python"><span class="toc-section-number">16.1.2</span>  Starting Python</a></li>
-  <li><a href="#exiting-python" id="toc-exiting-python" class="nav-link" data-scroll-target="#exiting-python"><span class="toc-section-number">16.1.3</span>  Exiting Python</a></li>
+<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="toc-section-number">15.1.1</span>  Installation</a></li>
+  <li><a href="#starting-python" id="toc-starting-python" class="nav-link" data-scroll-target="#starting-python"><span class="toc-section-number">15.1.2</span>  Starting Python</a></li>
+  <li><a href="#exiting-python" id="toc-exiting-python" class="nav-link" data-scroll-target="#exiting-python"><span class="toc-section-number">15.1.3</span>  Exiting Python</a></li>
   </ul>
 </li>
   <li>
-<a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics"><span class="toc-section-number">16.2</span>  Python basics</a>
+<a href="#python-basics" id="toc-python-basics" class="nav-link" data-scroll-target="#python-basics"><span class="toc-section-number">15.2</span>  Python basics</a>
   <ul class="collapse">
-<li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="toc-section-number">16.2.1</span>  Operators</a></li>
-  <li><a href="#variable-assignment" id="toc-variable-assignment" class="nav-link" data-scroll-target="#variable-assignment"><span class="toc-section-number">16.2.2</span>  Variable assignment</a></li>
-  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">16.2.3</span>  Data types</a></li>
-  <li><a href="#coercing-data-types" id="toc-coercing-data-types" class="nav-link" data-scroll-target="#coercing-data-types"><span class="toc-section-number">16.2.4</span>  Coercing data types</a></li>
+<li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="toc-section-number">15.2.1</span>  Operators</a></li>
+  <li><a href="#variable-assignment" id="toc-variable-assignment" class="nav-link" data-scroll-target="#variable-assignment"><span class="toc-section-number">15.2.2</span>  Variable assignment</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">15.2.3</span>  Data types</a></li>
+  <li><a href="#coercing-data-types" id="toc-coercing-data-types" class="nav-link" data-scroll-target="#coercing-data-types"><span class="toc-section-number">15.2.4</span>  Coercing data types</a></li>
   </ul>
 </li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="toc-section-number">16.3</span>  Loops</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">16.4</span>  Functions</a></li>
-  <li><a href="#python-methods" id="toc-python-methods" class="nav-link" data-scroll-target="#python-methods"><span class="toc-section-number">16.5</span>  Python Methods</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="toc-section-number">15.3</span>  Loops</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">15.4</span>  Functions</a></li>
+  <li><a href="#python-methods" id="toc-python-methods" class="nav-link" data-scroll-target="#python-methods"><span class="toc-section-number">15.5</span>  Python Methods</a></li>
   <li>
-<a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="toc-section-number">16.6</span>  Strings</a>
+<a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings"><span class="toc-section-number">15.6</span>  Strings</a>
   <ul class="collapse">
-<li><a href="#functions-and-methods" id="toc-functions-and-methods" class="nav-link" data-scroll-target="#functions-and-methods"><span class="toc-section-number">16.6.1</span>  Functions and methods</a></li>
-  <li><a href="#slicing" id="toc-slicing" class="nav-link" data-scroll-target="#slicing"><span class="toc-section-number">16.6.2</span>  Slicing</a></li>
+<li><a href="#functions-and-methods" id="toc-functions-and-methods" class="nav-link" data-scroll-target="#functions-and-methods"><span class="toc-section-number">15.6.1</span>  Functions and methods</a></li>
+  <li><a href="#slicing" id="toc-slicing" class="nav-link" data-scroll-target="#slicing"><span class="toc-section-number">15.6.2</span>  Slicing</a></li>
   </ul>
 </li>
-  <li><a href="#splitting-strings" id="toc-splitting-strings" class="nav-link" data-scroll-target="#splitting-strings"><span class="toc-section-number">16.7</span>  Splitting strings</a></li>
-  <li><a href="#running-a-python-script-in-r" id="toc-running-a-python-script-in-r" class="nav-link" data-scroll-target="#running-a-python-script-in-r"><span class="toc-section-number">16.8</span>  Running a Python script in R</a></li>
-  <li><a href="#summary-of-rpython-differences" id="toc-summary-of-rpython-differences" class="nav-link" data-scroll-target="#summary-of-rpython-differences"><span class="toc-section-number">16.9</span>  Summary of R/Python differences</a></li>
+  <li><a href="#splitting-strings" id="toc-splitting-strings" class="nav-link" data-scroll-target="#splitting-strings"><span class="toc-section-number">15.7</span>  Splitting strings</a></li>
+  <li><a href="#running-a-python-script-in-r" id="toc-running-a-python-script-in-r" class="nav-link" data-scroll-target="#running-a-python-script-in-r"><span class="toc-section-number">15.8</span>  Running a Python script in R</a></li>
+  <li><a href="#summary-of-rpython-differences" id="toc-summary-of-rpython-differences" class="nav-link" data-scroll-target="#summary-of-rpython-differences"><span class="toc-section-number">15.9</span>  Summary of R/Python differences</a></li>
   <li>
-<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">16.10</span>  Tips</a>
+<a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="toc-section-number">15.10</span>  Tips</a>
   <ul class="collapse">
-<li><a href="#making-your-own-python-class" id="toc-making-your-own-python-class" class="nav-link" data-scroll-target="#making-your-own-python-class"><span class="toc-section-number">16.10.1</span>  Making your own Python class</a></li>
+<li><a href="#making-your-own-python-class" id="toc-making-your-own-python-class" class="nav-link" data-scroll-target="#making-your-own-python-class"><span class="toc-section-number">15.10.1</span>  Making your own Python class</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/python-in-r.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-python-in-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></span></h1>
+<h1 class="title"><span id="sec-python-in-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Python (in R)</span></span></h1>
 </div>
 
 
@@ -344,12 +339,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> R package documentation.</li>
 </ul>
 </blockquote>
-<section id="getting-started-with-python-in-r" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="getting-started-with-python-in-r">
-<span class="header-section-number">16.1</span> Getting started with Python (in R)</h2>
+<section id="getting-started-with-python-in-r" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="getting-started-with-python-in-r">
+<span class="header-section-number">15.1</span> Getting started with Python (in R)</h2>
 <p>Python is another very popular computing language for data analysis and general purpose computing. Since R is the main language for this course, we will not cover all the many wonderous things that Python can do. Instead, we will introduce Python through the lens of how it is used for <em>data analysis</em>, with a particular focus on comparing its similarities and differences with R.</p>
 <p>While you can work with Python in a number of ways, we will use the <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> to access it directly from R!</p>
-<section id="installation" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="installation">
-<span class="header-section-number">16.1.1</span> Installation</h3>
+<section id="installation" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="installation">
+<span class="header-section-number">15.1.1</span> Installation</h3>
 <p>To get started, install the package (remember, you only need to do this once on your computer):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">install.package</span><span class="op">(</span><span class="st">'reticulate'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -363,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Would you like to install Miniconda? [Y<span class="sc">/</span>n]<span class="sc">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If so, I recommend you go ahead and install Miniconda by typing <code>y</code> and pressing enter. Miniconda is a smaller version of the larger <a href="https://docs.conda.io/en/latest/">“Conda”</a> distribution that most people use to install Python, and it is the preferred setup for using Python in R.</p>
-</section><section id="starting-python" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="starting-python">
-<span class="header-section-number">16.1.2</span> Starting Python</h3>
+</section><section id="starting-python" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="starting-python">
+<span class="header-section-number">15.1.2</span> Starting Python</h3>
 <p>Once you’ve loaded the <strong>reticulate</strong> library, use the following command to open up a Python REPL (which stands for “<strong>R</strong>ead–<strong>E</strong>val–<strong>P</strong>rint-<strong>L</strong>oop”):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/repl_python.html">repl_python</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -372,17 +367,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now look at your console - you should see three <code>&gt;&gt;&gt;</code> symbols. This means you’re now using Python! (Remember, the R console has only one <code>&gt;</code> symbol).</p>
 <p><strong>Check your Python version!</strong></p>
 <p>Above the <code>&gt;&gt;&gt;</code> symbols, you should see a message indicating which version of Python you are using. <strong>It should say “Python 3….”</strong>. Python has two versions (2 and 3) - we’ll be using Python 3. If you see Python 2, then you’ll need to adjust your <a href="https://rstudio.github.io/reticulate/articles/versions.html">configuration</a> to use Python 3. If you installed Miniconda, this should be Python 3.</p>
-</section><section id="exiting-python" class="level3" data-number="16.1.3"><h3 data-number="16.1.3" class="anchored" data-anchor-id="exiting-python">
-<span class="header-section-number">16.1.3</span> Exiting Python</h3>
+</section><section id="exiting-python" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="exiting-python">
+<span class="header-section-number">15.1.3</span> Exiting Python</h3>
 <p>If you want to get back to good ’ol R, just type the command <code>exit</code> into the Python console:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that you should <code>exit</code> and not <code>exit()</code> with parenthesis.</p>
-</section></section><section id="python-basics" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="python-basics">
-<span class="header-section-number">16.2</span> Python basics</h2>
-<section id="operators" class="level3" data-number="16.2.1"><h3 data-number="16.2.1" class="anchored" data-anchor-id="operators">
-<span class="header-section-number">16.2.1</span> Operators</h3>
+</section></section><section id="python-basics" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="python-basics">
+<span class="header-section-number">15.2</span> Python basics</h2>
+<section id="operators" class="level3" data-number="15.2.1"><h3 data-number="15.2.1" class="anchored" data-anchor-id="operators">
+<span class="header-section-number">15.2.1</span> Operators</h3>
 <p>Python has all the same arithmetic (<code>+-*/</code>), relational (<code>&lt;&gt;=</code>), and logical (<code>&amp;|!</code>) operators as R, but some of the symbols are a little different. Here’s a quick comparison of these differences:</p>
 <div style="width:450px">
 <table class="table">
@@ -451,16 +446,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>) <span class="kw">and</span> (<span class="dv">4</span> <span class="op">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>## True</code></pre>
-</section><section id="variable-assignment" class="level3" data-number="16.2.2"><h3 data-number="16.2.2" class="anchored" data-anchor-id="variable-assignment">
-<span class="header-section-number">16.2.2</span> Variable assignment</h3>
+</section><section id="variable-assignment" class="level3" data-number="15.2.2"><h3 data-number="15.2.2" class="anchored" data-anchor-id="variable-assignment">
+<span class="header-section-number">15.2.2</span> Variable assignment</h3>
 <p>While in R you can use either <code>=</code> or <code>&lt;-</code> to assign values to objects, in Python only the <code>=</code> symbol can be used:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>## 3</code></pre>
-</section><section id="data-types" class="level3" data-number="16.2.3"><h3 data-number="16.2.3" class="anchored" data-anchor-id="data-types">
-<span class="header-section-number">16.2.3</span> Data types</h3>
+</section><section id="data-types" class="level3" data-number="15.2.3"><h3 data-number="15.2.3" class="anchored" data-anchor-id="data-types">
+<span class="header-section-number">15.2.3</span> Data types</h3>
 <p>For the most part, Python has the same data types as R: “numeric”, “string”, and “logical”. But they use different words to describe them:</p>
 <div style="width:450px">
 <table class="table">
@@ -552,8 +547,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## &lt;class 'bool'&gt;</code></pre>
 </div>
 </div>
-</section><section id="coercing-data-types" class="level3" data-number="16.2.4"><h3 data-number="16.2.4" class="anchored" data-anchor-id="coercing-data-types">
-<span class="header-section-number">16.2.4</span> Coercing data types</h3>
+</section><section id="coercing-data-types" class="level3" data-number="15.2.4"><h3 data-number="15.2.4" class="anchored" data-anchor-id="coercing-data-types">
+<span class="header-section-number">15.2.4</span> Coercing data types</h3>
 <p>In R, you can convert data types using the general form of <code>as.something()</code>, replacing “<code>something</code>” with a data type. In Python, you can simply use the data type name to convert types. Here’s a comparison:</p>
 <div class="row">
 <div class="col-md-4">
@@ -643,8 +638,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Remember that “logical” types convert to <code>TRUE</code> for any number other than <code>0</code>, which converts to <code>FALSE</code>.</p>
-</section></section><section id="loops" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="loops">
-<span class="header-section-number">16.3</span> Loops</h2>
+</section></section><section id="loops" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="loops">
+<span class="header-section-number">15.3</span> Loops</h2>
 <p>Perhaps the biggest syntax difference between R and Python is that <strong>Python uses white space to define things</strong>.</p>
 <p>For example, to write a loop in Python, you have to indent the second line by four character spaces, otherwise you’ll get an error. The benefits of this is that it forces you to use good style practices, and you don’t have to use the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> symbols like you do in R. The downside is that if you have a single space character missing, you’ll get an error, and sometimes that’s hard to notice.</p>
 <p>Here’s a comparison of loops in R and Python:</p>
@@ -717,8 +712,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>One of the things many people love about Python is just how “clean” the syntax looks. Compared to R, the Python code above is more compact and contains less distracting elements, like the “<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>” symbols. You also don’t need to include <code>()</code> symbols on the first line.</p>
 <p>Other than these differences in syntax, loops are essentially the same across the two languages.</p>
-</section><section id="functions" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="functions">
-<span class="header-section-number">16.4</span> Functions</h2>
+</section><section id="functions" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="functions">
+<span class="header-section-number">15.4</span> Functions</h2>
 <p>Functions use the same “spacing” format as loops, and again the Python syntax is more compact. Here’s a comparison of the <code>isEven(n)</code> function:</p>
 <div class="row">
 <div class="col-md-6">
@@ -745,8 +740,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note the difference in the ordering of the first lines. In R, you first define the function name, then you assign to that name the function and argument(s).</p>
 <p>In Python, you do not use any assignment to create a function. Rather, you use the command <code>def</code> followed by the function name and argument(s). Here, the Python syntax is quite natural - you use the same syntax that you would use when calling the function (e.g.&nbsp;<code>isEven(n)</code>).</p>
 <p>Note also that the <code>if</code> statement in Python also uses the same general syntax of indented white space instead of using the <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> symbols.</p>
-</section><section id="python-methods" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="python-methods">
-<span class="header-section-number">16.5</span> Python Methods</h2>
+</section><section id="python-methods" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="python-methods">
+<span class="header-section-number">15.5</span> Python Methods</h2>
 <p>You might have heard people (i.e.&nbsp;me) say that Python is more “object-oriented” whereas R is more “functional.” What I mean is that in R you mostly apply <em>functions</em> to <em>objects</em>, but in Python you often call special functions that <em>belong</em> to certain object types. Here’s an example of converting a string to upper case:</p>
 <div class="row">
 <div class="col-md-6">
@@ -779,8 +774,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wow, strings have a lot of methods!</p>
 <p>The concept of using methods is a major part of the “object-oriented” way of programming, since it’s the <em>object</em> that is the center of attention. The <em>object</em> in Python is more than just a stored value - it’s a source of other methods (depending on the object’s class).</p>
 <p>Now that you’ve seen a little about how Python methods work, we’ll get to use some working with strings!</p>
-</section><section id="strings" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="strings">
-<span class="header-section-number">16.6</span> Strings</h2>
+</section><section id="strings" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="strings">
+<span class="header-section-number">15.6</span> Strings</h2>
 <p>String manipulation is one area where more substantial differences emerge between Python and R. Because R’s built in functions for dealing with strings are rather unintuitive, we’ve relied on the <strong>stringr</strong> package:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -860,8 +855,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## True</code></pre>
 </div>
 </div>
-<section id="functions-and-methods" class="level3" data-number="16.6.1"><h3 data-number="16.6.1" class="anchored" data-anchor-id="functions-and-methods">
-<span class="header-section-number">16.6.1</span> Functions and methods</h3>
+<section id="functions-and-methods" class="level3" data-number="15.6.1"><h3 data-number="15.6.1" class="anchored" data-anchor-id="functions-and-methods">
+<span class="header-section-number">15.6.1</span> Functions and methods</h3>
 <p>Because Python has both functions and object methods, it can sometimes be tricky to remember which to use for a specific purpose. For example, if you want to know how many characters are in a string, you use a function, just like in R:</p>
 <div class="row">
 <div class="col-md-2">
@@ -986,8 +981,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## True</code></pre>
 </div>
 </div>
-</section><section id="slicing" class="level3" data-number="16.6.2"><h3 data-number="16.6.2" class="anchored" data-anchor-id="slicing">
-<span class="header-section-number">16.6.2</span> Slicing</h3>
+</section><section id="slicing" class="level3" data-number="15.6.2"><h3 data-number="15.6.2" class="anchored" data-anchor-id="slicing">
+<span class="header-section-number">15.6.2</span> Slicing</h3>
 <p>To extract a sub-string, in R we have to use the <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> function. But in Python, you can simply use the <code>[]</code> symbols. In either case, you have to provide indices of where to start and stop the “slice”.</p>
 <p>For example, here’s how to extract the sub-string <code>"App"</code> from <code>"Apple"</code> in each language:</p>
 <div class="row">
@@ -1075,8 +1070,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 1</code></pre>
 </div>
 </div>
-</section></section><section id="splitting-strings" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="splitting-strings">
-<span class="header-section-number">16.7</span> Splitting strings</h2>
+</section></section><section id="splitting-strings" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="splitting-strings">
+<span class="header-section-number">15.7</span> Splitting strings</h2>
 <p>Like in R, splitting a string returns a list of strings. Python lists are similar to R lists, but they only have single brackets. Here’s an example:</p>
 <div class="row">
 <div class="col-md-6">
@@ -1132,8 +1127,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a>np.char.split(s, <span class="st">"pp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>## array([list(['A', 'le']), list(['Sna', 'le'])], dtype=object)</code></pre>
-</section><section id="running-a-python-script-in-r" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="running-a-python-script-in-r">
-<span class="header-section-number">16.8</span> Running a Python script in R</h2>
+</section><section id="running-a-python-script-in-r" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="running-a-python-script-in-r">
+<span class="header-section-number">15.8</span> Running a Python script in R</h2>
 <p>While R scripts end in <code>.R</code>, Python scripts end in <code>.py</code>. You can open up and save a blank Python script in RStudio by clicking</p>
 <blockquote class="blockquote">
 <p>File -&gt; New File -&gt; Python Script</p>
@@ -1165,16 +1160,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>## [1] TRUE</code></pre>
-</section><section id="summary-of-rpython-differences" class="level2" data-number="16.9"><h2 data-number="16.9" class="anchored" data-anchor-id="summary-of-rpython-differences">
-<span class="header-section-number">16.9</span> Summary of R/Python differences</h2>
+</section><section id="summary-of-rpython-differences" class="level2" data-number="15.9"><h2 data-number="15.9" class="anchored" data-anchor-id="summary-of-rpython-differences">
+<span class="header-section-number">15.9</span> Summary of R/Python differences</h2>
 <ul>
 <li>Indexing starts at 0 in Python and 1 in R.</li>
 <li>Strings in Python can be manipulated with arithmetic operators.</li>
 <li>Python is more “object-oriented” whereas R is more “functional”.</li>
-</ul></section><section id="tips" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="tips">
-<span class="header-section-number">16.10</span> Tips</h2>
-<section id="making-your-own-python-class" class="level3" data-number="16.10.1"><h3 data-number="16.10.1" class="anchored" data-anchor-id="making-your-own-python-class">
-<span class="header-section-number">16.10.1</span> Making your own Python class</h3>
+</ul></section><section id="tips" class="level2" data-number="15.10"><h2 data-number="15.10" class="anchored" data-anchor-id="tips">
+<span class="header-section-number">15.10</span> Tips</h2>
+<section id="making-your-own-python-class" class="level3" data-number="15.10.1"><h3 data-number="15.10.1" class="anchored" data-anchor-id="making-your-own-python-class">
+<span class="header-section-number">15.10.1</span> Making your own Python class</h3>
 <p>You can get really creative with object-oriented programming in Python by creating your own custom classes, allowing you to embed values and methods that belong only to objects of that class. For example, here’s how to create a class called <code>Animal</code>, which is defined by two values: <code>species</code> and <code>sound</code>. Note the white space indentations - without them Python will error:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Animal:</span>
@@ -1367,7 +1362,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./monte-carlo-methods.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
