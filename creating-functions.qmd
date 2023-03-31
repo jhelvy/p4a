@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -55,7 +56,10 @@ For example, here's the function `mySqrt(n)`, which returns the square root of `
 |`mySqrt`        | `<-` | `function` | `(n)` | `{ return(n^0.5) }`       |
 
 And here's `mySqrt(n)` written in the typical format:
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 mySqrt <- function(n) {
     return(n^0.5)
 }
@@ -71,6 +75,7 @@ square <- function(x) {
   return(y)
 }
 ```
+
 ```{r}
 square(2)
 square(8)
@@ -84,6 +89,7 @@ sumTwoValues <- function(x, y) {
   return(value)
 }
 ```
+
 ```{r}
 sumTwoValues(2, 3)
 sumTwoValues(3, 4)
@@ -96,6 +102,7 @@ doSomething <- function() {
     cat("Carpe diem!") # The cat() function prints whatever's inside it to the console
 }
 ```
+
 ```{r}
 doSomething()
 ```
@@ -109,6 +116,7 @@ f <- function(x, y=10) {
     return(x + y)
 }
 ```
+
 ```{r}
 f(5)     # 15
 f(5, 1)  # 6
@@ -123,6 +131,7 @@ isPositive <- function(x) {
     return (x > 0)
 }
 ```
+
 ```{r}
 isPositive(5)  # TRUE
 isPositive(-5) # FALSE
@@ -138,6 +147,7 @@ isPositive <- function(x) {
     cat("Goodbye!") # Does not run ("dead code")
 }
 ```
+
 ```{r}
 x <- isPositive(5)  # Prints Hello, then assigns TRUE to x
 x
@@ -152,15 +162,18 @@ f <- function(x) {
     x + 42
 }
 ```
+
 ```{r}
 f(5)
 ```
+
 ```{r}
 f <- function(x) {
     x + 42
     x + 7
 }
 ```
+
 ```{r}
 f(5)
 ```
@@ -174,6 +187,7 @@ printX <- function(x) {
   cat("The value of x provided is", x)
 }
 ```
+
 ```{r}
 printX(7)
 printX(42)
@@ -186,6 +200,7 @@ cubed <- function(x) {
     cat(x^3)
 }
 ```
+
 ```{r}
 cubed(2)   # Seems to work
 2*cubed(2) # Expected 16...didn't work
@@ -198,6 +213,7 @@ cubed <- function(x) {
     return(x^3) # That's better!
 }
 ```
+
 ```{r}
 cubed(2)   # Works!
 2*cubed(2) # Works!
@@ -235,6 +251,7 @@ minSquared <- function(x, y) {
     return(smaller^2)
 }
 ```
+
 ```{r}
 minSquared(3, 4)
 minSquared(4, 3)
@@ -242,7 +259,9 @@ minSquared(4, 3)
 
 If you try to call a local variable in the global environment, you'll get an error:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 square <- function(x) {
   y <- x^2
   return(y)
@@ -252,15 +271,21 @@ y
 
 _"Global"_ variables are those in the global environment. These will show up in the "Environment" pane in RStudio. You can call these inside functions, but this is **BAD** practice. Here's an example (**Don't do this!**):
 
-```{r include=FALSE}
+```{r}
+#| include: false
+
 n <- NULL
 ```
-```{r error=TRUE}
+
+```{r}
+#| error: true
+
 printN <- function() {
     cat(n)  # n is not local -- so it is global (bad idea!!!)
 }
 printN() # Nothing happens because n isn't defined
 ```
+
 ```{r}
 n = 5 # Define n in the global environment
 printN()

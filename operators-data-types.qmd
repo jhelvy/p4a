@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -26,7 +27,10 @@ R handles simple arithmetic using the following **arithmetic** operators:
 
 <div style="width:500px">
 
-```{r arithmetic, echo=FALSE}
+```{r}
+#| label: 'arithmetic'
+#| echo: false
+
 knitr::kable(rbind(
     c("addition", "`+`", "`10 + 2`", "`12`"),
     c("subtraction", "`-`", "`9 - 3`", "`6`"),
@@ -65,7 +69,10 @@ There are two other operators that are not typically as well-known as the first 
 
 <div style="width:500px">
 
-```{r mod, echo=FALSE}
+```{r}
+#| label: 'mod'
+#| echo: false
+
 knitr::kable(
     rbind(
     c("integer division", "`%/%`", "`4 %/% 3`", "`1`"),
@@ -273,6 +280,7 @@ A logical expression `x & y` is `TRUE` only if *both* `x` and `y` are `TRUE`.
 ```{r}
 (2 == 2) & (2 == 3) # FALSE because the second comparison if not TRUE
 ```
+
 ```{r}
 (2 == 2) & (3 == 3) # TRUE because both comparisons are TRUE
 ```
@@ -410,7 +418,9 @@ typeof('3')
 
 Notice that even though the value _looks_ like a number, because it is inside quotes R interprets it as a character. If you mistakenly thought it was a a number, R will gladly return an error when you try to do a numerical operation with it:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 '3' + 7
 ```
 

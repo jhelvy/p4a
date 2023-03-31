@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -54,6 +55,7 @@ You can also create a vector by using the `rep()` function, which replicates the
 y <- rep(5, 10) # The number 5 ten times
 z <- rep(10, 5) # The number 10 five times
 ```
+
 ```{r}
 y
 z
@@ -257,13 +259,17 @@ x[-c(2, 7)] # Returns everything except the 2nd and 7th elements
 
 But you cannot mix positive and negative integers while indexing:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 x[c(-2, 7)]
 ```
 
 If you try to use a float as an index, it gets rounded **down** to the nearest integer:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 x[3.1415] # Returns the 3rd element
 x[3.9999] # Still returns the 3rd element
 ```
@@ -272,7 +278,9 @@ x[3.9999] # Still returns the 3rd element
 
 You can name the elements in a vector and then use those names to access elements. To create a named vector, use the `names()` function:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 x <- seq(5)
 names(x) <- c('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j')
 x
@@ -280,14 +288,18 @@ x
 
 You can also create a named vector by putting the names directly in the `c()` function:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 x <- c('a' = 1, 'b' = 2, 'c' = 3, 'd' = 4, 'e' = 5)
 x
 ```
 
 Once your vector has names, you can then use those names as indices:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 x['a'] # Returns the first element
 x[c('a', 'c')] # Returns the 1st and 3rd elements
 ```
@@ -321,6 +333,7 @@ When you perform arithmetic operations on vectors, they are executed on an eleme
 x1 <- c(1, 2, 3)
 x2 <- c(4, 5, 6)
 ```
+
 ```{r}
 # Addition
 x1 + x2 # Returns (1+4, 2+5, 3+6)
@@ -337,7 +350,9 @@ x1 / x2 # Returns (1/4, 2/5, 3/6)
 
 When performing vectorized operations, the vectors need to have the same dimensions, or one of the vectors needs to be a single-value vector:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 # Careful! Mis-matched dimensions will only give you a warning, but will still return a value:
 x1 <- c(1, 2, 3)
 x2 <- c(4, 5)
@@ -347,6 +362,7 @@ x1 + x2
 What R does in these cases is _repeat_ the shorter vector, so in the above case the last value is `3 + 4`.
 
 If you have a single value vector, R will add it element-wise:
+
 ```{r}
 x1 <- c(1, 2, 3)
 x2 <- c(4)

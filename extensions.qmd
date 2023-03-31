@@ -1,3 +1,6 @@
 # Extensions {#sec-extensions .unnumbered}
 
-Coming soon!
+In this section I'll show how to do a few specific things in R that build on all the tools we've seen so far. This section is a constant work in progress, so come back later for more concepts. For now, it includes two sub-sections:
+
+- [Monte Carlo Methods](monte-carlo-methods.qmd)
+- [Using Python in R](python-in-r.qmd)

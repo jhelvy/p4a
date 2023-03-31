@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -80,7 +81,9 @@ The two test cases we used for `isEvenNumber()` are "normal" cases because they 
 
 One particular common error is when a user inputs the wrong data type to a function:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 isEvenNumber('42')
 ```
 
@@ -111,7 +114,9 @@ testIsEvenNumber()
 
 Another approach to checking input types is to explicitly provide a better error message so the user can know what went wrong. For example, rather than return `FALSE` when we input a string to `isEvenNumber()`, we can use `stop()` to halt the function and send an error message:
 
-```{r error=TRUE}
+```{r}
+#| error: true
+
 isEvenNumber <- function(n) {
     if (! is.numeric(n)) {
         stop('Oops! This function requires numeric inputs!')
@@ -158,7 +163,9 @@ immediately after the error has occurred.
 
 <!-- knitr messes with the tracebacks, so we just do this manually :| -->
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 f <- function(x) {
     return(x + 1)
 }
@@ -167,12 +174,15 @@ g <- function(x) {
 }
 g("a")
 ```
+
 ```
 #> Error in x + 1 : non-numeric argument to binary operator
 ```
+
 ```r
 traceback()
 ```
+
 ```
 #> 2: f(x) at #1
 #> 1: g("a")
@@ -181,7 +191,9 @@ traceback()
 Or by using `traceback()` as an error handler, which will call it immediately
 on any error. (You could even put this in your [`.Rprofile`](https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile))
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 options(error = traceback)
 g("a")
 ```

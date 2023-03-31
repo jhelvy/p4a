@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -35,10 +36,10 @@ head(orings)
 We can see that the dataset contains observations about the temperatures of launches and O-ring damage, but we don't yet have _information_. One step forward towards _information_ is to simply plot the data to _see_ if there might be a relationship between temperature and O-ring damage:
 
 ```{r}
+#| label: "challenger-temps"
 #| message: false
 #| fig.width: 8
 #| fig.height: 3
-#| label: "challenger-temps"
 
 library(ggplot2)
 

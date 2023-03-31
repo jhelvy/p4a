@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -70,6 +71,7 @@ That is, we want to compute the area under the curve of $x^2$ between $3 < x < 7
 <!-- ``` -->
 
 ```{r}
+#| label: 'integration'
 #| echo: false 
 #| message: false
 #| fig.width: 6
@@ -90,6 +92,7 @@ p
 One way to estimate the shaded area is to draw a bunch of random points inside a rectangle in the x-y plane that contains the shaded area and then count how many fall below the function line. So we're going to randomly draw points inside this box:
 
 ```{r}
+#| label: 'integration-box'
 #| echo: false 
 #| message: false
 #| fig.width: 6
@@ -185,7 +188,7 @@ So to compute $\pi$, all we need to do is multiply 4 times the ratio of the area
 First, generate lots of random points in a square. For this example, we'll use a square with side length of 1 centered at `(x, y) = (0, 0)`, so we need to draw random points between `x = (-0.5, 0.5)` and `y = (-0.5, 0.5)`:
 
 ```{r}
-numTrials <- 1000
+numTrials <- 10000
 points <- data.frame(
     x = runif(numTrials, -0.5, 0.5),
     y = runif(numTrials, -0.5, 0.5)
@@ -210,7 +213,7 @@ points <- points %>%
 Just to make sure we correctly labeled the points, let's plot them, coloring them based on the `pointInCircle` variable we just created:
 
 ```{r}
-#| echo: false 
+#| label: 'monte-carlo-pie'
 #| message: false
 #| fig.width: 6
 #| fig.height: 4.5
@@ -218,7 +221,10 @@ Just to make sure we correctly labeled the points, let's plot them, coloring the
 library(ggplot2)
 
 ggplot(points) +
-    geom_point(aes(x = x, y = y, color = pointInCircle), size = 0.7) +
+    geom_point(
+        aes(x = x, y = y, color = pointInCircle),
+        size = 0.5
+    ) +
     theme_minimal()
 ```
 

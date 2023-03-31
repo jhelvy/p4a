@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -31,7 +32,9 @@ Before we get started, let's set up our analysis environment:
 2) Create a new `.R` file (File > New File > R Script), and save it as "`data_wrangling.R`" inside your "data-analysis-tutorial" R Project folder.
 3) Use the `download.file()` function to download the `wildlife_impacts.csv` dataset, and save it in the `data` folder in your R Project:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 download.file(
     url = "https://github.com/jhelvy/p4a/raw/main/data/wildlife_impacts.csv",
     destfile = file.path('data', 'wildlife_impacts.csv')
@@ -66,7 +69,9 @@ cost_repairs_infl_adj |double    | Cost of repairs adjusted for inflation
 
 Let's load our libraries and read in the data:
 
-```{r, message=FALSE}
+```{r}
+#| message: false
+
 library(readr)
 library(dplyr)
 df <- read_csv(file.path('data', 'wildlife_impacts.csv'))
@@ -106,7 +111,9 @@ As we saw in the last section, we can use brackets (`[]`) to access elements of 
 
 The `dplyr` package was designed to make tabular data wrangling easier to perform and read. It pairs nicely with other libraries, such as **`ggplot2`** for visualizing data (which we'll cover next week). Together, `dplyr`, `ggplot2`, and a handful of other packages make up what is known as the ["Tidyverse"](https://www.tidyverse.org/) - an opinionated collection of R packages designed for data science. You can load all of the tidyverse packages at once using the `library(tidyverse)` command, but for now we're just going to install and use each package one at a time - starting with `dplyr`:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 install.packages("dplyr")
 ```
 
@@ -199,12 +206,18 @@ Consider reading the `%>%` operator as the words "...and then...". For instance,
 Here's another analogy:
 
 **Without Pipes**:
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 leave_house(get_dressed(get_out_of_bed(wake_up(me))))
 ```
 
 **With Pipes**:
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 me %>%
     wake_up %>%
     get_out_of_bed %>%
@@ -395,7 +408,9 @@ heightSummary <- df %>%
 
 Save the the new `heightSummary` data frame as a CSV file in your "data_output" folder:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 write_csv(heightSummary, path = file.path('data_output', 'heightSummary.csv')
 ```
 
@@ -403,7 +418,9 @@ write_csv(heightSummary, path = file.path('data_output', 'heightSummary.csv')
 
 You will often need to create new variables based on a condition. To do this, you can use the `if_else()` function. Here's the general syntax:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 if_else(<condition>, <if TRUE>, <else>)
 ```
 
@@ -411,7 +428,9 @@ The first argument is a condition. If the condition is TRUE, then the value give
 
 Here's an example of creating a variable to determine which months in the wildlife impacts data are in the summer:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 df %>%
     mutate(
         summer_month = if_else(incident_month %in% c(6, 7, 8), TRUE, FALSE))
@@ -419,15 +438,15 @@ df %>%
 
 Of course, in this particular case the `if_else()` function isn't even needed because the condition returns `TRUE` and `FALSE` values. However, if you wanted to extend this example to determine all four seasons, you could use a series of nested `if_else()` functions:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 df %>%
-    mutate(season =
-        if_else(
-            incident_month %in% c(3, 4, 5), 'Spring',
-        if_else(
-            incident_month %in% c(6, 7, 8), 'Summer',
-        if_else(
-            incident_month %in% c(9, 10, 11), 'Fall', 'Winter'))))
+    mutate(season = if_else(
+        incident_month %in% c(3, 4, 5), 'Spring', if_else(
+        incident_month %in% c(6, 7, 8), 'Summer', if_else(
+        incident_month %in% c(9, 10, 11), 'Fall', 'Winter')
+    )))
 ```
 
 Note: The Base R version of this function is `ifelse()`, but I recommend using the `dplyr` version, `if_else()`, as it is a [stricter function](https://stackoverflow.com/questions/50646133/dplyr-if-else-vs-base-r-ifelse).

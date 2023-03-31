@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -48,6 +49,7 @@ f <- function(x) {
     cat("D")
 }
 ```
+
 ```{r}
 f(0)
 f(1)
@@ -65,6 +67,7 @@ absValue <- function(x) {
     return(x)
 }
 ```
+
 ```{r}
 absValue(7)  # Returns 7
 absValue(-7) # Also returns 7
@@ -112,6 +115,7 @@ f <- function(x) {
     cat("G")
 }
 ```
+
 ```{r}
 f(0)
 f(1)
@@ -138,6 +142,7 @@ getLetterGrade <- function(score) {
     return(grade)
 }
 ```
+
 ```{r}
 cat("103 -->", getLetterGrade(103))
 cat(" 88 -->", getLetterGrade(88))

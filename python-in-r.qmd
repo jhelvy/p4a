@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -31,19 +32,25 @@ While you can work with Python in a number of ways, we will use the [**reticulat
 
 To get started, install the package (remember, you only need to do this once on your computer):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 install.package('reticulate')
 ```
 
 Once installed, load the package:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 library(reticulate)
 ```
 
 If you already have Python installed on your computer, you should be okay, but you may see the following message pop up in the console:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 Would you like to install Miniconda? [Y/n]:
 ```
 
@@ -53,7 +60,9 @@ If so, I recommend you go ahead and install Miniconda by typing `y` and pressing
 
 Once you've loaded the **reticulate** library, use the following command to open up a Python REPL (which stands for "**R**ead–**E**val–**P**rint-**L**oop"):
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 repl_python()
 ```
 
@@ -67,7 +76,9 @@ Above the `>>>` symbols, you should see a message indicating which version of Py
 
 If you want to get back to good 'ol R, just type the command `exit` into the Python console:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 exit
 ```
 
@@ -439,6 +450,7 @@ String manipulation is one area where more substantial differences emerge betwee
 
 ```{r}
 #| message: false
+
 library(stringr)
 ```
 
@@ -460,7 +472,9 @@ In Python, many of the basic string manipulations are actually done with basic a
 **String concatenation**:
 </div>
 <div class = "col-md-5">
+
 In R, we use the function `paste()` to combine strings:
+
 ```{r}
 paste("foo", "bar", sep = "")
 ```
@@ -726,6 +740,7 @@ s[0:3]
 Note that we had to use a different starting index here to get the same sub-string in each language. That's because **indexing starts at 0 in Python**.
 
 If this seems strange, just imagine "fence posts". In Python, the elements in a sequence are like items sitting _between_ fence posts. So the index of each character in the string `"Apple"` look like this:
+
 ```{r, eval=FALSE}
 index: 0     1     2     3     4     5
        |     |     |     |     |     |
@@ -740,19 +755,25 @@ Negative indices are also handled differently.
 <div class = "row">
 <div class = "col-md-6">
 **R**: Negative indices start from the end of the string _inclusively_:
+
 ```{r}
 str_sub(s, -1)
 str_sub(s, -3)
 ```
+
 </div>
 <div class = "col-md-6">
+
 **Python**: Negative indices start from the end of the string, but only return the _character at that index_:
+
 ```{python, eval=FALSE}
 s[-1]
 ```
+
 ```
 ## 'e'
 ```
+
 ```{python, eval=FALSE}
 s[-3]
 ```
@@ -780,12 +801,16 @@ You can get the index of a character or sub-string in Python using the `.index()
 <div class = "row">
 <div class = "col-md-6">
 **R**: Returns the starting and ending indices of the sub-string
+
 ```{r}
 str_locate(s, "pp")
 ```
+
 </div>
 <div class = "col-md-6">
+
 **Python**: Returns only the starting index of the sub-string
+
 ```{python, eval=FALSE}
 s.index("pp")
 ```
@@ -802,35 +827,44 @@ Like in R, splitting a string returns a list of strings. Python lists are simila
 <div class = "row">
 <div class = "col-md-6">
 **R**:
+
 ```{r}
 s <- "Apple"
 str_split(s, "pp")
 ```
+
 </div>
 <div class = "col-md-6">
+
 **Python**:
+
 ```{python, eval=FALSE}
 s = "Apple"
 s.split("pp")
 ```
+
 ```
+
 ## ['A', 'le']
 ```
 </div>
 </div>
 
 In both languages, the returned list contains the remaining characters after splitting the string (in this case, `"A"` and `"le"`). One main difference though is that R returns a list of _vectors_, so to access the returned vector containing `"A"` and `"le"` you have to access the first element in the list, like this:
+
 ```{r}
 str_split(s, "pp")[[1]]
 ```
 
 This is because in R the `str_split()` function is _vectorized_, meaning that the function can also be performed on a _vector_ of strings, like this:
+
 ```{r}
 s <- c("Apple", "Snapple")
 str_split(s, "pp")
 ```
 
 In this example, it's easier to see that R is returning a list of vectors. In contrast, Python cannot perform a split on multiple strings:
+
 ```{python, eval=FALSE}
 s = ["Apple", "Snapple"]
 s.split("pp")
@@ -868,26 +902,39 @@ n2 = isOdd(3)
 ```
 
 Now that you have this code stored in your `foo.py` file, you can source the file from inside R, like this:
+
 ```{r, eval=FALSE}
 reticulate::source_python('foo.py')
 ```
 
 Magically, the function `isOdd()` and the objects we created (`n1` and `n2`) are now accessible from R!
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 isOdd(7)
 ```
+
 ```
 ## [1] TRUE
 ```
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 n1
 ```
+
 ```
 ## [1] FALSE
 ```
-```{r, eval=FALSE}
+
+```{r}
+#| eval: false
+
 n2
 ```
+
 ```
 ## [1] TRUE
 ```

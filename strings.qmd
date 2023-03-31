@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -23,7 +24,9 @@ A "string" is the generic word for character type variables. Base R has many bui
 
 Before going any further, make sure you install the `stringr` package and load it before trying to use any of the functions in this lesson:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
+
 install.packages("stringr")
 library(stringr)
 ```
@@ -39,12 +42,14 @@ cat('This is a string')
 
 If you have a string that contains a `'` symbol, use double quotes:
 Use them where it makes sense, e.g.:
+
 ```{r}
 cat("It's a boy!")
 ```
 
 Likewise, if you have a string that contains a `"` symbol, use single quotes:
 Use them where it makes sense, e.g.:
+
 ```{r}
 cat('I said, "Hi!"')
 ```
@@ -52,12 +57,14 @@ cat('I said, "Hi!"')
 But what if you have a string that has both single and double quotes, like this: `It's nice to say, "Hi!"`
 
 In this case, you have to "escape" the quotes by using the `\` symbol:
+
 ```{r}
 cat("It's nice to say, \"Hi!\"") # Double quotes escaped
 cat('It\'s nice to say, "Hi!"') # Single quote escaped
 ```
 
 Escaping can be used for a lot of different string literals, such as starting a new line, adding a tab space, and even entering the `\` symbol itself:
+
 ```{r}
 cat('New line:', 'This\nthat')
 cat('Tab space:', 'This\tthat')
@@ -90,6 +97,7 @@ In addition to the Base R constants, the `stringr` library also comes with three
 
 ```{r}
 #| message: false
+
 library(stringr)
 
 head(words)
@@ -130,6 +138,7 @@ You can convert whole strings to lower-case, upper-case, and title-case using so
 ```{r}
 x <- "Want to hear a joke about paper? Never mind, it's tearable."
 ```
+
 ```{r}
 str_to_lower(x)
 str_to_upper(x)
@@ -146,21 +155,25 @@ toTitleCase(x)
 ### Get the number of characters in a string
 
 If you want to find how long a string is (i.e. how many characters it contains), the `length()` function won't work:
+
 ```{r}
 length("hello world")
 ```
 
 That's be `length()` returns how many elements are in a _vector_ (in the above case, there's just one element). Instead, you should use `str_length()`:
+
 ```{r}
 str_length("hello world")
 ```
 
 Note that the space character has a length:
+
 ```{r}
 str_length(" ")
 ```
 
 Also note that the "empty" string (`""`) has no length:
+
 ```{r}
 str_length("")
 ```
@@ -195,17 +208,20 @@ x
 If you want to know the start and end indices of a particular substring, use `str_locate()`. This is a helpful function to use in combination with `str_sub()` so you don't have to count the characters to find a substring.
 
 For example, let's say I want to extract the substring `"Good"` from the following string:
+
 ```{r}
 x <- 'thisIsGoodPractice'
 ```
 
 I could first use `str_locate()` to get the start and end indices:
+
 ```{r}
 indices <- str_locate(x, 'Good')
 indices
 ```
 
 Now that I have the start and end locations, I can use them within `str_sub()`:
+
 ```{r}
 str_sub(x, indices[1], indices[2])
 ```
@@ -213,11 +229,13 @@ str_sub(x, indices[1], indices[2])
 ### Repeat a string
 
 To duplicate strings, use `str_dup()`:
+
 ```{r}
 str_dup("hola", 3)
 ```
 
 Note the difference with `rep()` (which returns a vector):
+
 ```{r}
 rep("hola", 3)
 ```
@@ -232,6 +250,7 @@ str_trim(x)
 ```
 
 By default, `str_trim()` removes whitespace on both sides, but you can specify a single side:
+
 ```{r}
 str_trim(x, side = "left") # Only trim left side
 str_trim(x, side = "right") # Only trim right side
@@ -241,6 +260,7 @@ str_trim(x, side = "right") # Only trim right side
 
 `str_pad()` pads a string to a fixed length by adding extra whitespace on
 the left, right, or both sides. Note that the `width` argument is the length of the _final_ string (not the length of the added padding):
+
 ```{r}
 x <- "hello"
 x
@@ -249,11 +269,13 @@ str_pad(x, width = 10, side = "both") # Pad both sides
 ```
 
 You can pad with other characters by using the `pad` argument:
+
 ```{r}
 str_pad(x, 10, side="both", pad='-')
 ```
 
 Also, `str_pad()` will never make a string shorter:
+
 ```{r}
 str_pad(x, 4)
 ```
@@ -295,6 +317,7 @@ printGreeting <- function(name, timeOfDay, isBirthday) {
     cat(greeting)
 }
 ```
+
 ```{r}
 printGreeting('John', 'morning', isBirthday = FALSE)
 printGreeting('John', 'morning', isBirthday = TRUE)
@@ -307,26 +330,31 @@ Use `str_split()` to split a string up into pieces along a particular delimiter.
 ```{r}
 string <- 'This string has spaces-and-dashes'
 ```
+
 ```{r}
 str_split(string, " ") # Split on the spaces
 ```
+
 ```{r}
 str_split(string, "-") # Split on the dashes
 ```
 
 By default, `str_split()` returns a `list` (another R data structure) of vectors. Each item in the list is a vector of strings. In the above cases, we gave `str_split()` a single string, so there is only one item in the returned list. In these cases, the easiest way to access the resulting vector of split strings is to use the double bracket `[[]]` operator to access the first list item:
+
 ```{r}
 str_split(string, " ") # Returns a list of vectors
 str_split(string, " ")[[1]] # Returns the first vector in the list
 ```
 
 If you give `str_split()` a vector of strings, it will return a list of length equal to the number of elements in the vector:
+
 ```{r}
 x <- c('babble', 'scrabblebabble')
 str_split(x, 'bb') # Returns a list with two elements (each a vector)
 ```
 
 A particularly useful string split is to split on the empty string (`""`), which breaks a string up into its individual characters:
+
 ```{r}
 str_split(string, "")[[1]]
 ```
@@ -338,6 +366,7 @@ The `word()` function that another way to split up a longer string. It is design
 ```{r}
 sentence <- c("Be the change you want to be")
 ```
+
 ```{r}
 # Extract first word
 word(sentence, 1)
@@ -359,6 +388,7 @@ You can sort a vector of strings alphabetically using `str_sort()` and `str_orde
 ```{r}
 x <- c('Y', 'M', 'C', 'A')
 ```
+
 ```{r}
 str_sort(x)
 str_sort(x, decreasing = TRUE)
@@ -416,6 +446,7 @@ To force a match to a complete string, anchor it with both `^` and `$`:
 ```{r}
 x <- c("apple pie", "apple", "apple cake")
 ```
+
 ```{r}
 str_detect(x, "apple")
 str_detect(x, "^apple$")
@@ -430,6 +461,7 @@ In the second example above, 1 & 3 are `FALSE` because there's a space after `ap
 ```{r}
 x <- c("apple", "pear", "banana")
 ```
+
 ```{r}
 str_replace(x, "a", "-")
 str_replace_all(x, "a", "-")
@@ -438,27 +470,32 @@ str_replace_all(x, "a", "-")
 ## `stringr` functions work on vectors
 
 In many of the above examples, we used a single string, but most `stringr` functions are designed to work on vectors of strings. For example, consider a vector of two "fruit":
+
 ```{r}
 x <- c("apples", "oranges")
 x
 ```
 
 Get the first 3 letters in each string in `x`:
+
 ```{r}
 str_sub(x, 1, 3)
 ```
 
 Duplicate each string in `x` twice:
+
 ```{r}
 str_dup(x, 2)
 ```
 
 Convert all strings in `x` to upper case:
+
 ```{r}
 str_to_upper(x)
 ```
 
 Replace all `"a"` characters with a `"-"` character:
+
 ```{r}
 str_replace_all(x, "a", "-")
 ```
@@ -468,6 +505,7 @@ str_replace_all(x, "a", "-")
 ### Breaking a string into characters
 
 Often times you'll want to break a string into it's individual character components. To do that, use `str_split()` with the empty string `""` as the delimiter:
+
 ```{r}
 chars <- str_split("apples", "")[[1]]
 chars
@@ -476,6 +514,7 @@ chars
 ### Breaking a sentence into words
 
 Similarly, if you have a single string that contains words separated by spaces, splitting on `" "` will break it into words:
+
 ```{r}
 x <- "If you want to view paradise, simply look around and view it"
 str_split(x, " ")[[1]]
@@ -484,6 +523,7 @@ str_split(x, " ")[[1]]
 ### Comparing strings
 
 If you want to compare whether two strings are the same, you must also consider their cases. For example:
+
 ```{r}
 a <- "Apples"
 b <- "apples"
@@ -491,6 +531,7 @@ a == b
 ```
 
 The above returns `FALSE` because the cases are different on the `"a"` characters. If you want to ignore case, then a common strategy is to first convert the strings to a common case before comparing. For example:
+
 ```{r}
 str_to_lower(a) == str_to_lower(b)
 ```

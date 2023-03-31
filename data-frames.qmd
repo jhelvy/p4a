@@ -3,6 +3,7 @@
 ```{r}
 #| echo: false
 #| message: false
+
 source("_common.R")
 ```
 
@@ -53,6 +54,7 @@ The [tibble](https://r4ds.had.co.nz/tibbles.html) is an improved version of the 
 
 ```{r}
 #| message: false
+
 library(dplyr)
 ```
 
@@ -192,6 +194,7 @@ beatles$deceased == FALSE
 ```
 
 Then, you could insert this logical vector in the row position of the `[]` brackets to filter only the rows that are `TRUE`:
+
 ```{r}
 beatles[beatles$deceased == FALSE,]
 ```
@@ -250,21 +253,33 @@ There are generally two ways to load external data.
 
 Many R packages come with pre-loaded datasets. For example, the **ggplot2** library (which we'll [use soon](data-visualization.html) to make plots in R) comes with the `msleep` dataset already loaded. To see this, install **ggplot2** and load the library:
 
-```{r, eval=FALSE, message=FALSE}
-install.packages("ggplot2")
+```{r}
+#| eval: false
+#| message: false
+
+# install.packages("ggplot2") # Do this only once!
 library(ggplot2)
+
 head(msleep) # Preview just the first 6 rows of the data frame
 ```
-```{r, echo=FALSE, message=FALSE}
+
+```{r}
+#| echo: false
+#| message: false
+
 library(ggplot2)
+
 head(msleep)
 ```
 
 If you want to see all of the different datasets that any particular package contains, you can call the `data()` function after loading a library. For example, here are all the dataset that are contained in the **ggplot2** library:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 data(package = "ggplot2")
 ```
+
 ```
 Data sets in package 'ggplot2':
 
@@ -307,8 +322,11 @@ pathToData <- here('data', 'data.csv')
 
 2. Import the data
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 library(readr)
+
 df <- read_csv(pathToData)
 ```
 
@@ -361,6 +379,7 @@ Now load the data:
 
 ```{r}
 library(readr)
+
 msleep <- read_csv(here('data', 'msleep.csv'))
 ```
 
@@ -431,50 +450,62 @@ But just to give you an idea of where we're going, here are a few pieces of info
 1) It appears that mammalian brain and body weight are logarithmically correlated - cool!
 
 ```{r}
+#| label: 'msleep-scatter1'
 #| fig.height: 4
 #| fig.width: 6
 #| message: false
 #| warning: false
 
 library(ggplot2)
-ggplot(msleep, aes(x=brainwt, y=bodywt)) +
+
+ggplot(msleep, aes(x = brainwt, y = bodywt)) +
     geom_point(alpha=0.6) +
-    stat_smooth(method='lm', col='red', se=F, size=0.7) +
+    stat_smooth(method = 'lm', col = 'red', se = FALSE, size = 0.7) +
     scale_x_log10() +
     scale_y_log10() +
-    labs(x='log(brain weight) in g', y='log(body weight) in kg') +
+    labs(
+        x = 'log(brain weight) in g',
+        y = 'log(body weight) in kg'
+    ) +
     theme_minimal()
 ```
 
 2) It appears there may also be a negative, logarithmic relationship (albeit weaker) between the size of mammalian brains and how much they sleep - cool!
 
 ```{r}
+#| label: 'msleep-scatter2'
 #| fig.height: 4
 #| fig.width: 6
 #| message: false
 #| warning: false
 
-ggplot(msleep, aes(x=brainwt, y=sleep_total)) +
-    geom_point(alpha=0.6) +
+ggplot(msleep, aes(x = brainwt, y = sleep_total)) +
+    geom_point(alpha = 0.6) +
     scale_x_log10() +
     scale_y_log10() +
-    stat_smooth(method='lm', col='red', se=F, size=0.7) +
-    labs(x='log(brain weight) in g', y='log(total sleep time) in hours') +
+    stat_smooth(method = 'lm', col = 'red', se = FALSE, size = 0.7) +
+    labs(
+        x = 'log(brain weight) in g',
+        y = 'log(total sleep time) in hours'
+    ) +
     theme_minimal()
 ```
 
 3) Wow, there's a lot of variation in how much different mammals sleep - cool!
 
 ```{r}
+#| label: 'msleep-bars'
 #| fig.height: 4
 #| fig.width: 6
 #| message: false
 #| warning: false
 
-ggplot(msleep, aes(x=sleep_total)) +
+ggplot(msleep, aes(x = sleep_total)) +
     geom_histogram() +
-    labs(x     = 'Total sleep time in hours',
-         title = 'Histogram of total sleep time') +
+    labs(
+        x = 'Total sleep time in hours',
+        title = 'Histogram of total sleep time'
+    ) +
     theme_minimal()
 ```
 
