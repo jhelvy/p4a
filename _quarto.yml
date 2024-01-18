@@ -41,8 +41,8 @@ book:
     - part: programming.qmd
       chapters:
         - getting-started.qmd
-        - functions-packages.qmd
         - operators-data-types.qmd
+        - functions-packages.qmd
         - creating-functions.qmd
         - conditionals.qmd
         - testing-debugging.qmd
