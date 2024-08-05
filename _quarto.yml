@@ -16,7 +16,8 @@ book:
   reader-mode: true
   author: "John Paul Helveston"
   date: "12/19/2022"
-
+  downloads: pdf
+  output-file: "Helveston-Programming-for-Analytics-in-R"
   page-footer:
     left: |
       Programming for Analytics in R was written by John Paul Helveston
@@ -71,3 +72,5 @@ format:
     link-external-icon: false
     author-meta: "John Paul Helveston"
     callout-appearance: simple
+  pdf:
+    documentclass: scrreprt
