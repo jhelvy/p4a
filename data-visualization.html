@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.56">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 13&nbsp; Data Visualization</title>
+
+
+<title>13&nbsp; Data Visualization – Programming for Analytics in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -54,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -72,13 +75,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -87,33 +97,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+
+
 </head>
+
 <body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data-visualization.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data-visualization.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Programming for Analytics in R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jhelvy/p4a/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jhelvy/p4a/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -129,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
@@ -145,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
@@ -205,17 +225,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-frames.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span></a>
@@ -234,17 +254,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./extensions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extensions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span></a>
@@ -257,47 +277,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="header-section-number">13.1</span> R Setup</a></li>
-  <li>
-<a href="#basic-plots-in-r" id="toc-basic-plots-in-r" class="nav-link" data-scroll-target="#basic-plots-in-r"><span class="header-section-number">13.2</span> Basic plots in R</a>
+  <li><a href="#r-setup" id="toc-r-setup" class="nav-link active" data-scroll-target="#r-setup"><span class="header-section-number">13.1</span> R Setup</a></li>
+  <li><a href="#basic-plots-in-r" id="toc-basic-plots-in-r" class="nav-link" data-scroll-target="#basic-plots-in-r"><span class="header-section-number">13.2</span> Basic plots in R</a>
   <ul class="collapse">
-<li><a href="#scatterplots-with-plot" id="toc-scatterplots-with-plot" class="nav-link" data-scroll-target="#scatterplots-with-plot"><span class="header-section-number">13.2.1</span> Scatterplots with <code>plot()</code></a></li>
+  <li><a href="#scatterplots-with-plot" id="toc-scatterplots-with-plot" class="nav-link" data-scroll-target="#scatterplots-with-plot"><span class="header-section-number">13.2.1</span> Scatterplots with <code>plot()</code></a></li>
   <li><a href="#histograms-with-hist" id="toc-histograms-with-hist" class="nav-link" data-scroll-target="#histograms-with-hist"><span class="header-section-number">13.2.2</span> Histograms with <code>hist()</code></a></li>
-  </ul>
-</li>
-  <li>
-<a href="#advanced-figures-with-ggplot2" id="toc-advanced-figures-with-ggplot2" class="nav-link" data-scroll-target="#advanced-figures-with-ggplot2"><span class="header-section-number">13.3</span> Advanced figures with <code>ggplot2</code></a>
+  </ul></li>
+  <li><a href="#advanced-figures-with-ggplot2" id="toc-advanced-figures-with-ggplot2" class="nav-link" data-scroll-target="#advanced-figures-with-ggplot2"><span class="header-section-number">13.3</span> Advanced figures with <code>ggplot2</code></a>
   <ul class="collapse">
-<li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="header-section-number">13.3.1</span> The Grammar of Graphics</a></li>
+  <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="header-section-number">13.3.1</span> The Grammar of Graphics</a></li>
   <li><a href="#a-blank-slate" id="toc-a-blank-slate" class="nav-link" data-scroll-target="#a-blank-slate"><span class="header-section-number">13.3.2</span> A blank slate</a></li>
   <li><a href="#geoms-and-aesthetics" id="toc-geoms-and-aesthetics" class="nav-link" data-scroll-target="#geoms-and-aesthetics"><span class="header-section-number">13.3.3</span> Geoms and aesthetics</a></li>
   <li><a href="#scatterplots-with-geom_point" id="toc-scatterplots-with-geom_point" class="nav-link" data-scroll-target="#scatterplots-with-geom_point"><span class="header-section-number">13.3.4</span> Scatterplots with <code>geom_point()</code></a></li>
   <li><a href="#bar-charts-with-geom_col" id="toc-bar-charts-with-geom_col" class="nav-link" data-scroll-target="#bar-charts-with-geom_col"><span class="header-section-number">13.3.5</span> Bar charts with <code>geom_col()</code></a></li>
-  </ul>
-</li>
-  <li>
-<a href="#customizing-your-ggplot" id="toc-customizing-your-ggplot" class="nav-link" data-scroll-target="#customizing-your-ggplot"><span class="header-section-number">13.4</span> Customizing your ggplot</a>
+  </ul></li>
+  <li><a href="#customizing-your-ggplot" id="toc-customizing-your-ggplot" class="nav-link" data-scroll-target="#customizing-your-ggplot"><span class="header-section-number">13.4</span> Customizing your ggplot</a>
   <ul class="collapse">
-<li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">13.4.1</span> Labels</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">13.4.1</span> Labels</a></li>
   <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">13.4.2</span> Themes</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#saving-figures" id="toc-saving-figures" class="nav-link" data-scroll-target="#saving-figures"><span class="header-section-number">13.5</span> Saving figures</a></li>
   <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">13.6</span> Other resources</a></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/data-visualization.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jhelvy/p4a/edit/main/data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-analysis.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./data-visualization.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></a></li></ol></nav>
+<div class="quarto-title">
 <h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Visualization</span></span></h1>
 </div>
 
@@ -311,7 +331,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><blockquote class="blockquote">
+
+</header>
+
+
+<blockquote class="blockquote">
 <h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
 <ul>
 <li>Create simple scatterplots and histograms with Base R graphics.</li>
@@ -322,10 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <h3 id="suggested-readings" class="unnumbered anchored">Suggested Readings</h3>
 <ul>
-<li>
-<a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3</a> of “R for Data Science”, by Garrett Grolemund and Hadley Wickham</li>
-<li>
-<a href="http://socviz.co/">Data Visualization: A practical introduction</a>, by Kieran Healy</li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3</a> of “R for Data Science”, by Garrett Grolemund and Hadley Wickham</li>
+<li><a href="http://socviz.co/">Data Visualization: A practical introduction</a>, by Kieran Healy</li>
 </ul>
 </blockquote>
 <blockquote class="blockquote">
@@ -337,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fSgEeI2Xpdc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
 </center>
-<section id="r-setup" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="r-setup">
-<span class="header-section-number">13.1</span> R Setup</h2>
+<section id="r-setup" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="r-setup"><span class="header-section-number">13.1</span> R Setup</h2>
 <p>Before we get started, let’s set up our analysis environment like before:</p>
 <ol type="1">
 <li>Open up your “data_analysis_tutorial” R Project that you created in the first data analysis lesson - if you didn’t do this, <a href="data-frames.html#r-setup">go back and do it now</a>.</li>
@@ -346,23 +368,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>This time, instead of downloading the data file and saving it in our <code>data</code> folder, let’s just read it in directly from the web!</li>
 </ol>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jhelvy/p4a/main/data/north_america_bear_killings.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jhelvy/p4a/main/data/north_america_bear_killings.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For this lesson, we are going to use the <a href="https://data.world/ajsanne/north-america-bear-killings">North American Bear Killings</a> dataset, which was compiled by <a href="https://data.world/ajsanne">Ali Sanne</a> from the <a href="https://en.wikipedia.org/wiki/List_of_fatal_bear_attacks_in_North_America">Wikipedia page</a> on fatal bear attacks in North America. The dataset contains recorded killings by black, brown, or polar bears from 1900 to 2019 in North America. Each row in the dataset holds information for a single incident with the following columns:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
 <col style="width: 16%">
 <col style="width: 61%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Variable</th>
 <th>Class</th>
 <th>Description</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>name</td>
@@ -439,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Side node</strong>: One thing I learned looking at this data is that all grizzly bears are brown bears, but <a href="https://www.nps.gov/katm/learn/photosmultimedia/brown-bear-frequently-asked-questions.htm#2">not all brown bears are grizzly bears</a> (kind of like the squares and rectangles thing).</p>
 <p>To confirm that we’ve correctly loaded the data frame, let’s preview the data:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Rows: 166
 #&gt; Columns: 14
@@ -460,210 +484,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Look’s good - let’s start making some plots!</p>
-</section><section id="basic-plots-in-r" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="basic-plots-in-r">
-<span class="header-section-number">13.2</span> Basic plots in R</h2>
+</section>
+<section id="basic-plots-in-r" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="basic-plots-in-r"><span class="header-section-number">13.2</span> Basic plots in R</h2>
 <p>R has a number of built-in tools for basic graph types. We will only cover two here because they are so common and convenient: scatterplots and histograms.</p>
-<section id="scatterplots-with-plot" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="scatterplots-with-plot">
-<span class="header-section-number">13.2.1</span> Scatterplots with <code>plot()</code>
-</h3>
+<section id="scatterplots-with-plot" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="scatterplots-with-plot"><span class="header-section-number">13.2.1</span> Scatterplots with <code>plot()</code></h3>
 <p>A scatter plot provides a graphical view of the relationship between two variables. Typically these are used for “continuous” variables, like <em>time</em>, <em>age</em>, <em>money</em>, etc…things that are not categorical in nature (as opposed to “discrete” variables, like <em>nationality</em>). Here’s a scatterplot of the age of the bear killing victims over time:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">year</span>, y <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> df<span class="sc">$</span>year, <span class="at">y =</span> df<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/scatter-basic-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/scatter-basic-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The basic inputs to the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function are <code>x</code> and <code>y</code>, which must be vectors of the same length. You can customize many features (fonts, colors, axes, shape, titles, etc.) through <a href="http://www.statmethods.net/advgraphs/parameters.html">graphic options</a>. Here’s the same plot with a few customizations:</p>
+<p>The basic inputs to the <code>plot()</code> function are <code>x</code> and <code>y</code>, which must be vectors of the same length. You can customize many features (fonts, colors, axes, shape, titles, etc.) through <a href="http://www.statmethods.net/advgraphs/parameters.html">graphic options</a>. Here’s the same plot with a few customizations:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x    <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">year</span>,</span>
-<span>     y    <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">age</span>,</span>
-<span>     col  <span class="op">=</span> <span class="st">'darkblue'</span>, <span class="co"># "col" changes the point color</span></span>
-<span>     pch  <span class="op">=</span> <span class="fl">19</span>, <span class="co"># "pch" changes the point shape</span></span>
-<span>     main <span class="op">=</span> <span class="st">"Age of bear killing victims over time"</span>,</span>
-<span>     xlab <span class="op">=</span> <span class="st">"Year"</span>,</span>
-<span>     ylab <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x    =</span> df<span class="sc">$</span>year,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">y    =</span> df<span class="sc">$</span>age,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col  =</span> <span class="st">'darkblue'</span>, <span class="co"># "col" changes the point color</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch  =</span> <span class="dv">19</span>, <span class="co"># "pch" changes the point shape</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Age of bear killing victims over time"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Age"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/scatter-basic-pretty-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/scatter-basic-pretty-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Looks like bear killings are becoming more frequent over time (hmm, why might that be?), though pretty evenly-distributed across age (I guess bears will kill you regardless of your age).</p>
-</section><section id="histograms-with-hist" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="histograms-with-hist">
-<span class="header-section-number">13.2.2</span> Histograms with <code>hist()</code>
-</h3>
-<p>The <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a> is one of the most common ways to visualize the <em>distribution</em> of a variable. The <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> function takes just one variable: <code>x</code>. Here’s a histogram of the <code>month</code> variable:</p>
+</section>
+<section id="histograms-with-hist" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="histograms-with-hist"><span class="header-section-number">13.2.2</span> Histograms with <code>hist()</code></h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a> is one of the most common ways to visualize the <em>distribution</em> of a variable. The <code>hist()</code> function takes just one variable: <code>x</code>. Here’s a histogram of the <code>month</code> variable:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">month</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="at">x =</span> df<span class="sc">$</span>month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/hist-basic-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/hist-basic-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>As you might expect, most bear attacks occur during the summer months, when parks get more visitors. As with the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function, you can customize a lot of the histogram features. One common customization is to modify the number of “bins” in the histogram by changing the <code>breaks</code> argument. Here we’ll fix the number of bins to <code>12</code> - one for each month:</p>
+<p>As you might expect, most bear attacks occur during the summer months, when parks get more visitors. As with the <code>plot()</code> function, you can customize a lot of the histogram features. One common customization is to modify the number of “bins” in the histogram by changing the <code>breaks</code> argument. Here we’ll fix the number of bins to <code>12</code> - one for each month:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span>x      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">month</span>,</span>
-<span>     breaks <span class="op">=</span> <span class="fl">12</span>,</span>
-<span>     col    <span class="op">=</span> <span class="st">'darkred'</span>,</span>
-<span>     main   <span class="op">=</span> <span class="st">"Distribution of bear killings by month"</span>,</span>
-<span>     xlab   <span class="op">=</span> <span class="st">"Month"</span>,</span>
-<span>     ylab   <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="at">x      =</span> df<span class="sc">$</span>month,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">12</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col    =</span> <span class="st">'darkred'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">"Distribution of bear killings by month"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">"Month"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/hist-basic-pretty-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/hist-basic-pretty-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="advanced-figures-with-ggplot2" class="level2 page-columns page-full" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="advanced-figures-with-ggplot2">
-<span class="header-section-number">13.3</span> Advanced figures with <code>ggplot2</code>
-</h2>
-<div class="page-columns page-full"><p><img src="images/horst_monsters_ggplot2.png" class="img-fluid" width="500"></p><div class="no-row-height column-margin column-container"><span class="">Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></span></div></div>
+</section>
+</section>
+<section id="advanced-figures-with-ggplot2" class="level2 page-columns page-full" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="advanced-figures-with-ggplot2"><span class="header-section-number">13.3</span> Advanced figures with <code>ggplot2</code></h2>
+<div class="page-columns page-full"><p><img src="images/horst_monsters_ggplot2.png" class="img-fluid" width="500"> </p><div class="no-row-height column-margin column-container"><span class="margin-aside">Art by <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></span></div></div>
 <p>While Base R plot functions are useful for making simple, quick plots, many R users have adopted the <code>ggplot2</code> package as their primary tool for visualizing data.</p>
-<section id="the-grammar-of-graphics" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="the-grammar-of-graphics">
-<span class="header-section-number">13.3.1</span> The Grammar of Graphics</h3>
+<section id="the-grammar-of-graphics" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="the-grammar-of-graphics"><span class="header-section-number">13.3.1</span> The Grammar of Graphics</h3>
 <p>The <code>ggplot2</code> library is built on the <a href="https://www.springer.com/in/book/9780387245447">“Grammar of Graphics”</a> concept developed by <a href="https://en.wikipedia.org/wiki/Leland_Wilkinson">Leland Wilkinson</a>. A “grammar of graphics” (that’s what the “gg” in “ggplot2” stands for) is a framework that uses <em>layers</em> to describe and construct visualizations or graphics in a structured manner. Here’s a visual summary of the concept:</p>
 <center>
 <img src="images/making_a_ggplot.jpeg" class="img-fluid" width="700">
 </center>
 <p>We will start using <code>ggplot2</code> by re-creating some of the above plots, but using ggplot functions to get a feel for the syntax. But first, install and load the library:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="a-blank-slate" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="a-blank-slate">
-<span class="header-section-number">13.3.2</span> A blank slate</h3>
-<p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function is used to initialize the basic graph structure, and then we add layers to it. The basic idea is that you specify different parts of the plot, and add them together using the <code>+</code> operator. We will start with a blank plot and will add layers as we go along:</p>
+</section>
+<section id="a-blank-slate" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="a-blank-slate"><span class="header-section-number">13.3.2</span> A blank slate</h3>
+<p>The <code>ggplot()</code> function is used to initialize the basic graph structure, and then we add layers to it. The basic idea is that you specify different parts of the plot, and add them together using the <code>+</code> operator. We will start with a blank plot and will add layers as we go along:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-blank-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-blank-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="geoms-and-aesthetics" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="geoms-and-aesthetics">
-<span class="header-section-number">13.3.3</span> Geoms and aesthetics</h3>
+</section>
+<section id="geoms-and-aesthetics" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="geoms-and-aesthetics"><span class="header-section-number">13.3.3</span> Geoms and aesthetics</h3>
 <p>Geometric objects (called “geoms”) are the shapes we put on a plot (e.g.&nbsp;points, bars, etc.). You can have an unlimited number of layers, but at a minimum a plot <strong>must have at least one geom</strong>. Examples include:</p>
 <ul>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> makes a scatter plot by adding a layer of points.</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> adds a layer of lines connecting data points.</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> adds bars for bar charts.</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> makes a histogram.</li>
-<li>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> adds boxes for boxplots.</li>
+<li><code>geom_point()</code> makes a scatter plot by adding a layer of points.</li>
+<li><code>geom_line()</code> adds a layer of lines connecting data points.</li>
+<li><code>geom_col()</code> adds bars for bar charts.</li>
+<li><code>geom_histogram()</code> makes a histogram.</li>
+<li><code>geom_boxplot()</code> adds boxes for boxplots.</li>
 </ul>
-<p>Each type of geom usually has a <strong>required set of aesthetics</strong> to be set, and usually accepts only a subset of all aesthetics. Aesthetic mappings are set with the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function. Examples include:</p>
+<p>Each type of geom usually has a <strong>required set of aesthetics</strong> to be set, and usually accepts only a subset of all aesthetics. Aesthetic mappings are set with the <code>aes()</code> function. Examples include:</p>
 <ul>
-<li>
-<code>x</code> and <code>y</code> (the position on the x and y axes)</li>
-<li>
-<code>color</code> (“outside” color, like the line around a bar)</li>
-<li>
-<code>fill</code> (“inside” color, like the color of the bar itself)</li>
-<li>
-<code>shape</code> (the type of point, like a dot, square, triangle, etc.)</li>
-<li>
-<code>linetype</code> (solid, dashed, dotted etc.)</li>
-<li>
-<code>size</code> (of geoms)</li>
-</ul></section><section id="scatterplots-with-geom_point" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="scatterplots-with-geom_point">
-<span class="header-section-number">13.3.4</span> Scatterplots with <code>geom_point()</code>
-</h3>
-<p>Now that we know what geoms and aesthetics are, let’s put them to practice by making a scatterplot. To start, we will add the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> geom and we’ll set the position for the x- and y-axis inside the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function:</p>
+<li><code>x</code> and <code>y</code> (the position on the x and y axes)</li>
+<li><code>color</code> (“outside” color, like the line around a bar)</li>
+<li><code>fill</code> (“inside” color, like the color of the bar itself)</li>
+<li><code>shape</code> (the type of point, like a dot, square, triangle, etc.)</li>
+<li><code>linetype</code> (solid, dashed, dotted etc.)</li>
+<li><code>size</code> (of geoms)</li>
+</ul>
+</section>
+<section id="scatterplots-with-geom_point" class="level3" data-number="13.3.4">
+<h3 data-number="13.3.4" class="anchored" data-anchor-id="scatterplots-with-geom_point"><span class="header-section-number">13.3.4</span> Scatterplots with <code>geom_point()</code></h3>
+<p>Now that we know what geoms and aesthetics are, let’s put them to practice by making a scatterplot. To start, we will add the <code>geom_point()</code> geom and we’ll set the position for the x- and y-axis inside the <code>aes()</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range
+#&gt; (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Notice how we’ve “added” the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> layer to the previous blank slate. Also note that the names we used to define the <code>x</code> and <code>y</code> axes are column names in the data frame, <code>df</code>. These must be placed <em>inside</em> the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function, which tells ggplot to look in <code>df</code> for those columns.</p>
-<p>If I wanted to change the point color, I could add that inside the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> layer:</p>
+<p>Notice how we’ve “added” the <code>geom_point()</code> layer to the previous blank slate. Also note that the names we used to define the <code>x</code> and <code>y</code> axes are column names in the data frame, <code>df</code>. These must be placed <em>inside</em> the <code>aes()</code> function, which tells ggplot to look in <code>df</code> for those columns.</p>
+<p>If I wanted to change the point color, I could add that inside the <code>geom_point()</code> layer:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range
+#&gt; (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-blue-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-blue-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>But I could also <em>map</em> one of my variables to the point color by placing the <code>color</code> variable inside the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function:</p>
+<p>But I could also <em>map</em> one of my variables to the point color by placing the <code>color</code> variable inside the <code>aes()</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span>, color <span class="op">=</span> <span class="va">gender</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age, <span class="at">color =</span> gender))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range
+#&gt; (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-color-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-color-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="bar-charts-with-geom_col" class="level3" data-number="13.3.5"><h3 data-number="13.3.5" class="anchored" data-anchor-id="bar-charts-with-geom_col">
-<span class="header-section-number">13.3.5</span> Bar charts with <code>geom_col()</code>
-</h3>
-<p>I recommend using the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> layer to create bar charts, which are great for comparing different numerical values across a categorical variable. One of the simplest things to show with bars is the <em>count</em> of how many observations you have. You can compute this by using the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function, and then use the resulting data frame to create bars of those counts:</p>
+</section>
+<section id="bar-charts-with-geom_col" class="level3" data-number="13.3.5">
+<h3 data-number="13.3.5" class="anchored" data-anchor-id="bar-charts-with-geom_col"><span class="header-section-number">13.3.5</span> Bar charts with <code>geom_col()</code></h3>
+<p>I recommend using the <code>geom_col()</code> layer to create bar charts, which are great for comparing different numerical values across a categorical variable. One of the simplest things to show with bars is the <em>count</em> of how many observations you have. You can compute this by using the <code>count()</code> function, and then use the resulting data frame to create bars of those counts:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute the counts</span></span>
-<span><span class="va">monthCounts</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create the bar chart</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">monthCounts</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the counts</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>monthCounts <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(month)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar chart</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> monthCounts) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-bars-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-bars-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Alternatively, you could use the <code>%&gt;%</code> operator to pipe the results of a summary data frame directly into ggplot:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># Compute the counts</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="co"># Create the bar chart</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(month) <span class="sc">%&gt;%</span>  <span class="co"># Compute the counts</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n)) <span class="co"># Create the bar chart</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-bars2-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-bars2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Just like how we mapped the point color to a variable in scatter plots, you can map the bar color to a variable with bar charts using the <code>fill</code> argument in the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> call. For example, here’s the same bar chart of the count of observations with the bar colors representing the type of bear.</p>
+<p>Just like how we mapped the point color to a variable in scatter plots, you can map the bar color to a variable with bar charts using the <code>fill</code> argument in the <code>aes()</code> call. For example, here’s the same bar chart of the count of observations with the bar colors representing the type of bear.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">bearType</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># Compute the counts for month and bear type</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">bearType</span><span class="op">)</span><span class="op">)</span> <span class="co"># Change the bar color based on bear type</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(month, bearType) <span class="sc">%&gt;%</span>  <span class="co"># Compute the counts for month and bear type</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">fill =</span> bearType)) <span class="co"># Change the bar color based on bear type</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-bars-fill-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-bars-fill-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -671,129 +702,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hmm, looks like brown bears are the most frequent killers, though black bears are a close second.</p>
 <p>You can plot variables other than the count. For example, here is a plot of the mean age of the victim in each year:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Compute the mean age in each year</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">meanAge</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanAge =</span> <span class="fu">mean</span>(age)) <span class="sc">%&gt;%</span> <span class="co"># Compute the mean age in each year</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanAge))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-bars-summary-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-bars-summary-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="customizing-your-ggplot" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="customizing-your-ggplot">
-<span class="header-section-number">13.4</span> Customizing your ggplot</h2>
+</section>
+</section>
+<section id="customizing-your-ggplot" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="customizing-your-ggplot"><span class="header-section-number">13.4</span> Customizing your ggplot</h2>
 <p>There are lots of ways to tweak your ggplot to make it more aesthetically pleasing and easier for others to understand. We’ll cover just two here: labels and themes.</p>
-<section id="labels" class="level3" data-number="13.4.1"><h3 data-number="13.4.1" class="anchored" data-anchor-id="labels">
-<span class="header-section-number">13.4.1</span> Labels</h3>
-<p>You can change the labels of your plot by adding the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> layer:</p>
+<section id="labels" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="labels"><span class="header-section-number">13.4.1</span> Labels</h3>
+<p>You can change the labels of your plot by adding the <code>labs()</code> layer:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span>, color <span class="op">=</span> <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>,</span>
-<span>         y <span class="op">=</span> <span class="st">"Age"</span>,</span>
-<span>         color <span class="op">=</span> <span class="st">"Gender"</span>,</span>
-<span>         title <span class="op">=</span> <span class="st">"Age of bear killing victims over time"</span>,</span>
-<span>         subtitle <span class="op">=</span> <span class="st">"A subtitle"</span>,</span>
-<span>         caption <span class="op">=</span> <span class="st">"Data source: Wikipedia"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Age"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Age of bear killing victims over time"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"A subtitle"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"Data source: Wikipedia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range
+#&gt; (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-labs-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-labs-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> layer enables you to modify the labels of any of the variables that you have mapped in your <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> call, as well as some other labels like the title, subtitle, and caption.</p>
-</section><section id="themes" class="level3" data-number="13.4.2"><h3 data-number="13.4.2" class="anchored" data-anchor-id="themes">
-<span class="header-section-number">13.4.2</span> Themes</h3>
-<p>Adding theme layers can change some global aspects of the plot, such as the background color, grid lines, legend appearance, etc. There are <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">many themes to choose from</a>, but using simple themes like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> often improves the plot from the default theme settings:</p>
+<p>The <code>labs()</code> layer enables you to modify the labels of any of the variables that you have mapped in your <code>aes()</code> call, as well as some other labels like the title, subtitle, and caption.</p>
+</section>
+<section id="themes" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="themes"><span class="header-section-number">13.4.2</span> Themes</h3>
+<p>Adding theme layers can change some global aspects of the plot, such as the background color, grid lines, legend appearance, etc. There are <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">many themes to choose from</a>, but using simple themes like <code>theme_bw()</code> or <code>theme_minimal()</code> often improves the plot from the default theme settings:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range
+#&gt; (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-minimal-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-minimal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>There are LOTS of other themes from external packages as well. Some of my favorites are <code><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum()</a></code> and <code><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc()</a></code> from the <a href="https://github.com/hrbrmstr/hrbrthemes"><strong>hrbrthemes</strong></a> package:</p>
+<p>There are LOTS of other themes from external packages as well. Some of my favorites are <code>theme_ipsum()</code> and <code>theme_ft_rc()</code> from the <a href="https://github.com/hrbrmstr/hrbrthemes"><strong>hrbrthemes</strong></a> package:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_ipsum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <center>
 <img src="images/hrbrthemes_theme_ipsum.png" width="600">
 </center>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ft_rc</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_ft_rc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <center>
 <img src="images/hrbrthemes_theme_ft_rc.png" width="600">
 </center>
-<p>Want to make a plot look fancy like those in the Economist magazine? Try <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist()</a></code> from the <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">ggthemes</a> library:</p>
+<p>Want to make a plot look fancy like those in the Economist magazine? Try <code>theme_economist()</code> from the <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">ggthemes</a> library:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="figs/ggplot-scatter-economist-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure">
+<p><img src="figs/ggplot-scatter-economist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="saving-figures" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="saving-figures">
-<span class="header-section-number">13.5</span> Saving figures</h2>
+</section>
+</section>
+<section id="saving-figures" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="saving-figures"><span class="header-section-number">13.5</span> Saving figures</h2>
 <p>The first (and easiest) is to export directly from the RStudio ‘Plots’ panel, by clicking on <code>Export</code> when the image is plotted. This will give you the option of <code>.png</code> or <code>.pdf</code> and selecting the directory to which you wish to save it to. I strongly recommend you save images as <code>.pdf</code> types as these won’t pixelate when you change the image size.</p>
-<p>Another easy way to save a ggplot figure is to use the <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> function. First, create your plot and save it as an object:</p>
+<p>Another easy way to save a ggplot figure is to use the <code>ggsave()</code> function. First, create your plot and save it as an object:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scatterPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">age</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>scatterPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then save the plot using <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> (make sure you create a folder called “plots” in which to save your plot):</p>
+<p>Then save the plot using <code>ggsave()</code> (make sure you create a folder called “plots” in which to save your plot):</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'scatterPlot.pdf'</span><span class="op">)</span>,</span>
-<span>       plot   <span class="op">=</span> <span class="va">scatterPlot</span>,</span>
-<span>       width  <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>       height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'scatterPlot.pdf'</span>),</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot   =</span> scatterPlot,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width  =</span> <span class="dv">6</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="other-resources" class="level2" data-number="13.6"><h2 data-number="13.6" class="anchored" data-anchor-id="other-resources">
-<span class="header-section-number">13.6</span> Other resources</h2>
+</section>
+<section id="other-resources" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="other-resources"><span class="header-section-number">13.6</span> Other resources</h2>
 <p>While the <code>ggplot2</code> library offers a wide variety of options for customizing your plots, remembering exactly how to do specific tasks (like changing the color of a line, or changing the position of a legend) can be difficult. Fortunately, there are wonderful resources for looking up all the tricks to make the perfect ggplot. Here are a few:</p>
 <ul>
 <li><a href="https://posit.co/resources/cheatsheets/">RStudio <code>ggplot2</code> Cheatsheet</a></li>
 <li><a href="https://ggplot2.tidyverse.org/reference/">Tidyverse <code>ggplot2</code> reference guide</a></li>
 <li><a href="http://www.cookbook-r.com/Graphs/">R Cookbook for <code>ggplot2</code></a></li>
 <li><a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 <code>ggplot2</code> visualizations</a></li>
-</ul></section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
+</ul>
+</section>
+<section id="page-sources" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
 <p>Some content on this page has been modified from other courses, including:</p>
 <ul>
-<li>
-<a href="https://datacarpentry.org/R-genomics/index.html">Data Analysis and Visualization in R <em>alpha</em></a>, by Data Carpentry contributors.</li>
+<li><a href="https://datacarpentry.org/R-genomics/index.html">Data Analysis and Visualization in R <em>alpha</em></a>, by Data Carpentry contributors.</li>
 </ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -828,18 +876,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -871,11 +908,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/p4a\.jhelvy\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -885,8 +961,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -898,7 +983,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -942,6 +1150,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -967,6 +1176,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1024,42 +1259,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("https:\/\/p4a\.jhelvy\.com\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./data-wrangling.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data-wrangling.html" class="pagination-link" aria-label="Data Wrangling">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./extensions.html" class="pagination-link">
+      <a href="./extensions.html" class="pagination-link" aria-label="Extensions">
         <span class="nav-page-text">Extensions</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Programming for Analytics in R was written by John Paul Helveston</div>   
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Programming for Analytics in R was written by John Paul Helveston</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jhelvy/p4a/edit/main/data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+
+
 </body></html>

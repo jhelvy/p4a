@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.56">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="John Paul Helveston">
-<title>Programming for Analytics in R - 7&nbsp; Testing &amp; Debugging</title>
+
+
+<title>7&nbsp; Testing &amp; Debugging – Programming for Analytics in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -54,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -72,13 +75,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -87,33 +97,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+
+
 </head>
+
 <body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./programming.html">Programming</a></li><li class="breadcrumb-item"><a href="./testing-debugging.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./programming.html">Programming</a></li><li class="breadcrumb-item"><a href="./testing-debugging.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Programming for Analytics in R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/jhelvy/p4a/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/jhelvy/p4a/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -129,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
@@ -145,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
@@ -205,17 +225,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-frames.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Frames</span></span></a>
@@ -234,17 +254,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./extensions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extensions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./monte-carlo-methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span></a>
@@ -257,36 +277,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#writing-test-cases" id="toc-writing-test-cases" class="nav-link active" data-scroll-target="#writing-test-cases"><span class="header-section-number">7.1</span> Writing test cases</a>
+  <li><a href="#writing-test-cases" id="toc-writing-test-cases" class="nav-link active" data-scroll-target="#writing-test-cases"><span class="header-section-number">7.1</span> Writing test cases</a>
   <ul class="collapse">
-<li><a href="#test-case-types" id="toc-test-case-types" class="nav-link" data-scroll-target="#test-case-types"><span class="header-section-number">7.1.1</span> Test case types</a></li>
+  <li><a href="#test-case-types" id="toc-test-case-types" class="nav-link" data-scroll-target="#test-case-types"><span class="header-section-number">7.1.1</span> Test case types</a></li>
   <li><a href="#testing-with-stopifnot" id="toc-testing-with-stopifnot" class="nav-link" data-scroll-target="#testing-with-stopifnot"><span class="header-section-number">7.1.2</span> Testing with <code>stopifnot()</code></a></li>
   <li><a href="#testing-function-inputs" id="toc-testing-function-inputs" class="nav-link" data-scroll-target="#testing-function-inputs"><span class="header-section-number">7.1.3</span> Testing function inputs</a></li>
   <li><a href="#better-error-messaging-with-stop" id="toc-better-error-messaging-with-stop" class="nav-link" data-scroll-target="#better-error-messaging-with-stop"><span class="header-section-number">7.1.4</span> Better error messaging with <code>stop()</code></a></li>
-  </ul>
-</li>
-  <li>
-<a href="#debugging" id="toc-debugging" class="nav-link" data-scroll-target="#debugging"><span class="header-section-number">7.2</span> Debugging</a>
+  </ul></li>
+  <li><a href="#debugging" id="toc-debugging" class="nav-link" data-scroll-target="#debugging"><span class="header-section-number">7.2</span> Debugging</a>
   <ul class="collapse">
-<li><a href="#debugging-your-own-code" id="toc-debugging-your-own-code" class="nav-link" data-scroll-target="#debugging-your-own-code"><span class="header-section-number">7.2.1</span> Debugging your own code</a></li>
+  <li><a href="#debugging-your-own-code" id="toc-debugging-your-own-code" class="nav-link" data-scroll-target="#debugging-your-own-code"><span class="header-section-number">7.2.1</span> Debugging your own code</a></li>
   <li><a href="#debugging-in-rstudio" id="toc-debugging-in-rstudio" class="nav-link" data-scroll-target="#debugging-in-rstudio"><span class="header-section-number">7.2.2</span> Debugging in RStudio</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jhelvy/p4a/edit/main/testing-debugging.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jhelvy/p4a/edit/main/testing-debugging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./programming.html">Programming</a></li><li class="breadcrumb-item"><a href="./testing-debugging.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></a></li></ol></nav>
+<div class="quarto-title">
 <h1 class="title"><span id="sec-testing-debugging" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testing &amp; Debugging</span></span></h1>
 </div>
 
@@ -300,7 +322,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><blockquote class="blockquote">
+
+</header>
+
+
+<blockquote class="blockquote">
 <h3 id="learning-objectives" class="unnumbered anchored">Learning Objectives</h3>
 <ul>
 <li>Understand how to write a basic test function.</li>
@@ -309,121 +335,116 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <h3 id="suggested-readings" class="unnumbered anchored">Suggested Readings</h3>
 <ul>
-<li>
-<a href="https://whattheyforgot.org/debugging-r-code.html">Chapter 11</a> in Jenny Bryan and Jim Hester’s fantastic book, <a href="https://whattheyforgot.org/">“What They Forgot to Teach You About R”</a>.</li>
-<li>
-<a href="https://resources.rstudio.com/wistia-rstudio-conf-2018-2/debugging-techniques-in-rstudio-amanda-gadrow-4">Debugging techniques in RStudio</a> - Amanda Gadrow’s talk at rstudio::conf 2018.</li>
+<li><a href="https://whattheyforgot.org/debugging-r-code.html">Chapter 11</a> in Jenny Bryan and Jim Hester’s fantastic book, <a href="https://whattheyforgot.org/">“What They Forgot to Teach You About R”</a>.</li>
+<li><a href="https://resources.rstudio.com/wistia-rstudio-conf-2018-2/debugging-techniques-in-rstudio-amanda-gadrow-4">Debugging techniques in RStudio</a> - Amanda Gadrow’s talk at rstudio::conf 2018.</li>
 <li><a href="https://support.rstudio.com/hc/en-us/articles/200713843">Debugging in RStudio article</a></li>
 </ul>
 </blockquote>
-<section id="writing-test-cases" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="writing-test-cases">
-<span class="header-section-number">7.1</span> Writing test cases</h2>
+<section id="writing-test-cases" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="writing-test-cases"><span class="header-section-number">7.1</span> Writing test cases</h2>
 <center>
 <p><img src="images/test_cases_fry.png" class="img-fluid" width="500"></p>
 </center>
 <p>Writing test cases is part of the process of understanding a problem; if you don’t know what the result of an example input should be, you can’t know how to solve the problem.</p>
 <p>Test cases are also used to verify that a solution to a problem is correct – that it works as expected. Without a good set of test cases, we have no idea whether our code actually works!</p>
-<section id="test-case-types" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="test-case-types">
-<span class="header-section-number">7.1.1</span> Test case types</h3>
+<section id="test-case-types" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="test-case-types"><span class="header-section-number">7.1.1</span> Test case types</h3>
 <p>Test cases vary based on the problem, but you generally want to ensure that you have at least one or two of each of the following test case types. I use the acronym <strong>NOLES</strong>:</p>
 <ul>
-<li>
-<strong>N</strong>ormal Cases: Typical input that should follow the main path through the code.</li>
-<li>
-<strong>O</strong>pposites: Cases that return opposite outputs (e.g.&nbsp;<code>TRUE</code> and <code>FALSE</code>).</li>
-<li>
-<strong>L</strong>arge Cases: Typical input, but of a larger size than usual. This ensures that bugs don’t appear after multiple iterations.</li>
-<li>
-<strong>E</strong>dge Cases: Pairs of inputs that test different choice points in the code. For example, if a condition in the problem checks whether <code>n &lt; 2</code>, two important edge cases are when <code>n = 2</code> and <code>n = 3</code>, which trigger different behaviors. Other edge cases include the first / last characters in a string or items in a list.</li>
-<li>
-<strong>S</strong>pecial Cases: Some inputs need to be special-cased for many problems. This includes negative numbers, <code>0</code> and <code>1</code> for integers, the empty string (<code>""</code>), and input values of different types than are expected.</li>
-</ul></section><section id="testing-with-stopifnot" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="testing-with-stopifnot">
-<span class="header-section-number">7.1.2</span> Testing with <code>stopifnot()</code>
-</h3>
-<p>The <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code> function does what you might expect - it stops the function if whatever is inside the <code>()</code> is not <code>TRUE</code>. Let’s look at an example.</p>
+<li><strong>N</strong>ormal Cases: Typical input that should follow the main path through the code.</li>
+<li><strong>O</strong>pposites: Cases that return opposite outputs (e.g.&nbsp;<code>TRUE</code> and <code>FALSE</code>).</li>
+<li><strong>L</strong>arge Cases: Typical input, but of a larger size than usual. This ensures that bugs don’t appear after multiple iterations.</li>
+<li><strong>E</strong>dge Cases: Pairs of inputs that test different choice points in the code. For example, if a condition in the problem checks whether <code>n &lt; 2</code>, two important edge cases are when <code>n = 2</code> and <code>n = 3</code>, which trigger different behaviors. Other edge cases include the first / last characters in a string or items in a list.</li>
+<li><strong>S</strong>pecial Cases: Some inputs need to be special-cased for many problems. This includes negative numbers, <code>0</code> and <code>1</code> for integers, the empty string (<code>""</code>), and input values of different types than are expected.</li>
+</ul>
+</section>
+<section id="testing-with-stopifnot" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="testing-with-stopifnot"><span class="header-section-number">7.1.2</span> Testing with <code>stopifnot()</code></h3>
+<p>The <code>stopifnot()</code> function does what you might expect - it stops the function if whatever is inside the <code>()</code> is not <code>TRUE</code>. Let’s look at an example.</p>
 <p>Consider the function <code>isEvenNumber()</code>, which takes a numeric value and returns <code>TRUE</code> if it is an even number and <code>FALSE</code> otherwise:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">isEvenNumber</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="co"># A number is "even" if it is divisible by 2 with no remainder</span></span>
-<span>    <span class="va">remainder</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">remainder</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>isEvenNumber <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A number is "even" if it is divisible by 2 with no remainder</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> n <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(remainder <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is a simple test function for <code>isEvenNumber()</code> that uses the <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code> function to examine the following two test cases:</p>
+<p>Here is a simple test function for <code>isEvenNumber()</code> that uses the <code>stopifnot()</code> function to examine the following two test cases:</p>
 <ul>
-<li>We expect the output of <code>isEvenNumber(42)</code> to be <code>TRUE</code>
-</li>
-<li>We expect the output of <code>isEvenNumber(43)</code> to be <code>FALSE</code>
-</li>
+<li>We expect the output of <code>isEvenNumber(42)</code> to be <code>TRUE</code></li>
+<li>We expect the output of <code>isEvenNumber(43)</code> to be <code>FALSE</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">testIsEvenNumber</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Testing isEvenNumber()... "</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="fl">43</span><span class="op">)</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Passed!\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>testIsEvenNumber <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Testing isEvenNumber()... "</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">isEvenNumber</span>(<span class="dv">42</span>) <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">isEvenNumber</span>(<span class="dv">43</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Passed!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In this test function, we called the <code><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot()</a></code> function and used the <code>==</code> operator to assess whether the output of <code>isEvenNumber()</code> is equal to the value we expected. We can run these cases by simply calling our test function:</p>
+<p>In this test function, we called the <code>stopifnot()</code> function and used the <code>==</code> operator to assess whether the output of <code>isEvenNumber()</code> is equal to the value we expected. We can run these cases by simply calling our test function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testIsEvenNumber</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testIsEvenNumber</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Testing isEvenNumber()... Passed!</code></pre>
 </div>
 </div>
-</section><section id="testing-function-inputs" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="testing-function-inputs">
-<span class="header-section-number">7.1.3</span> Testing function inputs</h3>
+</section>
+<section id="testing-function-inputs" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="testing-function-inputs"><span class="header-section-number">7.1.3</span> Testing function inputs</h3>
 <p>The two test cases we used for <code>isEvenNumber()</code> are “normal” cases because they use typical inputs and test for expected outputs. A better test function would also include a few other statements to test other points of failure.</p>
 <p>One particular common error is when a user inputs the wrong data type to a function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="st">'42'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isEvenNumber</span>(<span class="st">'42'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>#&gt; Error in n%%2: non-numeric argument to binary operator</code></pre>
 </div>
 </div>
 <p>Here we’ve input a string instead of a number, and R sent us an error message. To account for this possibility, we can modify our function and test function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">isEvenNumber</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="co"># First make sure the input is a numeric type</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="va">remainder</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">remainder</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">testIsEvenNumber</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Testing isEvenNumber()... "</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="fl">43</span><span class="op">)</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="st">'not_a_number'</span><span class="op">)</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Passed!\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu">testIsEvenNumber</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>isEvenNumber <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First make sure the input is a numeric type</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.numeric</span>(n)) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> n <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(remainder <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>testIsEvenNumber <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Testing isEvenNumber()... "</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">isEvenNumber</span>(<span class="dv">42</span>) <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">isEvenNumber</span>(<span class="dv">43</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">isEvenNumber</span>(<span class="st">'not_a_number'</span>) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Passed!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">testIsEvenNumber</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Testing isEvenNumber()... Passed!</code></pre>
 </div>
 </div>
-</section><section id="better-error-messaging-with-stop" class="level3" data-number="7.1.4"><h3 data-number="7.1.4" class="anchored" data-anchor-id="better-error-messaging-with-stop">
-<span class="header-section-number">7.1.4</span> Better error messaging with <code>stop()</code>
-</h3>
-<p>Another approach to checking input types is to explicitly provide a better error message so the user can know what went wrong. For example, rather than return <code>FALSE</code> when we input a string to <code>isEvenNumber()</code>, we can use <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> to halt the function and send an error message:</p>
+</section>
+<section id="better-error-messaging-with-stop" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="better-error-messaging-with-stop"><span class="header-section-number">7.1.4</span> Better error messaging with <code>stop()</code></h3>
+<p>Another approach to checking input types is to explicitly provide a better error message so the user can know what went wrong. For example, rather than return <code>FALSE</code> when we input a string to <code>isEvenNumber()</code>, we can use <code>stop()</code> to halt the function and send an error message:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">isEvenNumber</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">'Oops! This function requires numeric inputs!'</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="va">remainder</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">remainder</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">isEvenNumber</span><span class="op">(</span><span class="st">'42'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>isEvenNumber <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span> <span class="fu">is.numeric</span>(n)) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">'Oops! This function requires numeric inputs!'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> n <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(remainder <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">isEvenNumber</span>(<span class="st">'42'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>#&gt; Error in isEvenNumber("42"): Oops! This function requires numeric inputs!</code></pre>
 </div>
 </div>
-</section></section><section id="debugging" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="debugging">
-<span class="header-section-number">7.2</span> Debugging</h2>
+</section>
+</section>
+<section id="debugging" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="debugging"><span class="header-section-number">7.2</span> Debugging</h2>
 <p>Bugs are a natural part of the programming process. However, you can reduce the number of bugs you encounter by following a few tips:</p>
 <ul>
 <li>Write code with good style.</li>
@@ -431,88 +452,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Make sure each function only has <strong>one</strong> task.</li>
 <li>Avoid copying and pasting code at all costs (this leads to bug propagation).</li>
 </ul>
-<section id="debugging-your-own-code" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="debugging-your-own-code">
-<span class="header-section-number">7.2.1</span> Debugging your own code</h3>
+<section id="debugging-your-own-code" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="debugging-your-own-code"><span class="header-section-number">7.2.1</span> Debugging your own code</h3>
 <p>The most common case you will run into a bug is when writing new code yourself. Often the mistake is obvious and easily fixed, but sometimes it only appears after multiple levels of calls and is harder to diagnose. There are a few common strategies to use when debugging your own code.</p>
 <ul>
-<li>Use <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> to determine where a given error is occurring.</li>
-<li>Output diagnostic information in code with <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> or <code><a href="https://rdrr.io/r/base/message.html">message()</a></code> statements.</li>
-<li>Use <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> to open an interactive debugger before the error</li>
-<li>Use <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code> to automatically open a debugger at the start of a function call.</li>
-<li>Use <code><a href="https://rdrr.io/r/base/trace.html">trace()</a></code> to start a debugger at a location inside a function.</li>
+<li>Use <code>traceback()</code> to determine where a given error is occurring.</li>
+<li>Output diagnostic information in code with <code>print()</code>, <code>cat()</code> or <code>message()</code> statements.</li>
+<li>Use <code>browser()</code> to open an interactive debugger before the error</li>
+<li>Use <code>debug()</code> to automatically open a debugger at the start of a function call.</li>
+<li>Use <code>trace()</code> to start a debugger at a location inside a function.</li>
 </ul>
-<section id="traceback" class="level4" data-number="7.2.1.1"><h4 data-number="7.2.1.1" class="anchored" data-anchor-id="traceback">
-<span class="header-section-number">7.2.1.1</span> <code>traceback()</code>
-</h4>
-<p>The <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> function can be used to print a summary of how your program arrived at the error. This is also called a call stack, stack trace or backtrace.</p>
+<section id="traceback" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="traceback"><span class="header-section-number">7.2.1.1</span> <code>traceback()</code></h4>
+<p>The <code>traceback()</code> function can be used to print a summary of how your program arrived at the error. This is also called a call stack, stack trace or backtrace.</p>
 <p>In R this gives you each call that lead up to the error, which can be very useful for determining what lead to the error.</p>
-<p>You can use <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> in two different ways, either by calling it immediately after the error has occurred.</p>
+<p>You can use <code>traceback()</code> in two different ways, either by calling it immediately after the error has occurred.</p>
 <!-- knitr messes with the tracebacks, so we just do this manually :| -->
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">g</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">f</span>(x) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>#&gt; Error in x + 1 : non-numeric argument to binary operator</code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">traceback</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>#&gt; 2: f(x) at #1
 #&gt; 1: g("a")</code></pre>
-<p>Or by using <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> as an error handler, which will call it immediately on any error. (You could even put this in your <a href="https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile"><code>.Rprofile</code></a>)</p>
+<p>Or by using <code>traceback()</code> as an error handler, which will call it immediately on any error. (You could even put this in your <a href="https://stackoverflow.com/questions/46819684/how-to-access-and-edit-rprofile"><code>.Rprofile</code></a>)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>error <span class="op">=</span> <span class="va">traceback</span><span class="op">)</span></span>
-<span><span class="fu">g</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">error =</span> traceback)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>#&gt; Error in x + 1 : non-numeric argument to binary operator
 #&gt; 2: f(x) at #1
 #&gt; 1: g("a")</code></pre>
-</section><section id="print" class="level4" data-number="7.2.1.2"><h4 data-number="7.2.1.2" class="anchored" data-anchor-id="print">
-<span class="header-section-number">7.2.1.2</span> <code>print()</code>
-</h4>
+</section>
+<section id="print" class="level4" data-number="7.2.1.2">
+<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="print"><span class="header-section-number">7.2.1.2</span> <code>print()</code></h4>
 <p>Once you know where an error occurs it is then helpful to know why. Often errors occur because functions are given inputs their authors did not expect, so it is useful to print the value of objects during execution.</p>
-<p>The most basic way to do this is to sprinkle messages throughout your code, with <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> or <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>. <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> is often more useful because it gives more detail into the exact structure of an object, which may not be the structure you expect it to be.</p>
+<p>The most basic way to do this is to sprinkle messages throughout your code, with <code>print()</code> or <code>str()</code>. <code>str()</code> is often more useful because it gives more detail into the exact structure of an object, which may not be the structure you expect it to be.</p>
 <p>The main downsides to the print approach is you often have to add them in multiple places to narrow down the error, and you cannot further investigate the object.</p>
-</section><section id="browser" class="level4" data-number="7.2.1.3"><h4 data-number="7.2.1.3" class="anchored" data-anchor-id="browser">
-<span class="header-section-number">7.2.1.3</span> <code>browser()</code>
-</h4>
-<p>A more sophisticated debugging method is to put a call to <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> in your code. This will stop execution at that point and open R’s interactive debugger. In the debugger you can run any R command to look at objects in the current environment, modify them and continue executing.</p>
+</section>
+<section id="browser" class="level4" data-number="7.2.1.3">
+<h4 data-number="7.2.1.3" class="anchored" data-anchor-id="browser"><span class="header-section-number">7.2.1.3</span> <code>browser()</code></h4>
+<p>A more sophisticated debugging method is to put a call to <code>browser()</code> in your code. This will stop execution at that point and open R’s interactive debugger. In the debugger you can run any R command to look at objects in the current environment, modify them and continue executing.</p>
 <p>Some useful things to do are</p>
 <ol type="1">
-<li>Use <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> to determine what objects are available in the current environment. This allows you to see exactly what things you can examine.</li>
-<li>Use <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> etc. to examine the objects</li>
+<li>Use <code>ls()</code> to determine what objects are available in the current environment. This allows you to see exactly what things you can examine.</li>
+<li>Use <code>str()</code>, <code>print()</code> etc. to examine the objects</li>
 <li>Use <code>n</code> to evaluate the next statement. Use <code>s</code> to evaluate the next statement, but step into function calls.</li>
-<li>Use <code>where</code> to print a <a href="#traceback">stack trace</a>
-</li>
+<li>Use <code>where</code> to print a <a href="#traceback">stack trace</a></li>
 <li>Use <code>c</code> to leave the debugger and continue execution</li>
 <li>Use <code>Q</code> to exit the debugger and return to the R prompt.</li>
-</ol></section></section><section id="debugging-in-rstudio" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="debugging-in-rstudio">
-<span class="header-section-number">7.2.2</span> Debugging in RStudio</h3>
-<section id="editor-breakpoints" class="level4" data-number="7.2.2.1"><h4 data-number="7.2.2.1" class="anchored" data-anchor-id="editor-breakpoints">
-<span class="header-section-number">7.2.2.1</span> Editor breakpoints</h4>
-<p>RStudio provides some additional tooling for debugging over using R on the command line. First you can set an editor breakpoint by clicking to the left of the line number in the source file, or by pressing <code>Shift+F9</code> with your cursor on the line. A breakpoint is equivalent to a <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> call, but you avoid needing to change your code like <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>.</p>
+</ol>
+</section>
+</section>
+<section id="debugging-in-rstudio" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="debugging-in-rstudio"><span class="header-section-number">7.2.2</span> Debugging in RStudio</h3>
+<section id="editor-breakpoints" class="level4" data-number="7.2.2.1">
+<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="editor-breakpoints"><span class="header-section-number">7.2.2.1</span> Editor breakpoints</h4>
+<p>RStudio provides some additional tooling for debugging over using R on the command line. First you can set an editor breakpoint by clicking to the left of the line number in the source file, or by pressing <code>Shift+F9</code> with your cursor on the line. A breakpoint is equivalent to a <code>browser()</code> call, but you avoid needing to change your code like <code>browser()</code>.</p>
 <p><img src="images/editor-breakpoint.png" class="img-fluid"></p>
-</section><section id="stopping-on-error" class="level4" data-number="7.2.2.2"><h4 data-number="7.2.2.2" class="anchored" data-anchor-id="stopping-on-error">
-<span class="header-section-number">7.2.2.2</span> Stopping on error</h4>
+</section>
+<section id="stopping-on-error" class="level4" data-number="7.2.2.2">
+<h4 data-number="7.2.2.2" class="anchored" data-anchor-id="stopping-on-error"><span class="header-section-number">7.2.2.2</span> Stopping on error</h4>
 <p>If you are trying to hunt down a particular error it is often useful to have RStudio enter the debugger when it occurs. You can control the error behavior with (<code>Debug -&gt; On Error -&gt; Error Inspector</code>).</p>
 <p><img src="images/break-in-code.png" class="img-fluid"></p>
-</section><section id="debugging-console" class="level4" data-number="7.2.2.3"><h4 data-number="7.2.2.3" class="anchored" data-anchor-id="debugging-console">
-<span class="header-section-number">7.2.2.3</span> Debugging console</h4>
+</section>
+<section id="debugging-console" class="level4" data-number="7.2.2.3">
+<h4 data-number="7.2.2.3" class="anchored" data-anchor-id="debugging-console"><span class="header-section-number">7.2.2.3</span> Debugging console</h4>
 <p><img src="images/console-window.png" class="img-fluid"></p>
 <p>The RStudio debugging console has a few buttons to make debugging a little nicer, From left to right they are, next (equivalent to <code>n</code>), step info (<code>s</code>), continue (<code>c</code>) and Stop (<code>Q</code>).</p>
-</section></section></section><section id="page-sources" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
+</section>
+</section>
+</section>
+<section id="page-sources" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
 <p>Some content on this page has been modified from other courses, including:</p>
 <ul>
-<li>CMU <a href="http://www.kosbie.net/cmu/spring-17/15-112/">15-112: Fundamentals of Programming</a>, by <a href="http://www.kosbie.net/cmu/">David Kosbie</a> &amp; <a href="https://hcii.cmu.edu/people/kelly-rivers">Kelly Rivers</a>
-</li>
-<li>Jennifer Bryan &amp; Jim Hester’s <a href="https://whattheyforgot.org/debugging-r-code.html">“What They Forgot to Teach You About R”</a>
-</li>
+<li>CMU <a href="http://www.kosbie.net/cmu/spring-17/15-112/">15-112: Fundamentals of Programming</a>, by <a href="http://www.kosbie.net/cmu/">David Kosbie</a> &amp; <a href="https://hcii.cmu.edu/people/kelly-rivers">Kelly Rivers</a></li>
+<li>Jennifer Bryan &amp; Jim Hester’s <a href="https://whattheyforgot.org/debugging-r-code.html">“What They Forgot to Teach You About R”</a></li>
 </ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -547,18 +576,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -590,11 +608,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/p4a\.jhelvy\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -604,8 +661,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -617,7 +683,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -661,6 +850,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -686,6 +876,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -743,42 +959,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("https:\/\/p4a\.jhelvy\.com\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./conditionals.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./conditionals.html" class="pagination-link" aria-label="Conditionals">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditionals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./iteration.html" class="pagination-link">
+      <a href="./iteration.html" class="pagination-link" aria-label="Iteration">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Iteration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Programming for Analytics in R was written by John Paul Helveston</div>   
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Programming for Analytics in R was written by John Paul Helveston</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jhelvy/p4a/edit/main/testing-debugging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jhelvy/p4a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+
+
 </body></html>
