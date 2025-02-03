@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 What you will learn\nThe goal of the book is to develop a foundation in two domains:\nThis book implements both domains in R - an open source and powerful language for both programming and data science.",
+    "text": "1.1 What you will learn\nThis book was originally written as a companion set of readings for the course “EMSE 4571 / 6571: Intro. to Programming for Analytics” at GWU.\nThe goal of the book is to develop a foundation in two domains:\nThis book implements both domains in R - an open source and powerful language for both programming and data science.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -37,6 +37,16 @@
     "text": "1.2 Software\nYou will need both R and RStudio for this book. You will also need to install some R packages, but we’ll get to those later.\n\n1.2.1 R\nYou can download and install R from CRAN, the Comprehensive R Archive Network, at https://cloud.r-project.org/index.html This book assumes you will install at least R 4.1.0 for this book.\n\n\n1.2.2 RStudio\nRStudio is an “Integrated Development Environment (IDE) for programming in R. Download and install it from https://posit.co/download/rstudio-desktop/.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "programming.html",
+    "href": "programming.html",
+    "title": "Programming",
+    "section": "",
+    "text": "The goal of this section is to develop a general literacy in programming and computational thinking. While we will focus on learning these concepts in R, they will translate well to other similar languages, such as Python and Matlab.\nGo on to the next page to get started on your journey learning to program in R!",
+    "crumbs": [
+      "Programming"
     ]
   },
   {
@@ -99,7 +109,7 @@
     "href": "getting-started.html#a-couple-more-important-points",
     "title": "2  Getting Started",
     "section": "2.5 A couple more important points",
-    "text": "2.5 A couple more important points\n\n2.5.1 R ignores excess spacing\nWhen I typed 3 + 4 before, I could equally have done this\n\n3        + 4\n\n#&gt; [1] 7\n\n\nor this\n\n            3   + 4\n\n#&gt; [1] 7\n\n\nBoth produce the same result. The point here is that R ignores extra spaces. This may seem irrelevant for now, but in some programming languages (e.g. Python) blank spaces matter a lot!\nThis doesn’t mean extra spaces never matter. For example, if you wanted to input the value 3.14 but you put a space after the 3, you’ll get an error:\n\n3   .14\n\n#&gt; Error: &lt;text&gt;:1:5: unexpected numeric constant\n#&gt; 1: 3   .14\n#&gt;         ^\n\n\nBasically, you can put spaces between different values, and you can put as many as you want and R won’t care. But if you break a value up with a space, R will send an error message.\n\n\n2.5.2 Using comments\nIn R, the # symbol is a special symbol that denotes a comment. R will ignore anything on the same line that follows the # symbol. This enables us to write comments around our code to explain what we’re doing:\n\nspeed &lt;- 55 # This is km/h, not mph!\nspeed\n\n#&gt; [1] 55\n\n\nNotice that R ignores the whole sentence after the # symbol.",
+    "text": "2.5 A couple more important points\n\n2.5.1 R ignores excess spacing\nWhen I typed 3 + 4 before, I could equally have done this\n\n3        + 4\n\n#&gt; [1] 7\n\n\nor this\n\n            3   + 4\n\n#&gt; [1] 7\n\n\nBoth produce the same result. The point here is that R ignores extra spaces. This may seem irrelevant for now, but in some programming languages (e.g. Python) blank spaces matter a lot!\nThis doesn’t mean extra spaces never matter. For example, if you wanted to input the value 3.14 but you put a space after the 3, you’ll get an error:\n\n3   .14\n\n#&gt; Error in parse(text = input): &lt;text&gt;:1:5: unexpected numeric constant\n#&gt; 1: 3   .14\n#&gt;         ^\n\n\nBasically, you can put spaces between different values, and you can put as many as you want and R won’t care. But if you break a value up with a space, R will send an error message.\n\n\n2.5.2 Using comments\nIn R, the # symbol is a special symbol that denotes a comment. R will ignore anything on the same line that follows the # symbol. This enables us to write comments around our code to explain what we’re doing:\n\nspeed &lt;- 55 # This is km/h, not mph!\nspeed\n\n#&gt; [1] 55\n\n\nNotice that R ignores the whole sentence after the # symbol.",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting Started</span>"
@@ -187,7 +197,7 @@
     "href": "operators-data-types.html#data-types",
     "title": "3  Operators & Data Types",
     "section": "3.5 Data types",
-    "text": "3.5 Data types\nEvery programming language has the ability to store data of different types. R recognizes several important basic data types (there are others, but these cover most cases):\n\n\n\n\n\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble\nNumber with a decimal place (aka “float”)\n3.14, 1.61803398875\n\n\ninteger\nNumber without a decimal place\n1, 42\n\n\ncharacter\nText in quotes (aka “string”)\n\"this is some text\", \"3.14\"\n\n\nlogical\nTrue or False (for comparing things)\nTRUE, FALSE\n\n\n\nIf you want to check with type a value is, you can use the function typeof(). For example:\n\ntypeof(\"hello\")\n\n#&gt; [1] \"character\"\n\n\n\n3.5.1 Numeric types\nNumbers in R have the numeric data type, which is also the default computational type. There are two types of numbers:\n\nIntegers\nNon-integers (aka “double” or “float”)\n\nThe difference is that integers don’t have decimal values. A non-integer in R has the type “double”:\n\ntypeof(3.14)\n\n#&gt; [1] \"double\"\n\n\nBy default, R assumes all numbers have a decimal place, even if it looks like an integer:\n\ntypeof(3)\n\n#&gt; [1] \"double\"\n\n\nIn this case, R assumes that 3 is really 3.0. To make sure R knows you really do mean to create an integer, you have to add an L to the end of the number2:\n\ntypeof(3L)\n\n#&gt; [1] \"integer\"\n\n\n\n\n3.5.2 Character types\nA character value is used to represent string values in R. Anything put between single quotes ('') or double quotes (\"\") will be stored as a character. For example:\n\ntypeof('3')\n\n#&gt; [1] \"character\"\n\n\nNotice that even though the value looks like a number, because it is inside quotes R interprets it as a character. If you mistakenly thought it was a a number, R will gladly return an error when you try to do a numerical operation with it:\n\n'3' + 7\n\n#&gt; Error in \"3\" + 7: non-numeric argument to binary operator\n\n\nIt doesn’t mattef if you use single or double quotes to create a character. The only time is does matter is if the character is a quote symbole itself. For example, if you wanted to type the word \"don't\", you should use double quotes so that R knows the single quote is part of the character:\n\ntypeof(\"don't\")\n\n#&gt; [1] \"character\"\n\n\nIf you used single quotes, you’ll get an error because R reads 'don' as a character:\n\ntypeof('don't')\n\n#&gt; Error: &lt;text&gt;:1:13: unexpected symbol\n#&gt; 1: typeof('don't\n#&gt;                 ^\n\n\nWe will go into much more detail about working with character values later on in Week 7.\n\n\n3.5.3 Logical types\nLogical data only have two values: TRUE or FALSE. Note that these are not in quotes and are in all caps.\n\ntypeof(TRUE)\n\n#&gt; [1] \"logical\"\n\ntypeof(FALSE)\n\n#&gt; [1] \"logical\"\n\n\nR uses these two special values to help answer questions about logical statements. For example, let’s compare whether 1 is greater than 2:\n\n1 &gt; 2\n\n#&gt; [1] FALSE\n\n\nR returns the values FALSE because 1 is not greater than 2. If I flip the question to whether 1 is less than 2, I’ll get TRUE:\n\n1 &lt; 2\n\n#&gt; [1] TRUE\n\n\n\n\n3.5.4 Special values\nIn addition to the four main data types mentioned, there are a few additional “special” types: Inf, NaN, NA and NULL.\nInfinity: Inf corresponds to a value that is infinitely large (or infinitely small with -Inf). The easiest way to get Inf is to divide a positive number by 0:\n\n1/0\n\n#&gt; [1] Inf\n\n\nNot a Number: NaN is short for “not a number”, and it’s basically a reserved keyword that means “there isn’t a mathematically defined number for this.” For example:\n\n0/0\n\n#&gt; [1] NaN\n\n\nNot available: NA indicates that the value that is “supposed” to be stored here is missing. We’ll see these much more when we start getting into data structures like vectors and data frames.\nNo value: NULL asserts that the variable genuinely has no value whatsoever, or does not even exist.",
+    "text": "3.5 Data types\nEvery programming language has the ability to store data of different types. R recognizes several important basic data types (there are others, but these cover most cases):\n\n\n\n\n\n\n\n\nType\nDescription\nExample\n\n\n\n\ndouble\nNumber with a decimal place (aka “float”)\n3.14, 1.61803398875\n\n\ninteger\nNumber without a decimal place\n1, 42\n\n\ncharacter\nText in quotes (aka “string”)\n\"this is some text\", \"3.14\"\n\n\nlogical\nTrue or False (for comparing things)\nTRUE, FALSE\n\n\n\nIf you want to check with type a value is, you can use the function typeof(). For example:\n\ntypeof(\"hello\")\n\n#&gt; [1] \"character\"\n\n\n\n3.5.1 Numeric types\nNumbers in R have the numeric data type, which is also the default computational type. There are two types of numbers:\n\nIntegers\nNon-integers (aka “double” or “float”)\n\nThe difference is that integers don’t have decimal values. A non-integer in R has the type “double”:\n\ntypeof(3.14)\n\n#&gt; [1] \"double\"\n\n\nBy default, R assumes all numbers have a decimal place, even if it looks like an integer:\n\ntypeof(3)\n\n#&gt; [1] \"double\"\n\n\nIn this case, R assumes that 3 is really 3.0. To make sure R knows you really do mean to create an integer, you have to add an L to the end of the number2:\n\ntypeof(3L)\n\n#&gt; [1] \"integer\"\n\n\n\n\n3.5.2 Character types\nA character value is used to represent string values in R. Anything put between single quotes ('') or double quotes (\"\") will be stored as a character. For example:\n\ntypeof('3')\n\n#&gt; [1] \"character\"\n\n\nNotice that even though the value looks like a number, because it is inside quotes R interprets it as a character. If you mistakenly thought it was a a number, R will gladly return an error when you try to do a numerical operation with it:\n\n'3' + 7\n\n#&gt; Error in \"3\" + 7: non-numeric argument to binary operator\n\n\nIt doesn’t mattef if you use single or double quotes to create a character. The only time is does matter is if the character is a quote symbole itself. For example, if you wanted to type the word \"don't\", you should use double quotes so that R knows the single quote is part of the character:\n\ntypeof(\"don't\")\n\n#&gt; [1] \"character\"\n\n\nIf you used single quotes, you’ll get an error because R reads 'don' as a character:\n\ntypeof('don't')\n\n#&gt; Error in parse(text = input): &lt;text&gt;:1:13: unexpected symbol\n#&gt; 1: typeof('don't\n#&gt;                 ^\n\n\nWe will go into much more detail about working with character values later on in Week 7.\n\n\n3.5.3 Logical types\nLogical data only have two values: TRUE or FALSE. Note that these are not in quotes and are in all caps.\n\ntypeof(TRUE)\n\n#&gt; [1] \"logical\"\n\ntypeof(FALSE)\n\n#&gt; [1] \"logical\"\n\n\nR uses these two special values to help answer questions about logical statements. For example, let’s compare whether 1 is greater than 2:\n\n1 &gt; 2\n\n#&gt; [1] FALSE\n\n\nR returns the values FALSE because 1 is not greater than 2. If I flip the question to whether 1 is less than 2, I’ll get TRUE:\n\n1 &lt; 2\n\n#&gt; [1] TRUE\n\n\n\n\n3.5.4 Special values\nIn addition to the four main data types mentioned, there are a few additional “special” types: Inf, NaN, NA and NULL.\nInfinity: Inf corresponds to a value that is infinitely large (or infinitely small with -Inf). The easiest way to get Inf is to divide a positive number by 0:\n\n1/0\n\n#&gt; [1] Inf\n\n\nNot a Number: NaN is short for “not a number”, and it’s basically a reserved keyword that means “there isn’t a mathematically defined number for this.” For example:\n\n0/0\n\n#&gt; [1] NaN\n\n\nNot available: NA indicates that the value that is “supposed” to be stored here is missing. We’ll see these much more when we start getting into data structures like vectors and data frames.\nNo value: NULL asserts that the variable genuinely has no value whatsoever, or does not even exist.",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Operators & Data Types</span>"
@@ -220,7 +230,7 @@
     "href": "functions-packages.html",
     "title": "4  Functions & Packages",
     "section": "",
-    "text": "4.1 Functions\nYou can do a lot with the basic operators like +, -, and *, but to do more advanced calculations you’re going to need to start using functions.1\nR has a lot of very useful built-in functions. For example, if I wanted to take the square root of 225, I could use R’s built-in square root function sqrt():\nsqrt(225)\n\n#&gt; [1] 15\nHere the letters sqrt are short for “square root,” and the value inside the () is the “argument” to the function. In the example above, the value 225 is the “argument”.\nKeep in mind that not all functions have (or require) arguments:\ndate() # Returns the current date and time\n\n#&gt; [1] \"Mon Aug  5 16:09:33 2024\"\n(the date above is the date this page was last built)",
+    "text": "4.1 Functions\nYou can do a lot with the basic operators like +, -, and *, but to do more advanced calculations you’re going to need to start using functions.1\nR has a lot of very useful built-in functions. For example, if I wanted to take the square root of 225, I could use R’s built-in square root function sqrt():\nsqrt(225)\n\n#&gt; [1] 15\nHere the letters sqrt are short for “square root,” and the value inside the () is the “argument” to the function. In the example above, the value 225 is the “argument”.\nKeep in mind that not all functions have (or require) arguments:\ndate() # Returns the current date and time\n\n#&gt; [1] \"Mon Feb  3 11:39:23 2025\"\n(the date above is the date this page was last built)",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functions & Packages</span>"
@@ -297,7 +307,7 @@
     "href": "creating-functions.html",
     "title": "5  Creating Functions",
     "section": "",
-    "text": "5.1 Basic syntax\nHere’s the syntax that you use to create a function:\nWhat this does is create a function with the name FNAME, which has arguments ARG1, ARG2, etc. Whenever the function is called, R executes the statements within the curly braces {}, and then returns the VALUE inside the return() statement.\nThere’s a lot of different pieces to making a function. The way I like to remember how they all go together is to read the following English sentence:\nEach piece of the above sentence corresponds with a piece of code for writing a function:\nAll the commands your function will execute go in the {}.\nFor example, here’s the function mySqrt(n), which returns the square root of n:\nAnd here’s mySqrt(n) written in the typical format:\nmySqrt &lt;- function(n) {\n    return(n^0.5)\n}",
+    "text": "5.1 Basic syntax\nWe already know how to use built-in functions like sum(), round(), sqrt(), etc. And we can access other functions by installing external packages. But many times there just isn’t a function out there to do what you need. Fortunately, you can write your own!\nHere’s the syntax that you use to create a function:\nWhat this does is create a function with the name FNAME, which has arguments ARG1, ARG2, etc. Whenever the function is called, R executes the statements within the curly braces {}, and then returns the VALUE inside the return() statement.\nThere’s a lot of different pieces to making a function. The way I like to remember how they all go together is to read the following English sentence:\nEach piece of the above sentence corresponds with a piece of code for writing a function:\nAll the commands your function will execute go in the {}.\nFor example, here’s the function mySqrt(n), which returns the square root of n:\nAnd here’s mySqrt(n) written in the typical format:\nmySqrt &lt;- function(n) {\n    return(n^0.5)\n}",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Creating Functions</span>"
@@ -363,18 +373,7 @@
     "href": "creating-functions.html#local-vs.-global-variables",
     "title": "5  Creating Functions",
     "section": "5.6 Local vs. global variables",
-    "text": "5.6 Local vs. global variables\nAll variables inside a function are called “local” variables and will NOT be created in the working environment. They can only be used locally within the function. For example:\n\nminSquared &lt;- function(x, y) {\n    smaller = min(x, y)\n    return(smaller^2)\n}\n\n\nminSquared(3, 4)\n\n#&gt; [1] 9\n\nminSquared(4, 3)\n\n#&gt; [1] 9\n\n\nIf you try to call a local variable in the global environment, you’ll get an error:\n\nsquare &lt;- function(x) {\n  y &lt;- x^2\n  return(y)\n}\ny\n\n#&gt; Error in eval(expr, envir, enclos): object 'y' not found\n\n\n“Global” variables are those in the global environment. These will show up in the “Environment” pane in RStudio. You can call these inside functions, but this is BAD practice. Here’s an example (Don’t do this!):\n\nprintN &lt;- function() {\n    cat(n)  # n is not local -- so it is global (bad idea!!!)\n}\nprintN() # Nothing happens because n isn't defined\n\n\nn = 5 # Define n in the global environment\nprintN()\n\n#&gt; 5",
-    "crumbs": [
-      "Programming",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Creating Functions</span>"
-    ]
-  },
-  {
-    "objectID": "creating-functions.html#tips",
-    "href": "creating-functions.html#tips",
-    "title": "5  Creating Functions",
-    "section": "5.7 Tips",
-    "text": "5.7 Tips\nOne particularly useful function is almostEqual():\n\nalmostEqual &lt;- function(d1, d2) {\n    epsilon = 0.00001\n    return(abs(d1-d2) &lt;= epsilon)\n}\n\nThis is useful when comparing numbers that are stored as floats and have lots of trailing zeros. For example, let’s do some simple addition:\n\nx &lt;- 0.1 + 0.2\nx\n\n#&gt; [1] 0.3\n\n\nIf we compared x to 0.3, we would expect the result to be TRUE, right?\n\nx == 0.3\n\n#&gt; [1] FALSE\n\n\nWhat went wrong here? Well, what looks like a value of 0.3 is actually a float with a lot of zeros:\n\nprint(x, digits = 20)\n\n#&gt; [1] 0.30000000000000004441\n\n\nBy default, R doesn’t print out all these zeros, but they are the result of many small rounding errors that occur when computers do calculations.\nThis is where almostEqual() comes in handy:\n\nalmostEqual(x, 0.3)\n\n#&gt; [1] TRUE\n\n\nIt only compares numbers out to a predefined decimal place, after which it ignores everything else. This will come in handy in your homework problems where you might get unexpected results.",
+    "text": "5.6 Local vs. global variables\nAll variables inside a function are called “local” variables and will NOT be created in the working environment. They can only be used locally within the function. For example:\n\nminSquared &lt;- function(x, y) {\n    smaller = min(x, y)\n    return(smaller^2)\n}\n\n\nminSquared(3, 4)\n\n#&gt; [1] 9\n\nminSquared(4, 3)\n\n#&gt; [1] 9\n\n\nIf you try to call a local variable in the global environment, you’ll get an error:\n\nsquare &lt;- function(x) {\n  y &lt;- x^2\n  return(y)\n}\ny\n\n#&gt; Error: object 'y' not found\n\n\n“Global” variables are those in the global environment. These will show up in the “Environment” pane in RStudio. You can call these inside functions, but this is BAD practice. Here’s an example (Don’t do this!):\n\nprintN &lt;- function() {\n    cat(n)  # n is not local -- so it is global (bad idea!!!)\n}\nprintN() # Nothing happens because n isn't defined\n\n\nn = 5 # Define n in the global environment\nprintN()\n\n#&gt; 5",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Creating Functions</span>"
@@ -396,7 +395,7 @@
     "href": "conditionals.html",
     "title": "6  Conditionals",
     "section": "",
-    "text": "6.1 if\nThe basic format of an if statement in R is as follows:\nIf the condition is TRUE, then R will execute the statements contained in the curly braces, otherwise it will skip it. This schematic illustrates the idea:",
+    "text": "6.1 if\nLike most programming languages, R can evaluate conditional statements. A conditional statement is a switch - it tells the code which command to execute depending on a condition that is specified by the programmer.\nThe most prominent examples of a conditional statement is the if statement, and the accompanying else statement.\nThe basic format of an if statement in R is as follows:\nIf the condition is TRUE, then R will execute the statements contained in the curly braces, otherwise it will skip it. This schematic illustrates the idea:",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Conditionals</span>"
@@ -480,6 +479,17 @@
     ]
   },
   {
+    "objectID": "testing-debugging.html#tips",
+    "href": "testing-debugging.html#tips",
+    "title": "7  Testing & Debugging",
+    "section": "7.3 Tips",
+    "text": "7.3 Tips\n\n7.3.1 Rounding errors\nOne common issue you’ll run into when programming (in general, not just in R) is floating point rounding errors (watch this short video) if you want to know why this happens with computers.\nHere’s an example. Let’s do some simple addition:\n\nx &lt;- 0.1 + 0.2\nx\n\n#&gt; [1] 0.3\n\n\nIf we compared x to 0.3, we would expect the result to be TRUE, right?\n\nx == 0.3\n\n#&gt; [1] FALSE\n\n\nWhat went wrong here? Well, what looks like a value of 0.3 is actually a float with a lot of zeros:\n\nprint(x, digits = 20)\n\n#&gt; [1] 0.30000000000000004441\n\n\nBy default, R doesn’t print out all these zeros, but they are the result of many small rounding errors that occur when computers do calculations.\nTo address this, you can use the all.equal() function:\n\nall.equal(x, 0.3)\n\n#&gt; [1] TRUE\n\n\nThis function only compares numbers out to a predefined decimal place (set by the optional tolerance argument, which by default is 1.5e-8), after which it ignores everything else.\n\n\n7.3.2 Dealing with integers\nSince numbers are doubles by default in R, the is.integer(x) function can be confusing. For example, we might expect this to return TRUE, right?\n\nis.integer(7)\n\n#&gt; [1] FALSE\n\n\nWell, yes the number 7 is indeed a mathematical integer, but R has still encoded it as a double. If what I really want to know is if a number is a whole number (meaning it doesn’t have any decimals), I’ll often write my own function, is.whole(), which leverages the all.equal() function to help with rounding issues:\n\nis.whole &lt;- function(n) {\n  return(all.equal(n, as.integer(n)))\n}\n\nNow this works as expected:\n\nis.whole(7)\n\n#&gt; [1] TRUE",
+    "crumbs": [
+      "Programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Testing & Debugging</span>"
+    ]
+  },
+  {
     "objectID": "testing-debugging.html#page-sources",
     "href": "testing-debugging.html#page-sources",
     "title": "7  Testing & Debugging",
@@ -495,7 +505,7 @@
     "href": "iteration.html",
     "title": "8  Iteration",
     "section": "",
-    "text": "8.1 The for loop\nUse for loops when there is a known number of iterations. The basic format of a for loop goes like this:\nIn a for loop, R runs a fixed number of iterations determined by the SEQUENCE statement, which is a sequence of values. In each iteration, the variable VALUE will take the next value in SEQUENCE. Once we’ve exhausted all of the values in SEQUENCE, the loop terminates and the flow of the program continues down the script. This schematic illustrates the idea:",
+    "text": "8.1 The for loop\nSimilar to conditionals (remember those if / else statements?), loops are another kind of “flow control” - that is, code that alters the otherwise linear flow of operations from the top of a script straight through to the end. The idea is simple: a loop is a block of code (i.e., a sequence of commands) that R will execute over and over again until some termination criterion is met.\nThe main two types of loops are for and while loops.\nUse for loops when there is a known number of iterations. The basic format of a for loop goes like this:\nIn a for loop, R runs a fixed number of iterations determined by the SEQUENCE statement, which is a sequence of values. In each iteration, the variable VALUE will take the next value in SEQUENCE. Once we’ve exhausted all of the values in SEQUENCE, the loop terminates and the flow of the program continues down the script. This schematic illustrates the idea:",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Iteration</span>"
@@ -550,7 +560,7 @@
     "href": "vectors.html",
     "title": "9  Vectors",
     "section": "",
-    "text": "9.1 Vector basics",
+    "text": "9.1 Vector basics\nSo far we’ve only dealt with objects that contain one value (e.g. x &lt;- 1), but R actually stores those values in a vector of length one:\nA vector is a basic data structure in R. All elements in a vector must have the same type.",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Vectors</span>"
@@ -616,7 +626,7 @@
     "href": "strings.html",
     "title": "10  Strings",
     "section": "",
-    "text": "10.1 Making a string\nYou can create strings with either single quotes ('') or double quotes (\"\"). There is no difference in behavior.\ncat(\"This is a string\")\n\n#&gt; This is a string\n\ncat('This is a string')\n\n#&gt; This is a string\nIf you have a string that contains a ' symbol, use double quotes: Use them where it makes sense, e.g.:\ncat(\"It's a boy!\")\n\n#&gt; It's a boy!\nLikewise, if you have a string that contains a \" symbol, use single quotes: Use them where it makes sense, e.g.:\ncat('I said, \"Hi!\"')\n\n#&gt; I said, \"Hi!\"\nBut what if you have a string that has both single and double quotes, like this: It's nice to say, \"Hi!\"\nIn this case, you have to “escape” the quotes by using the \\ symbol:\ncat(\"It's nice to say, \\\"Hi!\\\"\") # Double quotes escaped\n\n#&gt; It's nice to say, \"Hi!\"\n\ncat('It\\'s nice to say, \"Hi!\"') # Single quote escaped\n\n#&gt; It's nice to say, \"Hi!\"\nEscaping can be used for a lot of different string literals, such as starting a new line, adding a tab space, and even entering the \\ symbol itself:\ncat('New line:', 'This\\nthat')\n\n#&gt; New line: This\n#&gt; that\n\ncat('Tab space:', 'This\\tthat')\n\n#&gt; Tab space: This  that\n\ncat('Backslash:', 'This\\\\that')\n\n#&gt; Backslash: This\\that\nBeware that the printed representation of a string in the R console is not the same as string itself, because the printed representation shows the escapes. To see the raw contents of the string, use cat() or writeLines().",
+    "text": "10.1 Making a string\nA “string” is the generic word for character type variables. Base R has many built-in functions for working with strings, but they are often difficult to remember and unintuitive to use. Fortunately, the wonderful folks over at the tidyverse developed a lovely package called \"stringr\", which makes working with strings a lot nicer.\nBefore going any further, make sure you install the stringr package and load it before trying to use any of the functions in this lesson:\nYou can create strings with either single quotes ('') or double quotes (\"\"). There is no difference in behavior.\ncat(\"This is a string\")\n\n#&gt; This is a string\n\ncat('This is a string')\n\n#&gt; This is a string\nIf you have a string that contains a ' symbol, use double quotes: Use them where it makes sense, e.g.:\ncat(\"It's a boy!\")\n\n#&gt; It's a boy!\nLikewise, if you have a string that contains a \" symbol, use single quotes: Use them where it makes sense, e.g.:\ncat('I said, \"Hi!\"')\n\n#&gt; I said, \"Hi!\"\nBut what if you have a string that has both single and double quotes, like this: It's nice to say, \"Hi!\"\nIn this case, you have to “escape” the quotes by using the \\ symbol:\ncat(\"It's nice to say, \\\"Hi!\\\"\") # Double quotes escaped\n\n#&gt; It's nice to say, \"Hi!\"\n\ncat('It\\'s nice to say, \"Hi!\"') # Single quote escaped\n\n#&gt; It's nice to say, \"Hi!\"\nEscaping can be used for a lot of different string literals, such as starting a new line, adding a tab space, and even entering the \\ symbol itself:\ncat('New line:', 'This\\nthat')\n\n#&gt; New line: This\n#&gt; that\n\ncat('Tab space:', 'This\\tthat')\n\n#&gt; Tab space: This  that\n\ncat('Backslash:', 'This\\\\that')\n\n#&gt; Backslash: This\\that\nBeware that the printed representation of a string in the R console is not the same as string itself, because the printed representation shows the escapes. To see the raw contents of the string, use cat() or writeLines().",
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Strings</span>"
@@ -675,6 +685,46 @@
     "crumbs": [
       "Programming",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Strings</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html",
+    "href": "data-analysis.html",
+    "title": "Data Analysis",
+    "section": "",
+    "text": "The Challenger disaster\nThe goal of this section is to develop a general literacy in data analytics. The concepts addressed in this section are critical in achieving the “big picture” goal of being able to turn raw data into information. While the technical details of achieving this goal will require practice to master, the goal should always be kept in mind first and foremost.\nAs an example of what I mean, consider the following case study on the 1986 Space Shuttle Challenger explosion. In this case study, we’ll be examining data about the relationship between the temperature of different NASA rocket launches and damage to the rock O-rings - the root cause of the accident. Don’t worry yet if you don’t understand the specific code used - just try to follow along to see how we can pull out information from raw data.\nOn January 28, 1986 the space shuttle Challenger exploded. In his book titled “Visual Explanations”, Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.",
+    "crumbs": [
+      "Data Analysis"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#the-challenger-disaster",
+    "href": "data-analysis.html#the-challenger-disaster",
+    "title": "Data Analysis",
+    "section": "",
+    "text": "Image source",
+    "crumbs": [
+      "Data Analysis"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#the-data",
+    "href": "data-analysis.html#the-data",
+    "title": "Data Analysis",
+    "section": "The data",
+    "text": "The data\nThe R package DAAG has a dataset called orings which contains data on temperatures and O-ring damage during launches prior to the Challenger incident. Let’s load the DAAG library and preview the data:\n\nlibrary(DAAG)\n\nhead(orings)\n\n#&gt;   Temperature Erosion Blowby Total\n#&gt; 1          53       3      2     5\n#&gt; 2          57       1      0     1\n#&gt; 3          58       1      0     1\n#&gt; 4          63       1      0     1\n#&gt; 5          66       0      0     0\n#&gt; 6          67       0      0     0\n\n\nWe can see that the dataset contains observations about the temperatures of launches and O-ring damage, but we don’t yet have information. One step forward towards information is to simply plot the data to see if there might be a relationship between temperature and O-ring damage:\n\nlibrary(ggplot2)\n\nchallengerPlot &lt;- ggplot(\n        data = orings, \n        aes(x = Temperature, y = Total)\n    ) +\n    geom_point(size = 1.5) +\n    scale_x_continuous(\n        limits = c(25, 85), \n        breaks = seq(25, 85, 5)\n    ) +\n    scale_y_continuous(\n        limits = c(-0.15, 8), \n        breaks = seq(0, 8, 2)\n    ) +\n    labs(\n        x = 'Temperature (°F) of field joints at time of launch',\n        y = 'Total o-ring damage'\n    ) +\n    theme_bw() +\n    theme(panel.grid.minor = element_blank())\n\nchallengerPlot\n\n\n\n\n\n\n\n\nThe graph above shows O-ring damage on the y-axis and temperature on the x-axis. We can easily see that no prior launches below 66 degrees F were damage-free, and it appears that at lower temperatures (such as 55 degrees) the damage was even more severe.\nNow, what temperature was forecasted for the day of the Challenger launch? 26 to 29 degrees. Let’s add that context to our plot:\n\nannotation &lt;- paste(\n    \"26°-29°:\", \"Range of forecasted temperatures\",\n    \"for Jan. 28, 1986 Challenger launch\", sep = \"\\n\"\n)\n\nchallengerPlot +\n    annotate(\n        \"rect\", \n        xmin = 26, xmax = 29,  ymin = -0.15, ymax = 0.15,\n        alpha = 0.6, fill = \"grey60\"\n    ) +\n    annotate(\n        \"text\", \n        x = 26, y = 1.4, label = annotation, \n        hjust = 0\n    )\n\n\n\n\n\n\n\n\nNow we have some information. The transformation of the raw data into a visualization makes it obvious that the temperature forecasted for the day of the Challenger launch should raise red flags. It falls far below the temperature range of prior launches, and those prior launches suggest that O-ring damage may be correlated with decreasing temperature.\nTo their credit, the engineers working on the Challenger were worried about the potential for O-ring failure. But the critical step in making the link to temperature was not thoroughly communicated. Instead, the raw data was presented in tabular form along with diagrams like the one below, which show how erosion in the primary O-ring interacted with the secondary O-ring:\n Image source\nWhile the above diagram contains a lot of data, the critical information about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.",
+    "crumbs": [
+      "Data Analysis"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#references",
+    "href": "data-analysis.html#references",
+    "title": "Data Analysis",
+    "section": "References",
+    "text": "References\n\nThe Space shuttle Challenger explosion blog post, by Vikram Dayal\nRobison et al. (2002) Representation and Misrepresentation: Tufte and the Morton Thiokol Engineers on the Challenger, Science and Engineering Ethics, 8, 59-81.\nTufte, Edward R. (1997) “Visual Explanations: Images and Quantities, Evidence and Narrative”, Graphics Press, Cheshire, Connecticut.",
+    "crumbs": [
+      "Data Analysis"
     ]
   },
   {
@@ -825,7 +875,7 @@
     "href": "data-visualization.html",
     "title": "13  Data Visualization",
     "section": "",
-    "text": "13.1 R Setup\nBefore we get started, let’s set up our analysis environment like before:\nlibrary(readr)\nlibrary(dplyr)\n\ndf &lt;- read_csv(\"https://raw.githubusercontent.com/jhelvy/p4a/main/data/north_america_bear_killings.csv\")\nFor this lesson, we are going to use the North American Bear Killings dataset, which was compiled by Ali Sanne from the Wikipedia page on fatal bear attacks in North America. The dataset contains recorded killings by black, brown, or polar bears from 1900 to 2019 in North America. Each row in the dataset holds information for a single incident with the following columns:\nSide node: One thing I learned looking at this data is that all grizzly bears are brown bears, but not all brown bears are grizzly bears (kind of like the squares and rectangles thing).\nTo confirm that we’ve correctly loaded the data frame, let’s preview the data:\nglimpse(df)\n\n#&gt; Rows: 166\n#&gt; Columns: 14\n#&gt; $ name          &lt;chr&gt; \"Mary Porterfield\", \"Wilie Porterfield\", \"Henry Porte…\n#&gt; $ age           &lt;dbl&gt; 3, 5, 7, 18, 1, 61, 60, 9, 52, NA, 60, 56, 70, 5, 11,…\n#&gt; $ gender        &lt;chr&gt; \"female\", \"male\", \"male\", \"male\", NA, \"male\", \"male\",…\n#&gt; $ date          &lt;chr&gt; \"19/05/1901\", \"19/05/1901\", \"19/05/1901\", \"24/11/1906…\n#&gt; $ month         &lt;dbl&gt; 5, 5, 5, 11, 10, 9, 6, 8, 9, 10, 6, 7, 10, 10, 10, 7,…\n#&gt; $ year          &lt;dbl&gt; 1901, 1901, 1901, 1906, 1908, 1916, 1922, 1929, 1929,…\n#&gt; $ wildOrCaptive &lt;chr&gt; \"Wild\", \"Wild\", \"Wild\", \"Wild\", \"Captive\", \"Wild\", \"W…\n#&gt; $ location      &lt;chr&gt; \"Job, West Virginia\", \"Job, West Virginia\", \"Job, Wes…\n#&gt; $ description   &lt;chr&gt; \"The children were gathering flowers near their home …\n#&gt; $ bearType      &lt;chr&gt; \"Black\", \"Black\", \"Black\", \"Black\", \"Black\", \"Brown\",…\n#&gt; $ hunter        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n#&gt; $ grizzly       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…\n#&gt; $ hiker         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n#&gt; $ onlyOneKilled &lt;dbl&gt; 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…\nLook’s good - let’s start making some plots!",
+    "text": "13.1 R Setup\n…and one of the best ways to develop insights from data is to visualize the data. If you’re completely new to data visualization, I recommend watching this 40-minute video on how humans see data, by John Rauser. This is one of the best overviews I’ve ever seen of how we can exploit our understanding of human psychology to design effective charts:\nBefore we get started, let’s set up our analysis environment like before:\nlibrary(readr)\nlibrary(dplyr)\n\ndf &lt;- read_csv(\"https://raw.githubusercontent.com/jhelvy/p4a/main/data/north_america_bear_killings.csv\")\nFor this lesson, we are going to use the North American Bear Killings dataset, which was compiled by Ali Sanne from the Wikipedia page on fatal bear attacks in North America. The dataset contains recorded killings by black, brown, or polar bears from 1900 to 2019 in North America. Each row in the dataset holds information for a single incident with the following columns:\nSide node: One thing I learned looking at this data is that all grizzly bears are brown bears, but not all brown bears are grizzly bears (kind of like the squares and rectangles thing).\nTo confirm that we’ve correctly loaded the data frame, let’s preview the data:\nglimpse(df)\n\n#&gt; Rows: 166\n#&gt; Columns: 14\n#&gt; $ name          &lt;chr&gt; \"Mary Porterfield\", \"Wilie Porterfield\", \"Henry Porte…\n#&gt; $ age           &lt;dbl&gt; 3, 5, 7, 18, 1, 61, 60, 9, 52, NA, 60, 56, 70, 5, 11,…\n#&gt; $ gender        &lt;chr&gt; \"female\", \"male\", \"male\", \"male\", NA, \"male\", \"male\",…\n#&gt; $ date          &lt;chr&gt; \"19/05/1901\", \"19/05/1901\", \"19/05/1901\", \"24/11/1906…\n#&gt; $ month         &lt;dbl&gt; 5, 5, 5, 11, 10, 9, 6, 8, 9, 10, 6, 7, 10, 10, 10, 7,…\n#&gt; $ year          &lt;dbl&gt; 1901, 1901, 1901, 1906, 1908, 1916, 1922, 1929, 1929,…\n#&gt; $ wildOrCaptive &lt;chr&gt; \"Wild\", \"Wild\", \"Wild\", \"Wild\", \"Captive\", \"Wild\", \"W…\n#&gt; $ location      &lt;chr&gt; \"Job, West Virginia\", \"Job, West Virginia\", \"Job, Wes…\n#&gt; $ description   &lt;chr&gt; \"The children were gathering flowers near their home …\n#&gt; $ bearType      &lt;chr&gt; \"Black\", \"Black\", \"Black\", \"Black\", \"Black\", \"Brown\",…\n#&gt; $ hunter        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n#&gt; $ grizzly       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…\n#&gt; $ hiker         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n#&gt; $ onlyOneKilled &lt;dbl&gt; 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…\nLook’s good - let’s start making some plots!",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Data Visualization</span>"
@@ -909,11 +959,21 @@
     ]
   },
   {
+    "objectID": "extensions.html",
+    "href": "extensions.html",
+    "title": "Extensions",
+    "section": "",
+    "text": "In this section I’ll show how to do a few specific things in R that build on all the tools we’ve seen so far. This section is a constant work in progress, so come back later for more concepts. For now, it includes two sub-sections:\n\nMonte Carlo Methods\nUsing Python in R",
+    "crumbs": [
+      "Extensions"
+    ]
+  },
+  {
     "objectID": "monte-carlo-methods.html",
     "href": "monte-carlo-methods.html",
     "title": "14  Monte Carlo Methods",
     "section": "",
-    "text": "14.1 What is Monte Carlo simulation?",
+    "text": "14.1 What is Monte Carlo simulation?\nWhen you hear the words “Monte Carlo”, most people envision this:\n…or this:\nBut when I hear Monte Carlo, I envision this:\nNo, that’s not some grainy image coming into focus - that’s a Monte Carlo simulation approximating the value of \\(\\pi\\) (3.1415927…).",
     "crumbs": [
       "Extensions",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
@@ -1082,66 +1142,6 @@
     "crumbs": [
       "Extensions",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Introduction to Python (in R)</span>"
-    ]
-  },
-  {
-    "objectID": "programming.html",
-    "href": "programming.html",
-    "title": "Programming",
-    "section": "",
-    "text": "The goal of this section is to develop a general literacy in programming and computational thinking. While we will focus on learning these concepts in R, they will translate well to other similar languages, such as Python and Matlab.\nGo on to the next page to get started on your journey learning to program in R!",
-    "crumbs": [
-      "Programming"
-    ]
-  },
-  {
-    "objectID": "extensions.html",
-    "href": "extensions.html",
-    "title": "Extensions",
-    "section": "",
-    "text": "In this section I’ll show how to do a few specific things in R that build on all the tools we’ve seen so far. This section is a constant work in progress, so come back later for more concepts. For now, it includes two sub-sections:\n\nMonte Carlo Methods\nUsing Python in R",
-    "crumbs": [
-      "Extensions"
-    ]
-  },
-  {
-    "objectID": "data-analysis.html",
-    "href": "data-analysis.html",
-    "title": "Data Analysis",
-    "section": "",
-    "text": "The Challenger disaster\nOn January 28, 1986 the space shuttle Challenger exploded. In his book titled “Visual Explanations”, Edward Tufte (1997) provides a detailed account of the background to the incident. In short, the temperature on the day of the launch was too low and resulted in failure of the O-rings in the rocket, which led to an explosion that destroyed the rocket and killed the 7-person crew, pictured below.",
-    "crumbs": [
-      "Data Analysis"
-    ]
-  },
-  {
-    "objectID": "data-analysis.html#the-challenger-disaster",
-    "href": "data-analysis.html#the-challenger-disaster",
-    "title": "Data Analysis",
-    "section": "",
-    "text": "Image source",
-    "crumbs": [
-      "Data Analysis"
-    ]
-  },
-  {
-    "objectID": "data-analysis.html#the-data",
-    "href": "data-analysis.html#the-data",
-    "title": "Data Analysis",
-    "section": "The data",
-    "text": "The data\nThe R package DAAG has a dataset called orings which contains data on temperatures and O-ring damage during launches prior to the Challenger incident. Let’s load the DAAG library and preview the data:\n\nlibrary(DAAG)\n\nhead(orings)\n\n#&gt;   Temperature Erosion Blowby Total\n#&gt; 1          53       3      2     5\n#&gt; 2          57       1      0     1\n#&gt; 3          58       1      0     1\n#&gt; 4          63       1      0     1\n#&gt; 5          66       0      0     0\n#&gt; 6          67       0      0     0\n\n\nWe can see that the dataset contains observations about the temperatures of launches and O-ring damage, but we don’t yet have information. One step forward towards information is to simply plot the data to see if there might be a relationship between temperature and O-ring damage:\n\nlibrary(ggplot2)\n\nchallengerPlot &lt;- ggplot(\n        data = orings, \n        aes(x = Temperature, y = Total)\n    ) +\n    geom_point(size = 1.5) +\n    scale_x_continuous(\n        limits = c(25, 85), \n        breaks = seq(25, 85, 5)\n    ) +\n    scale_y_continuous(\n        limits = c(-0.15, 8), \n        breaks = seq(0, 8, 2)\n    ) +\n    labs(\n        x = 'Temperature (°F) of field joints at time of launch',\n        y = 'Total o-ring damage'\n    ) +\n    theme_bw() +\n    theme(panel.grid.minor = element_blank())\n\nchallengerPlot\n\n\n\n\n\n\n\n\nThe graph above shows O-ring damage on the y-axis and temperature on the x-axis. We can easily see that no prior launches below 66 degrees F were damage-free, and it appears that at lower temperatures (such as 55 degrees) the damage was even more severe.\nNow, what temperature was forecasted for the day of the Challenger launch? 26 to 29 degrees. Let’s add that context to our plot:\n\nannotation &lt;- paste(\n    \"26°-29°:\", \"Range of forecasted temperatures\",\n    \"for Jan. 28, 1986 Challenger launch\", sep = \"\\n\"\n)\n\nchallengerPlot +\n    annotate(\n        \"rect\", \n        xmin = 26, xmax = 29,  ymin = -0.15, ymax = 0.15,\n        alpha = 0.6, fill = \"grey60\"\n    ) +\n    annotate(\n        \"text\", \n        x = 26, y = 1.4, label = annotation, \n        hjust = 0\n    )\n\n\n\n\n\n\n\n\nNow we have some information. The transformation of the raw data into a visualization makes it obvious that the temperature forecasted for the day of the Challenger launch should raise red flags. It falls far below the temperature range of prior launches, and those prior launches suggest that O-ring damage may be correlated with decreasing temperature.\nTo their credit, the engineers working on the Challenger were worried about the potential for O-ring failure. But the critical step in making the link to temperature was not thoroughly communicated. Instead, the raw data was presented in tabular form along with diagrams like the one below, which show how erosion in the primary O-ring interacted with the secondary O-ring:\n Image source\nWhile the above diagram contains a lot of data, the critical information about the relationship between launch temperature and O-ring damage is not obvious. In contrast, the scatterplot achieves this without putting much cognitive load on the viewer. Just about anyone can look at that plot and understand that the forecasted temperature on January 28, 1986 might be a risk for O-ring failure.",
-    "crumbs": [
-      "Data Analysis"
-    ]
-  },
-  {
-    "objectID": "data-analysis.html#references",
-    "href": "data-analysis.html#references",
-    "title": "Data Analysis",
-    "section": "References",
-    "text": "References\n\nThe Space shuttle Challenger explosion blog post, by Vikram Dayal\nRobison et al. (2002) Representation and Misrepresentation: Tufte and the Morton Thiokol Engineers on the Challenger, Science and Engineering Ethics, 8, 59-81.\nTufte, Edward R. (1997) “Visual Explanations: Images and Quantities, Evidence and Narrative”, Graphics Press, Cheshire, Connecticut.",
-    "crumbs": [
-      "Data Analysis"
     ]
   }
 ]

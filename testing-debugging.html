@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ae9c50c8c79159b126e2153c26109f93.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -299,6 +299,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#debugging-your-own-code" id="toc-debugging-your-own-code" class="nav-link" data-scroll-target="#debugging-your-own-code"><span class="header-section-number">7.2.1</span> Debugging your own code</a></li>
   <li><a href="#debugging-in-rstudio" id="toc-debugging-in-rstudio" class="nav-link" data-scroll-target="#debugging-in-rstudio"><span class="header-section-number">7.2.2</span> Debugging in RStudio</a></li>
+  </ul></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">7.3</span> Tips</a>
+  <ul class="collapse">
+  <li><a href="#rounding-errors" id="toc-rounding-errors" class="nav-link" data-scroll-target="#rounding-errors"><span class="header-section-number">7.3.1</span> Rounding errors</a></li>
+  <li><a href="#dealing-with-integers" id="toc-dealing-with-integers" class="nav-link" data-scroll-target="#dealing-with-integers"><span class="header-section-number">7.3.2</span> Dealing with integers</a></li>
   </ul></li>
   <li><a href="#page-sources" id="toc-page-sources" class="nav-link" data-scroll-target="#page-sources">Page sources</a></li>
   </ul>
@@ -529,6 +534,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
+<section id="tips" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="tips"><span class="header-section-number">7.3</span> Tips</h2>
+<section id="rounding-errors" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="rounding-errors"><span class="header-section-number">7.3.1</span> Rounding errors</h3>
+<p>One common issue you’ll run into when programming (in general, not just in R) is floating point rounding errors (watch <a href="https://www.youtube.com/watch?v=8RvnnUuoHTA">this short video</a>) if you want to know why this happens with computers.</p>
+<p>Here’s an example. Let’s do some simple addition:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">0.2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.3</code></pre>
+</div>
+</div>
+<p>If we compared <code>x</code> to <code>0.3</code>, we would expect the result to be <code>TRUE</code>, right?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="fl">0.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+</div>
+<p>What went wrong here? Well, what looks like a value of 0.3 is actually a float with a lot of zeros:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x, <span class="at">digits =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.30000000000000004441</code></pre>
+</div>
+</div>
+<p>By default, R doesn’t print out all these zeros, but they are the result of many small rounding errors that occur when computers do calculations.</p>
+<p>To address this, you can use the <code>all.equal()</code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(x, <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+<p>This function only compares numbers out to a predefined decimal place (set by the optional <code>tolerance</code> argument, which by default is <code>1.5e-8</code>), after which it ignores everything else.</p>
+</section>
+<section id="dealing-with-integers" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="dealing-with-integers"><span class="header-section-number">7.3.2</span> Dealing with integers</h3>
+<p>Since numbers are doubles by default in R, the <code>is.integer(x)</code> function can be confusing. For example, we might expect this to return <code>TRUE</code>, right?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+</div>
+<p>Well, yes the number <code>7</code> is indeed a mathematical integer, but R has still encoded it as a double. If what I really want to know is if a number is a <em>whole</em> number (meaning it doesn’t have any decimals), I’ll often write my own function, <code>is.whole()</code>, which leverages the <code>all.equal()</code> function to help with rounding issues:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>is.whole <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">all.equal</span>(n, <span class="fu">as.integer</span>(n)))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now this works as expected:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.whole</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</section>
+</section>
 <section id="page-sources" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="page-sources">Page sources</h2>
 <p>Some content on this page has been modified from other courses, including:</p>
@@ -623,8 +689,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -735,7 +799,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
