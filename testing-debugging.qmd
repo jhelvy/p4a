@@ -261,6 +261,63 @@ The RStudio debugging console has a few buttons to make debugging a little
 nicer, From left to right they are, next (equivalent to `n`), step info (`s`),
 continue (`c`) and Stop (`Q`).
 
+## Tips
+
+### Rounding errors
+
+One common issue you'll run into when programming (in general, not just in R) is floating point rounding errors (watch [this short video](https://www.youtube.com/watch?v=8RvnnUuoHTA)) if you want to know why this happens with computers.
+
+Here's an example. Let's do some simple addition:
+
+```{r}
+x <- 0.1 + 0.2
+x
+```
+
+If we compared `x` to `0.3`, we would expect the result to be `TRUE`, right?
+
+```{r}
+x == 0.3
+```
+
+What went wrong here? Well, what looks like a value of 0.3 is actually a float with a lot of zeros:
+
+```{r}
+print(x, digits = 20)
+```
+
+By default, R doesn't print out all these zeros, but they are the result of many small rounding errors that occur when computers do calculations.
+
+To address this, you can use the `all.equal()` function: 
+
+```{r}
+all.equal(x, 0.3)
+```
+
+This function only compares numbers out to a predefined decimal place (set by the optional `tolerance` argument, which by default is `1.5e-8`), after which it ignores everything else. 
+
+### Dealing with integers
+
+Since numbers are doubles by default in R, the `is.integer(x)` function can be confusing. For example, we might expect this to return `TRUE`, right?
+
+```{r}
+is.integer(7)
+```
+
+Well, yes the number `7` is indeed a mathematical integer, but R has still encoded it as a double. If what I really want to know is if a number is a _whole_ number (meaning it doesn't have any decimals), I'll often write my own function, `is.whole()`, which leverages the `all.equal()` function to help with rounding issues:
+
+```{r}
+is.whole <- function(n) {
+  return(all.equal(n, as.integer(n)))
+}
+```
+
+Now this works as expected:
+
+```{r}
+is.whole(7)
+```
+
 ## Page sources {.unnumbered}
 
 Some content on this page has been modified from other courses, including:
